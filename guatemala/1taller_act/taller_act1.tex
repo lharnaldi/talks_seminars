@@ -1,0 +1,459 @@
+% Definimos el estilo del documento
+\documentclass[11pt]{beamer}
+
+%\usetheme{Frankfurt}
+%\usecolortheme{seahorse}
+%\usecolortheme{rose}
+%\usefonttheme[onlylarge]{structuresmallcapsserif}
+%\usefonttheme[onlysmall]{structurebold}
+%\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%\setbeamercolor{title}{fg=red!80!black}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+
+\mode<presentation> {
+% \usetheme{Madrid}
+	%\usetheme{default}
+	%\usetheme{JuanLesPins}
+	\usetheme{CambridgeUS}
+	%\usetheme{Goettingen}
+%	\usetheme{Szeged}
+%	\usetheme{Warsaw}
+	\usefonttheme{professionalfonts}
+  \setbeamercovered{transparent}
+%	\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%	\setbeamercolor{title}{fg=red!80!black,bg=blue!20!white}
+
+}
+
+% Utilizamos el paquete para usar español
+\usepackage[spanish]{babel}
+% Utilizamos un paquete para gestionar los acentos
+% y las e ¿es
+\usepackage[latin1]{inputenc}
+% amsmath y amssymb de la American Mathematical 
+% Society (fórmulas matemáticas)
+\usepackage{amsmath}
+%Para que reconozca el entorno verbatim
+\usepackage{fancyvrb}
+%Definimos nuestra ruta para las imagenes
+%Absoluto
+%\graphicspath{ {/home/user/images/} }
+%Relativo (recomendado) -> según
+%https://es.sharelatex.com/learn/Inserting_Images#La_ruta_a_la_carpeta_de_im.C3.A1genes
+\graphicspath{ {../media/} }
+
+\title[CAB-IB-DPRLab]{La importancia del ecosistema de trabajo en el desarrollo
+de las ciencias}
+\subtitle{Universidad del Valle \\ Guatemala}
+\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\ \texttt{{\href{mailto:arnaldi@cab.cnea.gov.ar}{arnaldi@cab.cnea.gov.ar}}}}
+%\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\ \texttt{arnaldi@cab.cnea.gov.ar}}
+\institute[LabDPR - CAB - IB]{Laboratorio Detección de Partículas y Radiación \\Centro Atómico Bariloche - Instituto Balseiro}
+% Colocar aquí la fecha exacta
+\date{\today}
+
+%\subject{Generación de presentaciones}
+
+%\pgfdeclareimage[height=0.8cm]{university-logo}{logo}
+%\logo{\includegraphics[width=8mm]{../media/cnea_logo.jpg}}
+%\logo{\includegraphics[width=8mm]{../media/LabDPR_logo.jpg}}
+%\logo{\includegraphics[width=8mm]{../media/balseiro_logo.jpg}}
+
+
+
+%\beamerdefaultoverlayspecification{<+->}
+%Empieza el documento
+\begin{document}
+
+\begin{frame}
+  \hspace*{0.6cm}
+  \includegraphics[height=0.18\textheight]{logos/cnea_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/balseiro_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/LabDPR_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
+
+  \titlepage
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contenido}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+%------------------------------------------------------------------------------
+\section{Lugar de trabajo}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Lugar de trabajo}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.75\textwidth]{cnea_ib_lago/ib_fotonica}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+			\begin{block}{Importancia del lugar donde se desarrollan los experimentos}
+    		\begin{itemize}
+      		\item	El lugar físco es importante porque ayuda a contener al estudiante
+      		\item	Contribuye a familiarizarlo con el ambiente de trabajo científico
+      		\item	Es fundamental para que el alumno pueda evacuar sus dudas
+inmediatamente 
+      		\item	Es muy deseable la existencia de grupos de trabajo
+interdisciplinarios
+					\item \alert{Todos estos factores influyen en la formación (como
+personas y como científicos) de nuestros estudiantes}
+    		\end{itemize}
+		\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{block}{Ejemplo: Centro Atómico Bariloche (CAB)}
+    		\begin{itemize}[<+->]
+      		\item	Uno de los centros de altos estudios más completos
+(equipamiento + científicos + enseñanza) de la Argentina
+      		\item	Conviven grupos interdisciplinarios y multidisciplinarios
+(fotónica, partículas, materiales, BT, etc)
+      		\item	Dedicado principlamente a la investigación aplicada, pero
+también a la formación de recursos humanos
+      		\item	El Instituto Balseiro tiene su campus dentro del CAB (enseñanza
+cuasi-personalizada)
+    		\end{itemize}
+			\end{block}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\only<1>{\includegraphics[width=\textwidth]{cnea_ib_lago/acelerador_negro}}
+			\only<2>{\includegraphics[width=\textwidth]{cnea_ib_lago/luz_cherenkov}}
+			%\only<3>{\includegraphics[width=\textwidth]{cnea_ib_lago/reactor_nuclear}}
+			\only<3>{\includegraphics[width=\textwidth]{cnea_ib_lago/salalimpia}}
+			\only<4>{\includegraphics[width=\textwidth]{cnea_ib_lago/ib_maestro}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Software como aliado en la enseñanza de las ciencias}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Software}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+			\begin{block}{Software (open vs. propietary)}
+    		\begin{itemize}
+      		\item	LabView
+      		\item	Matlab
+      		\item	Python
+      		\item	Scilab
+      		\item	Octave
+      		\item	Origin
+					\item Otros
+    		\end{itemize}
+			\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{block}{LabView}
+    		\begin{itemize}[<+->]
+      		\item Es un lenguaje de programación gráfico diseñado para ingenieros
+								y científicos para desarrollar aplicaciones de pruebas, control y medidas.	
+      		\item	Combina la potencia de la programación gráfica con hardware para
+								simplificar y acelerar el desarrollo de diseños.
+      		\item De naturaleza intuitiva por estar basado en entornos gráficos	
+    		\end{itemize}
+			\end{block}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\includegraphics[width=\textwidth]{cnea_ib_lago/labview}
+			%\only<3>{\includegraphics[width=\textwidth]{first_day/rp_freecad_up}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{exampleblock}{LabView}
+    		\begin{itemize}[<+->]
+      		\item \color{blue}{Relativamente fácil de aprender y usar}
+      		\item	\color{blue}{Capacidades de E/S integradas}
+      		\item \color{blue}{Funcionalidad completa}
+      		\item \color{blue}{Disponible para Unix, Windows y Mac OS}
+      		\item \color{red}{Propietario (se debe pagar por su uso)}
+      		\item \color{red}{Mantenerlo actualizado implica continuar pagando :(}
+      		\item \color{red}{Puede ser engorroso si no se tiene experiencia previa con la
+programación gráfica}
+    		\end{itemize}
+			\end{exampleblock}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\includegraphics[width=\textwidth]{cnea_ib_lago/labview}
+			%\only<3>{\includegraphics[width=\textwidth]{first_day/rp_freecad_up}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{block}{Matlab}
+    		\begin{itemize}[<+->]
+      		\item	Abreviatura de \textbf{MAT}rix \textbf{LAB}oratory, ``laboratorio de
+								matrices'' es una herramienta de software matemático que ofrece un entorno de
+								desarrollo integrado (IDE) con un lenguaje de programación propio (lenguaje M)
+      		\item	Es un estándar de la industria (hoy en día prácticamente todas
+las ramas de las ciencias lo utilizan de una u otra forma)
+      		\item	Integra
+							\begin{itemize}
+								\item Análisis numérico
+								\item Cálculo matricial
+								\item Procesamiento de señales
+								\item Gráficos
+							\end{itemize}	
+    		\end{itemize}
+			\end{block}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\only<1-2>{\includegraphics[width=\textwidth]{cnea_ib_lago/matlablogo}}
+			\only<3-7>{\includegraphics[width=\textwidth]{cnea_ib_lago/matlab_histo}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{alertblock}{Matlab}
+    		\begin{itemize}[<+->]
+      		\item \color{blue}{Gran cantidad de documentación disponible}
+      		\item	\color{blue}{Capacidades de E/S integradas}
+      		\item \color{blue}{Potentes herramientas para aplicaciones
+específicas (Simulink, DSP, etc)}
+      		\item \color{blue}{Disponible para Unix, Windows y Mac OS}
+      		\item \color{blue}{Lenguaje muy sencillo de aprender}
+      		\item \color{blue}{Muy adecuado para sistemas de control}
+      		\item \color{red}{Propietario (se debe pagar por su uso)}
+      		\item \color{red}{Mantenerlo actualizado implica continuar pagando :(}
+    		\end{itemize}
+			\end{alertblock}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\includegraphics[width=\textwidth]{cnea_ib_lago/matlablogo}
+			%\only<3>{\includegraphics[width=\textwidth]{first_day/rp_freecad_up}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{block}{Python}
+    		\begin{itemize}[<+->]
+      		\item	Python es un lenguaje de scripting independiente de plataforma y
+								orientado a objetos
+					\item Preparado para realizar cualquier tipo de programa, desde
+páginas web hasta aplicaciones de servidores de red
+      		\item	Desarrollo contínuo
+      		\item	Bloques altamente especializados
+      		\item	Muy potente para el análisis de datos experimentales
+    		\end{itemize}
+			\end{block}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\only<1-2>{\includegraphics[width=\textwidth]{cnea_ib_lago/pythonlogo}}
+			\only<3-5>{\includegraphics[width=\textwidth]{cnea_ib_lago/python_data_analysis}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Software utilizado en la enseñanza de las ciencias básicas}
+	\begin{columns}
+		\begin{column}{0.65\textwidth}
+			\begin{exampleblock}{Python}
+    		\begin{itemize}[<+->]
+      		\item \color{blue}{Gran cantidad de documentación disponible}
+      		\item	\color{blue}{Capacidades de E/S integradas}
+      		\item \color{blue}{Potentes herramientas para aplicaciones
+específicas (Imágenes, DSP, etc)}
+      		\item \color{blue}{Disponible para Unix, Windows y Mac OS}
+      		\item \color{blue}{Lenguaje muy sencillo de aprender}
+      		\item \color{blue}{Open source}
+    		\end{itemize}
+			\end{exampleblock}
+		\end{column} \ \
+		\begin{column}{0.35\textwidth}
+  		\includegraphics[width=\textwidth]{cnea_ib_lago/pythonlogo}
+			%\only<3>{\includegraphics[width=\textwidth]{first_day/rp_freecad_up}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Formato de trabajo}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Formato de trabajo experimental}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{¿Debemos entregar el experimento completamente armado?}
+  	\begin{itemize}
+  		\item	Siempre se debe dejar un poco de elaboración al alumno
+  		\item	Nosotros debemos ser sólo guías
+				\begin{itemize}
+					\item Dar un introducción teórica y dejar que (la mayoría de) los
+problemas los resuelvan los alumnos. Cuando hablamos de problemas nos referimos
+a cosas tan simples como la interconexión de los bloques del experimento de que
+se trate.
+					\item \alert{Esto contribuye a la formación de un espíritu crítico
+científico}
+				\end{itemize}
+  	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{¿Debemos entregar el experimento completamente armado? (Cont.)}
+  	\begin{itemize}
+  		\item	Hay dos opciones: experimentos completamente armados (ejemplo:
+dispositivos PASCO) y elaboración propia de experimentos (ejemplo: Millikan con
+elementos ``hecho en casa'')
+  		\item	No hay \alert{uno mejor que el otro}, siempre que los lineamientos para
+realizar la experiencia estén claros para los estudiantes en ambos casos.
+  		\item	Debemos contar, siempre que sea posible, con las últimas
+herramientas tanto de hardware como de software para la realización de los
+experimentos.
+  	\end{itemize}
+	\end{block}
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Formato de los informes experimentales}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Formato de los informes experimentales}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.75\textwidth]{cnea_ib_lago/alumnos_exp}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+			\begin{block}{¿Qué deben contener los informes?}
+    		\begin{itemize}
+      		\item	Estructurado o no estructurado
+      		\item	¿Nosotros imponemos la forma del informe?
+      		\item	Hay que tener en cuenta que: \alert{parte de la elaboración y
+								asimilación de los conocimientos del experimento está en saber
+								mostrarlo/explicarlo al resto del mundo}  
+      		\item	Todos los puntos en cuanto a la elaboración del informe deben
+								estar bien claros para el estudiante antes de iniciar la experiencia
+    		\end{itemize}
+			\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Partes del informe experimental}
+	\begin{block}{}
+		\begin{itemize}
+			\item \alert{Título}
+			\item \alert{Resumen}
+			\item \alert{Introducción} 
+				\begin{itemize}
+					\item Pone en contexto el trabajo realizado
+				\end{itemize}
+			\item \alert{Desarrollo experimental}
+				\begin{itemize}
+					\item Explicación de cómo midieron lo que midieron
+					\item Muestran cómo es la disposición de los aparator e instrumentos
+								que utilizaron duranto el transcurso del experimento
+				\end{itemize}
+			\item \alert{Análisis de resultados}
+				\begin{itemize}
+					\item Es el tratamiento propiamente dicho de los datos obtenidos
+					\item Aquí es donde el análisis y tratamiento de errores juega un papel
+								fundamental
+					\item Aquí es donde nosotros, como docentes, vemos si los
+								conocimientos fueron adquiridos o no, ya que esta sección es de elaboración pura
+								del estudiante
+				\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Partes del informe experimental (Cont.)}
+	\begin{block}{}
+		\begin{itemize}
+			\item \alert{Conclusiones}
+				\begin{itemize}
+					\item Puede incluir recomendaciones de posibles mejoras al experimento
+				\end{itemize}
+
+			\item \alert{Apéndices}
+				\begin{itemize}
+					\item Se incluye todo lo que es secundario, o que por su extensión
+								puede interferir con la explicación normal del experimento y sus resultados
+					\item Como ejemplo puede ser el desarrollo de una fórmula para saber
+								de dónde salió
+				\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conclusiones}
+	\begin{alertblock}{}
+		\begin{itemize}
+			\item Se vieron alguno de los factores que influyen en la sólida formación
+de (estudiantes) investigadores
+			\item Repasamos el software que se utiliza actualmente, no solo en las
+universidades, sino también en la industria
+			\item Vimos las opciones que tenemos a la hora de realizar los
+experimentos y presentar sus resultados en un ambiente académico 
+		\end{itemize}
+	\end{alertblock}
+			\pause
+	\begin{alertblock}{}
+			\Huge Muchas gracias por su atención!
+	\end{alertblock}
+\end{frame}
+
+
+\end{document}
+
+%\usetheme{default}
+%\usetheme{JuanLesPins}
+%\usetheme{Goettingen}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{crane}
+
+%\usefonttheme{serif}
+%\usefonttheme{structuresmallcapsserif}

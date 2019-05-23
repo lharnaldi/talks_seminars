@@ -1,0 +1,943 @@
+% Definimos el estilo del documento
+\documentclass[11pt]{beamer}
+
+\mode<presentation> {
+  \usetheme{Madrid}
+  %\usetheme{default}
+  %\usetheme{JuanLesPins}
+  %\usetheme{Goettingen}
+  %\usetheme{Szeged}
+  %\usetheme{Warsaw}
+
+  \setbeamercovered{transparent}
+ \setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+% \setbeamercolor{title}{fg=red!80!black,bg=blue!20!white}
+
+}
+
+% Utilizamos el paquete para usar español
+\usepackage[spanish]{babel}
+% Utilizamos un paquete para gestionar los acentos
+% y las e ¿es
+\usepackage[latin1]{inputenc}
+% amsmath y amssymb de la American Mathematical 
+% Society (fórmulas matemáticas)
+\usepackage{amsmath,amssymb}
+%Definimos nuestra ruta para las imagenes
+%Absoluto
+%\graphicspath{ {/home/user/images/} }
+%Relativo (recomendado) -> según
+%https://es.sharelatex.com/learn/Inserting_Images#La_ruta_a_la_carpeta_de_im.C3.A1genes
+\graphicspath{ {../../media/} }
+
+
+\title[Proyecto LAGO]{Conversión de datos: fundamentos}
+\subtitle{Universidad de La Serena \\ La Serena, Chile}
+\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\
+\texttt{{\href{mailto:arnaldi@cab.cnea.gov.ar}{arnaldi@cab.cnea.gov.ar}}}}
+\institute[LabDPR - CAB - IB]{Laboratorio Detección de Partículas y Radiación \\
+Centro Atómico Bariloche - Instituto Balseiro}
+\date{\today}
+
+% Esta parte no me queda claro si sirve para algo, en 
+% particular con el \usetheme{Madrid} no aparece por 
+% ningún lado
+%\subject{Generación de presentaciones}
+
+%\beamerdefaultoverlayspecification{<+->}
+%Empieza el documento
+\begin{document}
+
+\begin{frame}
+  \hspace*{0.2cm}
+  \includegraphics[height=0.2\textheight]{logos/cnea_logo} \hspace*{1cm}
+  \includegraphics[height=0.2\textheight]{logos/balseiro_logo} \hspace*{1cm}
+  \includegraphics[height=0.2\textheight]{logos/LabDPR_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
+
+  \titlepage
+
+  \scriptsize
+  \begin{center}
+   Laboratorio Detección de Partículas y Radiación \\
+   Centro Atómico Bariloche \\
+	 Comisión Nacional de Energía Atómica
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Outline}
+  %\tableofcontents[pausesections, pausesubsections]
+  \tableofcontents%[pausesections]
+\end{frame}
+
+\section{Introducción al Diseño de Sistemas Digitales}
+\subsection{¿Por qué digital?}
+\begin{frame}
+    \frametitle{¿Por qué Digital?}
+		\begin{block}{Ventajas de los dispositivos digitales}
+		%\begin{itemize}
+		%\item	Ventajas de los dispositivos lógicos
+			\begin{itemize}
+				\item[-] Alta capacidad de reproducir la información
+				\item[-] Flexibilidad y funcionabilidad: facilidad de guardar, transmitir y manipular la información
+				\item[-] Económicos: dispositivos más baratos y fáciles de diseñar
+				\item[-] Permiten aplicar técnicas de análisis y diseño especiales
+			\end{itemize}
+		%\end{itemize}
+		\end{block}
+		\begin{block}{Ley de Moore}
+		%\item	Ley de Moore
+			\begin{itemize}
+				%\item[-] Geometría de los transistores????
+				\item[-] Los chips doblan su densidad (número de 
+								 transistores) cada 18 meses
+					\begin{itemize}
+						\item 1 año de un perro equivale a 7 de una 
+									persona
+						\item 1 año de una FPGA equivale a 15 de una 
+									persona
+					\end{itemize}
+				
+				\item[-] Los dispositivos se hacen más pequeños, 
+								 más rápidos y más baratos
+				\item[-] Hoy en día los chips están compuestos por 
+								 miles de millones de compuertas
+				%\item[-] Y podemos tener en las manos un gadget 
+				%				 ``wireless-PDA-MP3-players-cámara-GPS'' 
+				%				 en poco tiempo
+			\end{itemize}
+		%\end{itemize}
+		\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Aplicaciones de los sistemas digitales}
+	\begin{block}{Digitalización}
+		Se ha extendido a un amplio rango 
+		de aplicaciones, incluyendo información (computadoras), 
+		telecomunicaciones, sistemas de control, etc.
+	\end{block}
+	\begin{block}{}
+		Los circuitos digitales reemplazaron hoy en día a muchos 
+		sistemas analógicos:
+      \begin{itemize}
+        \item[-] Reproducción de audio: desde la cinta, 
+								 pasando por el CD de música a los 
+								 reproductores MP3
+        \item[-] Telephone switching networks
+				\item[-] Procesamiento de imágenes
+      \end{itemize}
+  \end{block}
+\end{frame}
+
+\section{Tecnologías de los dispositivos}
+\begin{frame}
+	\frametitle{Fabricación de IC}
+	\begin{block}{}
+		En la actualidad la mayoría son de tecnología CMOS
+	\end{block}
+	\begin{block}{}
+		Las conexiones se hacen en varios layers o capas 
+		(típicamente 10 a 15 en CMOS)
+	\end{block}
+	\begin{block}{}
+		Cada layer tiene un patern especial definido por una 
+		máscara
+	\end{block}
+	\begin{block}{}
+		Un aspecto importante de los IC es el tamaño del transistor
+		más chico que pueda ser fabricado con esa tecnología
+	  \begin{itemize}
+    	\item[-] Se mide en micrones 
+			\item[-] Por ejemplo, se dice que un IC está construído
+							 con tecnología de 0.50 $\mu$ m
+      \item[-] El proceso continúa avanzando, tal como lo 
+							 predice la ley de Moore
+			\item[-] El estado del arte alcanza fracciones de $\mu$ m (conocido como deep sub-micron)
+    \end{itemize}
+	\end{block}
+
+\end{frame}
+
+\section{Circuitos digitales}
+\begin{frame}
+	\frametitle{Circuitos digitales}
+	\framesubtitle{Elementos básicos combinacionales}
+\begin{block}{Compuertas lógicas}
+	\includegraphics[width=\textwidth]{d5/basic_logic_gates}
+\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Circuitos digitales}
+	\framesubtitle{Elementos básicos secuenciales}
+\begin{block}{Compuertas lógicas}
+	\includegraphics[width=\textwidth]{d5/basic_secuential_elements_b}
+\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Circuitos digitales}
+	\framesubtitle{Clasificación de los dispositivos por su tecnología}
+	\begin{block}{De acuerdo a dónde se hace el diseño a medida o ``customización''}
+	\begin{itemize}
+	\item En la fábrica: ASIC (Aplication Specific IC)
+	\item En el ``campo'': no-ASIC
+	\end{itemize}
+	\end{block}
+	\begin{block}{Clasificación}
+	\begin{itemize}
+	\item Full custom ASIC
+	\item Standard cell ASIC
+	\item Gate array ASIC
+	\item Complex field programmable logic device
+	\item Simple field programmable logic device
+	\item SSI (Small Scale Integration)/MSI (Medium Scale Integration) devices
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Full Custom ASIC}
+	\begin{itemize}
+	\item Todos los aspectos (ej: tamaño de los transistores) son adecuados y dirigidos a una aplicación en particular
+	\item Los circuitos resultan completamente optimizados
+	\item El diseño se hace más complejo
+	\item Se usan solo en componentes pequeños
+	\item Se necesitan máscaras para cada uno de los layers
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Standard Cell ASIC}
+	\begin{itemize}
+	\item Los circuitos están hechos con ``primitivas'' de lógica predefinida, llamados standard cells
+	\item Ej, compuertas lógicas básicas, 1-bit adder, DFF, etc.
+	\item El layout de una celda está predeterminado, pero el layout del circuito se puede hacer a medida
+	\item Se necesitan máscaras para cada uno de los layers
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gate Array ASIC}
+	\begin{itemize}
+	\item El circuito es construido desde un arreglo de 
+				un tipo único de celda (conocido como celda 
+				base)
+	\item Las celdas base son pre-arregladas y colocadas 
+				en posiciones fijas, alineadas como arreglos 
+				unidimensionales o bidimensionales
+	\item A partir de las celdas base se pueden construir 
+				componentes más sofisticados (macro cells)
+	\item Se necesitan máscaras solamente para los metal 
+				layers (cables de conexión)
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Complex Field Programmable Logic Device}
+	\begin{itemize}
+	\item Compuesto por un arreglo de celdas y una estructura de interconexión genéricas
+	\item Las celdas lógicas y las interconexiones pueden ``programarse'' utilizando fusibles semiconductores
+	\item El diseño a medida es hecho ``en el campo''
+	\item Existe una sub-categorización aquí:
+		\begin{itemize}
+			\item \emph{CPLD} (Complex Programmable Logic Device)
+			\item \emph{FPGA} (Field Programmable Gate Array)
+		\end{itemize}
+	\item No se necesita una máscara a medida
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Simple Field Programmable Device}
+	\begin{itemize}
+	\item Dispositivo programable con una estructura interna simple
+	\item Por ej:
+		\begin{itemize}
+			\item \emph{PROM} (Programmable Read Only Memory)
+			\item \emph{PAL} (Programmable Array Logic)
+		\end{itemize}
+	\item No se necesita una máscara a medida
+	\item Actualmente reemplazados por CPLD/FPGA
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Componentes SSI/MSI}
+	\begin{itemize}
+	\item Partes pequeñas con funcionalidad fija y limitada
+	\item Ej, la serie TTL 7400 (más de 100 partes)
+	\item Los recursos (ej, potencia, área, costos de manufactura, etc) son consumidos por el ``package'', no por el ``silicio''
+	\item Ya no son una alternativa
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Tres tecnologías son viables}
+	\begin{itemize}
+	\item \alert{Standard Cell ASIC}
+	\item \alert{Gate Array ASIC}
+	\item \alert{FPGA/CPLD}
+	\end{itemize}
+	\begin{block}{Razones?}
+		\begin{itemize}
+			\item Área
+			\item Velocidad (performance)
+			\item Potencia
+			\item Costo
+		\end{itemize}
+	\end{block}
+\end{frame}
+\section{Representación del sistema}
+
+\begin{frame}
+	\frametitle{Representación del sistema}
+	\begin{block}{}
+	\begin{itemize}
+	\item Behavioral view
+		\begin{itemize}
+			\item[-] Describe funcionalidades y el comportamiento E/S del sistema
+			\item[-] Trata al sistema como una ``caja negra''
+		\end{itemize}
+	\item Structural view
+		\begin{itemize}
+			\item[-] Describe la implementación interna (componentes e interconexiones)
+			\item[-] Esencialmente diagrama en bloques
+		\end{itemize}
+	\item Physical view
+		\begin{itemize}
+			\item[-] Agrega más información al structural view: tamaño y locación de los componentes, líneas ruteadas
+			\item[-] Ej: layout de un circuito impreso
+		\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\section{Abstracción}
+\begin{frame}
+	\frametitle{Abstracción}
+	\begin{itemize}
+	\item ¿Cómo manejar la complejidad de un chip con 10 millones de transistores?
+	\end{itemize}
+	\begin{block}{Abstracción: modelo simplificado de un sistema}
+		\begin{itemize}
+			\item[-] Muestra las propiedades seleccionadas
+			\item[-] Ignora los detalles asociados
+		\end{itemize}
+	\end{block}
+	\begin{block}{Niveles de abstracción}
+		\begin{itemize}
+			\item[-] Transistor level
+			\item[-] Gate level
+			\item[-] Register transfer (RT) level
+			\item[-] Processor level
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\section{Tareas de desarrollo}
+
+\begin{frame}
+	\frametitle{Tareas de desarrollo}
+	\begin{block}{}
+	\begin{itemize}
+		\item Desarrollar un sistema digital es un proceso de refinamiento y validación
+		\item Principales tareas:
+			\begin{itemize}
+				\item Síntesis
+				\item Diseño físico
+				\item Verificación
+				\item Testeo
+			\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Síntesis}
+	\begin{block}{}
+  \begin{itemize}
+    \item Procesos de refinamiento que realiza una descripción con componentes del más bajo nivel de abstracción
+    \item La descripción resultante es una vista estructural en el más bajo nivel de abstracción
+    \item Tipos de síntesis:
+      \begin{itemize}
+        \item High-level synthesis
+        \item RT level synthesis
+        \item Gate level synthesis
+        \item Technology mapping
+      \end{itemize}
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Diseño Físico}
+	\begin{block}{}
+  \begin{itemize}
+    \item Placement and routing
+      \begin{itemize}
+        \item Refinamiento desde un structural view a un physical view
+        \item Obtención del layout para el netlist
+      \end{itemize}
+    \item Extracción de circuitos
+      \begin{itemize}
+        \item Determinación de las resistencias y capacidades de los alambres de interconexión
+      \end{itemize}
+    \item Otros 
+      \begin{itemize}
+        \item Obtención de las grillas de distribución de potencia y de relojes, aseguramiento de señales, etc. 
+      \end{itemize}
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Verificación}
+	\begin{block}{}
+  \begin{itemize}
+    \item Controlar si el diseño cumple con las especificaciones y objetivos de performance
+    \item Controlar que estén correctos los procesos de refinamiento respecto del diseño inicial
+    \item Dos aspectos 
+      \begin{itemize}
+        \item Funcionalidad
+        \item Performance (timing)
+      \end{itemize}
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Métodos de verificación}
+	\begin{block}{}
+  \begin{itemize}
+    \item Simulación
+      \begin{itemize}
+        \item Spot check: no se puede verificar ausencia de errores
+        \item Puede ser computacionalmente intensivo
+      \end{itemize}
+    \item Timing analysis
+      \begin{itemize}
+        \item Sólo se chequean los retardos
+      \end{itemize}
+    \item Verificación formal
+      \begin{itemize}
+        \item Se aplican técnicas de análisis matemático
+        \item Ej, chequeo de equivalencia
+      \end{itemize}
+    \item Emulación de hardware
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Testeo}
+	\begin{block}{}
+  \begin{itemize}
+    \item Es el proceso de detectar defectos físicos ocurridos en el momento de la manufactura
+    \item Dificultoso para circuitos grandes
+      \begin{itemize}
+        \item Se necesita agregar circuitos de testeo auxiliares en el diseño
+    		\item Ej, built-in self test (BIST), scan chain, etc
+      \end{itemize}
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conclusiones de la primera parte}
+	\begin{itemize}
+		\item De ahora en adelante, en cada nuevo diseño que se lleve adelante pensar en realizarlo de forma digital, siempre que sea posible
+		\item En la representación del sistema deben quedar claros los objetivos que debe cumplir tal sistema
+		\item Asegurarse de conocer bien la tecnología con la que está hecha nuestra electrónica
+		\item Asegurarse de atravesar todas las tareas de desarrollo
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		\huge{Fin de la primera parte}
+	\end{center}
+\end{frame}
+
+%Segunda parte
+
+%\section{Flujo de desarrollo}
+%\subsection{Lógica digital}
+%\subsection{Elementos básicos}
+%\subsection{Circuitos SSI/MSI}
+%\subsection{Microcontroladores}
+%\subsection{PLA, PAL, ASIC}
+%\subsection{MSI/SSI}
+%\subsection{PLA}
+
+\begin{frame}
+    \frametitle{Lógica reconfigurable}
+    \framesubtitle{Repaso histórico}
+\begin{columns}
+ \begin{column}{0.55\textwidth}
+\begin{block}{Evolución de lógica digital programable}
+    \begin{itemize}[<+-| alert@+>]
+      \item<1>  PAL (Prog. Array Logic)
+      \item<1>  GAL (Gate Array Logic)
+      \item<2>  PLA (Prog. Logic Array)
+      \item<3>  CPLD (Complex Programmable Logic Device)
+    \end{itemize}
+%    \begin{enumerate}[<+-| alert@+>]
+%      \item  Primer item
+%      \item  Segundo item
+%      \item  Tercer item
+%    \end{enumerate}
+\end{block}
+ \end{column} \ \
+ \begin{column}{0.40\textwidth}
+      \only<1>{\includegraphics[width=0.9\textwidth]{d5/PAL}}
+      \only<2>{\includegraphics[width=0.8\textwidth]{d5/PLA}}
+      \only<3>{\includegraphics[width=0.9\textwidth]{d5/cpld_estructura}}
+ \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{CPLD}
+\begin{columns}
+ \begin{column}{0.55\textwidth}
+\begin{block}{Estructura de un CPLD}
+    \begin{itemize}[<+->]
+      \item  Cada bloque lógico (LB) equivale a un PLD
+      \item  Menores retardos
+      \item  Poca flexibilidad
+    \end{itemize}
+\end{block}
+ \end{column} \ \
+ \begin{column}{0.40\textwidth}
+      \includegraphics[width=0.8\textwidth]{d5/estructura_de_un_cpld}
+ \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{FPGA}
+\begin{columns}
+ \begin{column}{0.55\textwidth}
+\begin{block}{Estructura de una FPGA}
+    \begin{itemize}[<+-| alert@+>]
+      \item  Arreglo de bloques lógicos configurables (CLB)
+      \item  Bloques de E/S rodeando todo el conjunto
+      \item  Interconexiones programables que relacionan los bloques anteriores
+    \end{itemize}
+\end{block}
+ \end{column} \ \
+ \begin{column}{0.40\textwidth}
+      \only<1>{\includegraphics[width=0.8\textwidth]{d5/bloques_fpga}}
+      \only<2-3>{\includegraphics[width=0.8\textwidth]{d5/sub_bloques_fpga}}
+ \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Tipos de FPGA}
+\begin{columns}
+ \begin{column}{0.55\textwidth}
+\begin{block}{}
+    \begin{itemize}[<+->]
+			\definecolor{Verde}{rgb}{0.1,0.4,0.1}
+      \item  \textcolor{Verde}{Matriz simétrica (Xilinx)}
+      \item  \textcolor{Verde}{Basada en canales (Actel)}
+      \item  \textcolor{Verde}{PLD Jerárquico (Altera)}
+			\item	 \textcolor{Verde}{Mar de compuertas (Lattice)}
+    \end{itemize}
+\end{block}
+ \end{column} \ \
+ \begin{column}{0.40\textwidth}
+      \only<1>{\includegraphics[width=0.8\textwidth]{d5/tipos_de_fpga1}}
+      \only<2>{\includegraphics[width=0.8\textwidth]{d5/tipos_de_fpga2}}
+      \only<3>{\includegraphics[width=0.8\textwidth]{d5/tipos_de_fpga3}}
+      \only<4>{\includegraphics[width=0.8\textwidth]{d5/tipos_de_fpga4}}
+ \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{CLBs}
+	\begin{block}{}
+  \begin{itemize}
+    \item Hablando de Xilinx, el bloque lógico que define sus FPGA son los CLB
+    \item Están compuestos por Look-Up Tables (LUT) y lógica para manejarlos
+    \item \alert{Básicamente, una LUT es una memoria con un
+					circuito de control encargado de suministrarle 
+					los datos}
+    \item Una LUT de \emph{k} entradas puede implementar
+					cualquier función booleana de \emph{k} 
+					variables
+    \item En general se implementan con SRAM
+    \item La ventaja de este tipo de implementación es que se tiene mucha flexibilidad a la hora de realizar las funciones lógicas
+    \item Como desventaja se puede decir que ocupan mucho espacio
+    
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{LUTs}
+	\framesubtitle{Ejemplo de una LUT}
+	%\begin{block}{Ejemplo de una LUT}
+      \includegraphics[width=0.95\textwidth]{d5/LUT_ej}
+	%\end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{LUTs}
+    \framesubtitle{Ejemplo}
+\begin{columns}
+ \begin{column}{0.35\textwidth}
+\begin{block}{}
+    \begin{itemize}[<+->]
+      \item  Si tenemos la función: 
+			\begin{equation*}
+				f =  ab + c
+			\end{equation*}
+
+      \item  Si esta función se implementa con una LUT de tres entradas, sería necesaria una RAM de $2^3 = 8$ posiciones
+      \item  Y almacenaríamos 1 en la posición 000, 0 en la posición 001, y así sucesivamente
+    \end{itemize}
+\end{block}
+ \end{column} \ \
+ \begin{column}{0.60\textwidth}
+      \includegraphics[width=0.8\textwidth]{d5/LUT_implementacion_funcion}
+ \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Programación de las FPGAs}
+	\begin{block}{Formas de programación}
+  \begin{itemize}
+    \item SRAM
+  	\begin{itemize}
+    	\item Cada vez que se conecta se configuran las conexiones
+    	\item Rápida reconfiguración del sistema 
+    	\item Tamaño del chip elevado, debido a la RAM
+    	\item Puede ser reprogramada ilimitadamente
+  	\end{itemize}
+    \item Antifuse
+  	\begin{itemize}
+    	\item Se mantiene en estado de alta impedancia hasta que se programa en estado de baja impedancia
+    	\item Sólo se puede programar una vez 
+    	\item Más económica
+    	\item Inmune a las radiaciones
+  	\end{itemize}
+    \item EEPROM, FLASH
+  	\begin{itemize}
+    	\item Similar al método de memorias SRAM
+    	\item La configuración se guarda en el dispositivo
+    	\item Inicio rápido
+  	\end{itemize}
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Optimizaciones en las FPGAs}
+	\begin{block}{}
+  \begin{itemize}
+    \item Bloques de E/S especiales
+    \item Red de distribución de reloj especial
+    \item Opciones para bajo consumo
+    \item Recursos de interconexión jerárquicos
+    \item Conexiones especiales para operaciones aritméticas (acarreo rápido)
+    \item Hardcore PPC
+    \item Softcores
+  \end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Conclusiones de la segunda parte}
+	\begin{itemize}
+		\item Las FPGAs que dominan el mercado actual están compuestas por:
+		\begin{itemize}
+			\item Bloques lógicos LUT (3 o 4 entradas)
+			\item Arquitectura tipo matriz simétrica
+			\item Se utilizan SRAM para su configuración
+		\end{itemize}
+		\item Razones:
+		\begin{itemize}
+			\item Las LUTs simplifican la síntesis lógica
+			\item Las SRAM permiten innumerables reconfiguraciones
+			\item Las matrices simétricas cuentan con mayores recursos de conexionado
+		\end{itemize}
+		\item Los principales fabricantes:
+		\begin{itemize}
+			\item Xilinx
+			\item Altera
+			\item Actel
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		\huge{¡Muchas Gracias!}
+	\end{center}
+\end{frame}
+%\subsection{PAL}
+
+%\begin{frame}
+%    \frametitle{Título de la segunda diapositiva}
+%\begin{block}{}
+%Escribimos una pequeña fórmula
+%\end{block}
+%
+%\begin{block}{Fórmula}
+%\begin{equation*}
+%\onslide<2->{V(x) = } \onslide<3->{\color<3>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r} +}
+%\onslide<4->{\color<4>[rgb]{0,1,0} B\int_0^\infty\frac{dr}{r^2} +}
+%\onslide<5->{\color<5>[rgb]{0,0,1} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}
+%\end{equation*}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Ahora mostramos la fórmula de forma un poco diferente
+%\end{block}
+%
+%\begin{block}{Fórmula}
+%\begin{equation*}
+%V(x) =  {\color<2>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r}} +
+%{\color<3>[rgb]{1,0,0} B\int_0^\infty\frac{dr}{r^2}} +
+%{\color<4>[rgb]{1,0,0} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}
+%\end{equation*}
+%\end{block}
+%\end{frame}
+
+%\begin{frame}
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Otra forma un poco más compleja:
+%\end{block}
+%\begin{block}{Ecuación}
+%$\displaystyle
+%V(x) = \onslide<2->{\color<2>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r} +}
+%\onslide<3->{\color<3>[rgb]{0,1,0} B\int_0^\infty\frac{dr}{r^2} +}
+%\onslide<4->{\color<4>[rgb]{0,0,1} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}$
+%
+%\medskip
+%\hspace*{15mm} \onslide<2>{\color<2>[rgb]{1,0,0} Dipolo} \hspace{7mm}
+%\onslide<3>{\color<3>[rgb]{0,1,0} Coulomb} \hspace{4mm}
+%\onslide<4>{\color<4>[rgb]{0,0,1} Van der Waals}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}[t]
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Otra forma reemplazando elementos:
+%\end{block}
+%\only<2>{\visible<2>{\begin{block}{Ecuación 1}
+%$\displaystyle V(x) = A\int_0^\infty\frac{dr}{r} \color[rgb]{1,0,0} \longrightarrow \text{Dipolo}$
+%\end{block}}}%
+%\only<3->{\visible<3->{\begin{block}{Ecuación 2}
+%$\displaystyle W(x) = B\int_0^\infty\frac{dr}{r^2} +
+%C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx \only<3>{ \longrightarrow \color[rgb]{1,0,0} \text{Coulomb + WdW}}$
+%\end{block}}}
+%\only<4>{\visible<4>{\begin{block}{otro bloque}
+%Otras cosas...
+%\end{block}}}
+%\end{frame}
+
+
+%\subsection{CPLDs}
+%\subsection{FPGAs}
+%\subsection{ASICs}
+%
+%\section{Diferentes tecnologías}
+%
+%\subsection{subseccion de la segunda seccion}
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{Una película}
+%\includemovie[play,repeat]%
+%{4cm}{3cm}{media/random.mpg}
+%\end{block}
+%\end{Verbatim}
+%
+%\textbf{Nota:} Es esencial cargar el paquete 
+%\textsf{movie15} en el preámbulo
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{4.2cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,repeat]%
+%{4cm}{3cm}{media/random.mpg}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{Otra película}
+%\includemovie[autoplay,%
+%controls]{5.5cm}{3.75cm}%
+%{media/budweiser.mpeg}
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{5.7cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,controls]%
+%{5.5cm}{3.75cm}{media/budweiser.mpeg}
+%
+%\medskip
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\footnotesize
+%\begin{Verbatim}
+%\begin{block}{Otra película}
+%\includemovie[autoplay,%
+%label=bud]{6.5cm}{4.43cm}%
+%{media/budweiser.mpeg}
+%\fbox{
+%\movieref[rate=0.5]{bud}{Slow}
+%\movieref[default]{bud}{Normal}
+%\movieref[rate=2]{bud}{Fast}
+%\movieref[pause]{bud}{Play/
+%Pause}
+%\movieref[stop]{bud}{Stop}
+%}
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.6cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,label=bud]%
+%{6.5cm}{4.43cm}{media/budweiser.mpeg}
+%\fbox{
+%\movieref[rate=0.5]{bud}{Slow}
+%\movieref[default]{bud}{Normal}
+%\movieref[rate=2]{bud}{Fast}
+%\movieref[pause]{bud}{Play/%
+%Pause}
+%\movieref[stop]{bud}{Stop}
+%}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Objetos 3D}
+%\begin{columns}
+%\begin{column}{4cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{}
+%\includemovie[poster,
+%toolbar,3Droo=12]{
+%.8\linewidth}{
+%.8\linewidth
+%}{media/4CH3-N.u3d}
+%\end{block}
+%\end{Verbatim}
+%
+%Nota: Cargar \textsf{movie15} con la opción \textsf{3D}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.5cm}
+%\begin{block}{}
+%\includemovie[poster,toolbar,3Droo=12]{
+%.8\linewidth
+%}{
+%.8\linewidth
+%}{media/4CH3-N.u3d}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Objetos 3D}
+%\begin{columns}
+%\begin{column}{4cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{}
+%\includemovie[poster,
+%toolbar,3Droo=1,
+%3Dviews2=media/turbine.vws]
+%{.9\linewidth}{
+%.6\linewidth
+%}{media/turbine.u3d}
+%
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.5cm}
+%\begin{block}{}
+%\includemovie[poster,toolbar,
+%3Droo=1,3Dviews2=media/turbine.vws]{
+%.9\linewidth
+%}{
+%.6\linewidth
+%}{media/turbine.u3d}
+%
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
+\end{document}
+
+%\usetheme{default}
+%\usetheme{JuanLesPins}
+%\usetheme{Goettingen}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+%
+%\usecolortheme{crane}
+%
+%\usefonttheme{serif}
+%\usefonttheme{structuresmallcapsserif}

@@ -1,0 +1,470 @@
+% Definimos el estilo del documento
+\documentclass[10pt]{beamer}
+
+%\usetheme{Frankfurt}
+%\usecolortheme{seahorse}
+%\usecolortheme{rose}
+%\usefonttheme[onlylarge]{structuresmallcapsserif}
+%\usefonttheme[onlysmall]{structurebold}
+%\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%\setbeamercolor{title}{fg=red!80!black}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+
+\mode<presentation> {
+ %\usetheme{Madrid}
+%	\usetheme{default}
+	%\usetheme{JuanLesPins}
+%	\usetheme{CambridgeUS}
+%	\usetheme{Goettingen}
+%	\usetheme{Szeged}
+%	\usetheme{Warsaw}
+	\usetheme{Boadilla}
+	\usefonttheme{structurebold}
+	\usecolortheme{orchid}
+  \setbeamercovered{transparent}
+%	\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%	\setbeamercolor{title}{fg=red!80!black,bg=blue!20!white}
+
+}
+
+% Utilizamos el paquete para usar español
+\usepackage[spanish]{babel}
+% Utilizamos un paquete para gestionar los acentos
+% y las e ¿es
+\usepackage[latin1]{inputenc}
+% amsmath y amssymb de la American Mathematical 
+% Society (fórmulas matemáticas)
+\usepackage{amsmath}
+%Para que reconozca el entorno verbatim
+\usepackage{fancyvrb}
+%Definimos nuestra ruta para las imagenes
+%Absoluto
+%\graphicspath{ {/home/user/images/} }
+%Relativo (recomendado) -> según
+%https://es.sharelatex.com/learn/Inserting_Images#La_ruta_a_la_carpeta_de_im.C3.A1genes
+\graphicspath{ {../media/} }
+\usepackage{array}
+
+\title[LAGO]{LAGO: El observatotrio gigante latinoamericano}
+\subtitle{Universidad del Valle \\ Guatemala}
+\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\ \texttt{{\href{mailto:arnaldi@cab.cnea.gov.ar}{arnaldi@cab.cnea.gov.ar}}}}
+%\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\ \texttt{arnaldi@cab.cnea.gov.ar}}
+\institute[LabDPR - CAB - IB]{Laboratorio Detección de Partículas y Radiación \\Centro Atómico Bariloche - Instituto Balseiro}
+% Colocar aquí la fecha exacta
+\date{\today}
+
+%\subject{Generación de presentaciones}
+
+%\pgfdeclareimage[height=0.8cm]{university-logo}{logo}
+%\logo{\includegraphics[width=8mm]{../media/cnea_logo.jpg}}
+%\logo{\includegraphics[width=8mm]{../media/LabDPR_logo.jpg}}
+%\logo{\includegraphics[width=8mm]{../media/balseiro_logo.jpg}}
+
+
+
+%\beamerdefaultoverlayspecification{<+->}
+%Empieza el documento
+\begin{document}
+
+\begin{frame}
+  \hspace*{0.6cm}
+  \includegraphics[height=0.18\textheight]{logos/cnea_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/balseiro_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/LabDPR_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
+
+  \titlepage
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contenido}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+%------------------------------------------------------------------------------
+\section{El proyecto LAGO}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{El proyecto LAGO}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{{\color{red}L}atin {\color{red}A}merican {\color{red}G}iant {\color{red}O}bservatory (LAGO)}
+	\framesubtitle{Un ``arreglo'' muy grande de detectores de agua Cherenkov (WCD)}
+	\begin{columns}
+		\begin{column}{0.4\textwidth}
+  		\only<1>{\includegraphics[width=.95\textwidth,height=.5\textheight]{lago/lago_paises}}
+  		\only<2>{\includegraphics[width=1.04\textwidth,height=.5\textheight]{lago/lago_sites}}
+		\end{column} \ \
+		\begin{column}{0.40\textwidth}
+			\begin{block}{}
+			\begin{itemize}[<+->]
+				\item \textbf{Detectores en ocho paises:}\\
+							Argentina, Bolivia, Colombia, Ecuador, Guatemala, México, Perú y Venezuela
+				\item \textbf{Dos nuevos detectores en Brasil:}\\
+							A ser incorporados este año (UFCG y UNICAMP)
+			\end{itemize}
+			\end{block}
+			\end{column}
+		\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{{\color{red}L}atin {\color{red}A}merican {\color{red}G}iant {\color{red}O}bservatory (LAGO)}
+	\framesubtitle{Un ``arreglo'' muy grande de detectores de agua Cherenkov (WCD)}
+			\begin{alertblock}{La Colaboración LAGO}
+			\begin{itemize}
+				\item Mas de 80 miembros de 25 instituciones en 9 países latinoamericanos.
+				\item \textbf{Objetivos científicos:}\\
+					\begin{itemize}
+						\item Astropartículas hasta la ``\textit{rodilla}'' de los rayos cósmicos ($\sim10^{15}$ -- $10^{16}$ eVs)
+						\item Estudiar transitorios y fenómenos de Space Weather de larga duración debidos a la modulación solar de los rayos cósmicos.
+						\item Medición de la radiación de fondo a nivel de tierra
+					\end{itemize}
+				\item \textbf{Objetivos académicos:}\\
+					\begin{itemize}
+						\item Entrenar a estudiantes latinoamericanos en técnicas de física de altas energías, sofware (análisis de datos) y técnicas de astropartículas.
+						\item Construir una red latinoamericana de investigadores en astropartículas.
+					\end{itemize}
+			\end{itemize}
+		\end{alertblock}	
+\end{frame}
+
+\begin{frame}
+\frametitle{La organización de LAGO}
+\begin{center}
+\includegraphics[width=.7\textwidth,height=.8\textheight]{lago/lago_organizacion}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Objetivos para 2016}
+\begin{alertblock}{En 2016 vamos a:}
+\begin{itemize}
+	\item Consolidar el funcionamiento de los grupos de trabajo
+		\begin{itemize}
+			\item Physics (WG1: Sergio Dasso)
+				{\footnotesize
+				\begin{itemize}
+					\item Space Weather: implementar análisis multi-espectral en
+varios sitios simultáneos
+					\item High Energy: Continuar con análisis periódico, transients y Centro Galáctico
+				  \item Estandarizar códigos de análisis de datos
+					\item Incluir perfiles GDAS en la cadena de simulaciones
+				\end{itemize}	
+				}
+			\item Detectors (WG2: Luis Otiniano)
+				{\footnotesize
+				\begin{itemize}
+					\item Asegurar el funcionamiento contínuo de al menos un detector en al menos 10 sitios
+					\item Garantizar flujo de datos al repositorio central 
+				  \item Finalizar simulación detector Geant4
+					\item Organizar el ``\textit{Club del Trueque}''
+					\item Instalar el primer nodo antártico de LAGO en la base Marambio (ARG)
+					\item Electronics (SubWG2.1, Horacio Arnaldi) \\
+								Desarrollar nueva electrónica de adquisición (¿Nexys4? ¿Red Pitaya?)
+				\end{itemize}	
+				}
+			\item Detectors (WG3: Luis Núñez)
+				{\footnotesize
+				\begin{itemize}
+					\item Garantizar accesibilidad y uso de herramientas computacionales para la colaboración
+					\item Habilitar sistema de recepción de datos
+					\item Implementar repositorio de datos
+					\item Incorporar análisis y visualización online del flujo de señales de cada detector en tiempo real 
+				\end{itemize}
+				}
+		\end{itemize}
+	\end{itemize}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{http://wiki.lagoproject.org}
+\framesubtitle{Sección ``Recursos'' lista a partir de diciembre de 2015}
+			\begin{center}
+				\includegraphics[width=.9\textwidth,height=.8\textheight]{lago/lago_wiki}
+			\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Recursos}
+\vspace{-6mm}
+\begin{columns}[t,totalwidth=\textwidth]
+\column{.48\linewidth}
+		\begin{exampleblock}{Códigos abiertos: github}
+			\begin{center}
+				\includegraphics[width=.85\textwidth,height=.28\textheight]{lago/lago_github}
+			\end{center}
+		\end{exampleblock}	
+\column{.48\linewidth}
+		\begin{exampleblock}{Códigos cerrados: bitbucket}
+			\begin{center}
+				\includegraphics[width=.85\textwidth,height=.28\textheight]{lago/lago_mercurial}
+			\end{center}
+		\end{exampleblock}	
+\end{columns}
+%\vfill
+%\includegraphics[width=\textwidth,height=1cm]{cat}
+%\vfill
+\begin{columns}[t,totalwidth=\textwidth]
+\column{.48\linewidth}
+		\begin{alertblock}{mailing: listas de correos}
+			\begin{itemize}
+				\item {\footnotesize collaboration@lagoproject.org}
+				\item {\footnotesize coordination@lagoproject.org}
+				\item {\footnotesize editorial@lagoproject.org}
+				\item {\footnotesize physics@lagoproject.org}
+				\item {\footnotesize detectors@lagoproject.org}
+				\item {\footnotesize electronics@lagoproject.org}
+				\item {\footnotesize data@lagoproject.org}
+			\end{itemize}
+		\end{alertblock}	
+\column{.48\linewidth}
+		\begin{block}{google+ y twitter}
+			\begin{itemize}
+				\item {\footnotesize g+: the.lago.project}
+				\item {\footnotesize twitter: @lagoproject}
+			\end{itemize}
+		\end{block}	
+\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Repositorio virtual de datos: LAGOVirtual}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.65\textwidth]{lago/e-colabora}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Programas LAGO}
+\vspace{-6mm}
+\begin{columns}[t,totalwidth=\textwidth]
+\column{.48\linewidth}
+		\begin{exampleblock}{LAGO-Extreme Universe}
+			\begin{itemize}
+				\item {\footnotesize Partículas de altas energías}
+				\item {\footnotesize Más allá de la región de la rodilla de los rayos
+cósmicos}
+			\end{itemize}
+		\end{exampleblock}	
+\column{.48\linewidth}
+		\begin{block}{LAGO-Virtual}
+			\begin{itemize}
+				\item {\footnotesize Adquirir, producir, colectar y preservar los datos
+de LAGO}
+			\end{itemize}
+		\end{block}	
+\end{columns}
+%\vfill
+%\includegraphics[width=\textwidth,height=1cm]{cat}
+%\vfill
+\begin{columns}[t,totalwidth=\textwidth]
+\column{.48\linewidth}
+		\begin{alertblock}{LAGO-Space Weather}
+			\begin{itemize}
+				\item {\footnotesize Modulación solar de los rayos cósmicos}
+				\item {\footnotesize Posibles conexiones con la física de la atmósfera}
+				\item {\footnotesize Radiación de fondo a nivel del suelo (y del aire)}
+			\end{itemize}
+		\end{alertblock}	
+\column{.48\linewidth}
+		\begin{exampleblock}{LAGO-Universidades}
+			\begin{itemize}
+				\item {\footnotesize Astrofísica y astropartículas en cursos
+universitarios}
+				\item {\footnotesize Análisis de datos y estadística}
+				\item {\footnotesize Decaimiento del muón}
+				\item {\footnotesize Física de los detectores e interacción de la
+radiación con la materia}
+				\item {\footnotesize Construcción y caracterización de detectores de
+partículas}
+			\end{itemize}
+		\end{exampleblock}	
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Nuestro detector: WCD (Water Cherenkov Detector)}
+	\begin{columns}
+		\begin{column}{0.55\textwidth}
+			\begin{block}{}
+    		\begin{itemize}
+      		\item	Detector autónomo, simple, confiable y barato.
+      		\item	Tanques comerciales con 1.5 $m^2$ -- 10 $m^2$ de área de
+detección, llenos de agua purificada.
+      		\item	Covertura interior de Tyvek (difusivo y dispersivo)
+					\item PMT + tarjeta de digitalización (diseño propio) 
+					\item FPGA + Raspberry Pi: control del detector, telemetría,
+adquisición de datos y pre-análisis de los datos on-board.
+					\item Sincronización temporal: GPS con señal PPS 
+					\item Consumo de la estación $\sim$ 8 W.
+    		\end{itemize}
+			\end{block}
+		\end{column} \ \
+		\begin{column}{0.45\textwidth}
+  		\includegraphics[width=\textwidth]{lago/lago_daq}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Nuestro \alert{nuevo} detector: WCD (Water Cherenkov Detector)}
+\begin{center}
+  		\includegraphics[width=.9\textwidth, heigth=.3\textheight]{lago/lago_new_daq}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Publicaciones de la comunidad}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.75\textwidth]{lago/lago_publications}
+	\end{center}
+\end{frame}
+%------------------------------------------------------------------------------
+\section{Enseñando física de astropartículas con LAGO}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Enseñando física de astropartículas con LAGO}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Trabajos de grado dentro de diversas instituciones pertenecientes a
+la comunidad}
+\begin{columns}
+\begin{column}{0.48\textwidth}
+\begin{alertblock}{}
+  		\includegraphics[width=.9\textwidth, heigth=.3\textheight]{lago/lago_tesis}
+\end{alertblock}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{alertblock}{}
+  		\includegraphics[width=.9\textwidth, heigth=.3\textheight]{lago/exp3_muon}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{La comunidad auxilia}
+	\begin{block}{}
+		\begin{itemize}
+			\item Siempre se puede consultar dentro de la comunidad
+			\item Hoy en día existe ya una masa crítica de científicos de partículas
+dentro de LAGO que están disponibles para ayudar
+			\item Existe un amplio repositorio de bibliografía, métodos y cursos que
+cualquier miembro de la comunidad puede acceder
+			\item Existen procedimientos estandarizados de análisis de datos
+			\item Se pueden realizar experiencias similares a las ya hechas en otras
+instituciones
+			\item Siempre está abierta la posibilidad de publicar los resultados
+obtenidos en la experimentación dentro de LAGO
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Trabajos posibles}
+	\begin{block}{Ejemplo 1}
+		\begin{itemize}
+			\item \alert{Medición de la vida media del muón utilizando detectores WCD
+de LAGO}
+				\begin{itemize}
+					\item Introduce conceptos básicos en:
+						\begin{itemize}
+							\item Física de partículas (inc. física nuclear y física relativista)	
+							\item Física de detectores de radiación
+							\item Técnicas de análisis de datos complejas e inferencia estadística 
+						\end{itemize}
+					\item Experiencia de laboratorio destinada a estudiantes de pre y posgrado
+					\item Complejidad y profundidad adaptables al curso, desde $\sim$10
+hasta $\sim$60 horas de clase.
+				\end{itemize}
+			\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Trabajos posibles}
+	\begin{block}{Ejemplo 2}
+		\begin{itemize}
+			\item \alert{Uso de los datos LAGO en meteorología espacial}
+				\begin{itemize}
+					\item Introduce conceptos básicos en:
+						\begin{itemize}
+							\item Física solar	
+							\item Física de la atmósfera
+							\item Técnicas de análisis de datos complejas
+							\item Análisis estadístico de datos 
+						\end{itemize}
+					\item Experiencia de laboratorio destinada a estudiantes de pre y posgrado
+					\item Complejidad y profundidad adaptables al curso, desde $\sim$10
+hasta $\sim$60 horas de clase.
+				\end{itemize}
+			\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Trabajos posibles}
+	\begin{block}{Ejemplo 3}
+		\begin{itemize}
+			\item \alert{Armado, puesta en marcha y calibración de un detector de
+partículas}
+				\begin{itemize}
+					\item Introduce conceptos básicos en:
+						\begin{itemize}
+							\item Física de partículas	
+							\item Física de la atmósfera
+							\item Técnicas de análisis de datos complejas
+							\item Técnicas de adquisición y procesamiento de datos físicos 
+						\end{itemize}
+					\item Experiencia de laboratorio destinada a estudiantes de pre y posgrado
+					\item Complejidad y profundidad adaptables al curso, desde $\sim$10
+hasta $\sim$60 horas de clase.
+				\end{itemize}
+			\end{itemize}
+	\end{block}
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Conclusiones}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{block}{Conclusiones}
+		\begin{itemize}
+			\item Se presentó el proyecto LAGO, su organización y sus metas 
+			\item Se hizo un recorrido por las herramientas de análisis de datos
+disponibles dentro de la comunidad LAGO
+			\item Pudimos ver la forma de trabajo de los detectores WCD
+			\item Se vieron las diferentes alternativas que presenta LAGO en el
+proceso de aprendizaje de las ciencias físicas dentro de las universidades	
+		\end{itemize}
+	\end{block}
+	\pause
+	\begin{block}
+		{\Huge Muchas gracias por su atención!}
+	\end{block}
+\end{frame}
+
+
+
+\end{document}
+
+%\usetheme{default}
+%\usetheme{JuanLesPins}
+%\usetheme{Goettingen}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{crane}
+
+%\usefonttheme{serif}
+%\usefonttheme{structuresmallcapsserif}

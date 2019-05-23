@@ -1,0 +1,1306 @@
+% Definimos el estilo del documento
+\documentclass[11pt]{beamer}
+
+%\usetheme{Frankfurt}
+%\usecolortheme{seahorse}
+%\usecolortheme{rose}
+%\usefonttheme[onlylarge]{structuresmallcapsserif}
+%\usefonttheme[onlysmall]{structurebold}
+%\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%\setbeamercolor{title}{fg=red!80!black}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+
+\mode<presentation> {
+  %\usetheme{Madrid}
+	%\usetheme{default}
+	%\usetheme{JuanLesPins}
+	\usetheme{Goettingen}
+	%\usetheme{Szeged}
+	%\usetheme{Warsaw}
+
+  \setbeamercovered{transparent}
+%	\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%	\setbeamercolor{title}{fg=red!80!black,bg=blue!20!white}
+
+}
+
+% Utilizamos el paquete para usar español
+\usepackage[spanish]{babel}
+% Utilizamos un paquete para gestionar los acentos
+% y las e ¿es
+\usepackage[latin1]{inputenc}
+% amsmath y amssymb de la American Mathematical 
+% Society (fórmulas matemáticas)
+\usepackage{amsmath}
+%Para que reconozca el entorno verbatim
+\usepackage{fancyvrb}
+%Relativo (recomendado) -> según
+%https://es.sharelatex.com/learn/Inserting_Images#La_ruta_a_la_carpeta_de_im.C3.A1genes
+\graphicspath{ {../../media/} }
+
+\title[Proyecto LAGO]{\textbf{Introducción a VHDL}}
+\subtitle{Universidad de La Serena \\ La Serena, Chile}
+\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\
+\texttt{{\href{mailto:arnaldi@cab.cnea.gov.ar}{arnaldi@cab.cnea.gov.ar}}}}
+\institute[LabDPR - CAB - IB]{Laboratorio Detección de Partículas y Radiación \\
+Centro Atómico Bariloche - Instituto Balseiro}
+\date{\today}
+
+
+%\beamerdefaultoverlayspecification{<+->}
+%Empieza el documento
+\begin{document}
+
+\begin{frame}
+  \hspace*{0.6cm}
+  \includegraphics[height=0.18\textheight]{logos/cnea_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/balseiro_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/LabDPR_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
+
+  \titlepage
+
+  \scriptsize
+  \begin{center}
+   Laboratorio Detección de Partículas y Radiación \\
+   Centro Atómico Bariloche \\
+   Comisión Nacional de Energía Atómica
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contenido}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+\section{Una visión general sobre Lenguajes de Descripción de Hardware (HDL)}
+
+\begin{frame}
+  \frametitle{Lenguajes de programación}
+	\begin{block}{}
+    \begin{itemize}
+      \item  ¿Se puede utilizar C o JAVA como un HDL?
+      \item  Un lenguaje de programación de computadoras
+			\begin{itemize}
+				\item Semántica (``significado'') 
+				\item Sintaxis (``gramática'') 
+			\end{itemize}
+      \item  Desarrollo de un lenguaje
+			\begin{itemize}
+				\item Estudiar las características de los procesos involucrados 
+				\item Desarrollar construcciones sintácticas y su semántica asociada para modelar y expresar esas características 
+			\end{itemize}
+    \end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Lenguajes de programación tradicionales}
+	\begin{block}{Modelado como un proceso secuencial}
+    \begin{itemize}
+      \item  Las operaciones se ejecutan en orden secuencial
+      \item  Ayuda al proceso de pensamiento humano para desarrollar algoritmos paso a paso
+      \item  Recuerda la operación de un modelo básico de computadora
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{HDL}
+	\begin{block}{}
+    \begin{itemize}
+      \item Características del hardware digital 
+    	\begin{itemize}
+      	\item Conexiones de partes 
+      	\item Operaciones concurrentes
+      	\item Concepto de tiempo y retardo de propagación
+    	\end{itemize}
+    	\item Este tipo de características no puede ser capturado por los lenguajes de programación tradicionales
+    	\item Se requieren nuevos lenguajes: HDL 
+	\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Usos de un programa HDL}
+	\begin{block}{}
+    \begin{itemize}
+      \item Como documentación formal 
+      \item Como entrada a un simulador
+     	\item Como entrada a un sintetizador
+	\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{HDL modernos}
+	\begin{block}{}
+    \begin{itemize}
+      \item Capturan características de los circuitos digitales: 
+    	\begin{itemize}
+      	\item entidad 
+      	\item conectividad 
+      	\item concurrencia 
+      	\item timing 
+			\end{itemize}
+      \item Abarcan la descripción
+    	\begin{itemize}
+      	\item en gate level y RT level 
+      	\item en structural view y behavioral view 
+			\end{itemize}
+	\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dos HDLs usados hoy en día}
+	\begin{block}{}
+    \begin{itemize}
+      \item VHDL y Verilog 
+      \item La sintáxis y la ``apariencia'' de los dos lenguajes son muy diferentes
+      \item Las capacidades y las formas de abordar una solución son bastante similares
+      \item Los dos son estándares industriales y son soportados por la mayoría de las herramientas softwares
+	\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{VHDL}
+%	\begin{block}{}
+    \begin{itemize}
+      \item VHDL: VHSIC (Very High Speed Integrated 
+						Circuit) HDL 
+      \item Inicialmente sponsoreado por el 
+						Departamento de Defensa de EEUU
+      \item Transferido al IEEE y ratificado como el 
+						estándard 1167 en 1987 (conocido como 
+						VHDL-87)
+      \item Sufrió modificaciones mayores en 1993 
+						(conocido como VHDL-93)
+			\item Revisado continuamente
+			\item Existen extensiones IEEE para aplicaciones 
+						específicas
+	\end{itemize}
+%\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{VHDL}
+    \begin{itemize}
+      \item Permite modelar sistemas digitales de manera
+						jerárquica 
+      \item Separa la definición de las interfaces y la
+						arquitectura o descripción del 
+						funcionamiento
+      \item Los modelos pueden ser de la estructura en 
+						base a otros componentes, de un nivel 
+						abstracto comportamental o al nivel RTL
+      \item \alert{Recordar que no se está escribiendo 
+						software, sino que se está DESCRIBIENDO 
+						hardware}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Diseño utilizando VHDL}
+    \begin{itemize}
+      \item Permite describir los procesos concurrentes
+						y secuenciales de un sistema digital 
+      \item Este circuito puede ser simulado para 
+						observar su funcionamiento o sintetizarse 
+						para generar un circuito real
+      \item Puede crearse un circuito de propósito 
+						específico (ASIC) o la implementación en 
+						una lógica programable (PLD)
+      \item No todo lo que se describa usando VHDL será
+						necesariamenhte transferible a una FPGA
+						(sintetizable)
+	\end{itemize}
+\end{frame}
+
+\section{Concepto básico de VHDL a través de un ejemplo}
+
+\begin{frame}
+    \frametitle{Circuito de detección de paridad}
+\begin{columns}
+ \begin{column}{0.35\textwidth}
+\begin{block}{Descripción}
+    \begin{itemize}[<+->]
+      \item  Entradas: a(2), a(1), a(0)
+      \item  Salida: even
+    \end{itemize}
+\end{block}
+ \end{column} \ \
+ \begin{column}{0.55\textwidth}
+      \only<1-2>{\includegraphics[width=0.8\textwidth]{d5/even_parity_circuit}}
+      \only<3>{\includegraphics[width=0.9\textwidth]{d5/even_parity_truth_table}}
+ \end{column}
+\end{columns}
+			\begin{block}{}
+%			\begin{equation*}
+				\fbox{\footnotesize{\colorbox{green}{even =  a(2)'a(1)'a(0)' + a(2)'a(1)a(0) + a(2)a(1)'a(0) + a(2)a(1)a(0)'}}} 
+%			\end{equation*}
+			\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Archivo de descripción VHDL}
+	\small
+	\begin{Verbatim}
+		library ieee;
+		use ieee.std_logic_1164.all; 
+	
+		-- entity declaration 
+		entity even_detector is
+   	port(
+      a: in std_logic_vector(2 downto 0);
+      even: out std_logic
+   	);
+		end even_detector;
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Archivo de descripción VHDL}
+	\footnotesize
+	\begin{Verbatim}
+		-- architecture body
+		architecture sop_arch of even_detector is
+   		signal p1, p2, p3, p4 : std_logic;
+		begin
+   	even <= (p1 or p2) or (p3 or p4) after 20 ns;
+   	p1 <= (not a(2)) and (not a(1)) and (not a(0)) 
+					after 15 ns;
+   	p2 <= (not a(2)) and a(1) and a(0) after 12 ns;
+   	p3 <= a(2) and (not a(1)) and a(0) after 12 ns;
+   	p4 <= a(2) and a(1) and (not a(0)) after 12 ns;
+		end sop_arch ;
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implementación conceptual}
+  \includegraphics[width=\textwidth]{d5/even_det_conceptual}
+\end{frame}
+
+
+\section{Modelado}
+\begin{frame}
+  \frametitle{Niveles de abstracción}
+	\begin{block}{Funcional}
+	\footnotesize
+	\begin{itemize}
+		\item Algoritmo (comportamiento, behavioral)
+		\item Transferencia de registros (RTL)
+		\item Ecuaciones booleanas
+		\item Ecuaciones diferenciales
+	\end{itemize}
+	\end{block}
+	\begin{block}{Estructural}
+	\footnotesize
+	\begin{itemize}
+		\item Processor - Memory - Switch
+		\item Transferencia de registros (RTL)
+		\item Compuertas
+		\item Transistor
+	\end{itemize}
+	\end{block}
+	\begin{block}{Geométrico}
+	\footnotesize
+	\begin{itemize}
+		\item Floor plan
+		\item Standard cells
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Descripción estructural}
+	\begin{block}{}
+	\begin{itemize}
+		\item En structural view un circuito es construido 
+					por partes más pequeñas
+		\item La descripción estructural especifica las 
+					conexiones y los tipos de partes 
+		\item \alert{Es, esencialmente una descripción 
+					textual de un esquemático}
+		\item Se hace usando ``component'' en VHDL
+		\begin{itemize}
+			\item Primero se lo declara (se lo hace conocido)
+			\item Luego es instanciado (usado)
+		\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Ejemplo}
+	\begin{block}{Detector de paridad usando una arquitectura diferente a la anterior}
+  \includegraphics[width=\textwidth]{d5/even_det_xor_not}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Archivo de descripción VHDL}
+	\tiny
+	\begin{Verbatim}
+architecture str_arch of even_detector is
+   -- declaration for xor gate
+   component xor2
+      port(
+         i1, i2: in std_logic;
+         o1: out std_logic
+      );
+   end component;
+   -- declaration for invertor
+   component not1
+      port(
+         i1: in std_logic;
+         o1: out std_logic
+      );
+   end component;
+   signal sig1,sig2: std_logic;
+
+begin
+   -- instantiation of the 1st xor instance
+   unit1: xor2
+      port map (i1 => a(0), i2 => a(1), o1 => sig1);
+   -- instantiation of the 2nd xor instance
+   unit2: xor2
+      port map (i1 => a(2), i2 => sig1, o1 => sig2);
+   -- instantiation of invertor
+   unit3: not1
+      port map (i1 => sig2, o1 => even);
+end str_arch;
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Y en algún lugar dentro de la librería \ldots}
+	\tiny
+	\begin{Verbatim}
+-- 2-input xor gate
+library ieee;
+use ieee.std_logic_1164.all;
+entity xor2 is
+   port(
+      i1, i2: in std_logic;
+      o1: out std_logic
+  );
+end xor2;
+
+architecture beh_arch of xor2 is
+begin
+   o1 <= i1 xor i2;
+end beh_arch;
+
+-- invertor
+library ieee;
+use ieee.std_logic_1164.all;
+entity not1 is
+   port(
+      i1: in std_logic;
+      o1: out std_logic
+   );
+end not1;
+architecture beh_arch of not1 is
+begin
+   o1 <= not i1;
+end beh_arch;
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Descripción comportamental o ``behavioral''}
+	\begin{block}{}
+	\begin{itemize}
+		\item Se describe el comportamiento del circuito, 
+					aunque en VHDL no hay una definición formal 
+					de ``behavioral''
+		\item ``process'' en VHDL: una construcción del 
+					lenguaje para encapsular ``semántica 
+					secuencial''  
+		\begin{itemize}
+			\item El proceso en conjunto es algo concurrente
+			\item Sintáxis:
+			\begin{verbatim}
+				process(sensitivity_list)
+					variable declaration;
+				begin
+					secuential statements;
+				end process;
+			\end{verbatim}
+		\end{itemize}
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{VHDL}
+	\begin{itemize}
+		\item No es sensible a la capitalización \newline
+					Ej: process, PROCESS o Process son lo mismo
+		\item Los comentarios se indican con doble guión 
+					(-~-)
+		\item Las instrucciones terminan con punto y coma 
+					\newline
+					Ej: \begin{verbatim}a <= '1';\end{verbatim}
+		\item Los bloques lógicos se delimitan por las 
+					palabras \textcolor{orange}{begin} y 
+					\textcolor{orange}{end}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Elementos del lenguaje VHDL}
+	\begin{itemize}
+		\item Palabras reservadas: no pueden utilizarse como
+					nombres de ningún tipo \newline
+					Ej: \alert{architecture}, \alert{case}, 
+					\alert{library}, etc
+		\item Símbolos especiales
+					Ej: \begin{verbatim} " # & ( ) : ; < = > + -
+					\end{verbatim} %\newline
+					Los operadores pueden sobrecargarse para 
+					utilizarse con distintos tipos en diferentes 
+					librerías
+		\item Identificadores: se utilizan para dar nombres
+					a los elementos de un diseño, ya sean señales,
+	 				constantes, variables, etc. \newline
+					Ej: Cuenta\_REG, VALOR\_MAXIMO, etc 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Elementos del lenguaje VHDL (cont.)}
+	\begin{itemize}
+		\item Números: hay dos tipos básicos, los enteros 
+					(integer) y los reales (real). Pueden 
+					representarse en cualquier base de 2 a 16 
+					\newline
+					Ej: enteros: \begin{verbatim} 321, 2#01101#, 16#0A51F \end{verbatim} reales: 
+					\begin{verbatim}1.23, 1.23e-4, 8#4.75#
+					\end{verbatim}
+		\item Cadenas de bits: pueden representarse en base
+					binaria, octal y hexadecimal \newline
+					Ej: \begin{verbatim} b``1010'' (4 bits), 
+					x``AB6C1'' (20 bits), o``54'' (6bits)
+					\end{verbatim}
+	\end{itemize}
+\end{frame}
+
+\section{Construcciones básicas en VHDL}
+\begin{frame}[fragile]
+	\frametitle{Programa VHDL básico}
+	\framesubtitle{Declaración de entidad}
+	Sintaxis simplificada:
+	\begin{verbatim}
+		entity entity_name is
+		port(
+				port_names: mode data_type;
+				port_names: mode data_type;
+				...
+				
+				port_names: mode data_type
+				);
+		end entity_name;
+	\end{verbatim}	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Programa VHDL básico}
+	\framesubtitle{Declaración de arquitectura}
+	Sintaxis simplificada:
+	\begin{verbatim}
+		architecture arch_name of entity_name is
+		declarations;
+		begin
+			concurrent statement;
+			concurrent statement;
+			concurrent statement;
+		end arch_name;
+	\end{verbatim}	
+	\fbox{\tiny{\colorbox{red}{Una 
+	declaración de entidad puede asociarse a varias 
+	declaraciones de arquitectura}}} 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Programa VHDL básico}
+	\framesubtitle{Otras unidades de diseño}
+	\begin{block}{Declaración de package}
+	Colecciones de items comunmente usados, tales como 
+	tipos de datos, subporgramas y componentes
+	\end{block}
+	\begin{block}{Configuración}
+	Básicamente, especifica qué arquitectura es la que 
+	se usará con una entidad determinada
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Bibliotecas en VHDL}
+	\begin{itemize}
+		\item Un lugar donde guardar las unidades de diseño 
+					analizadas
+		\item Normalmente mapeado a algún directorio dentro 
+					de la PC host	
+		\item El software es el que define el mapeo entre la
+					biblioteca simbólica y la locación física 
+		\item La biblioteca por default: ``work''
+		\item La biblioteca ``ieee'' se usa para los 
+					paquetes ieee
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Elementos léxicos}
+	\begin{block}{Tipos de elementos léxicos}
+	\begin{itemize}
+		\item Comentarios 
+		\item Identificadores 
+		\item Palabras reservadas 
+		\item Números 
+		\item Caracteres 
+		\item Cadenas de caracteres
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Palabras reservadas en VHDL}
+	\begin{block}{}
+  \includegraphics[width=\textwidth]{d5/reserved_words_vhdl}
+	\end{block}
+\end{frame}
+
+\section{Objetos}
+
+\begin{frame}
+	\frametitle{Objetos}
+	\begin{block}{Un item nombrado que puede contener un valor de algún tipo de datos}
+	\end{block}
+	\begin{block}{Cuatro tipos de objetos}
+	\begin{itemize}
+		\item Señal (signal) 
+		\item Variable 
+		\item Constante (constant) 
+		\item File (no puede ser sintetizado)
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Señales}
+	\begin{itemize}
+		\item Declarados en la sección de declaraciones del
+ 					cuerpo de una arquitectura
+		\item Declaración de una señal:
+		\begin{verbatim}
+		signal signal_name, ...: data_type;	
+		\end{verbatim}
+		\item Asignación a una señal:
+		\begin{verbatim}
+		signal_name <= projected_waveform;	
+		\end{verbatim}
+		\item Los puertos en la declaración de una entidad 
+					son considerados señales
+		\item Se los puede interpretar como alambres o 
+					``alambres con memoria'' 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Variable}
+	\begin{itemize}
+		\item Son declarados y usados dentro de un process			\item Declaración de una variable:
+		\begin{verbatim}
+		variable variable_name, ...: data_type;	
+		\end{verbatim}
+		\item Asignación a una variable:
+		\begin{verbatim}
+		variable_name := value_expression;	
+		\end{verbatim}
+		\item No contiene ``información de tiempo'' 
+					(asignación inmediata)
+		\item Se los usa como en los lenguajes de 
+					programación tradicionales: una ``posición 
+					simbólica de memoria'' donde un valor puede 
+					ser guardado y modificado 
+		\item No tiene un equivalente en hardware 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Constantes}
+	\begin{itemize}
+		\item Su valor no puede cambiarse
+		\item Declaración de una constante:
+		{\footnotesize
+		\begin{verbatim}
+		constant const_name, ...: data_type := value_expression;	
+		\end{verbatim}}
+		\item Se los usa para agregar legibilidad al código:
+		\begin{verbatim}
+		constant BUS_WIDTH: integer := 32;	
+		constant BUS_BYTES: integer := BUS_WIDTH / 8;	
+		\end{verbatim}
+	\end{itemize}
+\end{frame}
+
+\section{Tipos de datos y operadores}
+
+\begin{frame}
+  \frametitle{Tipos de datos y operadores}
+	\begin{itemize}
+		\item IEEE std\_logic\_1164 package
+		\item IEEE numeric\_std package
+	\end{itemize}
+	\begin{block}{Definición de tipo de datos}
+	\begin{itemize}
+		\item Un set de valores que un objeto puede asumir
+		\item Un set de operaciones que pueden realizarse 
+					sobre un objeto de este tipo de datos
+	\end{itemize}
+	\end{block}
+	\begin{block}{VHDL es un lenguaje strongly-typed}
+	\begin{itemize}
+		\item Un objeto puede ser asignado con un valor 
+					de su tipo únicamente
+		\item Solo las operaciones definidas con el tipo 
+					de datos pueden ser realizadas sobre el objeto
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Los operadores en VHDL}
+	\begin{block}{}
+  \includegraphics[width=\textwidth]{d5/op_in_vhdl}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Los operadores en VHDL (cont.)}
+	\begin{block}{}
+  \includegraphics[width=\textwidth]{d5/op_in_vhdl2}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Tipos std\_logic y std\_logic\_vector}
+	\begin{itemize}
+		\item Son los tipos que utilizaremos para modelar 
+					señales en nuestros diseños
+		\item Declaración:
+		{\footnotesize
+		\begin{verbatim}
+		signal nombre1: std_logic;	
+		signal nombre2: std_logic_vector(7 downto 0);	
+		\end{verbatim}}
+		\item Valores posibles usados para síntesis 
+					(simplificado)
+		{\footnotesize
+		\begin{verbatim}
+		'1', '0', 'Z'	
+		\end{verbatim}}
+		\item Asignación: 
+		{\footnotesize
+		\begin{verbatim}
+			nombre1 <= '1';
+			nombre1 <= '0';
+			nombre1 <= 'Z';
+			nombre2 <= ``01010101'';
+			nombre2 <= ``ZZZZZZZZ'';
+			nombre2 <= (others => 'Z');	
+		\end{verbatim}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tipos std\_logic y std\_logic\_vector}
+	\framesubtitle{Valores posibles para un objeto std\_logic}
+	\begin{block}{}
+  \includegraphics[width=\textwidth]{d5/std_logic_valores_posibles}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{VHDL - Expresiones concurrentes y secuenciales}
+	\begin{block}{Concurrentes}
+	\begin{itemize}
+		\item Se evaluan todas en ``paralelo'' o al mismo tiempo
+		\item Instrucciones concurrentes
+		\item Procesos: permiten modelar una expresión 
+					concurrente usando un conjunto de expresiones
+					secuenciales
+	\end{itemize}
+	\end{block}
+	\begin{block}{Secuenciales}
+	\begin{itemize}
+		\item Las instrucciones se van evaluando una a una 
+					en orden
+		\item Se utilizan dentro de los procesos. Un 
+					proceso es una manera de modelar una 
+					expresión concurrente usando instrucciones 
+					secuenciales
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Operaciones Concurrentes: Expresión 
+							``with ... select''}
+	\begin{block}{}
+	Modela el comportamiento de un multiplexor, en el
+	que de acuerdo a una señal de control puede
+	asigarse el valor a aplicar a una señal.
+	\begin{verbatim}
+	with seleccion_in select
+	salida_out <= datos1_in when ``000'',
+	datos2_in when ``001'',
+	datos3_in when ``010'',
+	datos4_in when others;
+	\end{verbatim}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Operaciones Concurrentes: Expresión 
+							``when ... else''}
+	\begin{block}{}
+	Puede usarse para modelar lógica con prioridades. En
+	este caso no se infiere un multiplexor, sino que se 
+	genera una lógica combinacional con prioridades \newline
+	Ej. 1:
+	{\footnotesize
+	\begin{verbatim}
+	salida_out <= entrada1_in when control1 = ``00'' else
+	entrada2_in when control1 = ``11'' else
+	entrada3_in when control2 = ``00'' else
+	entrada4_in; -- caso por defecto
+	\end{verbatim}}
+	Ej. 2:
+	{\footnotesize
+	\begin{verbatim}
+	salida_out <= entrada_in when x = `0' and y = `0';
+	\end{verbatim}}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Operaciones Concurrentes: Procesos (process)}
+	\begin{itemize}
+	\item Es el tipo fundamental de operación concurrente
+	\item El proceso permanecerá ``suspendido'' hasta 
+				que un evento se dispare y luego se ejecutará 
+				de manera concurrente con las demás expresiones 
+				concurrentes
+	\item Un evento es el cambio en el valor de una señal
+	\item \alert{Se dice que un proceso es ``sensible'' a las 
+				señales que lo sacan del estado suspendido}
+	\item El formato básico de un proceso consta de cuatro
+				partes:
+	\begin{enumerate}
+		\item Declaración del proceso: se recomienda darles
+					nombres a los procesos
+		\item Lista de sensibilidad: lista de las señales 
+					que actúan sobre el proceso
+		\item Declaraciones: funciones, constantes, 
+					variables
+		\item Instrucciones secuenciales: están entre las 
+					palabras \alert{begin} y \alert{end process}
+	\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Ejemplo de un proceso}
+	\begin{block}{}
+	{\footnotesize
+	\begin{verbatim}
+	-- Divisor de reloj por ocho
+	Divisor8 : process (Reset_IN,Clock_IN)
+	begin
+	-- Comienzo del proceso
+	if (Reset_IN = `1') then
+	Contador_REG = (others => `0');
+	elsif (Clock_IN¿event and Clock = `1') then
+	Contador_REG <= Contador_REG + 1;
+	Clock_OUT <= `0';
+	if (Contador_REG = ``000'') then
+	Clock_OUT <= `1';
+	end if; 							-- Contador_REG
+	end if; 							-- Reset_IN, Clock_IN
+	end process Divisor8; -- Fin del proceso
+	\end{verbatim}}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Instrucciones secuenciales}
+	\begin{block}{}
+		Las instrucciones secuenciales se ejecutan una 
+		después de la otra en el orden que están escritas. 
+		Esto debe suceder dentro de un proceso
+	{\footnotesize
+	\begin{verbatim}
+		process...
+		begin
+		...
+		X <= `1';
+		if (X = `1') then
+		Y <= `0';
+		else
+		Y <= `1';
+		end if;
+		X <= 0;
+		end process;
+	\end{verbatim}}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Instrucciones secuenciales: expresión ``if ... elsif ... else''}
+	\begin{block}{}
+		Permite condicionar la ejecución de instrucciones 
+		secuenciales dentro de un proceso. 
+		Hay tres posibilidades:
+	{\footnotesize
+	\begin{verbatim}
+	if (Reset_IN =1) then
+	Registro_REG = ``0000''
+	elsif (Clock'event and Clock = 1) then
+	Registro_REG = Registro_REG + 1;
+	end if;
+	\end{verbatim}}
+	{\footnotesize
+	\begin{verbatim}
+	if (Dato_IN = `0') then
+	Cuenta_REG = Cuenta_REG - 1;
+	else
+	Cuenta_REG = Cuenta_REG - 1;
+	end if;
+	\end{verbatim}}
+	{\footnotesize
+	\begin{verbatim}
+	if (Contador_REG = VALOR_MAXIMO) then
+	Contador_REG = (others => `0');
+	end if;
+	\end{verbatim}}
+	\end{block}
+\end{frame}
+
+%\section{Testbench}
+
+\begin{frame}[fragile]
+	\frametitle{Instrucciones secuenciales: expresión ``case ...''}
+	\begin{block}{}
+		Se usa para evaluar expresiones mutuamente 
+		excluyentes sin hacer una lógica de prioridad:
+	{\footnotesize
+	\begin{verbatim}
+	case Control_IN is
+	when ``000'' =>
+	Salida_OUT <= Entrada1_OUT;
+	when ``001'' =>
+	Salida_OUT <= Entrada2_OUT;
+	when ``010'' | ``011'' =>
+	Salida_OUT <= Entrada3_OUT;
+	when others =>
+	Salida_OUT <= Entrada4_OUT;
+	end case;
+	\end{verbatim}}
+	\end{block}
+\end{frame}
+
+\section{Testbench}
+
+\begin{frame}
+  \frametitle{Testbench}
+	\begin{block}{Esquema general de lo que es un testbench}
+  \includegraphics[width=\textwidth]{d5/testbench_diagrama}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Testbench}
+	\begin{block}{Un testbench está compuesto de tres partes fundamentales}
+	\begin{itemize}
+		\item La generación de estímulos
+		\item El dispositivo bajo test (DUT)
+		\item El monitor de las salidas
+	\end{itemize}
+	\end{block}
+  \includegraphics[width=\textwidth]{d5/testbench1}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Ejemplo de testbench}
+	\footnotesize
+	\begin{Verbatim}
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity even_detector_testbench is
+end even_detector_testbench;
+
+architecture tb_arch of even_detector_testbench is
+   component even_detector
+      port(
+         a: in std_logic_vector(2 downto 0);
+         even: out std_logic
+      );
+   end component;
+   signal test_in: std_logic_vector(2 downto 0);
+   signal test_out: std_logic;
+begin
+   -- instantiate the circuit under test
+   uut: even_detector
+      port map( a=>test_in, even=>test_out);
+
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Ejemplo de testbench}
+	\footnotesize
+	\begin{Verbatim}
+   -- test vector generator
+   process
+   begin
+      test_in <= "000";
+      wait for 200 ns;
+      test_in <= "001";
+      wait for 200 ns;
+      test_in <= "010";
+      wait for 200 ns;
+      test_in <= "011";
+      wait for 200 ns;
+      test_in <= "100";
+      wait for 200 ns;
+      test_in <= "101";
+      wait for 200 ns;
+      test_in <= "110";
+      wait for 200 ns;
+      test_in <= "111";
+      wait for 200 ns;
+   end process;
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Ejemplo de testbench}
+	\tiny
+	\begin{Verbatim}
+   --verifier
+   process
+      variable error_status: boolean;
+   begin
+      wait on test_in;
+      wait for 100 ns;
+      if ((test_in="000" and test_out = '1') or
+          (test_in="001" and test_out = '0') or
+          (test_in="010" and test_out = '0') or
+          (test_in="011" and test_out = '1') or
+          (test_in="100" and test_out = '0') or
+          (test_in="101" and test_out = '1') or
+          (test_in="110" and test_out = '1') or
+          (test_in="111" and test_out = '0'))
+      then
+         error_status := false;
+      else
+         error_status := true;
+      end if;
+      -- error reporting
+      assert not error_status
+         report "test failed."
+         severity note;
+   end process;
+end tb_arch;
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \huge{¡Muchas Gracias!}
+  \end{center}
+\end{frame}
+
+%\section{Máquinas de estados finitos (FSM)}
+
+%\subsection{Máquinas de estados Algorítmicas (ASM)}
+
+%\begin{frame}
+%    \frametitle{Título de la primera diapositiva}
+%\begin{columns}
+% \begin{column}{0.55\textwidth}
+%\begin{block}{Resultados}
+%    \begin{itemize}[<+->]
+%      \item  Primer item
+%      \item  Segundo item
+%      \item  Tercer item
+%    \end{itemize}
+%    \begin{enumerate}[<+-| alert@+>]
+%      \item  Primer item
+%      \item  Segundo item
+%      \item  Tercer item
+%    \end{enumerate}
+%\end{block}
+% \end{column} \ \
+% \begin{column}{0.40\textwidth}
+%      \only<4>{\includegraphics[width=0.8\textwidth]{d5/knuth}}
+%      \only<5>{\includegraphics[width=0.9\textwidth]{d5/forges}}
+%      \only<6>{\includegraphics[width=0.9\textwidth]{d5/kill-bill-2}}
+% \end{column}
+%\end{columns}
+%\end{frame}
+%
+%
+%\subsection{Segunda subsección}
+%
+%\begin{frame}
+%    \frametitle{Título de la segunda diapositiva}
+%\begin{block}{}
+%Escribimos una pequeña fórmula
+%\end{block}
+%
+%\begin{block}{Fórmula}
+%\begin{equation*}
+%\onslide<2->{V(x) = } \onslide<3->{\color<3>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r} +}
+%\onslide<4->{\color<4>[rgb]{0,1,0} B\int_0^\infty\frac{dr}{r^2} +}
+%\onslide<5->{\color<5>[rgb]{0,0,1} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}
+%\end{equation*}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Ahora mostramos la fórmula de forma un poco diferente
+%\end{block}
+%
+%\begin{block}{Fórmula}
+%\begin{equation*}
+%V(x) =  {\color<2>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r}} +
+%{\color<3>[rgb]{1,0,0} B\int_0^\infty\frac{dr}{r^2}} +
+%{\color<4>[rgb]{1,0,0} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}
+%\end{equation*}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Otra forma un poco más compleja:
+%\end{block}
+%\begin{block}{Ecuación}
+%$\displaystyle
+%V(x) = \onslide<2->{\color<2>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r} +}
+%\onslide<3->{\color<3>[rgb]{0,1,0} B\int_0^\infty\frac{dr}{r^2} +}
+%\onslide<4->{\color<4>[rgb]{0,0,1} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}$
+%
+%\medskip
+%\hspace*{15mm} \onslide<2>{\color<2>[rgb]{1,0,0} Dipolo} \hspace{7mm}
+%\onslide<3>{\color<3>[rgb]{0,1,0} Coulomb} \hspace{4mm}
+%\onslide<4>{\color<4>[rgb]{0,0,1} Van der Waals}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}[t]
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Otra forma reemplazando elementos:
+%\end{block}
+%\only<2>{\visible<2>{\begin{block}{Ecuación 1}
+%$\displaystyle V(x) = A\int_0^\infty\frac{dr}{r} \color[rgb]{1,0,0} \longrightarrow \text{Dipolo}$
+%\end{block}}}%
+%\only<3->{\visible<3->{\begin{block}{Ecuación 2}
+%$\displaystyle W(x) = B\int_0^\infty\frac{dr}{r^2} +
+%C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx \only<3>{ \longrightarrow \color[rgb]{1,0,0} \text{Coulomb + WdW}}$
+%\end{block}}}
+%\only<4>{\visible<4>{\begin{block}{otro bloque}
+%Otras cosas...
+%\end{block}}}
+%\end{frame}
+%
+%\section{Segunda sección}
+%
+%\subsection{Primera subsección de la segunda sección}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{Una película}
+%\includemovie[play,repeat]%
+%{4cm}{3cm}{d5/random.mpg}
+%\end{block}
+%\end{Verbatim}
+%
+%\textbf{Nota:} Es esencial cargar el paquete 
+%\textsf{movie15} en el preámbulo
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{4.2cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,repeat]%
+%{4cm}{3cm}{d5/random.mpg}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{Otra película}
+%\includemovie[autoplay,%
+%controls]{5.5cm}{3.75cm}%
+%{d5/budweiser.mpeg}
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{5.7cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,controls]%
+%{5.5cm}{3.75cm}{d5/budweiser.mpeg}
+%
+%\medskip
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\footnotesize
+%\begin{Verbatim}
+%\begin{block}{Otra película}
+%\includemovie[autoplay,%
+%label=bud]{6.5cm}{4.43cm}%
+%{d5/budweiser.mpeg}
+%\fbox{
+%\movieref[rate=0.5]{bud}{Slow}
+%\movieref[default]{bud}{Normal}
+%\movieref[rate=2]{bud}{Fast}
+%\movieref[pause]{bud}{Play/
+%Pause}
+%\movieref[stop]{bud}{Stop}
+%}
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.6cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,label=bud]%
+%{6.5cm}{4.43cm}{d5/budweiser.mpeg}
+%\fbox{
+%\movieref[rate=0.5]{bud}{Slow}
+%\movieref[default]{bud}{Normal}
+%\movieref[rate=2]{bud}{Fast}
+%\movieref[pause]{bud}{Play/%
+%Pause}
+%\movieref[stop]{bud}{Stop}
+%}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Objetos 3D}
+%\begin{columns}
+%\begin{column}{4cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{}
+%\includemovie[poster,
+%toolbar,3Droo=12]{
+%.8\linewidth}{
+%.8\linewidth
+%}{d5/4CH3-N.u3d}
+%\end{block}
+%\end{Verbatim}
+%
+%Nota: Cargar \textsf{movie15} con la opción \textsf{3D}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.5cm}
+%\begin{block}{}
+%%\includemovie[poster,toolbar,3Droo=12]{
+%%.8\linewidth
+%%}{
+%%.8\linewidth
+%%}{d5/4CH3-N.u3d}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Objetos 3D}
+%\begin{columns}
+%\begin{column}{4cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{}
+%\includemovie[poster,
+%toolbar,3Droo=1,
+%3Dviews2=d5/turbine.vws]
+%{.9\linewidth}{
+%.6\linewidth
+%}{d5/turbine.u3d}
+%
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.5cm}
+%\begin{block}{}
+%%\includemovie[poster,toolbar,
+%%3Droo=1,3Dviews2=d5/turbine.vws]{
+%%.9\linewidth
+%%}{
+%%.6\linewidth
+%%}{d5/turbine.u3d}
+%
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
+\end{document}
+
+%\usetheme{default}
+%\usetheme{JuanLesPins}
+%\usetheme{Goettingen}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{crane}
+
+%\usefonttheme{serif}
+%\usefonttheme{structuresmallcapsserif}

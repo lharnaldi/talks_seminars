@@ -1,0 +1,764 @@
+% Definimos el estilo del documento
+\documentclass[11pt]{beamer}
+
+%\usetheme{Frankfurt}
+%\usecolortheme{seahorse}
+%\usecolortheme{rose}
+%\usefonttheme[onlylarge]{structuresmallcapsserif}
+%\usefonttheme[onlysmall]{structurebold}
+%\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%\setbeamercolor{title}{fg=red!80!black}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+
+\mode<presentation> {
+% \usetheme{Madrid}
+	%\usetheme{default}
+	%\usetheme{JuanLesPins}
+	\usetheme{CambridgeUS}
+	%\usetheme{Goettingen}
+%	\usetheme{Szeged}
+%	\usetheme{Warsaw}
+	\usefonttheme{professionalfonts}
+  \setbeamercovered{transparent}
+%	\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+%	\setbeamercolor{title}{fg=red!80!black,bg=blue!20!white}
+
+}
+
+% Utilizamos el paquete para usar español
+\usepackage[spanish]{babel}
+% Utilizamos un paquete para gestionar los acentos
+% y las e ¿es
+\usepackage[latin1]{inputenc}
+% amsmath y amssymb de la American Mathematical 
+% Society (fórmulas matemáticas)
+\usepackage{amsmath}
+%Para que reconozca el entorno verbatim
+\usepackage{fancyvrb}
+%Definimos nuestra ruta para las imagenes
+%Absoluto
+%\graphicspath{ {/home/user/images/} }
+%Relativo (recomendado) -> según
+%https://es.sharelatex.com/learn/Inserting_Images#La_ruta_a_la_carpeta_de_im.C3.A1genes
+\graphicspath{ {../../../media/} }
+
+\title[Una Introducción a RedPitaya]{Introducción a RedPitaya}
+\subtitle{Escuela Politécnica Nacional \\ Quito, Ecuador}
+\author[\texttt{@horacio\_arnaldi}]{Ing. Horacio Arnaldi \\ \texttt{{\href{mailto:arnaldi@cab.cnea.gov.ar}{arnaldi@cab.cnea.gov.ar}}}}
+%\author[\texttt{@horacio\_arnaldi}]{Horacio Arnaldi \\ \texttt{arnaldi@cab.cnea.gov.ar}}
+\institute[LabDPR - CAB - IB]{Laboratorio Detección de Partículas y Radiación \\Centro Atómico Bariloche - Instituto Balseiro}
+% Colocar aquí la fecha exacta
+\date{\today}
+
+%\subject{Generación de presentaciones}
+
+%\pgfdeclareimage[height=0.8cm]{university-logo}{logo}
+%\logo{\includegraphics[width=8mm]{../media/cnea_logo.jpg}}
+%\logo{\includegraphics[width=8mm]{../media/LabDPR_logo.jpg}}
+%\logo{\includegraphics[width=8mm]{../media/balseiro_logo.jpg}}
+
+
+
+%\beamerdefaultoverlayspecification{<+->}
+%Empieza el documento
+\begin{document}
+
+\begin{frame}
+  \hspace*{0.6cm}
+  \includegraphics[height=0.18\textheight]{logos/cnea_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/balseiro_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight]{logos/LabDPR_logo} \hspace*{1cm}
+  \includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
+
+  \titlepage
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contenido}
+  \tableofcontents[pausesections]
+\end{frame}
+
+
+%------------------------------------------------------------------------------
+\section{¿Qué es RedPitaya?}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{¿Qué es Redpitaya?}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.35\textwidth}
+			\begin{block}{Pitaya}
+    		\begin{itemize}[<+->]
+      		\item	Pitahaya, Pitaya o Fruta del dragón son
+								nombres de una fruta de las especies Hylocereus y Selenicereus,
+								de la familia de Cactaceae, proveniente de México. (Wikipedia) 
+      		\item	Puede que empecemos a hablar de cosas ricas entonces...
+      		\item	... pero no, estamos para hablar de otras cosas...
+    		\end{itemize}
+			\end{block}
+		\end{column} \ \
+		\begin{column}{0.55\textwidth}
+  		\only<1-2>{\includegraphics[width=\textwidth]{first_day/pitaya_fruta}}
+			\only<3>{\includegraphics[width=\textwidth]{first_day/rp_freecad_up}}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Laboratorio electrónico open source}
+	\begin{block}{Características}
+		\begin{itemize}
+			\item Herramienta para medir y adquirir datos. 
+			\item Está hecho en torno a un SoC {\color{blue}Zynq 7010} de Xilinx, que
+						combina un procesador ARM dual-core y una FPGA.
+			\item Fundado  a través de una campaña 
+						{\href{http://www.open-electronics.org/open-instruments-for-everyone-by-red-pitaya-is-on-kickstarter}{KickStarter}}
+						en 2013. 
+				\begin{itemize}
+					\item {\alert{La idea requería fondos por U\$D 50.000, pero obtuvo U\$D
+								256.000 de sus seguidores.}} 
+				\end{itemize}
+			\item Puede albergar una distribución GNU/Linux para el manejo completo de
+						la tarjeta.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Laboratorio electrónico open source}
+	\begin{block}{Características (Cont.)}
+		\begin{itemize}
+			\item Tamaño reducido (tamaño similar a una tarjeta de crédito - no a la
+						cuenta de esa tarjeta ;) ).
+			\item Ancho de banda de trabajo razonable (50\,MHz).
+			\item Permite trabajar con código de bajo y alto nivel: Python, C/C++,
+						Matlab y LabView.
+			\item \color{blue}{Extremadamente flexible para el desarrollo de aplicaciones ad-hoc,
+						\alert{LAGO} por ejemplo :)}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Laboratorio electrónico open source}
+	\begin{block}{Trabajo colaborativo}
+		La comunidad de colaboradores sigue creciendo, actualmente está
+		compuesta por ramas tan diversas como universidades, industria,
+		radio amateurs y makers en general. 
+	\end{block}
+	\begin{exampleblock}{redpitaya.com}
+		\footnotesize{``We believe in empowering
+		individuals to conduct their own education, discover their own inspiration, and
+		share their ideas with other passionate people.''}
+	\end{exampleblock}
+	\begin{alertblock}{open-electronics.org}
+		\footnotesize{``Red Pitaya is an open
+		source measurement and control tool replacing many
+		expensive laboratory instruments at a surprising price tag.''}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zynq 7000: El cerebro del sistema}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.75\textwidth]{first_day/zynq_como_sistema}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bloques: Una mirada al sistema}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.9\textwidth]{first_day/rp_como_sistema}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bloques: Una mirada más profunda del sistema}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.9\textwidth]{first_day/rp_sistema}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nada de bloques: vamos a la realidad}
+	\begin{center}
+		\includegraphics[height=.85\textheight,width=0.65\textwidth]{first_day/rp_sistema_2}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nada de bloques: vamos a la realidad}
+	\begin{center}
+		\includegraphics[height=0.8\textheight,width=0.9\textwidth]{first_day/rp_extension_connector}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Herramientas}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Herramientas}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Lo necesario para empezar}
+		\begin{columns}
+			\begin{column}{0.50\textwidth}
+				\begin{block}{Lista de componentes}
+					\begin{itemize}[<+->]
+						\item  Instrumento Open Source \alert{RedPitaya}
+						\item  Fuente de \alert{5\,V, 2\,A con conector microUSB}
+						\item  Cables y conectores SMA (recomendado cable \alert{RG174}) 
+						\item  MicroSD card, 16\,GB (al menos debe ser igual o mayor a 4\,GB)
+					\end{itemize}
+				\end{block}
+			\end{column} 
+			\begin{column}{0.50\textwidth}
+      	\only<1>{\includegraphics[width=0.8\textwidth]{first_day/rp_placa}}
+      	\only<2>{\includegraphics[width=0.8\textwidth]{first_day/rp_charger}}
+      	\only<3>{\includegraphics[width=0.8\textwidth]{first_day/rp_cables}}
+      	\only<4>{\includegraphics[width=0.5\textwidth]{first_day/rp_microsd}}
+			\end{column}
+		\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Lo necesario para empezar}
+		\begin{columns}
+			\begin{column}{0.50\textwidth}
+				\begin{block}{Lista de componentes (cont.)}
+					\begin{itemize}[<+->]
+						\item  T SMA y terminadores de 50\,$\Omega$ 
+						\item  Adaptadores SMA-BNC (diversos) 
+						\item  Ventilador de 30 x 30 x 15\,mm, 5 V
+						\item  Wi-Pi, USB Wi-Fi Module. \alert{Debe contener 
+									 chipsets soportados, por ejemplo MediaTek/Ralink RT5370}
+						\item  Puntas de prueba de osciloscopio 1:10, 150\,MHz (por lo menos)
+					\end{itemize}
+				\end{block}
+			\end{column} 
+			\begin{column}{0.50\textwidth}
+      	\only<1>{\includegraphics[width=0.8\textwidth]{first_day/rp_T_SMA_Term50}}
+      	\only<2>{\includegraphics[width=0.8\textwidth]{first_day/rp_SMA_BNC}}
+      	\only<3>{\includegraphics[width=0.8\textwidth]{first_day/rp_fan}}
+      	\only<4>{\includegraphics[width=0.8\textwidth]{first_day/rp_wifi_dongle}}
+      	\only<5>{\includegraphics[width=0.8\textwidth]{first_day/rp_osc_probes}}
+			\end{column}
+		\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Recursos}
+	\begin{block}{Fuentes de información}
+		\begin{itemize}
+			\item \href{www.redpitaya.com}{redpitaya.com}
+			\item \href{www.wiki.redpitaya.com}{Wiki RedPitaya}
+			\item \href{www.forum.redpitaya.com}{Forum RedPitaya}
+			\item \href{www.wiki.xilinx.com}{Wiki Xilinx}
+			\item \href{www.xilinx.com/support/university/vivado/vivado-workshops.html}{Xilinx University Program - Workshops Basados en Vivado}
+			\item \href{http://www.digilentinc.com/Data/Products/EMBEDDED-LINUX/Digilent\_Embedded\_Linux\_Guide.pdf}{Digilent Embedded Linux Development Guide}
+			\item \href{http://blog.fakultaet-technik.de/category/fpga}{Technik-Blog der Fakultät Technik der DHBW Mannheim}
+			\item \href{http://www.fpgadeveloper.com/tag/zynq}{FPGA Developer}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Recursos}
+		\begin{columns}
+			\begin{column}{0.50\textwidth}
+				\begin{block}{Herramientas de desarrollo}
+					\begin{itemize}[<+->]
+						\item Vivado Design Suite
+						\item \href{https://github.com/Xilinx/linux-xlnx/tree/xilinx-v2015.4}{Kernel Linux de Xilinx} 
+						\item Imagen para la tarjeta microSD de RedPitaya 
+						\item \href{https://github.com/RedPitaya/RedPitaya/blob/master/README.md\#red-pitaya-ecosystem-and-applications}{RedPitaya Ecosystem} 
+						\item \href{https://releases.linaro.org/14.11/components/toolchain/binaries/arm-linux-gnueabihf}{ARM Toolchain} 
+					\end{itemize}
+				\end{block}
+			\end{column} 
+			\begin{column}{0.50\textwidth}
+      	\only<1>{\includegraphics[width=0.8\textwidth]{first_day/vivado_DS}}
+      	\only<2>{\includegraphics[width=0.8\textwidth]{first_day/rp_xilinx_kernel}}
+      	\only<3>{\includegraphics[width=0.8\textwidth]{first_day/rp_card_image}}
+      	\only<4>{\includegraphics[width=0.8\textwidth]{first_day/rp_ecosystem}}
+      	\only<5>{\includegraphics[width=0.8\textwidth]{first_day/rp_linaro_toolchain}}
+			\end{column}
+		\end{columns}
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Usos y aplicaciones}
+%------------------------------------------------------------------------------
+\begin{frame}
+	\begin{center}
+		\Huge{\color{blue}{Usos y Aplicaciones}}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{\colorbox{pink}{Como sujeta pesas}}
+		\begin{center}
+			\includegraphics[height=0.4\textheight,width=0.4\textwidth]{first_day/rp_forzuda_1}\\
+			\includegraphics[height=0.4\textheight,width=\textwidth]{first_day/rp_forzuda_2}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{RedPitaya I/O: Ejemplos}
+		\begin{columns}
+			\begin{column}{0.40\textwidth}
+				\begin{block}{Aplicaciones}
+					\begin{itemize}[<+->]
+						\item Digital
+						\item Analógico 
+						\item Generación de señales en las salidas RF (125\,MS/s)
+						\item Adquisición de sañales en entradas RF (125\,MS/s)
+						\item Interfaces de comunicación digital
+					\end{itemize}
+				\end{block}
+			\end{column} 
+			\begin{column}{0.60\textwidth}
+				\only<1>{\begin{itemize}
+					\item \colorbox{orange}{Blink ("Hola Mundo")}
+					\item \colorbox{orange}{Gráficos de barra con LEDs}
+					\item \colorbox{orange}{Botones y encendido de LEDs}
+					\item \colorbox{orange}{Gráfico de barra con LEDs interactivo}
+				\end{itemize}}
+				\only<2>{\begin{itemize}
+					\item \colorbox{orange}{Lectura en los canales lentos}
+					\item \colorbox{orange}{Salida de tensión en los canales lentos}
+					\item \colorbox{orange}{Configuración interactiva de salidas}
+				\end{itemize}}
+				\only<3>{\begin{itemize}
+					\item \colorbox{orange}{Generación de señales contínuas}
+					\item \colorbox{orange}{Generación de pulsos}
+					\item \colorbox{orange}{Generación por disparo externo}
+					\item \colorbox{orange}{Generación a medida del usuario}
+				\end{itemize}}
+				\only<4>{\begin{itemize}
+					\item \colorbox{orange}{Adquisición por disparos}
+					\item \colorbox{orange}{Adquisición por disparos externos}
+					\item \colorbox{orange}{Generación y adquisición sincrónicas}
+				\end{itemize}}
+				\only<5>{\begin{itemize}
+					\item \colorbox{orange}{I2C}
+					\item \colorbox{orange}{SPI}
+					\item \colorbox{orange}{UART}
+				\end{itemize}}
+			\end{column}
+		\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Osciloscopio y generador de señales}
+		\begin{exampleblock}{Funcionalidades}
+			\begin{itemize}
+				\item Run/stop y auto
+				\item Controles de posición y escala de señales
+				\item Controles de disparo (source, level, slope)
+				\item Modos de disparo: disparos auto, normal y single
+				\item Auxiliar para calibración de entradas
+				\item Cursores
+				\item Mediciones
+				\item Operaciones matemáticas
+				\item Controles del generdor de señales (waveform, amplitude, frequency, phase)
+			\end{itemize}
+		\end{exampleblock}	
+\end{frame}
+
+\begin{frame}
+  \frametitle{Osciloscopio y generador de señales (Cont.)}
+	\begin{block}{}
+		\begin{center}
+			\includegraphics[height=0.8\textheight,width=\textwidth]{first_day/rp_osc}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Osciloscopio y generador de señales}
+		\begin{exampleblock}{Características}
+			\begin{itemize}
+				\item Basada en cálculos con FFT
+				\item Ancho de banda 0 - 62\,MHz 
+				\item Rango dinámico - 80\,dBm
+				\item Dos canales de entrada (conectores SMA)
+				\item Nivel de ruido de entrada < -119\,dBm/Hz
+				\item Resolución de 14 bit
+				\item Rango de entrada +/- 1 V (LV) LV- low voltage jumper settings
+				\item Impedancia de entrada 1\,M$\Omega$ / 10\,pF
+				\item Acoplamiento de entrada DC
+			\end{itemize}
+		\end{exampleblock}	
+\end{frame}
+
+\begin{frame}
+  \frametitle{Analizador de espectros (Cont.)}
+	\begin{block}{}
+		\begin{center}
+			\includegraphics[height=0.8\textheight,width=\textwidth]{first_day/rp_spectrum_ana}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Digital LCR Meter}
+		\begin{columns}
+			\begin{column}{0.40\textwidth}
+				\begin{block}{Características}
+					\begin{itemize}
+						\item 1\,Hz de resolución en modo "Frequency sweep"
+						\item Rango de frecuencias 1\,Hz a 60\,MHz
+						\item Se requiere únicamente cables y una resistencia adicionales. 
+						\item Rango de impedancias 0.1\,$\Omega$ a 10\,M$\Omega$
+						\item Se lo puede usar con una GUI o con CLI.
+					\end{itemize}
+				\end{block}
+			\end{column} 
+			\begin{column}{0.60\textwidth}
+      	\includegraphics[width=0.8\textwidth]{first_day/rp_lcr}\\
+      	\includegraphics[width=0.8\textwidth]{first_day/rp_lcr_2}
+			\end{column}
+		\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Simulación de sistemas LTI}
+		\begin{exampleblock}{}
+			Con esta aplicación se pueden simular las funciones transferencias de
+			sistemas LTI (integrador, diferenciador, LPF Butterworth, LPF Chebyshev,
+			etc).
+		\end{exampleblock}	
+	\begin{block}{}
+		\begin{center}
+			\includegraphics[height=0.35\textheight,width=0.75\textwidth]{first_day/rp_LTI_system}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Laser Development Kit}
+		\begin{exampleblock}{}
+			La empresa \href{http://www.koheron.com/products/lase/}{\alert{Koheron}},
+			dedicada al desarrollo de sistemas fotométricos desarrolló un kit para
+			aplicaciones con láser basado en RedPitaya.
+		\end{exampleblock}	
+	\begin{block}{}
+		\begin{center}
+			\includegraphics[height=0.6\textheight,width=0.65\textwidth]{first_day/rp_application_1}
+		\end{center}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{...y las aplicaciones siguen y siguen}
+		\begin{exampleblock}{Otras}
+			\begin{itemize}
+				\item Receptor/transmisor SDR
+				\item Analizador Bode
+				\item Controlador PID
+				\item Teslameter
+				\item Multichannel pulse height analyzer (MCPHA)
+				\item Generador de AM/FM
+				\item \alert{LAGO complete data acquisition system !?}
+				\item etc
+			\end{itemize}
+		\end{exampleblock}	
+\end{frame}
+
+
+\begin{frame}
+  \begin{center}
+    %\huge{¡Muchas Gracias!}
+		\includegraphics[height=0.6\textheight,width=0.65\textwidth]{first_day/gracias}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \huge{¿Preguntas?}\\
+		\vspace{5mm}
+		\includegraphics[height=0.4\textheight,width=0.4\textwidth]{first_day/preguntas}
+  \end{center}
+\end{frame}
+
+%\section{Máquinas de estados finitos (FSM)}
+
+%\subsection{Máquinas de estados Algorítmicas (ASM)}
+
+%\begin{frame}
+%    \frametitle{Título de la primera diapositiva}
+%\begin{columns}
+% \begin{column}{0.55\textwidth}
+%\begin{block}{Resultados}
+%    \begin{itemize}[<+->]
+%      \item  Primer item
+%      \item  Segundo item
+%      \item  Tercer item
+%    \end{itemize}
+%    \begin{enumerate}[<+-| alert@+>]
+%      \item  Primer item
+%      \item  Segundo item
+%      \item  Tercer item
+%    \end{enumerate}
+%\end{block}
+% \end{column} \ \
+% \begin{column}{0.40\textwidth}
+%      \only<4>{\includegraphics[width=0.8\textwidth]{../media/knuth.jpg}}
+%      \only<5>{\includegraphics[width=0.9\textwidth]{../media/forges.jpg}}
+%      \only<6>{\includegraphics[width=0.9\textwidth]{../media/kill-bill-2.jpg}}
+% \end{column}
+%\end{columns}
+%\end{frame}
+%
+%
+%\subsection{Segunda subsección}
+%
+%\begin{frame}
+%    \frametitle{Título de la segunda diapositiva}
+%\begin{block}{}
+%Escribimos una pequeña fórmula
+%\end{block}
+%
+%\begin{block}{Fórmula}
+%\begin{equation*}
+%\onslide<2->{V(x) = } \onslide<3->{\color<3>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r} +}
+%\onslide<4->{\color<4>[rgb]{0,1,0} B\int_0^\infty\frac{dr}{r^2} +}
+%\onslide<5->{\color<5>[rgb]{0,0,1} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}
+%\end{equation*}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Ahora mostramos la fórmula de forma un poco diferente
+%\end{block}
+%
+%\begin{block}{Fórmula}
+%\begin{equation*}
+%V(x) =  {\color<2>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r}} +
+%{\color<3>[rgb]{1,0,0} B\int_0^\infty\frac{dr}{r^2}} +
+%{\color<4>[rgb]{1,0,0} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}
+%\end{equation*}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Otra forma un poco más compleja:
+%\end{block}
+%\begin{block}{Ecuación}
+%$\displaystyle
+%V(x) = \onslide<2->{\color<2>[rgb]{1,0,0} A\int_0^\infty\frac{dr}{r} +}
+%\onslide<3->{\color<3>[rgb]{0,1,0} B\int_0^\infty\frac{dr}{r^2} +}
+%\onslide<4->{\color<4>[rgb]{0,0,1} C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx}$
+%
+%\medskip
+%\hspace*{15mm} \onslide<2>{\color<2>[rgb]{1,0,0} Dipolo} \hspace{7mm}
+%\onslide<3>{\color<3>[rgb]{0,1,0} Coulomb} \hspace{4mm}
+%\onslide<4>{\color<4>[rgb]{0,0,1} Van der Waals}
+%\end{block}
+%\end{frame}
+%
+%\begin{frame}[t]
+%    \frametitle{Título de la tercera diapositiva}
+%\begin{block}{}
+%Otra forma reemplazando elementos:
+%\end{block}
+%\only<2>{\visible<2>{\begin{block}{Ecuación 1}
+%$\displaystyle V(x) = A\int_0^\infty\frac{dr}{r} \color[rgb]{1,0,0} \longrightarrow \text{Dipolo}$
+%\end{block}}}%
+%\only<3->{\visible<3->{\begin{block}{Ecuación 2}
+%$\displaystyle W(x) = B\int_0^\infty\frac{dr}{r^2} +
+%C\int_0^\infty\left(\frac{1}{r^6} - \frac{1}{r^{12}}\right)dx \only<3>{ \longrightarrow \color[rgb]{1,0,0} \text{Coulomb + WdW}}$
+%\end{block}}}
+%\only<4>{\visible<4>{\begin{block}{otro bloque}
+%Otras cosas...
+%\end{block}}}
+%\end{frame}
+%
+%\section{Segunda sección}
+%
+%\subsection{Primera subsección de la segunda sección}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{Una película}
+%\includemovie[play,repeat]%
+%{4cm}{3cm}{../media/random.mpg}
+%\end{block}
+%\end{Verbatim}
+%
+%\textbf{Nota:} Es esencial cargar el paquete 
+%\textsf{movie15} en el preámbulo
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{4.2cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,repeat]%
+%{4cm}{3cm}{../media/random.mpg}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{Otra película}
+%\includemovie[autoplay,%
+%controls]{5.5cm}{3.75cm}%
+%{../media/budweiser.mpeg}
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{5.7cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,controls]%
+%{5.5cm}{3.75cm}{../media/budweiser.mpeg}
+%
+%\medskip
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Vídeos}
+%\begin{columns}
+%\begin{column}{5cm}
+%\begin{block}{}
+%\footnotesize
+%\begin{Verbatim}
+%\begin{block}{Otra película}
+%\includemovie[autoplay,%
+%label=bud]{6.5cm}{4.43cm}%
+%{../media/budweiser.mpeg}
+%\fbox{
+%\movieref[rate=0.5]{bud}{Slow}
+%\movieref[default]{bud}{Normal}
+%\movieref[rate=2]{bud}{Fast}
+%\movieref[pause]{bud}{Play/
+%Pause}
+%\movieref[stop]{bud}{Stop}
+%}
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.6cm}
+%\begin{block}{Una película}
+%\includemovie[autoplay,label=bud]%
+%{6.5cm}{4.43cm}{../media/budweiser.mpeg}
+%\fbox{
+%\movieref[rate=0.5]{bud}{Slow}
+%\movieref[default]{bud}{Normal}
+%\movieref[rate=2]{bud}{Fast}
+%\movieref[pause]{bud}{Play/%
+%Pause}
+%\movieref[stop]{bud}{Stop}
+%}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Objetos 3D}
+%\begin{columns}
+%\begin{column}{4cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{}
+%\includemovie[poster,
+%toolbar,3Droo=12]{
+%.8\linewidth}{
+%.8\linewidth
+%}{../media/4CH3-N.u3d}
+%\end{block}
+%\end{Verbatim}
+%
+%Nota: Cargar \textsf{movie15} con la opción \textsf{3D}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.5cm}
+%\begin{block}{}
+%%\includemovie[poster,toolbar,3Droo=12]{
+%%.8\linewidth
+%%}{
+%%.8\linewidth
+%%}{../media/4CH3-N.u3d}
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
+%\begin{frame}[fragile]
+%\frametitle{Efectos multimedia: Objetos 3D}
+%\begin{columns}
+%\begin{column}{4cm}
+%\begin{block}{}
+%\small
+%\begin{Verbatim}
+%\begin{block}{}
+%\includemovie[poster,
+%toolbar,3Droo=1,
+%3Dviews2=../media/turbine.vws]
+%{.9\linewidth}{
+%.6\linewidth
+%}{../media/turbine.u3d}
+%
+%\end{block}
+%\end{Verbatim}
+%\end{block}
+%\end{column}\pause \
+%\begin{column}{6.5cm}
+%\begin{block}{}
+%%\includemovie[poster,toolbar,
+%%3Droo=1,3Dviews2=../media/turbine.vws]{
+%%.9\linewidth
+%%}{
+%%.6\linewidth
+%%}{../media/turbine.u3d}
+%
+%\end{block}
+%\end{column}
+%\end{columns}
+%\end{frame}
+
+
+\end{document}
+
+%\usetheme{default}
+%\usetheme{JuanLesPins}
+%\usetheme{Goettingen}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+%\usecolortheme{crane}
+
+%\usefonttheme{serif}
+%\usefonttheme{structuresmallcapsserif}
