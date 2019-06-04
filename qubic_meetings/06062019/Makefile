@@ -6,10 +6,10 @@ $(LTX).pdf: $(LTX).tex
 	#pdflatex $(LTX).tex
 	#bibtex $(LTX)
 	#bibtex $(LTX)
-	pdflatex $(LTX).tex
-	pdflatex $(LTX).tex
+	pdflatex $<
+	pdflatex $<
 	#gnome-open $(LTX).pdf
-	xdg-open $(LTX).pdf
+	xdg-open $@
 
 clean:
 	rm -rf *~ *.toc *.snm *.nav *.out *.aux *.dvi *.log *.bbl *.blg $(LTX).pdf
