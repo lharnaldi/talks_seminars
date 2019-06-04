@@ -53,18 +53,90 @@ CAB-IB}
 				\tableofcontents
 \end{frame}
 
+\section{Channelizer}
+\begin{frame}{Channelizer}
 
+				Implementaci\'on m\'as eficiente en t\'erminos de uso de hardware en FPGA
+
+				Ancho de banda similar para todos los canales 
+
+				Extensible a un n\'umero grande de canales ($>=1000$)
+
+				Posibilidad de realizar el dise\~no en multi-etapas
+
+				\begin{center}
+								\includegraphics[width=0.8\textwidth]{FDM_channel_diagram}
+				\end{center}
+\end{frame}
+\begin{frame}{Channelizer Tx}
+				%\begin{columns}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<1>{\includegraphics[width=0.8\textwidth]{Tx_channelizer}}
+				\end{center}
+				%				\end{column}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{Tx_channelizer_con_IFFT}}
+				\end{center}
+				%				\end{column}
+				%\end{columns}
+\end{frame}
+
+\begin{frame}{Channelizer Rx}
+				%\begin{columns}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<1>{\includegraphics[width=0.8\textwidth]{Rx_channelizer}}
+				\end{center}
+				%				\end{column}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{Rx_channelizer_con_IFFT}}
+				\end{center}
+				%				\end{column}
+				%\end{columns}
+\end{frame}
+
+\section{Vivado}
+\begin{frame}{Vivado}
+
+				Actualmente trabajando con la versi\'on 2016.4
+
+				Cores propios, ej. RxChannelizer y TxChannelizer, etc.
+
+				Mezcla de scripts TCL y Linux embebido
+				\begin{center}
+								\includegraphics[width=0.8\textwidth]{pfb_repo}
+				\end{center}
+\end{frame}
+
+\begin{frame}{Proyectos Vivado}
+
+				%\begin{columns}
+								%\begin{column}{0.45\textwidth}
+				\begin{center}
+				\only<1>{\includegraphics[width=0.95\textwidth]{rxchan16_test2_vivado_project}}
+				\end{center}
+								%\end{column}
+								%\begin{column}{0.45\textwidth}
+				\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{channelizer16_core}}
+				\end{center}
+								%\end{column}
+				%\end{columns}
+\end{frame}
 
 \section{Equipamiento BT}
 Using section and subsection commands, outside of frames, provides a table of contents and progress information to beamer.
 \begin{frame}{Equipos BT}
 				\begin{columns}
 								\begin{column}{0.45\textwidth}
-												\includegraphics[angle=-90,width=0.65\textwidth]{IMG_20190523_105037648} \\ 
+												\includegraphics[angle=-90,width=0.62\textwidth]{IMG_20190523_105037648} \\ 
 												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105054061}
 								\end{column}
 								\begin{column}{0.45\textwidth}
-												\includegraphics[angle=-90, width=0.65\textwidth]{IMG_20190523_105443289} \\ 
+												\includegraphics[angle=-90, width=0.62\textwidth]{IMG_20190523_105443289} \\ 
 												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105117465}
 								\end{column}
 				\end{columns}
@@ -86,7 +158,7 @@ Using section and subsection commands, outside of frames, provides a table of co
 \begin{frame}{Equipos BT}
 				\begin{columns}
 								\begin{column}{0.45\textwidth}
-												\includegraphics[angle=-90,width=0.65\textwidth]{IMG_20190523_111114131} \\ 
+												\includegraphics[angle=-90,width=0.62\textwidth]{IMG_20190523_111114131} \\ 
 												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105054061}
 								\end{column}
 								\begin{column}{0.45\textwidth}
@@ -129,66 +201,63 @@ Using section and subsection commands, outside of frames, provides a table of co
 
 
 
-\section{Divide your presentation into frames}
-\begin{frame}{Divide your presentation into frames}
-
-				In the Beamer documentclass, include the text you wish to show within a \texttt{frame} environment.
-
-				Material you put outside of \texttt{frame} environments will not appear.
-
-				However, as in the preamble, the package \texttt{beamerarticle} empowers this document to be typeset in its entirety, including the non-framed material.
-
-				Typeset the presentation using \texttt{pdflatex}.
+\section{Perspectivas de trabajo}
+\begin{frame}
+				\begin{itemize}
+								\item Dise\~no de resonador en Sonnet
+								\item Primeras mediciones a $T_{amb}$ y $T \sim 100\,mK$
+								\item Definici\'on de requerimientos para crio (cables,
+												conectores, espacios, etc.)
+								\item Primeras pruebas con RxChannelizer con ITeDA (pruebas de
+												front-end, mezcladores, filtros, DC-block, etc.)
+				\end{itemize}
 \end{frame}
-
-
-
-\section{Prefer titles that make a statement}
-\begin{frame}{Prefer titles that make a statement}
-
-				Many opt for meaningless titles and section titles.  
-
-				Instead, make titles convey information.
-
-				\pause
-
-				Use \texttt{pause} commands almost anywhere to progressively step through material.
-
-				\pause
-
-				\begin{figure}
-								\centering
-								\caption{Figure and table environments also work.
-								Use \texttt{includegraphics} or \texttt{pgfplots}.}
-								\begin{tikzpicture}
-												\begin{axis}[footnotesize,axis lines=middle
-																,xlabel={$t$},no marks,thick,domain=0:2.2,smooth ]
-																\addplot+[]{1-2*exp(-2*x)+exp(-4*x)};
-																\addlegendentry{$u(t)$};
-																\addplot+[]{1-exp(-4*x)};
-																\addlegendentry{$v(t)$};
-																\addplot+[]{1+2*exp(-2*x)+exp(-4*x)};
-																\addlegendentry{$w(t)$};
-												\end{axis}
-								\end{tikzpicture}
-				\end{figure}
-
-\end{frame}
-
-
-
-
-\section{Conclusion}
-\begin{frame}{Conclusion}
-
-				Finish with your conclusions displayed: \emph{not} a list of references, \emph{nor} a meaningless ``thank you'' slide.
-
-				\vfill
-				\begin{quote}
-								Three rules of public speaking: Be forthright.  Be brief.  Be
-								seated. \hfill(S. Dressel \& J. Chew, 1987)
-				\end{quote}
-\end{frame}
+%\section{Prefer titles that make a statement}
+%\begin{frame}{Prefer titles that make a statement}
+%
+%				Many opt for meaningless titles and section titles.  
+%
+%				Instead, make titles convey information.
+%
+%				\pause
+%
+%				Use \texttt{pause} commands almost anywhere to progressively step through material.
+%
+%				\pause
+%
+%				\begin{figure}
+%								\centering
+%								\caption{Figure and table environments also work.
+%								Use \texttt{includegraphics} or \texttt{pgfplots}.}
+%								\begin{tikzpicture}
+%												\begin{axis}[footnotesize,axis lines=middle
+%																,xlabel={$t$},no marks,thick,domain=0:2.2,smooth ]
+%																\addplot+[]{1-2*exp(-2*x)+exp(-4*x)};
+%																\addlegendentry{$u(t)$};
+%																\addplot+[]{1-exp(-4*x)};
+%																\addlegendentry{$v(t)$};
+%																\addplot+[]{1+2*exp(-2*x)+exp(-4*x)};
+%																\addlegendentry{$w(t)$};
+%												\end{axis}
+%								\end{tikzpicture}
+%				\end{figure}
+%
+%\end{frame}
+%
+%
+%
+%
+%\section{Conclusion}
+%\begin{frame}{Conclusion}
+%
+%				Finish with your conclusions displayed: \emph{not} a list of references, \emph{nor} a meaningless ``thank you'' slide.
+%
+%				\vfill
+%				\begin{quote}
+%								Three rules of public speaking: Be forthright.  Be brief.  Be
+%								seated. \hfill(S. Dressel \& J. Chew, 1987)
+%				\end{quote}
+%\end{frame}
 
 
 
