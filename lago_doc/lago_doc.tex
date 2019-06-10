@@ -415,23 +415,24 @@ root@lago:~/src#
 
 \noindent si el caso es que necesitamos extender el tamaño del sistema de
 archivos, deberemos seguir los siguientes pasos: 
+\textbf{NOTA:} Estos pasos se hacen con la Redpitaya encendida y el sistema ya
+iniciado.
 
 \noindent Para que se disponga de la totalidad del espacio de la SD hay que ejecutar
 \begin{itemize}
 \item Borrar la segunda partición
 \begin{verbatim}
- echo -e "d\n2\nw" | fdisk /dev/mmcblk0
+fdisk /dev/mmcblk0
 \end{verbatim}
+Presionar las siguientes teclas en orden:
+d 2 para borrar,
+n p 2 Enter Enter para re-crear.
 
-\item Recrear la partición
-\begin{verbatim}
- parted -s /dev/mmcblk0 mkpart primary ext4 128MB 100%
-\end{verbatim}
-
-\item Cambiar el tamaño de la partición
+\item Reboot e ingresar:
 \begin{verbatim}
  resize2fs /dev/mmcblk0p2
 \end{verbatim}
+
 \end{itemize}
 
 \noindent Con eso tenemos el sistema en toda la SD. Para que los cambios surtan

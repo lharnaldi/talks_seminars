@@ -11,5 +11,5 @@ $(LTX).pdf: $(LTX).tex
 	xdg-open $(LTX).pdf
 
 clean:
-	rm -rf *~ *.aux *.dvi *.log *.bbl *.blg $(LTX).pdf
+	rm -rf *~ *.aux *.dvi *.out *.toc *.log *.bbl *.blg $(LTX).pdf
 
