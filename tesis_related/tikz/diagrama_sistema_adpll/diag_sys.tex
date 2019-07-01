@@ -1,0 +1,70 @@
+\documentclass[14pt,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, align=center, minimum height = 3em, minimum width = 3em},
+  blockg/.style    = {draw, thick, rectangle, align=center, minimum height =
+3cm, minimum width = 3cm},
+  mult/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\mult}{\Huge x}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+
+%\draw[help lines] (-1,-8) grid (20,1); 
+\draw 
+  % Drawing the blocks of first filter :
+  node at (0,0)[right=-3.3mm]{\Large \textopenbullet}
+  node at (0,0)[input, name=sigin] {}
+  node at (2,0)[block, right of=sigin] (ad1) {ADC1}
+  node at (8,0) [mixer] (mult1) {}
+  node at (8,-2)[mixer] (mult2) {}
+  node at (0,-4)[right=-3.3mm]{\Large \textopenbullet}
+  node at (0,-4)[input, name=refin] {}
+  node at (0,-4)[block, right of=refin] (ad2) {ADC2}
+  node [block, right of=ad2] (zcd) {ZCD}
+  node [block, right of=zcd] (adpll) {ADPLL}
+  node [block, below of=adpll] (intref) {INT. REF.}
+  node [block, right of=mult1] (lpf1) {LPF}
+  node at (14,-1)[blockg] (soc) {Dual Core\\ARM CPU}
+  node [block, right of=mult2] (lpf2) {LPF}
+  node at (17.6,0)[block] (da1) {DAC1}
+  node at (17.6,-2)[block] (da2) {DAC2};
+
+   % Joining blocks. 
+    % Commands \draw with options like [->] must be written individually
+  \draw[->](sigin) -- node {Sig. In}(ad1);
+  \draw[->](ad1) -- (mult1.west);
+  \draw[->](mult1.east) -- node {} (lpf1);
+  \draw[->](lpf1) -- node {} (12.5,0);
+  \draw[->](refin) -- node {Ref. In} (ad2);
+  \draw[->](ad2) -- node {}(zcd);
+  \draw[->](zcd) -- node {}(adpll);
+  \draw[->](intref) -- node {} (adpll);
+  \draw[->](soc) |- node {} (intref);
+  \draw[->](mult2.east) -- node {} (lpf2);
+  \draw[->](lpf2) -- node {} (12.5,-2);
+  \draw[*-] (4,0.1) -- node {} (4,-2);
+  \draw[->] (4,-2) -- (7.5,-2);
+  \draw[->] (adpll.east) -| node {} (mult2.south);
+  \draw (adpll.north) -- node {} (6,-1);
+  \draw[->] (6,-1) -| node {} (mult1.south);
+  \draw[->] (15.5,0) -- node {} (17,0);
+  \draw[->] (15.5,-2) -- node {} (17,-2);
+  \draw[->] (18.2,0) -- node {Out1} (20,0);
+  \draw[->] (18.2,-2) -- node {Out2} (20,-2);
+  
+\end{tikzpicture}
+\end{document}
