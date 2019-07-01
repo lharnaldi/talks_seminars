@@ -1,0 +1,48 @@
+%\documentclass{minimal}
+%
+%\usepackage{tikz}
+%\usetikzlibrary{circuits.ee.IEC}
+%
+%\begin{document}
+%\documentclass{minimal}
+%\documentclass{article}
+%\documentclass[tikz]{article}
+\documentclass[]{standalone}
+%\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+%\begin{center}
+\begin{circuitikz} 
+%\draw[help lines] (-1,-8) grid (16,1);
+\draw
+(2,0) to[twoport, name=kp, t=$K_P$,>] (3,0) 
+(2,-2) to[twoport, name=ki, t=$K_I$,>] (3,-2) 
+(7,-4) to[twoport, name=z, t=$z^{-1}$] (8,-4)
+(10,0) node[adder] (add1) {}
+(5,-2) node[adder] (add2) {}
+
+(0,0) to[short,-] (2,0)
+%(kp.east) to[short,-] ++(6.5,0)
+(add1.west) node[inputarrow] {} to[short,-] (3,0)
+(ki.east) to[short,-] ++(1.5,0)
+(add2.west) node[inputarrow] {} to[short,-] (4,-2)
+(ki.west) to[short,-] ++(-1,0)
+(1,0) to[short,*-] (1,-2)
+(7,-4) to[short,-] (5,-4)
+(add2.south) node[inputarrow,rotate=90] {} to[short,-] (5,-4)
+(add2.east) to[short,-*] (10,-2)
+%(add1.south) to[short,-] (10,-4)
+(add1.south) node[inputarrow, rotate=90] {} to[short,-] (10,-4)
+(z.east) to[short,-] ++(2,0)
+(add1.east) to[short,-] (12,0)
+(12,0) node[inputarrow] {}
+(1,0.5) node {$e(t)$}
+(11,0.5) node {$u(t)$}
+;
+\end{circuitikz} 
+%\end{center}
+
+\end{document}
