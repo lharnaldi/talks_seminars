@@ -1,0 +1,89 @@
+\documentclass[14pt,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, align=center, minimum height = 3em, minimum width = 3em},
+  blockg/.style    = {draw, thick, rectangle, align=center, minimum height =
+2cm, minimum width = 2.5cm},
+  mult/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\mult}{\Huge x}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+
+%\draw[help lines] (-1,-8) grid (20,1); 
+\draw 
+  % Drawing the blocks of first filter :
+  node at (-1,0)[right=-3.3mm]{\Large \textopenbullet}
+  node at (0,0)[input, name=sigin] {}
+  node at (2,0)[block, right of=sigin] (dff1) {DFF1}
+  node at (5,-2) [and port, scale=-1] (and1) {}
+%  node at (8,-2)[mixer] (mult2) {}
+%  node at (0,-4)[right=-3.3mm]{\Large \textopenbullet}
+  node at (0,-4)[input, name=refin] {}
+  node at (0,-4)[block, right of=refin] (dff2) {DFF2}
+%  node [block, right of=dff2] (zcd) {ZCD}
+%  node [block, right of=zcd] (adpll) {ADPLL}
+%  node [block, below of=adpll] (intref) {INT. REF.}
+%  node [block, right of=and1] (lpf1) {LPF}
+  node at (10.05,-2)[blockg] (lp) {LOOP\\ FILTER}
+  node at (14,-2)[blockg] (nco) {DCO};
+%  node [block, right of=mult2] (lpf2) {LPF}
+%  node at (17.6,0)[block] (da1) {DAC1}
+%  node at (17.6,-2)[block] (da2) {DAC2};
+
+   % Joining blocks. 
+    % Commands \draw with options like [->] must be written individually
+  \draw (-1,0) -- node[] {Sig. In} (0,0);
+  \draw[->](sigin) -- (dff1);
+  \draw (dff1) -- node[near end] {UP} (8,0);
+  \draw (8,0) -- (8,-1.3);
+  \draw (8,0) -- (8,-1.3);
+  \draw[->] (8,-1.3) -- (8.8,-1.3);
+  \draw (dff2) -- node[below,near end] {DN} (8,-4);
+  \draw (8,-4) -- (8,-2.7);
+  \draw (8,-4) -- (8,-2.7);
+  \draw[->] (8,-2.7) -- (8.8,-2.7);
+  \draw[*-] (7,0.1) |- (and1.in 2);
+  \draw[*-] (7,-4.1) |- (and1.in 1);
+  \draw[-*] (and1.out) -- node[above] {RESET} (1.9,-2);
+  \draw (2,-2) -- (2,-0.53);
+  \draw (2,-2) -- (2,-3.47);
+  \draw[->] (11.3,-2) -- (12.75,-2);
+  \draw[-](nco.south) |- node[near end,above] {SYNC} (0,-5.5);
+  \draw[-](0,-5.5) -- (0,-4);
+  \draw[->](refin) -- node {} (dff2);
+%  \draw[->](dff2) -- node {}(zcd);
+%  \draw[->](zcd) -- node {}(adpll);
+%  \draw[->](intref) -- node {} (adpll);
+%  \draw[->](soc) |- node {} (intref);
+%  \draw[->](mult2.east) -- node {} (lpf2);
+%  \draw[->](lpf2) -- node {} (12.5,-2);
+%  \draw (4,0) -- node {} (4,-2);
+%  \draw[->] (4,-2) -- (7.5,-2);
+%  \draw[->] (adpll.east) -| node {} (mult2.south);
+%  \draw (adpll.north) -- node {} (6,-1);
+%  \draw[->] (6,-1) -| node {} (and1.south);
+%  \draw[->] (15.5,0) -- node {} (17,0);
+%  \draw[->] (15.5,-2) -- node {} (17,-2);
+  \draw[->] (15.25,-1.3) -- node {Sin Out} (17,-1.3);
+  \draw[->] (15.25,-2.7) -- node {Cos Out} (17,-2.7);
+  
+  % Boxing and labelling noise shapers
+  \draw [color=gray,thick](0.5,-4.8) rectangle (7.5,0.8);
+  \node at (1,0.5) [above=5mm, right=0mm] {\textsc{Phase/Frequency Detector}};
+
+\end{tikzpicture}
+\end{document}
