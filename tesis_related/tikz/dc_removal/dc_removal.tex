@@ -8,7 +8,7 @@
 \begin{document}
 % Definition of blocks:
 \tikzset{%
-  block/.style    = {draw, thick, rectangle, align=center, minimum height = 3em, minimum width = 3em},
+  block/.style    = {draw, thick, rectangle, rounded corners, fill=gray,align=center, minimum height = 3em, minimum width = 3em},
   blockg/.style    = {draw, thick, rectangle, align=center, minimum height = 3cm, minimum width = 3cm},
   blockgg/.style    = {draw, thick, rectangle, align=center, minimum height = 3cm, minimum width = 2cm},
   mult/.style      = {draw, circle, node distance = 2cm}, % Adder
@@ -24,6 +24,8 @@
 \begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
 
 \draw[help lines] (-1,-8) grid (20,1); 
+				\draw [fill=yellow, rounded corners] (0,0) rectangle (2,3);
+				\node [right, thick] at (0,1) {--};
 \draw 
   % Drawing the blocks of first filter :
   node at (0,0)[right=-3.3mm]{\Large \textopenbullet}
@@ -51,7 +53,7 @@
   \draw[->](lpf1) -- node {} (12.5,0);
   \draw[->](refin) -- node {CH2} (ad2);
   \draw[->](ad2) -- node {}(zcd);
-  \draw[->](zcd) -- node {}(adpll);
+  \draw[->,blue](zcd) -- node {}(adpll);
   \draw[->](intref) -- node {} (adpll);
   \draw[->](soc) |- node {} (intref);
   \draw[->](mult2.east) -- node {} (lpf2);
