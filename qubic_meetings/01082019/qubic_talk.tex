@@ -1,0 +1,282 @@
+\ifcase0  % choose 0=slides, 1=article, 2=refart
+	 \documentclass[ignorenonframetext,12pt]{beamer}
+	 \geometry{paper=a6paper,landscape}
+\or\documentclass[a4paper,11pt]{article}
+	 \usepackage{url,beamerarticle}
+\or\documentclass[a4paper,11pt]{refart}
+	 \let\example\relax
+	 \usepackage{url,beamerarticle}
+\fi
+
+\ifcase1  % choose a theme like these
+	 \usetheme{Goettingen}% I recommend
+\or\usetheme{Singapore}
+\or\usetheme{Boadilla}
+\or\usetheme{Pittsburgh}
+\or\usetheme{Madrid}
+\or\usetheme{Warsaw} % common choice, but often poor
+\fi
+
+\usepackage{graphicx,pgfplots,parskip}
+\graphicspath{{media/}}
+
+
+
+\title{QUBIC mettings} 
+\author{Horacio Arnaldi\\
+Laboratorio Detecci\'on de Part\'iculas y Radiaci\'on\\
+CAB-IB}
+\date{August 1, 2019}
+
+
+\begin{document}
+
+\begin{frame}
+				\maketitle
+\end{frame}
+
+
+\begin{abstract}
+				This abstract, being outside the frame environment, does not appear in the presentation.  Your outline will be the basis for a couple of sentences of talk for each of the following questions:
+				\begin{itemize}
+								\item What was done?
+								\item Why do it?
+								\item What were the results?
+								\item What do the results mean in theory and/or practise?
+								\item What is the reader's benefit?
+								\item How can the readers use this information for themselves? 
+				\end{itemize}
+\end{abstract}
+
+
+\begin{frame}{Outline}
+				\tableofcontents
+\end{frame}
+
+\section{Readout design and development}
+\begin{frame}{Readout design and development}
+
+				{\color[rgb]{0.8,.4,.5} ``The readout electronics have the general task of performing multiple
+				real-time complex microwave transmission measurements, in order to
+				monitor the instantaneous resonance frequency and dissipation of the
+				superconducting microresonators that serve as mm/submm photon
+				detectors''.}
+
+				Noise will be dominated by cryogenic HEMT amplifier, which has noise
+				temperature around 2 to 5 K. Besides the HEMT, ADC chip will be the next
+				limiting factor for the noise performance of the readout. 
+
+				Based on the physical frequency spacing of all the resonators, the
+				sampling rate are chosen to match the resonator bandwidth. Sampling rate
+				of proposed readout system can be flexible.
+				Right now it is up to 550 MHz which is the limit of ADC chip.
+
+				\emph{\textbf{An open-source readout for MKIDs}}, Proc. SPIE Astron. Telesc.
+				Instrum., doi:10.1117/12.856832
+\end{frame}
+\begin{frame}{Readout design and development}
+
+				MKIDs $\to$ 
+
+				The obvious advantage of MKIDs over competing cryogenic technologies
+				like TESs is the elimination of the cryogenic electronics required for multiplexing
+
+				\emph{\textbf{A readout for large arrays of microwave kinetic inductance
+				detectors}}, Rev. Sci. Instrum., doi:10.1063/1.3700812
+\end{frame}
+\begin{frame}{Channelizer Tx}
+				%\begin{columns}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<1>{\includegraphics[width=\textwidth]{if_electronic_schematic}}
+				\end{center}
+				%				\end{column}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{Tx_channelizer_con_IFFT}}
+				\end{center}
+				%				\end{column}
+				%\end{columns}
+\end{frame}
+
+\begin{frame}{Channelizer Rx}
+				%\begin{columns}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<1>{\includegraphics[width=0.8\textwidth]{Rx_channelizer}}
+				\end{center}
+				%				\end{column}
+				%				\begin{column}{0.65\textwidth}
+				\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{Rx_channelizer_con_IFFT}}
+				\end{center}
+				%				\end{column}
+				%\end{columns}
+\end{frame}
+
+\section{Vivado}
+\begin{frame}{Vivado}
+
+				Actualmente trabajando con la versi\'on 2016.4
+
+				Cores propios, ej. RxChannelizer y TxChannelizer, etc.
+
+				Mezcla de scripts TCL y Linux embebido
+				\begin{center}
+								\includegraphics[width=0.8\textwidth]{pfb_repo}
+				\end{center}
+\end{frame}
+
+\begin{frame}{Proyectos Vivado}
+
+				%\begin{columns}
+								%\begin{column}{0.45\textwidth}
+				\begin{center}
+				\only<1>{\includegraphics[width=0.95\textwidth]{rxchan16_test2_vivado_project}}
+				\end{center}
+								%\end{column}
+								%\begin{column}{0.45\textwidth}
+				\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{channelizer16_core}}
+				\end{center}
+								%\end{column}
+				%\end{columns}
+\end{frame}
+
+\section{Equipamiento BT}
+Using section and subsection commands, outside of frames, provides a table of contents and progress information to beamer.
+\begin{frame}{Equipos BT}
+				\begin{columns}
+								\begin{column}{0.45\textwidth}
+												\includegraphics[angle=-90,width=0.62\textwidth]{IMG_20190523_105037648} \\ 
+												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105054061}
+								\end{column}
+								\begin{column}{0.45\textwidth}
+												\includegraphics[angle=-90, width=0.62\textwidth]{IMG_20190523_105443289} \\ 
+												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105117465}
+								\end{column}
+				\end{columns}
+
+
+%				Aim for five to ten slides for a 25~minute presentation.
+%
+%				Certainly no more than 15.
+%
+%				Use a note form for the content of each slide.
+%
+%				\begin{theorem}
+%								Mathematics works within the Beamer class, $\exp(i\pi)+1=0$\,, including theorems.
+%				\end{theorem}
+%
+%				Click: \url{http://www.maths.adelaide.edu.au} 
+\end{frame}
+
+\begin{frame}{Equipos BT}
+				\begin{columns}
+								\begin{column}{0.45\textwidth}
+												\includegraphics[angle=-90,width=0.62\textwidth]{IMG_20190523_111114131} \\ 
+												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105054061}
+								\end{column}
+								\begin{column}{0.45\textwidth}
+												\includegraphics[angle=-90,width=0.42\textwidth]{IMG_20190523_105647049} \\ 
+												\hspace{2mm}\includegraphics[angle=-90,width=0.42\textwidth]{IMG_20190523_112752228} \\
+												\includegraphics[angle=-90,width=0.42\textwidth]{IMG_20190523_104038976}
+								\end{column}
+				\end{columns}
+%				Aim for five to ten slides for a 25~minute presentation.
+%
+%				Certainly no more than 15.
+%
+%				Use a note form for the content of each slide.
+%
+%				\begin{theorem}
+%								Mathematics works within the Beamer class, $\exp(i\pi)+1=0$\,, including theorems.
+%				\end{theorem}
+%
+%				Click: \url{http://www.maths.adelaide.edu.au} 
+\end{frame}
+
+				\begin{frame}{Amplificador criog\'enico de bajo ruido}
+								\framesubtitle{LNF-LNC03\_14A}
+								\begin{columns}
+												\begin{column}{0.40\textwidth}
+				\hspace{10mm}\includegraphics[width=0.95\textwidth]{lnf-lnc03_14sa}
+												\end{column}
+												\begin{column}{0.60\textwidth}
+																\begin{itemize}
+																				\item Ancho de Banda RF: 0.3-14 GHz
+																				\item Ruido: 4.1 K (típico)
+																				\item Ganancia: 42 dB
+																				\item Potencia DC: Vc= 0.7 V @ 14 mA
+																				\item Conectores RF: G3PO Macho
+																				\item Conector DC: Nano Strip 5 pines hembra
+																\end{itemize}
+												\end{column}
+								\end{columns}
+				\end{frame}
+
+
+
+\section{Perspectivas de trabajo}
+\begin{frame}{Perspectivas de trabajo}
+				\begin{itemize}
+								\item Dise\~no de resonador en Sonnet
+								\item Primeras mediciones a $T_{amb}$ y $T \sim 100\,mK$
+								\item Definici\'on de requerimientos para crio (cables,
+												conectores, espacios, etc.)
+								\item Primeras pruebas con RxChannelizer con ITeDA (pruebas de
+												front-end, mezcladores, filtros, DC-block, etc.)
+				\end{itemize}
+\end{frame}
+%\section{Prefer titles that make a statement}
+%\begin{frame}{Prefer titles that make a statement}
+%
+%				Many opt for meaningless titles and section titles.  
+%
+%				Instead, make titles convey information.
+%
+%				\pause
+%
+%				Use \texttt{pause} commands almost anywhere to progressively step through material.
+%
+%				\pause
+%
+%				\begin{figure}
+%								\centering
+%								\caption{Figure and table environments also work.
+%								Use \texttt{includegraphics} or \texttt{pgfplots}.}
+%								\begin{tikzpicture}
+%												\begin{axis}[footnotesize,axis lines=middle
+%																,xlabel={$t$},no marks,thick,domain=0:2.2,smooth ]
+%																\addplot+[]{1-2*exp(-2*x)+exp(-4*x)};
+%																\addlegendentry{$u(t)$};
+%																\addplot+[]{1-exp(-4*x)};
+%																\addlegendentry{$v(t)$};
+%																\addplot+[]{1+2*exp(-2*x)+exp(-4*x)};
+%																\addlegendentry{$w(t)$};
+%												\end{axis}
+%								\end{tikzpicture}
+%				\end{figure}
+%
+%\end{frame}
+%
+%
+%
+%
+%\section{Conclusion}
+%\begin{frame}{Conclusion}
+%
+%				Finish with your conclusions displayed: \emph{not} a list of references, \emph{nor} a meaningless ``thank you'' slide.
+%
+%				\vfill
+%				\begin{quote}
+%								Three rules of public speaking: Be forthright.  Be brief.  Be
+%								seated. \hfill(S. Dressel \& J. Chew, 1987)
+%				\end{quote}
+%\end{frame}
+
+
+
+
+\end{document}
+
