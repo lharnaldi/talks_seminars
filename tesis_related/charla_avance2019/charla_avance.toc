@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{Channelizer}{3}{0}{1}
+\beamer@sectionintoc {2}{Vivado}{8}{0}{2}
+\beamer@sectionintoc {3}{Equipamiento BT}{11}{0}{3}
+\beamer@sectionintoc {4}{Perspectivas de trabajo}{14}{0}{4}
+\beamer@sectionintoc {5}{MKIDs}{15}{0}{5}
+\beamer@sectionintoc {6}{Readout design and development}{21}{0}{6}
+\beamer@sectionintoc {7}{Work perspectives}{29}{0}{7}
