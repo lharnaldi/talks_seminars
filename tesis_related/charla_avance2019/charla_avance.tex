@@ -9,7 +9,8 @@
 \fi
 
 \ifcase0  % choose a theme like these
-	 \usetheme{Montpellier}% I recommend
+	 %\usetheme{Montpellier}% I recommend
+	 \usetheme{default}% I recommend
 \or\usetheme{Singapore}
 \or\usetheme{Szeged}
 \or\usetheme{Boadilla}
@@ -24,9 +25,8 @@
 \graphicspath{{media/}}
 
 \title{Microelectrónica y técnicas avanzadas de procesamiento digital con
-aplicaciones en micro-resonadores superconductores multipíxeles\\
-\vspace{1cm}
-\small{\color{red}{Charla de avance}}} 
+aplicaciones en micro-resonadores superconductores multipíxeles}
+\subtitle{\alert{Charla de avance}}
 \author{Ing. L. Horacio Arnaldi\\
 Laboratorio Detecci\'on de Part\'iculas y Radiaci\'on\\
 CAB-IB}
@@ -60,10 +60,19 @@ CAB-IB}
 \begin{frame}{Motivación}
 				\begin{itemize}
 								\item ¿Qué me motiva a hacer esto?
+								\item Desarrollar un grupo de estudios/mediciones en RF a bajas
+												temperaturas
+								\item Desarrollo de nuevas herramientas/instrumentos potenciados
+												por el uso de dispositivos lógicos programables (FPGA,
+												GPU, CPU, etc.) de última generación
 								\item ¿Por qué lo hago?
+								\item En los últimos años se viene trabajando fuertemente en
+												detectores de baja temperatura y altas frecuencias
 								\item ¿Qué beneficios obtengo/obtenemos?
+								\item Creación de grupos inter-disciplinarios para el estudio de
+												fenómenos poco conocidos/estudiados en el CAB
 								\item ¿Qué grupos integro/se formaron con esto?
-								\item 
+								\item Grupo de BT, Nano-Microelectrónica, PyC
 								\item 
 				\end{itemize}
 
@@ -71,104 +80,31 @@ CAB-IB}
 
 %------------------------------------------------------------------------------
 \section{MKIDs}
-\begin{frame}{MKIDs}
-				\begin{columns}
-								\begin{column}{0.49\textwidth}
+\begin{frame}{\textbf{M}icrowave \textbf{K}inetic \textbf{I}nductance \textbf{D}evice}
 												\centering
-												\includegraphics[width=0.62\textwidth]{pulso_respuesta_mkid}
-								\end{column}
-								\begin{column}{0.49\textwidth}
-												\footnotesize{The KID detection mechanism $\to$ a
-												temporal change in the surface kinetic inductance
-												of a superconductor when a photon of energy $h\nu \geq
-												2 \Delta(T)$ is absorbed, where $\Delta(T)$ is the
-												superconducting gap parameter.
-												\pause
-
-												High energy photons break
-												Cooper pairs. These recombine in a characteristic time,
-												of the order $10-500\,\mu\text{s}$,
-												{\color{red}producing pulse-like changes in the surface
-												impedance}.
-												\pause
-
-												As the impedance of a superconductor is
-												mostly inductive, especially for $T << T_c$, the
-												superconductor can be engineered as the inductive
-												element in a RLC-like resonant circuit.
-												\pause
-
-												{\color{blue}The
-												quality factor of the resonant circuit determines both the
-												\alert{sensitivity} and \alert{speed} of the device}.}
-								\end{column}
-				\end{columns}
-\end{frame}
-\begin{frame}{MKIDs}
-				\framesubtitle{Energy resolution}
-				%\begin{exampleblock}{}
-				%       Works on the principle that incident photons change the surface
-				%       impedance of a superconductor through the \textit{kinetic
-				%       inductance effect}
-				%\end{exampleblock}
-												\begin{equation}
-																R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
-																\Delta}}
-												\end{equation}
-				$\eta = 0.57 \to$ efficiency of creating quasiparticles,
-
-				$h\nu \to$ energy of the incident photon,
-
-				$\Delta = 1.72 k_BT_c \to$ gap energy of the superconducting absorber,
-
-				$F \approx 0.2 \to$ Fano factor
-
-				$R=150$ at 5\,eV for an operating temperature of 100\,mK.
-
-				An operating temperature of 15\,mK could allow a theoretical
-				maximum energy resolution of $R=400$ at 5\,eV (although it is likely other
-				noise sources, like two level system noise, will become more important
-				as future development increases the energy resolution).
-
-\end{frame}
-\begin{frame}{MKIDs}
-				%\begin{exampleblock}{}
-				%       Works on the principle that incident photons change the surface
-				%       impedance of a superconductor through the \textit{kinetic
-				%       inductance effect}
-				%\end{exampleblock}
-				\scriptsize{\begin{itemize}
-								\item Serve as mm/submm photon detectors
-								\item Resonance  $1-10\,\text{GHz}$
-								\item $Q \sim 10^5$
-								\item $T_{op} < 300\,\text{mK}$
-								\item Intrinsic energy resolution $R = \frac{E}{\Delta E} \sim
-												20-150$\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-								\item The resonators are designed to be separated by 2\,MHz
-												within a $4-5\,\text{GHz}$ band.
-								\item Off-resonance transmission $\simeq 1$
-												%       \begin{equation}
-												%               R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
-												%               \Delta}}
-												%       \end{equation}
+												\includegraphics[width=0.8\textwidth]{concepto_mkid1}
+				\begin{itemize}
+								\item \footnotesize{Superconductores $\to$ inductancia AC debida a la
+												inercia de los pares de Cooper}
+												\begin{itemize}
+																\item[*] \scriptsize{{\color{blue}alternativamente, debido a la
+																				energía almacenada en la supercorriente
+																				de apantallamiento}}
+												\end{itemize}
+								\item Cambia cuando los pares de Cooper se rompen debido a la
+												energía de entrada
+								\item Se mide el cambio monitoreando un circuito resonante
+								\item Punto crítico $\to$ los superconductores proveen un muy
+												alto Q ($Q_i > 10^7$), así, miles de resonadores
+												pueden ser monitoreados a través de una sola linea 
+												\begin{itemize}
+																\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+																				simples}}
+												\end{itemize}
 				\end{itemize}
-				Each resonator will have a $BW \sim 200\,\text{kHz}$ (\alert{based on the
-				quality factor we need}), 
 
-				2\,MHz separation between the resonators is required (resonator position
-				will move around based on different loading. If we pack them too close
-				to each other, their relative position might change during observation
-				or from different fridge cook down cycle).
-
-				So we want to have ADC to have BW at least 400\,MHz, and has SNR greater
-				than 59\,dB. 
-
-				If we just consider quantization noise, theoretically, 59\,dB SNR will
-				require ADC to have at least 10 bits
-				}
-				+----  7 lines: , but in real world, we can only find 10 bits ADC------------------------------------------------------------------------------------------------------------
-				\tiny{\textbf{arXiv:1310.5891v2 (2013)}}
 \end{frame}
+
 \begin{frame}{MKID}
 				\begin{itemize}
 								\item Los MKID funcionan según el principio de que los fotones
@@ -184,7 +120,132 @@ CAB-IB}
 
 \end{frame}
 
+\begin{frame}{MKIDs}
+				\begin{columns}
+								\begin{column}{0.49\textwidth}
+												\centering
+												\includegraphics[width=0.92\textwidth]{pulso_respuesta_mkid2}
+								\end{column}
+								\begin{column}{0.59\textwidth}
+												\footnotesize{Mecanismo de detección de los KIDs $\to$ un
+												cambio temporal en la inductancia cinética superficial
+												de un superconductor cuando se absorbe un fotón de
+												energía $h\nu \geq 2 \Delta(T)$, donde $\Delta(T)$ es el
+												parámetro de gap superconductor (teoría BCS).
+												\pause
+
+												Los fotones de alta energía rompen los pares de Cooper.
+												Estos se recombinan en un tiempo característico, del
+												orden de $10-500\,\mu\text{s}$,	{\color{red}produciendo
+												cambios similares a	pulsos en la impedancia	
+												superficial.}
+												\pause
+
+												Como la impedancia del superconductor es principalmente
+												inductiva, especialmente para $T << T_c$,
+												el superconductor puede diseñarse como el elemento
+												inductivo en un circuito resonante tipo RLC.
+												\pause
+
+												{\color{blue}El factor de calidad (Q) del circuito
+												resonante determina ambos, la \alert{sensibilidad} y la
+												\alert{velocidad} de respuesta del dispositivo}.}
+								\end{column}
+				\end{columns}
+\end{frame}
+\begin{frame}{MKIDs}
+				\framesubtitle{Resolución de Energía}
+				%\begin{exampleblock}{}
+				%       Works on the principle that incident photons change the surface
+				%       impedance of a superconductor through the \textit{kinetic
+				%       inductance effect}
+				%\end{exampleblock}
+												\begin{equation}
+																R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
+																\Delta}}
+												\end{equation}
+				$\eta = 0.57 \to$ eficiencia para crear cuasipartículas,
+
+				$h\nu \to$ energía del fotón incidente,
+
+				$\Delta = 1.72\,k_BT_c \to$ gap de energía del absorvedor superconductor,
+
+				$F \approx 0.2 \to$ factor de Fano
+
+				$R=150$ a 5\,eV para temperatura de operación de 100\,mK.
+
+				$T = 15$\,mK $\to$ resolución de energía máxima teórica de \alert{$R = 400$ a
+				5\,eV} (aunque es probable que otras fuentes de ruido, como el ruido de
+				dos niveles del sistema (TLS), sean más importantes a medida que el
+				desarrollo futuro aumente	la resolución de energía).
+
+\end{frame}
+\begin{frame}{MKIDs}
+				\scriptsize{\begin{itemize}
+								\item Como detector de fotones en el rango mm/submm
+								\item Resonancia  $1-10\,\text{GHz}$
+								\item $Q \sim 10^5$
+								\item $T_{op} < 300\,\text{mK}$
+								\item Resolución de energía intrínseca $R = \frac{E}{\Delta E} \sim
+												20-150$\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
+								\item Resonadores diseñados para operar separados por 2\,MHz en
+												un BW de $4-5\,\text{GHz}$.
+								\item Transmisión fuera de resonancia $\simeq 1$
+				\end{itemize}
+				Cada resonador tendrá un $BW \sim 200\,\text{kHz}$ (\alert{basado en el
+				factor de calidad que necesitamos}), se requiere una separación de
+				2\,MHz entre los resonadores (la posición del resonador se moverá en
+				función de una carga diferente. Si los empaquetamos demasiado cerca uno
+				del otro, su posición relativa puede cambiar durante la observación o
+				en diferentes ciclos de refrigerado).
+
+				Por lo tanto, queremos que ADC tenga BW de al menos 400\,MHz y una SNR
+				superior a 59\,dB.
+
+				Si solo consideramos el ruido de cuantización, teóricamente, una SNR de
+				59\,dB requerirá que el ADC tenga al menos 10 bits.
+				}
+				\tiny{\textbf{arXiv:1310.5891v2 (2013)}}
+\end{frame}
 \begin{frame}{Tipos de MKIDs}
+				\begin{itemize}
+								\item OLE Doyle et.al 2008
+								\item ¿Por qué lo hago?
+								\item ¿Qué beneficios obtengo/obtenemos?
+								\item ¿Qué grupos integro/se formaron con esto?
+								\item 
+								\item 
+				\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------------------------------------
+\section{Aplicaciones}
+\begin{frame}{Polarización del CMB}
+				\begin{itemize}
+								\item OLE Doyle et.al 2008
+								\item ¿Por qué lo hago?
+								\item ¿Qué beneficios obtengo/obtenemos?
+								\item ¿Qué grupos integro/se formaron con esto?
+								\item 
+								\item 
+				\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Antenna-Coupled multicolor MKIDs}
+				\begin{itemize}
+								\item OLE Doyle et.al 2008
+								\item ¿Por qué lo hago?
+								\item ¿Qué beneficios obtengo/obtenemos?
+								\item ¿Qué grupos integro/se formaron con esto?
+								\item 
+								\item 
+				\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Detección de fonones usando MKIDs}
 				\begin{itemize}
 								\item OLE Doyle et.al 2008
 								\item ¿Por qué lo hago?
@@ -300,6 +361,57 @@ CAB-IB}
 				\end{center}
 								\begin{center}
 												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_opening_after_modulation}}
+								\end{center}
+\end{frame}
+
+\begin{frame}{Channelizer operación básica}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_decimators}}
+				\end{center}
+								\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_interpolators}}
+								\end{center}
+\end{frame}
+
+\begin{frame}{Channelizer operación básica}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.6\textwidth]{PFB_distribution_modulators}}
+				\end{center}
+								\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}}
+								\end{center}
+\end{frame}
+
+\section{Comparación de arquitecturas de canalización de gran ancho de banda}
+
+\begin{frame}{Digital Down-Converter (DDC)}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.4\textwidth]{c1_single_channel_DDC}}
+				\end{center}
+								\begin{center}
+												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
+												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
+								\end{center}
+\end{frame}
+
+\section{Opciones de readout}
+
+\begin{frame}{NIKEL}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.5\textwidth]{nikel_readout}}
+				\end{center}
+								\begin{center}
+												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
+												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
+								\end{center}
+\end{frame}
+
+\begin{frame}{Channelizer operación básica}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.6\textwidth]{PFB_distribution_modulators}}
+				\end{center}
+								\begin{center}
+												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}}
 								\end{center}
 \end{frame}
 
@@ -447,23 +559,62 @@ Using section and subsection commands, outside of frames, provides a table of co
 
 				%------------------------------------------------------------------------------
 \section{Mediciones}
+\subsection{Diseño FNAL}%es el diseño de Israel
 \begin{frame}{Barrido en potencia}
 				\centering
-												\includegraphics[width=0.62\textwidth]{resonador0_asc_sin_filtro}
-												\includegraphics[width=0.62\textwidth]{resonador0_asc_filtro}
+												\includegraphics[width=0.4\textwidth]{isra_mkid1}
+												\includegraphics[width=0.32\textwidth]{isra_mkid2}
 \end{frame}
 \begin{frame}{Barrido en potencia}
 				\centering
-												\includegraphics[width=0.62\textwidth]{res0_full_potencias}
+												\includegraphics[width=0.4\textwidth]{isra_mkid3}
+												\includegraphics[width=0.32\textwidth]{isra_mkid4}
 \end{frame}
 \begin{frame}{Barrido en potencia}
 				\centering
-												\includegraphics[width=0.82\textwidth]{res0_3_potencias}
+												\includegraphics[width=0.4\textwidth]{isra_mkid1}
+												\includegraphics[width=0.32\textwidth]{isra_mkid2}
+\end{frame}
+\subsection{Diseño UCSB}
+\begin{frame}{Estudio de la $T_c$}
+												\begin{equation}
+																\frac{\sigma_2(T)}{\sigma_N} \simeq
+																\frac{\pi \Delta}{\hbar
+																\omega}\left[1-2\exp \left(-\frac{\Delta}{k_B
+																T}\right)\exp \left(-\frac{\hbar \omega}{2 
+																k_B T}\right)
+																I_0 \left(\frac{\hbar \omega}{2 k_B T}\right)\right]
+												\end{equation}
+				\centering
+												\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}
+\end{frame}
+\begin{frame}{Barrido en potencia}
+				\centering
+												\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
+												\includegraphics[width=0.42\textwidth]{resonador0_asc_filtro}
+\end{frame}
+\begin{frame}{Barrido en potencia}
+				\centering
+												\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
+												\includegraphics[width=0.42\textwidth]{resonador0_asc_filtro}
+\end{frame}
+\begin{frame}{Barrido en potencia}
+				\centering
+												\includegraphics[width=0.42\textwidth]{res0_full_potencias}
+\end{frame}
+\begin{frame}{Barrido en potencia}
+				\centering
+												\includegraphics[width=0.42\textwidth]{res0_3_potencias}
 
 \end{frame}
 \begin{frame}{Barrido en potencia}
 				\centering
 												\includegraphics[width=0.82\textwidth]{res0_Q_vs_P}
+
+\end{frame}
+\begin{frame}{Barrido en potencia}
+				\centering
+												\includegraphics[width=0.82\textwidth]{Q_vs_P_tot}
 
 \end{frame}
 
