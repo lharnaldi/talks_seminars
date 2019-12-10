@@ -23,6 +23,8 @@
 \usepackage{graphicx,pgfplots,parskip}
 \usepackage{siunitx}
 \graphicspath{{media/}}
+\usepackage{xcolor}
+\usepackage[percent]{overpic}
 
 \title{Microelectrónica y técnicas avanzadas de procesamiento digital con
 aplicaciones en micro-resonadores superconductores multipíxeles}
@@ -52,10 +54,11 @@ CAB-IB}
 				\end{itemize}
 \end{abstract}
 
-\begin{frame}{Outline}
-				\tableofcontents
-\end{frame}
+%\begin{frame}{Outline}
+%				\tableofcontents
+%\end{frame}
 
+%------------------------------------------------------------------------------
 \section{Motivación}
 \begin{frame}{Motivación}
 				\begin{itemize}
@@ -76,6 +79,63 @@ CAB-IB}
 								\item 
 				\end{itemize}
 
+\end{frame}
+
+\begin{frame}{Motivación}
+				\framesubtitle{Estudios del CMB}
+												\only<1>{\includegraphics[width=0.4\textwidth]{c1_cmb_map}}
+												\only<1>{\includegraphics[width=0.4\textwidth]{motivacion1}}
+												\only<2>{\includegraphics[width=0.4\textwidth]{motivacion2}}
+												\only<2>{\includegraphics[width=0.4\textwidth]{motivacion3}}
+												\only<3>{\includegraphics[width=0.6\textwidth]{motivacion4}}
+				\begin{itemize}
+								\item[*] El fondo cósmico de microondas (CMB) es radiación EM
+												de una etapa temprana del universo (Big Bang)
+								\item[*] Penzias y Wilson (1964). TELSTAR (1962) 
+								\item[*] Expansión del Universo $\to$ temperatura baja
+								\only<3>{\item[*] Sus datos (y muchos otros desde entonces) se ajustan a
+												la curva teórica para un cuerpo negro de 2.728 K}
+				\end{itemize}
+
+\end{frame}
+\begin{frame}{Motivación}
+				\framesubtitle{Estudios del CMB}
+				\begin{columns}
+								\begin{column}{0.49\textwidth}
+				\begin{itemize}
+								\item[*] El hecho de que el CMB tenga un espectro de cuerpo
+												negro tan preciso es evidencia de que vino de cuando era
+												mucho más caliente y denso de lo que es ahora
+								\item[*] Por lo tanto, el espectro del CMB es una fuerte
+												evidencia de que el Universo experimentó una etapa de
+												``Big Bang caliente''
+				\end{itemize}
+								\end{column}
+								\begin{column}{0.49\textwidth}
+												\only<1>{\includegraphics[width=0.9\textwidth]{motivacion5}}
+												\only<1>{\includegraphics[width=0.9\textwidth]{c1_cmb_map}}
+								\end{column}
+								\end{columns}
+\end{frame}
+\begin{frame}{Motivación}
+				\framesubtitle{Estudios del CMB}
+				\begin{columns}
+								\begin{column}{0.49\textwidth}
+				\begin{itemize}
+								\item[*] Anisotropías: Los colores indican variaciones de
+												temperatura: rojo para más caliente, azul para más
+												frío
+								\item[*] Tamaños de los puntos calientes y fríos $\to$
+												cálculos de valores fundamentales para la forma, tamaño,
+												edad, contenido, tasa de expansión (y más) de nuestro
+												universo
+				\end{itemize}
+								\end{column}
+								\begin{column}{0.49\textwidth}
+												\only<1>{\includegraphics[width=0.9\textwidth]{motivacion5}}
+												\only<1>{\includegraphics[width=0.9\textwidth]{c1_cmb_map}}
+								\end{column}
+								\end{columns}
 \end{frame}
 
 %------------------------------------------------------------------------------
@@ -304,6 +364,33 @@ CAB-IB}
 \end{frame}
 
 %------------------------------------------------------------------------------
+\section{FDM}
+\begin{frame}{Frequency Division Multiplexing (FDM)}
+				\begin{columns}
+								\begin{column}{0.5\textwidth}
+												\begin{itemize}
+																\item[o]	Estrategia de multiplexación poderosa\\
+												\qquad --\footnotesize{Muchos detectores están acoplados
+												a una sola linea}
+								\item[o] Muchos canales por amplificador de microondas
+								\item[o] Hardware criogénico: solo un amplificador y algunos
+												cables coaxiales
+												\end{itemize}
+
+				\begin{center}
+								\includegraphics[width=\textwidth]{fdm1}
+				\end{center}
+								\end{column}
+								\begin{column}{0.5\textwidth}
+								\begin{center}
+												\includegraphics[width=\textwidth]{fdm2}
+								\end{center}
+												\end{column}
+								\end{columns}
+
+\end{frame}
+
+%------------------------------------------------------------------------------
 \section{Channelizer}
 \begin{frame}{Canalizador (Channelizer)}
 
@@ -382,18 +469,71 @@ CAB-IB}
 								\end{center}
 \end{frame}
 
+%------------------------------------------------------------------------------
 \section{Comparación de arquitecturas de canalización de gran ancho de banda}
 
 \begin{frame}{Digital Down-Converter (DDC)}
 				\begin{center}
-								\only<1>{\includegraphics[width=0.4\textwidth]{c1_single_channel_DDC}}
+								\only<1>{\includegraphics[width=0.9\textwidth]{c1_single_channel_DDC}}
+								\only<2>{\includegraphics[width=0.9\textwidth]{readout3_compa}}
 				\end{center}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
-												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
-								\end{center}
+								%\begin{center}
+								%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
+								%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
+								%\end{center}
+								Desventaja: los DDC son ``intensivos en silicio'', difícil de
+								incluir muchos ($>1000$) canales en FPGA
+\end{frame}
+\begin{frame}{Arquitectura Pipelined Frequency Transform (PFT)}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.45\textwidth]{readout4_compa}}
+								\only<1>{\includegraphics[width=0.35\textwidth]{readout5_compa}}
+				\end{center}
+
+				División de bandas de frecuencia $\to$ cada etapa sucesiva de la PFT
+				aumenta el número de bandas en un factor de dos
+
+				Desventaja: para un gran número de canales ($>1000$), el árbol se vuelve
+				muy grande. Por ejemplo, 1024 canales requerirían 2046 módulos (CDC o
+				CUC) complejos
 \end{frame}
 
+\begin{frame}{Arquitectura DFT Polifase}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.47\textwidth]{readout6_compa}}
+								\only<1>{\includegraphics[width=0.50\textwidth]{readout7_compa}}
+				\end{center}
+
+				$M = K \to$ críticamente muestreado
+
+				$M < K (I = K/M) \to$ caso sobre-muestreado (oversampled)
+
+				Para nuestra aplicación $I=2$ es una elección \alert{adecuada y
+				suficiente}
+
+				Arquitectura conveniente para cuando el número de canales es grande
+
+\end{frame}
+
+\begin{frame}{Canalizador FFT}
+				\centering
+								\only<1>{\includegraphics[width=0.5\textwidth]{readout2_tabla_compa}}
+				\only<2>{\begin{overpic}[width=0.5\textwidth]{readout2_tabla_compa}
+								\put(0,16){\color{red}\rule{180pt}{1pt}}
+								\put(0,32){\color{red}\rule{180pt}{1pt}}
+								\put(0,16){\color{red}\rule{1pt}{30pt}}
+								\put(99,16){\color{red}\rule{1pt}{30pt}}
+				\end{overpic}}
+
+				\tiny{\textbf{Lillington, John. ``Comparison of wideband channelisation
+				architectures'' (2003)}}
+
+				\only<2>{\normalsize{Para grandes cantidades de bines, el DFT Polifase gana
+				rápidamente, particularmente en términos de memoria y se convierte en
+				la opción preferida para bancos de filtros fijos}}
+\end{frame}
+
+%------------------------------------------------------------------------------
 \section{Opciones de readout}
 
 \begin{frame}{NIKEL}
@@ -689,15 +829,15 @@ Using section and subsection commands, outside of frames, provides a table of co
 \begin{frame}{Q vs Potencia}
 				\begin{columns}
 								\begin{column}{0.49\textwidth}
-												-55 dB $\to$ -80 dB
+												\qquad \qquad-55 dB $\to$ -80 dB
 
 												\centering
-												\includegraphics[height=0.65\textheight,width=1.1\textwidth]{Q_vs_P_tot_des}
+												\includegraphics[height=0.50\textheight,width=1.1\textwidth]{Q_vs_P_tot_des}
 								\end{column}
 								\begin{column}{0.49\textwidth}
 												-80 dB $\to$ -55 dB
 												\centering
-												\includegraphics[height=0.65\textheight,width=1.1\textwidth]{Q_vs_P_tot_asc}
+												\includegraphics[height=0.50\textheight,width=1.1\textwidth]{Q_vs_P_tot_asc}
 								\end{column}
 				\end{columns}
 
@@ -823,52 +963,69 @@ Using section and subsection commands, outside of frames, provides a table of co
 \end{frame}
 
 \section{Readout design and development}
-\begin{frame}{Readout design and development}
+\begin{frame}{Diseño y desarrollo del sistema de lectura}
+				\framesubtitle{Temas a considerar}
 
-				%	{\color[rgb]{0.8,.4,.5} ``The readout electronics have the general task
-				%	of performing multiple real-time complex microwave transmission
-				%	measurements, in order to monitor the instantaneous resonance frequency
-				%	and dissipation of the superconducting microresonators that serve as
-				%	mm/submm photon detectors''.}
+					{\color[rgb]{0.8,.4,.5} ``The readout electronics have the general task
+					of performing multiple real-time complex microwave transmission
+					measurements, in order to monitor the instantaneous resonance frequency
+					and dissipation of the superconducting microresonators that serve as
+					mm/submm photon detectors''.}\\
+
+				\tiny{\emph{\textbf{An open-source readout for MKIDs}}, Proc. SPIE Astron.
+				Telesc.  Instrum., doi:10.1117/12.856832}
+
+				\normalsize{\begin{itemize}
+								\item Algoritmo de procesamiento de señal digital en FPGA
+								\item Selección de frecuencia, velocidad de datos de salida
+								\item Ruido
+								\item Rango dinámico
+								\item Frecuencias espúreas, productos de intermodulación, etc.
+								\item Detalles de implementación: ubicación, empaque, fuente de
+												energía, comunicación, interfaz de computadora, etc.
+				\end{itemize}}
+\end{frame}
+\begin{frame}{Diseño y desarrollo del sistema de lectura}
+				\centering
+				\includegraphics[width=\textwidth]{readout1}
 
 				\begin{itemize}
-								\item Noise will be \alert{dominated by cryogenic amplifier (CA)}, which has noise
-												temperature around 2 to 5\,K. 
-								\item Besides the CA, ADC chip will be \alert{the next limiting factor for the
-												noise performance of the readout}. 
-
-								\item	Based on the physical frequency spacing of all the resonators, \alert{the
-												sampling rate are chosen to match the resonator bandwidth}. 
-
-								\item	Sampling rate of proposed readout system must be
+								\item El ruido estará \alert{dominado por el amplificador
+												criogénico (AC)},	el cual tiene una temperatura de ruido
+												alrededor de 2 a 5\,K. 
+								\item Además del AC, \alert{el chip ADC será el próximo factor
+												limitante para el ruido de lectura}.
+								\item	En función del espaciado de frecuencia física de todos los
+												resonadores, \alert{la frecuencia de muestreo se elige para que
+												coincida con el ancho de banda del resonador}.
+								\item	La frecuencia de muestreo del sistema propuesto debe ser
 												{\color[rgb]{0.2,0.9,0.3}flexible}.  
 												%	Right now it is up to 550
 												%MHz which is the limit of ADC chip.
 				\end{itemize}
 
-				\tiny{\emph{\textbf{An open-source readout for MKIDs}}, Proc. SPIE Astron.
-				Telesc.  Instrum., doi:10.1117/12.856832}
+				%\tiny{\emph{\textbf{An open-source readout for MKIDs}}, Proc. SPIE Astron.
+				%Telesc.  Instrum., doi:10.1117/12.856832}
 \end{frame}
-\begin{frame}{Readout design and development}
+\begin{frame}{Diseño y desarrollo del sistema de lectura}
 				\only<1>{\footnotesize{\begin{itemize}
-								\item To read out an MKID, a probe tone at its resonant
-												frequency is passed through it. 
-								\item When a photon is absorbed by the detector, the
-												phase of the tone suddenly changes. 
-								\item From this change, \alert{the energy} and
-												\alert{time of arrival} of the photon are determined.
-								\item In the readout a complex frequency comb is
-												generated by DACs and is mixed up to the range
-																of resonant frequencies. 
-												\item The resulting signal is sent through the MKID
-																array, mixed back down to baseband, and
-																digitized by ADCs. 
-												\item This is then processed by \alert{firmware} on
-																FPGAs, which 
-																\alert{detects photon events in the phase of each
-																pixel's probe tone}. 
-												\item The photon data is sent to a data acquisition and
-																control computer to be recorded.
+								\item Para leer un MKID, se pasa un tono de prueba a su
+												frecuencia resonante
+								\item Cuando el detector absorbe un fotón, la fase del tono
+												cambia repentinamente
+								\item A partir de este cambio, se determina la \alert{energía} y
+												el \alert{tiempo de llegada} del fotón.
+								\item En la lectura, los DAC generan un peine de frecuencia
+												complejo que se mezcla con el rango de frecuencias
+												resonantes
+								\item La señal resultante se envía a través de la matriz MKID,
+												se mezcla de nuevo a la banda base y se digitaliza
+												mediante un ADC
+								\item Esto es procesado por el firmware en la FPGA, que detecta
+												eventos de fotones en la fase del tono de prueba de cada
+												píxel
+								\item Los datos de los fotones se envían a una computadora de
+												adquisición y control de datos para su registro
 				\end{itemize}}}
 				\centering
 				\only<2>{\includegraphics[width=0.8\textwidth]{arcons_readout}}
@@ -974,24 +1131,25 @@ Using section and subsection commands, outside of frames, provides a table of co
 \begin{frame}{$N_\text{channels}$ vs. $P_\text{readout}$}
 				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
 				\begin{columns}
-								\begin{column}{0.45\textwidth}
+								\begin{column}{0.5\textwidth}
 												\begin{itemize}
-																\item \footnotesize{Given an ADC's voltage noise
-																				specification, the number of channels
-																				{\color{blue}$n$} an ADC can read out at a given power
-																				without adding to the HEMT noise can be
-																				calculated.}
-																\item The contours of Fig. 3 are calculated by
-																				scaling the HEMT noise with a
-																				channel-dependent factor giving, $k_B
+																\item \footnotesize{Dada la especificación de
+																				ruido de voltaje del ADC, se puede
+																				calcular el número de canales
+																				{\color{blue}$n$} que el ADC puede leer
+																				a una potencia dada sin aumentar el
+																				ruido del HEMT (amplificador)}
+																\item Los contornos de la Fig. 3 se calculan
+																				escalando  el ruido del HEMT con un
+																				factor dependiente del canal, $k_B
 																				T_n /(p_\text{max}^2 P)$.
 																\item $p_\text{max} \propto
-																				n^{1/2}\,\text{for}\,n >> 1$
-																\item Random phase per tone assumed
+																				n^{1/2}\quad\text{para}\quad n >> 1$
+																\item Se asume fase aleatoria por tono
 												\end{itemize}
 								\end{column}
-								\begin{column}{0.45\textwidth}
-												\includegraphics[width=0.85\textwidth]{power_vs_Nchannels}
+								\begin{column}{0.5\textwidth}
+												\includegraphics[width=0.95\textwidth]{power_vs_Nchannels}
 								\end{column}
 				\end{columns}
 \end{frame}
