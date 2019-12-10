@@ -9,7 +9,7 @@
 \fi
 
 \ifcase0  % choose a theme like these
-	 %\usetheme{Montpellier}% I recommend
+%\usetheme{Montpellier}% I recommend
 	 \usetheme{default}% I recommend
 \or\usetheme{Singapore}
 \or\usetheme{Szeged}
@@ -81,7 +81,7 @@ CAB-IB}
 %------------------------------------------------------------------------------
 \section{MKIDs}
 \begin{frame}{\textbf{M}icrowave \textbf{K}inetic \textbf{I}nductance \textbf{D}evice}
-												\centering
+				\centering
 												\includegraphics[width=0.8\textwidth]{concepto_mkid1}
 				\begin{itemize}
 								\item \footnotesize{Superconductores $\to$ inductancia AC debida a la
@@ -160,10 +160,10 @@ CAB-IB}
 				%       impedance of a superconductor through the \textit{kinetic
 				%       inductance effect}
 				%\end{exampleblock}
-												\begin{equation}
+												\begin{equation*}
 																R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
 																\Delta}}
-												\end{equation}
+												\end{equation*}
 				$\eta = 0.57 \to$ eficiencia para crear cuasipartículas,
 
 				$h\nu \to$ energía del fotón incidente,
@@ -575,7 +575,7 @@ Using section and subsection commands, outside of frames, provides a table of co
 \end{frame}
 
 
-				%------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 \section{Mediciones}
 \subsection{Diseño FNAL}%es el diseño de Israel
 \begin{frame}{Barrido en potencia}
@@ -594,7 +594,7 @@ Using section and subsection commands, outside of frames, provides a table of co
 												\includegraphics[width=0.32\textwidth]{isra_mkid2}
 \end{frame}
 \subsection{Diseño UCSB}
-\begin{frame}{Diseño University of California, Santa Bárbara (UCSB)}
+\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
 				\framesubtitle{Características}
 				\begin{columns}
 								\begin{column}{0.49\textwidth}
@@ -609,9 +609,9 @@ Using section and subsection commands, outside of frames, provides a table of co
 																\item[o] Wire bonds de Al a las líneas
 																				de Tx
 
-																			%	Las pestañas sostienen el chip hacia
-																			%	abajo y ayudan a aplastar el pegamento
-																			%	para que el chip quede al ras del brazo.
+																				%	Las pestañas sostienen el chip hacia
+																				%	abajo y ayudan a aplastar el pegamento
+																				%	para que el chip quede al ras del brazo.
 												\end{itemize}
 								\end{column}
 								\begin{column}{0.49\textwidth}
@@ -625,35 +625,60 @@ Using section and subsection commands, outside of frames, provides a table of co
 								\end{column}
 				\end{columns}
 \end{frame}
+\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
+				\framesubtitle{Características}
+				\centering
+								%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
+												\includegraphics[width=0.62\textwidth]{mkid_ucsb1}
+\end{frame}
+\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
+				\framesubtitle{Características (Charla de Donna Kubik, FNAL)}
+				
+				\centering
+								%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
+												\includegraphics[width=0.72\textwidth]{mkid_ucsb2}
+\end{frame}
 \begin{frame}{Estudio de la $T_c$}
-												\begin{equation}
-																\frac{\sigma_2(T)}{\sigma_N} \simeq
+				\only<1>{\begin{equation*}
+								\frac{\sigma_2(T)}{\sigma_N} \simeq
 																\frac{\pi \Delta}{\hbar
 																\omega}\left[1-2\exp \left(-\frac{\Delta}{k_B
 																T}\right)\exp \left(-\frac{\hbar \omega}{2 
 																k_B T}\right)
 																I_0 \left(\frac{\hbar \omega}{2 k_B T}\right)\right]
-												\end{equation}
+				\end{equation*}}
+				\only<2>{Resultados en concordancia a los medidos en la UCSB en todo el arreglo}
 				\centering
-												\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}
+												\only<1>{\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}}
+												\only<2>{\includegraphics[width=0.56\textwidth]{delta_f_vs_temp}}
+												\only<2>{\includegraphics[width=0.42\textwidth]{medicion_Tc_ucsb}}
+\end{frame}
+\begin{frame}{Barrido en potencia}
+				\begin{itemize}
+								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
+				\end{itemize}
+				\centering
+												\includegraphics[width=0.48\textwidth]{resonador0_asc_sin_filtro}
+												\includegraphics[width=0.48\textwidth]{resonador0_asc_filtro}
 \end{frame}
 \begin{frame}{Barrido en potencia}
 				\centering
-												\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-												\includegraphics[width=0.42\textwidth]{resonador0_asc_filtro}
+								%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
+												\includegraphics[width=0.82\textwidth]{resonador0_asc_filtro}
 \end{frame}
 \begin{frame}{Barrido en potencia}
+				\begin{itemize}
+								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
+				\end{itemize}
 				\centering
-												\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-												\includegraphics[width=0.42\textwidth]{resonador0_asc_filtro}
+												\includegraphics[width=\textwidth]{res0_asc_full_potencias}
 \end{frame}
 \begin{frame}{Barrido en potencia}
+				\begin{itemize}
+								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
+				\end{itemize}
 				\centering
-												\includegraphics[width=0.42\textwidth]{res0_full_potencias}
-\end{frame}
-\begin{frame}{Barrido en potencia}
-				\centering
-												\includegraphics[width=0.42\textwidth]{res0_3_potencias}
+												\includegraphics[width=\textwidth]{res0_3_potencias}
 
 \end{frame}
 \begin{frame}{Barrido en potencia}
@@ -661,9 +686,20 @@ Using section and subsection commands, outside of frames, provides a table of co
 												\includegraphics[width=0.82\textwidth]{res0_Q_vs_P}
 
 \end{frame}
-\begin{frame}{Barrido en potencia}
-				\centering
-												\includegraphics[width=0.82\textwidth]{Q_vs_P_tot}
+\begin{frame}{Q vs Potencia}
+				\begin{columns}
+								\begin{column}{0.49\textwidth}
+												-55 dB $\to$ -80 dB
+
+												\centering
+												\includegraphics[height=0.65\textheight,width=1.1\textwidth]{Q_vs_P_tot_des}
+								\end{column}
+								\begin{column}{0.49\textwidth}
+												-80 dB $\to$ -55 dB
+												\centering
+												\includegraphics[height=0.65\textheight,width=1.1\textwidth]{Q_vs_P_tot_asc}
+								\end{column}
+				\end{columns}
 
 \end{frame}
 
@@ -721,10 +757,10 @@ Using section and subsection commands, outside of frames, provides a table of co
 				%				impedance of a superconductor through the \textit{kinetic
 				%				inductance effect}
 				%\end{exampleblock}
-												\begin{equation}
+												\begin{equation*}
 																R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
 																\Delta}}
-												\end{equation}
+												\end{equation*}
 				$\eta = 0.57 \to$ efficiency of creating quasiparticles, 
 
 				$h\nu \to$ energy of the incident photon, 
@@ -916,9 +952,9 @@ Using section and subsection commands, outside of frames, provides a table of co
 				The double sideband (DSB) phase noise of the HEMT
 												amplifier is given by the simple expression, 
 												{\color{red}
-												\begin{equation}
+												\begin{equation*}
 																N_{\phi \text{DSB}} = \frac{k_B T_n}{P}
-												\end{equation}} 
+												\end{equation*}} 
 												\flushleft
 												$T_n \to$ noise temperature of the amplifier, 
 
