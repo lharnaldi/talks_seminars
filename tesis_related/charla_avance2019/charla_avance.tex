@@ -518,57 +518,6 @@ Instituto Balseiro}
 %				\end{itemize}
 %\end{frame}
 
-\begin{frame}{The cryogenic amplifier}
-				%\begin{itemize}
-				%\item 
-				The double sideband (DSB) phase noise of the HEMT
-												amplifier is given by the simple expression, 
-												{\color{red}
-												\begin{equation*}
-																N_{\phi \text{DSB}} = \frac{k_B T_n}{P}
-												\end{equation*}} 
-												\flushleft
-												$T_n \to$ noise temperature of the amplifier, 
-
-												$P \to$ power on the input. 
-
-												The readout power for each MKID should be $-100 \pm
-												15\,\text{dBm}$ ({\color{red} to be confirmed}). 
-
-												For	$-85\,\text{dBm}$ readout power, off resonance, and $T_n
-												= 6\,\text{K}$, we expect $-106\,\text{dBc/Hz}$ for the
-												HEMT phase noise. Ideally, the readout electronics will
-												contribute noise well below this
-												value.\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-												%\end{itemize}
-\end{frame}
-
-\begin{frame}{$N_\text{channels}$ vs. $P_\text{readout}$}
-				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
-				\begin{columns}
-								\begin{column}{0.5\textwidth}
-												\begin{itemize}
-																\item \footnotesize{Dada la especificación de
-																				ruido de voltaje del ADC, se puede
-																				calcular el número de canales
-																				{\color{blue}$n$} que el ADC puede leer
-																				a una potencia dada sin aumentar el
-																				ruido del HEMT (amplificador)}
-																\item Los contornos de la Fig. 3 se calculan
-																				escalando  el ruido del HEMT con un
-																				factor dependiente del canal, $k_B
-																				T_n /(p_\text{max}^2 P)$.
-																\item $p_\text{max} \propto
-																				n^{1/2}\quad\text{para}\quad n >> 1$
-																\item Se asume fase aleatoria por tono
-												\end{itemize}
-								\end{column}
-								\begin{column}{0.5\textwidth}
-												\includegraphics[width=0.95\textwidth]{power_vs_Nchannels}
-								\end{column}
-				\end{columns}
-\end{frame}
-
 %------------------------------------------------------------------------------
 %\section{ARCONS}
 %\begin{frame}{ARCONS}
@@ -1099,11 +1048,11 @@ Instituto Balseiro}
 				de la electrónica}
 				\begin{columns}
 								\begin{column}{0.49\textwidth}
-				\begin{equation*}
+												{\color{blue}\begin{equation*}
 								\frac{\delta f(T)}{f(0)} = 
 																-\frac{\alpha}{2}\sqrt{\frac{\pi \Delta}{2 k_B
 																T}} e^{-\frac{\Delta}{k_B T}}
-				\end{equation*}
+												\end{equation*}}
 				\begin{equation*}
 								\Delta = \frac{3.5}{2} k_B T_c
 				\end{equation*}
@@ -1114,46 +1063,119 @@ Instituto Balseiro}
 												$\Delta \to$ gap de energía
 								\end{column}
 				\begin{column}{0.49\textwidth}
-								En películas de TiN se ha demostrado que la conductividad
-								compleja $\sigma_2$, se desvía cada vez más de la teoría convencional
-								de Mattis-Bardesn debido a un \alert{fuerte desorden de TiN}
+				\begin{equation*}
+								\sigma = \sigma_1 - j \sigma_2
+				\end{equation*}
+
+								En películas de TiN, $\sigma$, se desvía cada vez más de la
+								teoría convencional	de Mattis-Bardeen debido a un \alert{fuerte
+								desorden de TiN}
 								\end{column}
 								\end{columns}
 \end{frame}
 \begin{frame}{Estudio de la $T_c$}
-				\only<1>{\begin{equation*}
-								\frac{\sigma_2(T)}{\sigma_N} \simeq
-																\frac{\pi \Delta}{\hbar
-																\omega}\left[1-2\exp \left(-\frac{\Delta}{k_B
-																T}\right)\exp \left(-\frac{\hbar \omega}{2 
-																k_B T}\right)
-																I_0 \left(\frac{\hbar \omega}{2 k_B T}\right)\right]
-				\end{equation*}}
-				\only<2>{Resultados en concordancia a los medidos en la UCSB en todo el arreglo}
+				\framesubtitle{Mediciones preliminares para definir los requerimientos
+				de la electrónica}
+				%\only<1>{\begin{equation*}
+				%				\frac{\sigma_2(T)}{\sigma_N} \simeq
+				%												\frac{\pi \Delta}{\hbar
+				%												\omega}\left[1-2\exp \left(-\frac{\Delta}{k_B
+				%												T}\right)\exp \left(-\frac{\hbar \omega}{2 
+				%												k_B T}\right)
+				%												I_0 \left(\frac{\hbar \omega}{2 k_B T}\right)\right]
+				%\end{equation*}}
+				Resultados en concordancia a los medidos en la UCSB en todo el arreglo
+				%\vspace{1cm}
+				\begin{columns}
+								\begin{column}{0.69\textwidth}
 				\centering
-												\only<1>{\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}}
-												\only<2>{\includegraphics[width=0.56\textwidth]{delta_f_vs_temp}}
-												\only<2>{\includegraphics[width=0.42\textwidth]{medicion_Tc_ucsb}}
+												%\only<1>{\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}}
+												\includegraphics[width=0.54\textwidth]{medicion_Tc_ucsb}
+								\end{column}
+				\begin{column}{0.39\textwidth}
+												{\color{blue}\begin{equation*}
+								\frac{\delta f(T)}{f(0)} = 
+																-\frac{\alpha}{2}\sqrt{\frac{\pi \Delta}{2 k_B
+																T}} e^{-\frac{\Delta}{k_B T}}
+												\end{equation*}}
+								\end{column}
+								\end{columns}
+												\includegraphics[width=0.75\textwidth]{delta_f_vs_temp}
 \end{frame}
+%\begin{frame}{Barrido en potencia}
+%				\begin{itemize}
+%								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
+%				\end{itemize}
+%				\centering
+%												\includegraphics[width=0.48\textwidth]{resonador0_asc_sin_filtro}
+%												\includegraphics[width=0.48\textwidth]{resonador0_asc_filtro}
+%\end{frame}
+%\begin{frame}{Barrido en potencia}
+%				\centering
+%				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
+%												\includegraphics[width=0.82\textwidth]{resonador0_asc_filtro}
+%\end{frame}
+\begin{frame}{El amplificador criogénico}
+				%\begin{itemize}
+				%\item 
+				El ruido de fase de doble banda lateral (DSB) del amplificador HEMT
+												viene dado por la expresión
+												{\color{red}
+												\begin{equation*}
+																N_{\phi \text{DSB}} = \frac{k_B T_n}{P}
+												\end{equation*}} 
+												\flushleft
+												$T_n \to$ temperatura de ruido del amplificador, 
+
+												$P \to$ potencia en la entrada. 
+
+												La potencia de lectura de cada MKID debería ser de $-100 \pm
+												15\,\text{dBm}$ ({\color{red} a confirmar}). 
+
+												Para una potencia de lectura de $-85\,\text{dBm}$, fuera
+												de resonancia, y $T_n = 6\,\text{K}$, se espera
+												$-106\,\text{dBc/Hz}$ para el ruido de fase del HEMT.
+												Idealmente, la electrónica de lectura contribuirá con
+												ruido muy por debajo de este
+												valor.\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
+												%\end{itemize}
+\end{frame}
+
+\begin{frame}{$N_\text{canales}$ vs. $P_\text{lectura}$}
+				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
+				\begin{columns}
+								\begin{column}{0.4\textwidth}
+												\begin{itemize}
+																\item \footnotesize{Dada la especificación de
+																				voltaje de ruido del ADC, se puede
+																				calcular el número de canales
+																				{\color{red}$n$} que el ADC puede leer
+																				a una potencia dada sin aumentar el
+																				ruido del HEMT (amplificador)}
+																\item Los contornos de la figura se calculan
+																				escalando  el ruido del HEMT con un
+																				factor dependiente del canal, $k_B
+																				T_n /(p_\text{max}^2 P)$.
+																\item $p_\text{max} \propto
+																				n^{1/2}\quad\text{para}\quad n >> 1$
+																\item Se asume fase aleatoria por tono
+												\end{itemize}
+								\end{column}
+								\begin{column}{0.6\textwidth}
+												\includegraphics[width=0.7\textwidth]{power_vs_Nchannels2}
+												\includegraphics[width=0.7\textwidth]{in_spectrum_time}
+								\end{column}
+				\end{columns}
+\end{frame}
+
 \begin{frame}{Barrido en potencia}
+				\framesubtitle{Mediciones preliminares para definir los requerimientos
+				de la electrónica}
 				\begin{itemize}
 								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
 				\end{itemize}
 				\centering
-												\includegraphics[width=0.48\textwidth]{resonador0_asc_sin_filtro}
-												\includegraphics[width=0.48\textwidth]{resonador0_asc_filtro}
-\end{frame}
-\begin{frame}{Barrido en potencia}
-				\centering
-				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-												\includegraphics[width=0.82\textwidth]{resonador0_asc_filtro}
-\end{frame}
-\begin{frame}{Barrido en potencia}
-				\begin{itemize}
-								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
-				\end{itemize}
-				\centering
-												\includegraphics[width=\textwidth]{res0_asc_full_potencias}
+												\includegraphics[width=1.1\textwidth]{res0_asc_full_potencias}
 \end{frame}
 \begin{frame}{Barrido en potencia}
 				\begin{itemize}
@@ -1163,11 +1185,11 @@ Instituto Balseiro}
 												\includegraphics[width=\textwidth]{res0_3_potencias}
 
 \end{frame}
-\begin{frame}{Barrido en potencia}
-				\centering
-												\includegraphics[width=0.82\textwidth]{res0_Q_vs_P}
-
-\end{frame}
+%\begin{frame}{Barrido en potencia}
+%				\centering
+%												\includegraphics[width=0.82\textwidth]{res0_Q_vs_P}
+%
+%\end{frame}
 \begin{frame}{Q vs Potencia}
 				\begin{columns}
 								\begin{column}{0.49\textwidth}
