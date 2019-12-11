@@ -621,8 +621,7 @@ Instituto Balseiro}
 								\item[*] Potencia efectiva en los resonadores $\to$ -55 dB a
 												-80 dB 
 								\item[*] Efecto saturación para $P > -65\,\text{dB}$
-								\item[*] \alert{$-77\,\text{dB} < P_\text{opt} <
-												-65\,\text{dB}$}
+								\item[*] \alert{$-77\,\text{dB} < P_\text{opt} < -65\,\text{dB}$}
 
 				\end{itemize}}
 				\centering
@@ -637,13 +636,22 @@ Instituto Balseiro}
 \begin{frame}{Q vs Potencia}
 				\framesubtitle{Mediciones preliminares para definir los requerimientos
 				de la electrónica}
+				\begin{columns}
+								\begin{column}{0.35\textwidth}
 				\footnotesize{\begin{itemize}
 								\item[*] No existe efecto ``histéresis'' 
 								\item[*] Saturación para $P > -65\,\text{dB}$
-								\item[*] \alert{$-77\,\text{dB} < P_\text{opt} <
-												-65\,\text{dB}$}
-
+								%\item[*] \alert{$-77\,\text{dB} < P_\text{opt} <
+								%				-65\,\text{dB}$}
 				\end{itemize}}
+								\end{column}
+								\begin{column}{0.65\textwidth}
+												\centering
+												\includegraphics[width=0.45\textwidth]{un_resonador0_des_filtro}
+												\includegraphics[width=0.45\textwidth]{un_resonador1_des_filtro}
+								\end{column}
+				\end{columns}
+
 				\begin{columns}
 								\begin{column}{0.49\textwidth}
 												\qquad \qquad-55 dB $\to$ -80 dB
@@ -876,7 +884,7 @@ Instituto Balseiro}
 \begin{frame}{Desarrollo del sistema de excitación/lectura}
 \framesubtitle{Canalizador DFT (Channelizer)}
 				\begin{columns}
-								\begin{column}{0.5\textwidth}
+								\begin{column}{0.4\textwidth}
 												\begin{itemize}
 																\item[*] Implementación m\'as eficiente en t\'erminos de uso de hardware en FPGA
 																\item[*] Ancho de banda similar para todos los canales 
@@ -884,7 +892,7 @@ Instituto Balseiro}
 																\item[*] Posibilidad de realizar el diseño en multi-etapas
 												\end{itemize}
 								\end{column}
-								\begin{column}{0.5\textwidth}
+								\begin{column}{0.6\textwidth}
 
 				\begin{center}
 								\includegraphics[width=\textwidth]{FDM_channel_diagram}
@@ -893,74 +901,74 @@ Instituto Balseiro}
 								\end{column}
 								\end{columns}
 \end{frame}
-\begin{frame}{Canalizador}
-				\framesubtitle{Operación básica}
-				\centering
-								\includegraphics[width=0.7\textwidth]{pfb_basic1}
-\end{frame}
-\begin{frame}{Canalizador}
-				\framesubtitle{Operación básica}
-				\begin{columns}
-								\begin{column}{0.5\textwidth}
-												\begin{itemize}
-																\item Basado en el concepto de filtro polifásico
-																				\begin{equation*}\label{eq_transformada_z}
-																								X(z) = \sum_{n = -\infty}^{\infty}x(n)\,z^{-n}
-																				\end{equation*}
-
-
-												\end{itemize}
-								\end{column}
-								\begin{column}{0.5\textwidth}
-												\centering
-												\includegraphics[width=0.7\textwidth]{pfb_basic1}
-								\end{column}
-				\end{columns}
-																				\begin{equation*}\label{eq_transformada_z_polifasica}
-																								X(z) = \sum_{\lambda =
-																								0}^{M-1}z^{-\lambda}\,X_\lambda^{(p)}(z^{M})
-																				\end{equation*}
-																				{\color{blue}\begin{equation*}\label{eq_x_polifasica}
-																								X_\lambda^{(p)}(z^{M}) = \sum_{m =-\infty}^{\infty}x(mM+\lambda)\,z^{-mM}
-																				\end{equation*}}
-
-
-\end{frame}
-\begin{frame}{Canalizador}
-				\framesubtitle{Operación básica}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_basic_operation}}
-				\end{center}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.5\textwidth]{PFB_opening_after_modulation}}
-								\end{center}
-\end{frame}
-\begin{frame}{Channelizer operación básica}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_branches}}
-				\end{center}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_opening_after_modulation}}
-								\end{center}
-\end{frame}
-
-\begin{frame}{Channelizer operación básica}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_decimators}}
-				\end{center}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_interpolators}}
-								\end{center}
-\end{frame}
-
-\begin{frame}{Channelizer operación básica}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.6\textwidth]{PFB_distribution_modulators}}
-				\end{center}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}}
-								\end{center}
-\end{frame}
+%\begin{frame}{Canalizador}
+%				\framesubtitle{Operación básica}
+%				\centering
+%								\includegraphics[width=0.7\textwidth]{pfb_basic1}
+%\end{frame}
+%\begin{frame}{Canalizador}
+%				\framesubtitle{Operación básica}
+%				\begin{columns}
+%								\begin{column}{0.5\textwidth}
+%												\begin{itemize}
+%																\item Basado en el concepto de filtro polifásico
+%																				\begin{equation*}\label{eq_transformada_z}
+%																								X(z) = \sum_{n = -\infty}^{\infty}x(n)\,z^{-n}
+%																				\end{equation*}
+%
+%
+%												\end{itemize}
+%								\end{column}
+%								\begin{column}{0.5\textwidth}
+%												\centering
+%												\includegraphics[width=0.7\textwidth]{pfb_basic1}
+%								\end{column}
+%				\end{columns}
+%																				\begin{equation*}\label{eq_transformada_z_polifasica}
+%																								X(z) = \sum_{\lambda =
+%																								0}^{M-1}z^{-\lambda}\,X_\lambda^{(p)}(z^{M})
+%																				\end{equation*}
+%																				{\color{blue}\begin{equation*}\label{eq_x_polifasica}
+%																								X_\lambda^{(p)}(z^{M}) = \sum_{m =-\infty}^{\infty}x(mM+\lambda)\,z^{-mM}
+%																				\end{equation*}}
+%
+%
+%\end{frame}
+%\begin{frame}{Canalizador}
+%				\framesubtitle{Operación básica}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_basic_operation}}
+%				\end{center}
+%								\begin{center}
+%												\only<2>{\includegraphics[width=0.5\textwidth]{PFB_opening_after_modulation}}
+%								\end{center}
+%\end{frame}
+%\begin{frame}{Channelizer operación básica}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_branches}}
+%				\end{center}
+%								\begin{center}
+%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_opening_after_modulation}}
+%								\end{center}
+%\end{frame}
+%
+%\begin{frame}{Channelizer operación básica}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_decimators}}
+%				\end{center}
+%								\begin{center}
+%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_interpolators}}
+%								\end{center}
+%\end{frame}
+%
+%\begin{frame}{Channelizer operación básica}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.6\textwidth]{PFB_distribution_modulators}}
+%				\end{center}
+%								\begin{center}
+%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}}
+%								\end{center}
+%\end{frame}
 
 %\begin{frame}{Channelizer Tx}
 %				%\begin{columns}
@@ -993,66 +1001,66 @@ Instituto Balseiro}
 %------------------------------------------------------------------------------
 \section{Comparación de arquitecturas de canalización de gran ancho de banda}
 
-\begin{frame}{Digital Down-Converter (DDC)}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.9\textwidth]{c1_single_channel_DDC}}
-								\only<2>{\includegraphics[width=0.9\textwidth]{readout3_compa}}
-				\end{center}
-				%\begin{center}
-				%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
-				%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
-				%\end{center}
-								Desventaja: los DDC son ``intensivos en silicio'', difícil de
-								incluir muchos ($>1000$) canales en FPGA
-\end{frame}
-\begin{frame}{Arquitectura Pipelined Frequency Transform (PFT)}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.45\textwidth]{readout4_compa}}
-								\only<1>{\includegraphics[width=0.35\textwidth]{readout5_compa}}
-				\end{center}
-
-				División de bandas de frecuencia $\to$ cada etapa sucesiva de la PFT
-				aumenta el número de bandas en un factor de dos
-
-				Desventaja: para un gran número de canales ($>1000$), el árbol se vuelve
-				muy grande. Por ejemplo, 1024 canales requerirían 2046 módulos (CDC o
-				CUC) complejos
-\end{frame}
-
-\begin{frame}{Arquitectura DFT Polifase}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.47\textwidth]{readout6_compa}}
-								\only<1>{\includegraphics[width=0.50\textwidth]{readout7_compa}}
-				\end{center}
-
-				$M = K \to$ críticamente muestreado
-
-				$M < K (I = K/M) \to$ caso sobre-muestreado (oversampled)
-
-				Para nuestra aplicación $I=2$ es una elección \alert{adecuada y
-				suficiente}
-
-				Arquitectura conveniente para cuando el número de canales es grande
-
-\end{frame}
-
-\begin{frame}{Canalizador FFT}
-				\centering
-								\only<1>{\includegraphics[width=0.5\textwidth]{readout2_tabla_compa}}
-				\only<2>{\begin{overpic}[width=0.5\textwidth]{readout2_tabla_compa}
-								\put(0,16){\color{red}\rule{180pt}{1pt}}
-								\put(0,32){\color{red}\rule{180pt}{1pt}}
-								\put(0,16){\color{red}\rule{1pt}{30pt}}
-								\put(99,16){\color{red}\rule{1pt}{30pt}}
-				\end{overpic}}
-
-				\tiny{\textbf{Lillington, John. ``Comparison of wideband channelisation
-				architectures'' (2003)}}
-
-				\only<2>{\normalsize{Para grandes cantidades de bines, el DFT Polifase gana
-				rápidamente, particularmente en términos de memoria y se convierte en
-				la opción preferida para bancos de filtros fijos}}
-\end{frame}
+%\begin{frame}{Digital Down-Converter (DDC)}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.9\textwidth]{c1_single_channel_DDC}}
+%								\only<2>{\includegraphics[width=0.9\textwidth]{readout3_compa}}
+%				\end{center}
+%				%\begin{center}
+%				%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
+%				%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
+%				%\end{center}
+%								Desventaja: los DDC son ``intensivos en silicio'', difícil de
+%								incluir muchos ($>1000$) canales en FPGA
+%\end{frame}
+%\begin{frame}{Arquitectura Pipelined Frequency Transform (PFT)}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.45\textwidth]{readout4_compa}}
+%								\only<1>{\includegraphics[width=0.35\textwidth]{readout5_compa}}
+%				\end{center}
+%
+%				División de bandas de frecuencia $\to$ cada etapa sucesiva de la PFT
+%				aumenta el número de bandas en un factor de dos
+%
+%				Desventaja: para un gran número de canales ($>1000$), el árbol se vuelve
+%				muy grande. Por ejemplo, 1024 canales requerirían 2046 módulos (CDC o
+%				CUC) complejos
+%\end{frame}
+%
+%\begin{frame}{Arquitectura DFT Polifase}
+%				\begin{center}
+%								\only<1>{\includegraphics[width=0.47\textwidth]{readout6_compa}}
+%								\only<1>{\includegraphics[width=0.50\textwidth]{readout7_compa}}
+%				\end{center}
+%
+%				$M = K \to$ críticamente muestreado
+%
+%				$M < K (I = K/M) \to$ caso sobre-muestreado (oversampled)
+%
+%				Para nuestra aplicación $I=2$ es una elección \alert{adecuada y
+%				suficiente}
+%
+%				Arquitectura conveniente para cuando el número de canales es grande
+%
+%\end{frame}
+%
+%\begin{frame}{Canalizador FFT}
+%				\centering
+%								\only<1>{\includegraphics[width=0.5\textwidth]{readout2_tabla_compa}}
+%				\only<2>{\begin{overpic}[width=0.5\textwidth]{readout2_tabla_compa}
+%								\put(0,16){\color{red}\rule{180pt}{1pt}}
+%								\put(0,32){\color{red}\rule{180pt}{1pt}}
+%								\put(0,16){\color{red}\rule{1pt}{30pt}}
+%								\put(99,16){\color{red}\rule{1pt}{30pt}}
+%				\end{overpic}}
+%
+%				\tiny{\textbf{Lillington, John. ``Comparison of wideband channelisation
+%				architectures'' (2003)}}
+%
+%				\only<2>{\normalsize{Para grandes cantidades de bines, el DFT Polifase gana
+%				rápidamente, particularmente en términos de memoria y se convierte en
+%				la opción preferida para bancos de filtros fijos}}
+%\end{frame}
 
 %------------------------------------------------------------------------------
 %\section{Opciones de readout}
