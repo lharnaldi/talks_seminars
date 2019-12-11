@@ -69,6 +69,12 @@ Instituto Balseiro}
 								\item Detectores (MKID, QUBIC)
 								\item Electrónica (FPGA, GPU, CPU, etc)
 				\end{itemize}
+												\only<1>{\includegraphics[width=0.45\textwidth]{motivacion1}}
+												\only<1>{\includegraphics[width=0.45\textwidth]{motivacion4}}
+												\only<2>{\includegraphics[width=0.3\textwidth]{qubic1}}
+												\only<2>{\includegraphics[width=0.6\textwidth]{qubic2}}
+												\only<3>{\includegraphics[width=0.7\textwidth]{zcu2}}
+				
 \end{frame}
 
 %\begin{frame}{Motivación}
@@ -469,7 +475,7 @@ Instituto Balseiro}
 %				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
 %												\includegraphics[width=0.72\textwidth]{mkid_ucsb2}
 %\end{frame}
-\begin{frame}{Estudio del cambio fraccional de frecuencia}
+\begin{frame}{Estudio del cambio fraccional de frecuencia de resonancia}
 				\framesubtitle{Mediciones preliminares para definir los requerimientos
 				de la electrónica}
 												\begin{equation*}
@@ -515,7 +521,7 @@ Instituto Balseiro}
 				%												k_B T}\right)
 				%												I_0 \left(\frac{\hbar \omega}{2 k_B T}\right)\right]
 				%\end{equation*}}
-				Resultados en concordancia a los medidos en la UCSB en todo el arreglo
+				Resultados similares a los medidos por la UCSB para otros arreglos
 				%\vspace{1cm}
 				\begin{columns}
 								\begin{column}{0.69\textwidth}
@@ -888,7 +894,7 @@ Instituto Balseiro}
 												\begin{itemize}
 																\item[*] Implementación m\'as eficiente en t\'erminos de uso de hardware en FPGA
 																\item[*] Ancho de banda similar para todos los canales 
-																\item[*] Extensible a un n\'umero grande de canales ($>=1000$)
+																%\item[*] Extensible a un n\'umero grande de canales ($>=1000$)
 																\item[*] Posibilidad de realizar el diseño en multi-etapas
 												\end{itemize}
 								\end{column}
@@ -999,7 +1005,7 @@ Instituto Balseiro}
 %								%\end{columns}
 %\end{frame}
 %------------------------------------------------------------------------------
-\section{Comparación de arquitecturas de canalización de gran ancho de banda}
+%\section{Comparación de arquitecturas de canalización de gran ancho de banda}
 
 %\begin{frame}{Digital Down-Converter (DDC)}
 %				\begin{center}
@@ -1245,64 +1251,76 @@ Instituto Balseiro}
 %
 
 %------------------------------------------------------------------------------
-\subsection{Diseño del filtro prototipo}
+%\section{Diseño del filtro prototipo}
 \begin{frame}{Arquitectura}
-				\begin{center}
-								\includegraphics[width=0.8\textwidth]{chann16_out_1_8}
-				\end{center}
+								\includegraphics[width=0.6\textwidth]{PFB_final_arquitecture}
+				\begin{columns}
+								\begin{column}{0.4\textwidth}
+												\begin{itemize}
+																\item[o] Concepto de filtros polifásicos
+																\item[o] Extensible a un n\'umero grande de canales ($>=1000$)
+																\item[o] Uso de herramientas comunes en DSP (FIR, FFT, etc.)
+												\end{itemize}
+								\end{column}
+								\begin{column}{0.6\textwidth}
+								\includegraphics[width=\textwidth]{chann16_out_1_8}
+								\end{column}
+								\end{columns}
 \end{frame}
 
-\begin{frame}{Arquitectura}
-				\begin{center}
-								\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}
-				\end{center}
-\end{frame}
+%\begin{frame}{Arquitectura}
+%				\begin{center}
+%								\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}
+%				\end{center}
+%\end{frame}
 
 \begin{frame}{Filtro PFB - Ch5 $f_\text{centro}= 512\,\text{MHz}$}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.8\textwidth]{ch5_design}}
-				\end{center}
-				\vspace{-1.2cm}
-				\begin{center}
-								\only<2>{\includegraphics[width=0.8\textwidth]{ch5_out_456}}
-				\end{center}
-				\vspace{-1.8cm}
+				\begin{columns}
+								\begin{column}{0.5\textwidth}
+				Primera medición con el algoritmo funcionando en RFSoC 
+								\end{column}
+								\begin{column}{0.5\textwidth}
+				\includegraphics[width=0.95\textwidth]{ch5_design}
+								\end{column}
+				\end{columns}
+				%\vspace{-1.2cm}
+				%\begin{center}
+				%				\only<2>{\includegraphics[width=0.8\textwidth]{ch5_out_456}}
+				%\end{center}
+				%\vspace{-1.8cm}
 				\begin{columns}
 								\begin{column}{0.5\textwidth}
 												\begin{center}
-																\only<3>{\includegraphics[width=\textwidth]{ch5_out_456}}
+																\only<1>{\includegraphics[width=0.95\textwidth]{ch5_out_456}}
 												\end{center}
 								\end{column}
 								\begin{column}{0.5\textwidth}
 												\begin{center}
-																\only<3>{\includegraphics[width=\textwidth]{ch5_design_zoom}}
+																\only<1>{\includegraphics[width=0.95\textwidth]{ch5_design_zoom}}
 												\end{center}
 								\end{column}
 				\end{columns}
 				%\vspace{-.8cm}
-				\begin{center}
-								\only<4>{\includegraphics[width=\textwidth]{ch5_zoom_456}}
-				\end{center}
+				%\begin{center}
+				%				\only<4>{\includegraphics[width=\textwidth]{ch5_zoom_456}}
+				%\end{center}
 \end{frame}
 \begin{frame}{Ganancia del DAC en RFSoc}
-				\begin{center}
-								\includegraphics[width=0.8\textwidth]{dac_gain}
-				\end{center}
+				\framesubtitle{Trabajo en proceso}
+				\begin{columns}
+								\begin{column}{0.5\textwidth}
+												\begin{center}
+								\includegraphics[width=\textwidth]{ch5_zoom_456_2}
+												\end{center}
+								\end{column}
+								\begin{column}{0.5\textwidth}
+												\begin{center}
+								\includegraphics[width=1.2\textwidth]{dac_gain}
+												\end{center}
+								\end{column}
+				\end{columns}
 \end{frame}
 
-\section{Perspectivas de trabajo}
-\begin{frame}{Perspectivas de trabajo}
-				\begin{itemize}
-								\item Dise\~no de resonador en Sonnet
-								\item Primeras mediciones a $T_{amb}$ y $T \sim 100\,mK$
-								\item Definici\'on de requerimientos para crio (cables,
-												conectores, espacios, etc.)
-								\item Primeras pruebas con RxChannelizer con ITeDA (pruebas de
-												front-end, mezcladores, filtros, DC-block, etc.)
-								\item Pruebas con el algoritmo de Goertzel para detección de
-												tonos
-				\end{itemize}
-\end{frame}
 %\section{El algoritmo de Goertzel}
 %\begin{frame}{El algoritmo de Goertzel}
 %				\begin{itemize}
@@ -1326,13 +1344,37 @@ Instituto Balseiro}
 %								\includegraphics[width=0.45\textwidth]{goertzel_non_integer_figure1}
 %\end{frame}
 %
-\section{Work perspectives}
-\begin{frame}{Work perspectives}
+\section{Conclusiones}
+\begin{frame}{Conclusiones}
 				\begin{itemize}
-								\item Finalize performance requirements for firmware 
-								\item Finalize performance requirements for Tx and Rx parts 
-								\item First tests of RxChannelizer (front-end, mixers, filters,
-												DC-block, etc.)
+								\item Armado de la configuración experimental para la medición
+												de MKIDs de uso científico
+								\item Establecimiento de colaboraciones con grupos de FNAL y BT
+								\item Se especificaron los factores determinantes para la
+												excitación y lectura de los detectores MKIDs
+								%\item Caracterización de MKIDs de uso científico
+								\item Primeras pruebas del algoritmo de canalización en FPGA
+								\item L. H. Arnaldi, ``Implementation of an AXI-compliant
+												lock-in amplifier on the red pitaya open source
+												instrument,'' in IEEE Eight Argentine Symposium and
+												Conference on Embedded Systems (CASE) (IEEE, 2017), pp.
+												1-6
+								\item L. H. Arnaldi, ``Implementation of a Polyphase Filter Bank
+												Channelizer on a Zynq FPGA,'' in Press. Argentine
+												Conference on Electronics (CAE)
+				\end{itemize}
+\end{frame}
+\section{Trabajo futuro}
+\begin{frame}{Trabajo futuro}
+				\begin{itemize}
+								%\item Dise\~no de resonador en Sonnet
+								%\item Primeras mediciones a $T_{amb}$ y $T \sim 100\,mK$
+								\item Definici\'on de requerimientos para crio (cables,
+												conectores, espacios, etc.)
+								\item Primeras pruebas con canalizador en Bariloche (pruebas de
+												front-end, mezcladores, filtros, DC-block, etc.)
+								\item Pruebas con el algoritmo de Goertzel para detección de
+												tonos
 				\end{itemize}
 \end{frame}
 %\section{Prefer titles that make a statement}
