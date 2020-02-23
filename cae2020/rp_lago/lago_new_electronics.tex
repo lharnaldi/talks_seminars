@@ -28,6 +28,8 @@
 %\graphicspath{ {/home/user/images/} }
 %Relativo (recomendado) -> según
 %https://es.sharelatex.com/learn/Inserting_Images#La_ruta_a_la_carpeta_de_im.C3.A1genes
+\usepackage{tikz}
+\usepackage{tikz-cd}
 \graphicspath{ {media/} }
 
 
@@ -318,6 +320,19 @@ on the RedPitaya board}
 								UART, SPI) a la RP
 			\end{itemize}
 		\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+				\frametitle{Archivo de datos}
+                        \begin{tikzpicture}
+                                \node[anchor=south west,inner sep=0] at (0,0)
+																{\includegraphics[height=0.8\textheight,width=0.8\textwidth]{file_lago}};
+                                \draw<1>[red,ultra thick,rounded corners]
+																(0,4.4) rectangle (8.6,7.6);
+                                \draw<2>[red,ultra thick,rounded corners] (0,1.8)
+																rectangle (3.8,4.4);
+                                \draw<3>[red,ultra thick,rounded corners] (0,0) rectangle (1,1.9);
+                        \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
