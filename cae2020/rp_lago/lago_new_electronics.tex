@@ -342,12 +342,26 @@ on the RedPitaya board}
 				\end{block}
 \end{frame}
 
+\section{Firmware}
 \begin{frame}
 				\frametitle{El firmware}
-				\begin{block}{}
-								\centering
-								\includegraphics[width=0.9\textwidth]{diag_sys}
-				\end{block}
+												\begin{tikzpicture}
+																\only<1-2>{\node[anchor=north west,inner sep=0]
+																at (0,8)
+																{\includegraphics[width=\textwidth]{lago_sch}};}
+																\draw<2>[red,ultra thick,rounded corners]
+																(2.5,5.4) rectangle (3.5,6.7);
+																\only<2>{\node[anchor=south west,inner sep=0] at
+																(0,0){\fbox{\includegraphics[width=.9\textwidth]{fadc_lago}}};}
+																\only<3>{\node[anchor=north west,inner sep=0] at
+																(5,5){\includegraphics[width=\textwidth]{diag_sys}};}
+												\end{tikzpicture}
+				%\begin{block}{}
+								%\centering
+								%\only<4>{\includegraphics[width=\textwidth]{diag_sys}}
+								%\only<2>{\fbox{\includegraphics[width=\textwidth]{lago_sch}}}
+								%\only<3>{\fbox{\includegraphics[width=0.6\textwidth]{fadc_lago}}}
+				%\end{block}
 \end{frame}
 
 \begin{frame}
@@ -355,7 +369,12 @@ on the RedPitaya board}
 				\begin{block}{}
 								\centering
 								\boxed{\includegraphics[width=0.9\textwidth]{dc_removal}} \\
-								\includegraphics[width=0.7\textwidth]{diagrama_en_bloques_lago}
+								\only<1>{\flushleft Señal corregida:\\
+												\begin{equation}\label{eq:fract_mult_tech}
+												V_o'=V_o+k(V_i-V_o),\, \text{donde}\, k= \Delta T/(RC)
+\end{equation}
+}
+								\only<2>{\includegraphics[width=0.7\textwidth]{diagrama_en_bloques_lago}}
 				\end{block}
 \end{frame}
 
@@ -367,6 +386,18 @@ on the RedPitaya board}
 								\boxed{\includegraphics[width=0.4\textwidth]{baselines_sin_corregir}} 
 								\boxed{\includegraphics[width=0.4\textwidth]{baselines_corregidas}} 
 				\end{block}
+\end{frame}
+
+\begin{frame}
+				\frametitle{Corrección (digital) de la línea de base}
+				\only<2>{$\text{Transitorio inicial} < 3.5\,\mu \text{s}$}
+												\begin{tikzpicture}
+																\node[anchor=north west,inner sep=0]
+																at (0,8)
+																{\includegraphics[width=\textwidth]{channels}};
+																\draw<2>[olive,ultra thick,rounded corners]
+																(1.7,2.5) rectangle (5.3,5.7);
+												\end{tikzpicture}
 \end{frame}
 
 \begin{frame}
@@ -408,19 +439,35 @@ on the RedPitaya board}
 
 \begin{frame}
 				\frametitle{Archivo de datos}
+				\footnotesize{\fbox{\alert{name\_(no)gps\_YYYY\_MM\_DD\_HHhMM.dat.bz2}}}
 												\begin{tikzpicture}
 																\node[anchor=south west,inner sep=0] at (0,0)
 																{\includegraphics[height=0.8\textheight,width=0.8\textwidth]{file_lago}};
-																\draw<1>[red,ultra thick,rounded corners]
+																\draw<2>[red,ultra thick,rounded corners]
 																(0,4.4) rectangle (8.6,7.6);
-																\draw<2>[red,ultra thick,rounded corners] (0,1.8)
+																\draw<3>[red,ultra thick,rounded corners] (0,1.8)
 																rectangle (3.8,4.4);
-																\draw<3>[red,ultra thick,rounded corners] (0,0) rectangle (1,1.9);
+																\draw<4>[red,ultra thick,rounded corners] (0,0) rectangle (1,1.9);
+												\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+				\frametitle{Archivo de datos}
+				\begin{itemize}
+								\item Formato ASCII + bz2
+								\item 1 hora de datos por archivo
+								\item ``\#'' $\to$ comentarios, tiempos, PyT, errores, etc.
+								\item Pulsos $\to$ 2 columnas x 32 filas
+				\end{itemize}
+												\begin{tikzpicture}
+																\node[anchor=south west,inner sep=0] at (5,5)
+																{\includegraphics[width=0.9\textwidth]{channels2}};
 												\end{tikzpicture}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Primeros resultados}
+				\framesubtitle{Medición en coincidencia: Tanque + centellador}
 				\begin{columns}
 								\begin{column}{0.50\textwidth}
 												\fbox{\includegraphics[width=0.95\textwidth]{detectorscheme}}
@@ -433,12 +480,18 @@ on the RedPitaya board}
 
 \begin{frame}
 				\frametitle{Primeros resultados}
+				\framesubtitle{Monitoreo de variables atmosféricas}
 				\begin{columns}
 								\begin{column}{0.50\textwidth}
+												\begin{exampleblock}{\footnotesize{Comparación de
+																temperaturas}}
 												\fbox{\includegraphics[width=0.95\textwidth]{temp_pres_sensing}}
+												\end{exampleblock}
 								\end{column} 
 								\begin{column}{0.5\textwidth}
+												\begin{exampleblock}{\footnotesize{Pulso promedio}}
 												\fbox{\includegraphics[width=0.95\textwidth]{boy_cente_pprom_total}}
+												\end{exampleblock}
 								\end{column}
 				\end{columns}
 \end{frame}
@@ -453,12 +506,11 @@ on the RedPitaya board}
 																placas (Linux, flexible)
 												\item Agregar funcionamiento por interrupciones (parcialmente
 																implementado)
-												\item Software de adquisición?
 												\item Trabajar en la documentación y con los repositorios de datos
 												\item Posibles algoritmos de procesamiento adicionales que surjan de la
-																Comunidad
-												\item Integración ANNA, etc.
-												\item \alert{Que la comunidad LAGO empiece a usarlo!}
+																Comunidad (hisogramas en FPGA, etc.)
+												\item Integración con SW de análisis de datos de la
+																Comunidad.
 								\end{itemize}
 				\end{exampleblock}
 \end{frame}
@@ -1172,19 +1224,19 @@ on the RedPitaya board}
 %		\end{block}
 %\end{frame} 
 
-\begin{frame}
-				\begin{center}
-								%\huge{¡Muchas Gracias!}
-								\includegraphics[height=0.6\textheight,width=0.65\textwidth]{gracias}
-				\end{center}
-\end{frame}
-
-\begin{frame}
-				\begin{center}
-								\huge{¿Preguntas?}\\
-								\vspace{5mm}
-								\includegraphics[height=0.4\textheight,width=0.4\textwidth]{preguntas}
-				\end{center}
-\end{frame}
+%\begin{frame}
+%				\begin{center}
+%								%\huge{¡Muchas Gracias!}
+%								\includegraphics[height=0.6\textheight,width=0.65\textwidth]{gracias}
+%				\end{center}
+%\end{frame}
+%
+%\begin{frame}
+%				\begin{center}
+%								\huge{¿Preguntas?}\\
+%								\vspace{5mm}
+%								\includegraphics[height=0.4\textheight,width=0.4\textwidth]{preguntas}
+%				\end{center}
+%\end{frame}
 
 \end{document}
