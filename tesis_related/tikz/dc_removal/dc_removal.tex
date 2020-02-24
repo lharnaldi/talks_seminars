@@ -25,22 +25,22 @@
 
 %\draw[help lines] (-1,-8) grid (24,10); 
 				%\draw node at (0,0)[right=-3.3mm]{\Large \textopenbullet};
-				\node [left,scale=1.5] at (0,1.5) {$V_i$};
+				\node [above,scale=1.7] at (0.3,1.6) {$V_i$};
 				\draw [->] (0,1.5) -- (2.5,1.5); %linea de entrada
 				\node [left, scale=1.5] at (2.7,1.9) {+}; 
 				\draw [-] (0.8,1.2) -- (1.2,1.8); %primer linea cruzada bits
-				\node [below, scale=1.5] at (1,1.2) {16};
+				\node [below, scale=1.7] at (1,1.2) {16};
 				\draw [rounded corners] (3,1.5) circle [radius=0.5];
 				\node [scale=2.5] at (3,1.5) {+};
 				%\draw [rounded corners] (2,0) rectangle (4,3);
 				\draw [-, line width=3] (3.5,1.5) -- (7.5,1.5);
 				\draw [->,line width=3] (6,1.5) -| (6,0) -- (8,0);
-				\node [below=3.3mm, line width=3,scale=1.5] at (7.5,0) {Corrected signal};
-				\node [above=3.3mm, line width=3,scale=1.5] at (5.5,1.4) {$V_i - V_o$};
+				\node [below=3.3mm, line width=3,scale=1.7] at (7.5,0) {Corrected signal};
+				\node [above=3.3mm, line width=3,scale=1.7] at (5.5,1.4) {$V_i - V_o$};
 				\draw [-] (4.8,1.2) -- (5.2,1.8); %segunda linea cruzada bits
-				\node [below, scale=1.5] at (5,1.2) {16};
+				\node [below, scale=1.7] at (5,1.2) {16};
 				\draw [-] (10.8,3.7) -- (11.2,4.3); %tercer linea cruzada bits
-				\node [below, scale=1.5] at (11,3.7) {32};
+				\node [below, scale=1.7] at (11,3.7) {32};
 				%\draw [->,line width=3] (5.5,0) -- (7.5,0);
 				%\node [right=-1.0mm, scale=2] at (2,2) {-};
 				%\node [right=-1.0mm, scale=1.5] at (2,1) {+};
@@ -61,11 +61,12 @@
 				\draw [-] (17,1.5) -- (18.5,1.5);
 				\draw [-] (18,2.5) -- (18,5) -- (3,5) |- (3,2);
 				\node [right, scale=2] at (3,2.2) {-};
-				\node [right, scale=1.5] at (20,2.5) {$V_o\quad \textnormal{DC level}$};
+				\node [above, scale=1.7] at (20,2.5) {$V_o$};
+				\node [above=3.3mm, line width=3,scale=1.7] at (19.2,3.0) {DC level};
 				\draw [-] (17.8,1.2) -- (18.2,1.8); %cuarta linea cruzada bits
-				\node [below, scale=1.5] at (18,1.2) {16};
+				\node [below, scale=1.7] at (18,1.2) {16};
 				\draw [-] (18.8,2.2) -- (19.2,2.8); %quinta linea cruzada bits
-				\node [below, scale=1.5] at (19,2.2) {16};
+				\node [below, scale=1.7] at (19,2.2) {16};
 				\node [right, scale=1.5] at (8,2.2) {+};
 				\node [above, scale=1.5] at (7.2,1.5) {+};
 
