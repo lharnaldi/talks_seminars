@@ -51,13 +51,13 @@ on the RedPitaya board}
 \begin{document}
 
 \begin{frame}
-  \hspace*{0.6cm}
-  \includegraphics[height=0.18\textheight]{logos/cnea_logo} \hspace*{1em}
-  \includegraphics[height=0.18\textheight]{logos/balseiro_logo} \hspace*{1em}
-  \includegraphics[height=0.18\textheight]{logos/LabDPR_logo} \hspace*{1em}
-  \includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
+				\hspace*{0.6cm}
+				\includegraphics[height=0.18\textheight]{logos/cnea_logo} \hspace*{1em}
+				\includegraphics[height=0.18\textheight]{logos/balseiro_logo} \hspace*{1em}
+				\includegraphics[height=0.18\textheight]{logos/LabDPR_logo} \hspace*{1em}
+				\includegraphics[height=0.18\textheight,width=0.15\textwidth]{logos/lagologo}
 
-  \titlepage
+				\titlepage
 
 \end{frame}
 
@@ -70,6 +70,73 @@ on the RedPitaya board}
 %
 
 %%------------------------------------------------------------------------------
+\section{La Colaboración LAGO}
+%%------------------------------------------------------------------------------
+\begin{frame}
+				\frametitle{El proyecto {\color{red}L}atin {\color{red}A}merican
+				{\color{red}G}iant {\color{red}O}bservatory (LAGO)}
+				%\color[rgb]{0.2,0.2,0.9}{Electrónica dedicada para Auger}
+				\begin{center}
+								\begin{tikzpicture}
+												\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=1\textheight]{sitios_lago2019}};
+								\end{tikzpicture}
+				\end{center}
+\end{frame} 
+
+\begin{frame}
+				\frametitle{El proyecto {\color{red}L}atin {\color{red}A}merican
+				{\color{red}G}iant {\color{red}O}bservatory (LAGO)}
+				\begin{columns}
+								\begin{column}{0.43\textwidth}
+												\fbox{\includegraphics[width=\textwidth]{sitios_lago2019_2}}
+												\small{Más info en $\to$ lagoproject.net}
+								\end{column}
+								\begin{column}{0.68\textwidth}
+												\footnotesize{\begin{exampleblock}{La colaboración LAGO}
+																\begin{itemize}
+																				\item 70 miembros de 22 instituciones en
+																								países de LA 
+																				\item \alert{Objetivos científicos}
+																\begin{itemize}
+																\footnotesize{				\item Astropartículas hasta $\sim
+																								10^{16}\,\text{eV}$
+																				\item Clima espacial a
+																								través de fenómenos transitorios
+																								y de larga duración en la
+																								modulación solar de los rayos
+																								cósmicos
+																				\item Medición de radiación de fondo a
+																								nivel del suelo}
+																\end{itemize}
+												\item \alert{Objetivos académicos}
+																\begin{itemize}
+																	\footnotesize{			\item Entrenar a estudiantes de LA en
+																								técnicas de astropartículas,
+																								altas energías y procesamiento
+																								de datos
+																				\item Construir una red latino-americana
+																								de investigadores en
+																								astropartículas}
+																\end{itemize}
+																\end{itemize}
+												\end{exampleblock}}
+								\end{column} 
+				\end{columns}
+\end{frame} 
+
+\begin{frame}
+				\frametitle{El detector}
+				\color[rgb]{0.2,0.2,0.9}{Efecto Cherenkov en agua}
+												\includegraphics[width=\textwidth]{tanque_lago}
+\end{frame} 
+
+\begin{frame}
+				\frametitle{La señal}
+				%\color[rgb]{0.2,0.2,0.9}{Efecto Cherenkov en agua}
+												\includegraphics[width=\textwidth]{histo_carga_ha}
+\end{frame} 
+
+%%------------------------------------------------------------------------------
 \section{Las etapas (electrónicas) en LAGO}
 %%------------------------------------------------------------------------------
 %\begin{frame}
@@ -79,33 +146,33 @@ on the RedPitaya board}
 %\end{frame}
 
 \begin{frame}
-	\frametitle{¿Qué queremos con la electrónica en LAGO?}
-		\begin{block}{}
-    	\begin{itemize}
-      	\item Obtener la mayor cantidad de información
-							posible con el menor costo (pulsos, tiempo
-							entre pulsos, amplitudes para frecuencias
-							altas de pulsos, etc) 
-											\pause
-      	\item Sincronización de los diferentes sitios (permite estudiar grandes
-							eventos que excitan más de un detector)
-											\pause
-      	\item Sistema capaz de alimentar/polarizar los fotodetectores
-											\pause
-      	\item Sistema todo-en-uno
-											\pause
-        \item Guardar los datos para futuros análisis (off-line data analysis)
-              en un lugar centralizado y de fácil acceso para toda la
-							Colaboración
-											\pause
-							\item \alert{Uniformizar el formato de los datos/archivos
-											guardados}
-											\pause
-      	\item Sistema adaptable a otros experimentos (siempre tenemos/queremos
-							otros experimentos)
+				\frametitle{¿Qué queremos con la electrónica en LAGO?}
+				\begin{block}{}
+								\begin{itemize}
+												\item Obtener la mayor cantidad de información
+																posible con el menor costo (pulsos, tiempo
+																entre pulsos, amplitudes para frecuencias
+																altas de pulsos, etc.) 
+																\pause
+												\item Sincronización de los diferentes sitios (permite estudiar grandes
+																eventos que excitan más de un detector)
+																\pause
+												\item Sistema capaz de alimentar/polarizar los fotodetectores
+																\pause
+												\item Sistema todo-en-uno
+																\pause
+												\item Guardar los datos para futuros análisis (off-line data analysis)
+																en un lugar centralizado y de fácil acceso para toda la
+																Colaboración
+																\pause
+												\item \alert{Uniformizar el formato de los datos/archivos
+																guardados}
+																\pause
+												\item Sistema adaptable a otros experimentos (siempre tenemos/queremos
+																otros experimentos)
 
-    	\end{itemize}
-		\end{block}
+								\end{itemize}
+				\end{block}
 \end{frame} 
 
 %\begin{frame}
@@ -121,101 +188,117 @@ on the RedPitaya board}
 %		\end{block}
 %\end{frame} 
 
+%\begin{frame}
+%				\frametitle{Los inicios}
+%				\color[rgb]{0.2,0.2,0.9}{Electrónica dedicada para Auger}
+%				\begin{columns}
+%								\begin{column}{0.50\textwidth}
+%												\begin{block}{}
+%																\begin{itemize}
+%																				\item Poco flexible 
+%																				\item Documentación/información limitada
+%																				\item Número limitado de UBs (Unified Boards)
+%																				\item Comunicación de datos por puerto serie
+%																				\item	Tiempos de adquisición largos
+%																				\item	Poco volumen de almacenamiento
+%																				\item Sin control de línea de base	
+%																\end{itemize}
+%												\end{block}
+%								\end{column} 
+%								\begin{column}{0.50\textwidth}
+%												\fbox{\includegraphics[width=\textwidth]{electronica_auger}}
+%								\end{column}
+%				\end{columns}
+%\end{frame} 
+
 \begin{frame}
-	\frametitle{Los inicios}
-				\color[rgb]{0.2,0.2,0.9}{Electrónica dedicada para Auger}
+				\frametitle{Actualidad: ¿con qué contamos?}
 				\begin{columns}
-			\begin{column}{0.50\textwidth}
-				\begin{block}{}
-		    	\begin{itemize}
-		      	\item Poco flexible 
-		      	\item Documentación/información limitada
-		      	\item Número limitado de UBs (Unified Boards)
-						\item Comunicación de datos por puerto serie
-						\item	Tiempos de adquisición largos
-						\item	Poco volumen de almacenamiento
-						\item Sin control de línea de base	
-		    	\end{itemize}
-				\end{block}
-			\end{column} 
-		 	\begin{column}{0.50\textwidth}
-		  	\fbox{\includegraphics[width=\textwidth]{electronica_auger}}
-		 \end{column}
-		\end{columns}
+								\begin{column}{0.40\textwidth}
+												\begin{block}{}
+																\begin{itemize}
+																				\item Placas de digitalización de 3 canales
+																				\item GPS para sincronizar los datos de los 
+																								distintos sitios (Oncore)
+																				\item Barómetro y sensor de temperatura
+																								(HP03S)
+																				\item Placa Nexys2 (FPGA Spartan 3E)
+																\end{itemize}
+												\end{block}
+								\end{column} 
+								\begin{column}{0.65\textwidth}
+												\fbox{\includegraphics[width=\textwidth]{lago_daq}}
+								\end{column}
+				\end{columns}
 \end{frame} 
 
-\begin{frame}
-	\frametitle{Actualidad: ¿con qué contamos?}
-	\begin{columns}
-		\begin{column}{0.40\textwidth}
-			\begin{block}{}
-	    	\begin{itemize}[<+->]
-	      	\item Placas de digitalización de 3 y 4 canales
-	      	\item GPS para sincronizar los datos de los 
-									distintos sitios (Oncore)
-					\item Barómetro y sensor de temperatura (HP03)
-					\item Placa Nexys2 (FPGA Spartan 3E)
-	    	\end{itemize}
-			\end{block}
-		\end{column} 
-	 	\begin{column}{0.55\textwidth}
-	  	\only<1-2>{\fbox{\includegraphics[width=\textwidth]{lago_daq}}}
-	  	\only<3-4>{\fbox{\includegraphics[width=\textwidth]{placa_mx_2}}}
-	 \end{column}
-	\end{columns}
-\end{frame} 
+%\begin{frame}
+%				\frametitle{Dificultades actuales}
+%				\begin{alertblock}{}
+%								\begin{itemize}
+%												\item Hasta la aparición del sistema \textcolor{blue}{ACQUA},
+%																\textcolor{blue}{ANNA}, etc
+%																(aprox. noviembre de 2015) teníamos (casi) \alert{cada sitio una versión
+%																diferente del firmware} de la FPGA 
+%												\item \alert{No todos los sitios pueden estar online con sus datos} (por diversas
+%																razones, a veces ajenas a la electrónica)
+%												\item Existencia de dos tipos de electrónicas (\alert{con características muy
+%																diferentes})
+%												\item Problemas contínuos con las placas de adquisición (cortos, falsos
+%																contactos, soldaduras frías, etc) debido a que se ensamblan en casa
+%								\end{itemize}
+%				\end{alertblock}
+%\end{frame} 
+%
+%\begin{frame}
+%				\frametitle{Dificultades actuales}
+%				\begin{alertblock}{}
+%								\begin{itemize}
+%												\item ...todo tiene un final, todo termina...
+%												\item Los GPS Oncore están dejando de funcionar en casi todos los sitios y
+%																nosotros tenemos la electrónica dedicada a ese GPS particular (\alert{que ya no se
+%																fabrica más}, además)
+%												\item Sensores de PyT (HP03) difíciles de conseguir hoy en día
+%												\item Las placas Nexys2 \alert{¡dejaron de fabricarse!} y constituyen el
+%																corazón de lo que tenemos actualmente
+%								\end{itemize}
+%				\end{alertblock}
+%\end{frame} 
 
+%%------------------------------------------------------------------------------
+\section{Hardware}
+%%------------------------------------------------------------------------------
 \begin{frame}
-	\frametitle{Dificultades actuales}
-	\begin{alertblock}{}
-		\begin{itemize}
-						\item Hasta la aparición del sistema \textcolor{blue}{ACQUA},
-										\textcolor{blue}{ANNA}, etc
-										(aprox. noviembre de 2015) teníamos (casi) \alert{cada sitio una versión
-					diferente del firmware} de la FPGA 
-	\item \alert{No todos los sitios pueden estar online con sus datos} (por diversas
-					razones, a veces ajenas a la electrónica)
-	\item Existencia de dos tipos de electrónicas (\alert{con características muy
-					diferentes})
-		\item Problemas contínuos con las placas de adquisición (cortos, falsos
-					contactos, soldaduras frías, etc) debido a que se ensamblan en casa
-		\end{itemize}
-	\end{alertblock}
-\end{frame} 
-
-\begin{frame}
-	\frametitle{Dificultades actuales}
-	\begin{alertblock}{}
-		\begin{itemize}
-		\item ...todo tiene un final, todo termina...
-		\item Los GPS Oncore están dejando de funcionar en casi todos los sitios y
-						nosotros tenemos la electrónica dedicada a ese GPS particular (\alert{que ya no se
-										fabrica más}, además)
-		\item Sensores de PyT (HP03) difíciles de conseguir hoy en día
-		\item Las placas Nexys2 \alert{¡dejaron de fabricarse!} y constituyen el
-					corazón de lo que tenemos actualmente
-		\end{itemize}
-	\end{alertblock}
-\end{frame} 
-
-\begin{frame}
-	\frametitle{¿Cuál es la opción?}
-	\begin{columns}
-		\begin{column}{0.60\textwidth}
-			\begin{block}{}
-	    	\begin{itemize} %[<+->]
-								\item RedPitaya: 2 canales $\sim 62\,\text{MHz}$ (adquisición, 125\,MSPS)
-								\item \alert{Linux embebido}
-	      	\item Capacidad de conexión y envío de datos a puntos remotos
-	      	\item Se pueden conectar los sensores que necesitemos 
-					\item Mucha \alert{flexibilidad} (¡justo lo que queremos!)
-	    	\end{itemize}
-			\end{block}
-		\end{column} 
-	 	\begin{column}{0.4\textwidth}
-	  	\fbox{\includegraphics[angle=90,width=0.75\textwidth]{rp_freecad_up}}
-	 \end{column}
-	\end{columns}
+				\frametitle{¿Cuál es la opción?}
+				\begin{columns}
+								\begin{column}{0.50\textwidth}
+												\fbox{\includegraphics[angle=0,width=\textwidth]{rp_specifications_table}}
+								\end{column} 
+								\begin{column}{0.58\textwidth}
+												\fbox{\includegraphics[angle=0,width=\textwidth]{600px-RedPitaya_HW_overview}}
+								\end{column} 
+				\end{columns}
+				%\begin{center}
+				%								\fbox{\includegraphics[angle=0,width=0.75\textwidth]{rp_specifications_table}}
+				%								\fbox{\includegraphics[angle=0,width=0.75\textwidth]{600px-RedPitaya_HW_overview}}
+				%\end{center}
+				%\begin{columns}
+								%\begin{column}{0.60\textwidth}
+												\footnotesize{				\begin{block}{}
+																\begin{itemize} %[<+->]
+																				\item RedPitaya: 2 canales $\sim 62\,\text{MHz}$ (adquisición, 125\,MSPS)
+																				\item \alert{Linux embebido}
+																				\item Capacidad de conexión y envío de datos a puntos remotos
+																				\item Se pueden conectar los sensores que necesitemos 
+																				\item Mucha \alert{flexibilidad} (¡justo lo que queremos!)
+																\end{itemize}
+												\end{block}}
+				%				\end{column} 
+				%				\begin{column}{0.4\textwidth}
+												%\fbox{\includegraphics[angle=90,width=0.75\textwidth]{rp_freecad_up}}
+				%								\fbox{\includegraphics[angle=90,width=0.75\textwidth]{600px-RedPitaya_HW_overview}}
+				%				\end{column}
+				%\end{columns}
 \end{frame} 
 
 %\begin{frame}
@@ -233,150 +316,151 @@ on the RedPitaya board}
 %		\end{block}
 %\end{frame} 
 
-\begin{frame}
-	\frametitle{Hardware}
-		\begin{exampleblock}{Características}
-			\begin{itemize}
-							\item Procesador $\to$ \alert{Xilinx Zynq-7010 SoC ARM dual core
-											CPU y FPGA Artix 7}
-				\item RAM $\to$ 512\,MB
-				\item Rango dinámico de conversión de +1\,V a -1\,V
-				\item Acceso $\to$ USB console, Ethernet, WiFi dongle
-				\item Potencia $\to$ 5V x 2A max., 0.9A typ.
-				\item Fast ADC $\to$ \alert{Dual channel, 14-bit, 125\,MSPS}
-				\item Fast ADC $\to$ \alert{Dual channel, 14-bit, 125\,MSPS}
-				\item Otros I/Os $\to$ DAC lento x 4, ADC lento ($\sim$125\,kHz) x 4,
-								digital I/O digitales x 16, conector daisy chain 
-			\end{itemize}
-		\end{exampleblock}
-\end{frame}
+%\begin{frame}
+%				\frametitle{Hardware}
+%				\begin{exampleblock}{Características}
+%								\begin{itemize}
+%												\item Procesador $\to$ \alert{Xilinx Zynq-7010 SoC ARM dual core
+%																CPU y FPGA Artix 7}
+%												\item RAM $\to$ 512\,MB
+%												\item Rango dinámico de conversión de +1\,V a -1\,V
+%												\item Acceso $\to$ USB console, Ethernet, WiFi dongle
+%												\item Potencia $\to$ 5V x 2A max., 0.9A typ.
+%												\item Fast ADC $\to$ \alert{Dual channel, 14-bit, 125\,MSPS}
+%												\item Fast ADC $\to$ \alert{Dual channel, 14-bit, 125\,MSPS}
+%												\item Otros I/Os $\to$ DAC lento x 4, ADC lento ($\sim$125\,kHz) x 4,
+%																digital I/O digitales x 16, conector daisy chain 
+%								\end{itemize}
+%				\end{exampleblock}
+%\end{frame}
 
 \begin{frame}
 				\frametitle{Diferencias}
-  \begin{block}{}
-    \centering
-    \includegraphics[width=0.9\textwidth]{diferencias_nexys_rp}
-  \end{block}
+				\begin{block}{}
+								\centering
+								\includegraphics[width=0.9\textwidth]{diferencias_nexys_rp}
+				\end{block}
 \end{frame}
 
 \begin{frame}
 				\frametitle{El firmware}
-  \begin{block}{}
-    \centering
-    \includegraphics[width=0.9\textwidth]{diag_sys}
-  \end{block}
+				\begin{block}{}
+								\centering
+								\includegraphics[width=0.9\textwidth]{diag_sys}
+				\end{block}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Corrección (digital) de la línea de base}
-  \begin{block}{}
-    \centering
-					\boxed{\includegraphics[width=0.9\textwidth]{dc_removal}} \\
-    \includegraphics[width=0.7\textwidth]{diagrama_en_bloques_lago}
-  \end{block}
+				\begin{block}{}
+								\centering
+								\boxed{\includegraphics[width=0.9\textwidth]{dc_removal}} \\
+								\includegraphics[width=0.7\textwidth]{diagrama_en_bloques_lago}
+				\end{block}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Corrección (digital) de la línea de base}
-  \begin{block}{}
-    \centering
-					\boxed{\includegraphics[width=0.9\textwidth]{dc_removal}} \\
-					\boxed{\includegraphics[width=0.4\textwidth]{baselines_sin_corregir}} 
-					\boxed{\includegraphics[width=0.4\textwidth]{baselines_corregidas}} 
-  \end{block}
+				\begin{block}{}
+								\centering
+								\boxed{\includegraphics[width=0.9\textwidth]{dc_removal}} \\
+								\boxed{\includegraphics[width=0.4\textwidth]{baselines_sin_corregir}} 
+								\boxed{\includegraphics[width=0.4\textwidth]{baselines_corregidas}} 
+				\end{block}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Placa hija \alert{RP\_CTRL\_BOARD v1r0}}
-	\begin{columns}
-		\begin{column}{0.50\textwidth}
-	  	\fbox{\includegraphics[width=0.9\textwidth]{placa_arriba}}
-		\end{column} 
-	 	\begin{column}{0.5\textwidth}
-	  	\fbox{\includegraphics[width=0.9\textwidth]{placa_abajo}}
-	 \end{column}
-	\end{columns}
+				\begin{columns}
+								\begin{column}{0.50\textwidth}
+												\fbox{\includegraphics[width=0.9\textwidth]{placa_arriba}}
+								\end{column} 
+								\begin{column}{0.5\textwidth}
+												\fbox{\includegraphics[width=0.9\textwidth]{placa_abajo}}
+								\end{column}
+				\end{columns}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Hardware}
+				\frametitle{Hardware}
 				\begin{exampleblock}{Características}
-			\begin{itemize}
-				\item Conectores DB15 $\to$ conexión directa a las bases de los PMT
-				\item Permite la configuración de las HV en las bases de los PMT
-				\item Monitoreo de HV
-				\item Monitoreo de temperatura interna y externa
-				\item Provee todas las tensiones (y potencia) necesaria para alimentar:
 								\begin{itemize}
-												\item La RedPitaya $\to$ \alert{+5\,V}
-												\item La base del PMT $\to$ \alert{+12\,V, $\pm$3.3\,V,
-																+5\,V}
-												\item Los sensores (PyT, GPS, etc.) $\to$
-																\alert{+3.3\,V, +5\,V}
+												\item Conectores DB15 $\to$ conexión directa a las bases de los PMT
+												\item Permite la configuración de las HV en las bases de los PMT
+												\item Monitoreo de HV
+												\item Monitoreo de temperatura interna y externa
+												\item Provee todas las tensiones (y potencia) necesaria para alimentar:
+																\begin{itemize}
+																				\item La RedPitaya $\to$ \alert{+5\,V}
+																				\item La base del PMT $\to$ \alert{+12\,V, $\pm$3.3\,V,
+																								+5\,V}
+																				\item Los sensores (PyT, GPS, etc.) $\to$
+																								\alert{+3.3\,V, +5\,V}
+																\end{itemize}
+												\item Funciona con una única fuente de +12\,V @ 2\,A
+												\item Permite sensar/colocar hasta 2 tensiones extras
+												\item Permite interconectar sensores con diferentes
+																protocolos ($\text{I}^2$C,
+																UART, SPI) a la RP
 								\end{itemize}
-				\item Funciona con una única fuente de +12\,V @ 2\,A
-				\item Permite sensar/colocar hasta 2 tensiones extras
-				\item Permite interconectar sensores con diferentes protocolos (IIC,
-								UART, SPI) a la RP
-			\end{itemize}
-		\end{exampleblock}
+				\end{exampleblock}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Archivo de datos}
-                        \begin{tikzpicture}
-                                \node[anchor=south west,inner sep=0] at (0,0)
+												\begin{tikzpicture}
+																\node[anchor=south west,inner sep=0] at (0,0)
 																{\includegraphics[height=0.8\textheight,width=0.8\textwidth]{file_lago}};
-                                \draw<1>[red,ultra thick,rounded corners]
+																\draw<1>[red,ultra thick,rounded corners]
 																(0,4.4) rectangle (8.6,7.6);
-                                \draw<2>[red,ultra thick,rounded corners] (0,1.8)
+																\draw<2>[red,ultra thick,rounded corners] (0,1.8)
 																rectangle (3.8,4.4);
-                                \draw<3>[red,ultra thick,rounded corners] (0,0) rectangle (1,1.9);
-                        \end{tikzpicture}
+																\draw<3>[red,ultra thick,rounded corners] (0,0) rectangle (1,1.9);
+												\end{tikzpicture}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Primeros resultados}
-	\begin{columns}
-		\begin{column}{0.50\textwidth}
-	  	\fbox{\includegraphics[width=0.95\textwidth]{detectorscheme}}
-		\end{column} 
-	 	\begin{column}{0.5\textwidth}
-						\fbox{\includegraphics[width=0.95\textwidth]{boy_cente_chrg_tot}}
-	 \end{column}
-	\end{columns}
+				\begin{columns}
+								\begin{column}{0.50\textwidth}
+												\fbox{\includegraphics[width=0.95\textwidth]{detectorscheme}}
+								\end{column} 
+								\begin{column}{0.5\textwidth}
+												\fbox{\includegraphics[width=0.95\textwidth]{boy_cente_chrg_tot}}
+								\end{column}
+				\end{columns}
 \end{frame}
 
 \begin{frame}
 				\frametitle{Primeros resultados}
-	\begin{columns}
-		\begin{column}{0.50\textwidth}
-	  	\fbox{\includegraphics[width=0.95\textwidth]{temp_pres_sensing}}
-		\end{column} 
-	 	\begin{column}{0.5\textwidth}
-						\fbox{\includegraphics[width=0.95\textwidth]{boy_cente_pprom_total}}
-	 \end{column}
-	\end{columns}
+				\begin{columns}
+								\begin{column}{0.50\textwidth}
+												\fbox{\includegraphics[width=0.95\textwidth]{temp_pres_sensing}}
+								\end{column} 
+								\begin{column}{0.5\textwidth}
+												\fbox{\includegraphics[width=0.95\textwidth]{boy_cente_pprom_total}}
+								\end{column}
+				\end{columns}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Trabajo futuro}
-		\begin{exampleblock}{}
-			\begin{itemize}
-				\item Integración GPS $\to$ GPSBee o similar 
-				\item Medición estable por largo tiempo (meses, años)
-				\item Sistema de sincronismo automático con servidores de datos y entre
-								placas (Linux, flexible)
-				\item Agregar funcionamiento por interrupciones (parcialmente
-								implementado)
-				\item Software de adquisición?
-				\item Trabajar en la documentación y con los repositorios de datos
-				\item Posibles algoritmos de procesamiento adicionales que surjan de la
-								Comunidad
-				\item Integración ANNA, etc.
-				\item \alert{Que la comunidad LAGO empiece a usarlo!}
-			\end{itemize}
-		\end{exampleblock}
+				\frametitle{Trabajo futuro}
+				\begin{exampleblock}{}
+								\begin{itemize}
+												\item Integración GPS $\to$ GPSBee o similar 
+												\item Medición estable por largo tiempo (meses, años)
+												\item Sistema de sincronismo automático con servidores de datos y entre
+																placas (Linux, flexible)
+												\item Agregar funcionamiento por interrupciones (parcialmente
+																implementado)
+												\item Software de adquisición?
+												\item Trabajar en la documentación y con los repositorios de datos
+												\item Posibles algoritmos de procesamiento adicionales que surjan de la
+																Comunidad
+												\item Integración ANNA, etc.
+												\item \alert{Que la comunidad LAGO empiece a usarlo!}
+								\end{itemize}
+				\end{exampleblock}
 \end{frame}
 
 %%------------------------------------------------------------------------------
@@ -1089,18 +1173,18 @@ on the RedPitaya board}
 %\end{frame} 
 
 \begin{frame}
-  \begin{center}
-    %\huge{¡Muchas Gracias!}
-    \includegraphics[height=0.6\textheight,width=0.65\textwidth]{gracias}
-  \end{center}
+				\begin{center}
+								%\huge{¡Muchas Gracias!}
+								\includegraphics[height=0.6\textheight,width=0.65\textwidth]{gracias}
+				\end{center}
 \end{frame}
 
 \begin{frame}
-  \begin{center}
-    \huge{¿Preguntas?}\\
-    \vspace{5mm}
-    \includegraphics[height=0.4\textheight,width=0.4\textwidth]{preguntas}
-  \end{center}
+				\begin{center}
+								\huge{¿Preguntas?}\\
+								\vspace{5mm}
+								\includegraphics[height=0.4\textheight,width=0.4\textwidth]{preguntas}
+				\end{center}
 \end{frame}
 
 \end{document}
