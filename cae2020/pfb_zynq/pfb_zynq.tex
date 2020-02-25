@@ -24,6 +24,7 @@
 \usepackage{siunitx}
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usetikzlibrary{tikzmark,fit}
 \graphicspath{{media/}}
 \usepackage{xcolor}
 \usepackage[percent]{overpic}
@@ -99,121 +100,36 @@
 
 \end{frame}
 
-%\begin{frame}{Contexto}
-%				\framesubtitle{Estudios del CMB}
-%												\only<1>{\includegraphics[width=0.5\textwidth]{c1_cmb_map}}
-%												%\only<1>{\includegraphics[width=0.4\textwidth]{motivacion1}}
-%												\only<1>{\includegraphics[width=0.4\textwidth]{motivacion3}}
-%												%\only<2>{\includegraphics[width=0.4\textwidth]{motivacion3}}
-%				\begin{itemize}
-%												\begin{columns}
-%																\begin{column}{0.5\textwidth}
-%																\item[*] {\color{blue}Radiación de fondo de microondas (CMB)}
-%																				$\to$ radiación EM	de una etapa temprana del universo (Big	Bang)
-%																\item[*] Penzias y Wilson (1964). TELSTAR (1962) 
-%																\item[*] Ajuste a la curva teórica para un \alert{cuerpo negro
-%																				de 2.728 K}
-%																\end{column}
-%																\begin{column}{0.5\textwidth}
-%																				\includegraphics[width=0.9\textwidth]{motivacion2}
-%																\end{column}
-%												\end{columns}
-%				\end{itemize}
-%
-%\end{frame}
-%\begin{frame}{Motivación}
-%				\framesubtitle{Estudios del CMB}
-%				\begin{columns}
-%								\begin{column}{0.49\textwidth}
-%				\begin{itemize}
-%								\item[*] El hecho de que el CMB tenga un espectro de cuerpo
-%												negro tan preciso es evidencia de que vino de cuando era
-%												mucho más caliente y denso de lo que es ahora
-%								\item[*] Por lo tanto, el espectro del CMB es una fuerte
-%												evidencia de que el Universo experimentó una etapa de
-%												``Big Bang caliente''
-%				\end{itemize}
-%								\end{column}
-%								\begin{column}{0.49\textwidth}
-%												\only<1>{\includegraphics[width=0.9\textwidth]{motivacion5}}
-%												\only<1>{\includegraphics[width=0.9\textwidth]{c1_cmb_map}}
-%								\end{column}
-%								\end{columns}
-%\end{frame}
-%\begin{frame}{Motivación}
-%				\framesubtitle{Estudios del CMB}
-%								Expansión del Universo $\to$ \alert{temperatura baja}
-%				\begin{columns}
-%								\begin{column}{0.4\textwidth}
-%												\begin{itemize}
-%																				%\item[*] Expansión del Universo $\to$ \alert{temperatura baja}
-%																\item[*] \alert{Anisotropías} $\to$ colores indican variaciones de
-%																				temperatura: rojo para más caliente, azul para más
-%																				frío
-%																				\includegraphics[width=0.9\textwidth]{motivacion5}
-%																				%\item[*] Tamaños de los puntos calientes y fríos $\to$
-%																				%				cálculos de valores fundamentales para la forma, tamaño,
-%																				%				edad, contenido, tasa de expansión (y más) de nuestro
-%																				%				universo
-%												\end{itemize}
-%								\end{column}
-%								\begin{column}{0.59\textwidth}
-%												\includegraphics[width=0.9\textwidth]{c1_cmb_map}
-%												\vspace{1cm}
-%
-%												Tamaños de los puntos calientes y fríos $\to$
-%												cálculos de valores fundamentales para la forma, tamaño,
-%												edad, contenido, tasa de expansión (y más) de nuestro
-%												universo
-%								\end{column}
-%				\end{columns}
-%\end{frame}
-%\begin{frame}{Motivación}
-%				\framesubtitle{QUBIC}
-%												\only<1>{\includegraphics[width=0.4\textwidth]{c1_cmb_map}}
-%												\only<1>{\includegraphics[width=0.4\textwidth]{motivacion1}}
-%												\only<2>{\includegraphics[width=0.4\textwidth]{motivacion2}}
-%												\only<2>{\includegraphics[width=0.4\textwidth]{motivacion3}}
-%												\only<3>{\includegraphics[width=0.6\textwidth]{motivacion4}}
-%				\begin{itemize}
-%								\item[*] 
-%												
-%								\item[*] 
-%								\item[*] 
-%								\only<3>{\item[*] Sus datos (y muchos otros desde entonces) se ajustan a
-%												la curva teórica para un cuerpo negro de 2.728 K}
-%				\end{itemize}
-%\end{frame}
-
 %------------------------------------------------------------------------------
 \section{MKIDs}
 \begin{frame}{\textbf{M}icrowave \textbf{K}inetic \textbf{I}nductance
+				\framesubtitle{Detectores superconductores}
 				\textbf{D}etector (MKID)}
 				\centering
 												\qquad \includegraphics[width=0.8\textwidth]{concepto_mkid1}
 				\begin{itemize}
 								\item \footnotesize{Superconductores $\to$ inductancia AC debida a la
 												inercia de los pares de Cooper}
-												%\begin{itemize}
-												%				\item[*] \scriptsize{{\color{blue}alternativamente, debido a la
-												%								energía almacenada en la supercorriente
-												%								de apantallamiento}}
-												%\end{itemize}
 								\item Cambia cuando los pares de Cooper se rompen debido a la
 												energía de entrada
 								\item Se mide el cambio monitoreando un circuito resonante
+
 								\item Punto crítico $\to$ los \alert{superconductores proveen un muy
-												alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
-												pueden ser leídos a través de una sola linea 
+												alto Q} ($Q_i > 10^7$) $\to$ \tikzmark{start}miles de resonadores
+												pueden ser leídos a través de una sola
+												linea\tikzmark{end} 
 												\begin{itemize}
 																\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
 																				simples}}
 												\end{itemize}
 				\end{itemize}
-
+				\begin{tikzpicture}[remember picture,overlay]
+								\draw<2>[red,ultra thick,rounded corners](-6.0,1.2) rectangle (4.4,1.8);																%\node<2>[draw,line width=2pt,cyan,circle,fit={(pic cs:start) (pic cs:end)}] {};
+				\end{tikzpicture}
 \end{frame}
 \begin{frame}{\textbf{M}icrowave \textbf{K}inetic \textbf{I}nductance
 				\textbf{D}etector (MKID)}
+				\framesubtitle{Detectores superconductores}
 				\begin{columns}
 								\begin{column}{0.49\textwidth}
 												\begin{equation*}
@@ -223,7 +139,7 @@
 																L_s = L_g + L_k
 												\end{equation*}
 
-												\flushleft	\includegraphics[width=0.6\textwidth]{LCR_mkid}
+												\flushleft	\includegraphics[width=0.8\textwidth]{LCR_mkid}
 								\end{column}
 								\begin{column}{0.59\textwidth}
 												\begin{itemize}
@@ -246,688 +162,33 @@
 				\end{columns}
 \end{frame}
 
-%\begin{frame}{MKIDs}
-%				\begin{columns}
-%								\begin{column}{0.49\textwidth}
-%												\centering
-%												\includegraphics[width=0.92\textwidth]{pulso_respuesta_mkid2}
-%								\end{column}
-%								\begin{column}{0.59\textwidth}
-%												\footnotesize{Mecanismo de detección de los KIDs $\to$ un
-%												cambio temporal en la inductancia cinética superficial
-%												de un superconductor cuando se absorbe un fotón de
-%												energía $h\nu \geq 2 \Delta(T)$, donde $\Delta(T)$ es el
-%												parámetro de gap superconductor (teoría BCS).
-%												\pause
-%
-%												Los fotones de alta energía rompen los pares de Cooper.
-%												Estos se recombinan en un tiempo característico, del
-%												orden de $10-500\,\mu\text{s}$,	{\color{red}produciendo
-%												cambios similares a	pulsos en la impedancia	
-%												superficial.}
-%												\pause
-%
-%												Como la impedancia del superconductor es principalmente
-%												inductiva, especialmente para $T << T_c$,
-%												el superconductor puede diseñarse como el elemento
-%												inductivo en un circuito resonante tipo RLC.
-%												\pause
-%
-%												{\color{blue}El factor de calidad (Q) del circuito
-%												resonante determina ambos, la \alert{sensibilidad} y la
-%												\alert{velocidad} de respuesta del dispositivo}.}
-%								\end{column}
-%				\end{columns}
-%\end{frame}
-%\begin{frame}{MKIDs}
-%				\framesubtitle{Resolución de Energía}
-%				%\begin{exampleblock}{}
-%				%       Works on the principle that incident photons change the surface
-%				%       impedance of a superconductor through the \textit{kinetic
-%				%       inductance effect}
-%				%\end{exampleblock}
-%												\begin{equation*}
-%																R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
-%																\Delta}}
-%												\end{equation*}
-%				$\eta = 0.57 \to$ eficiencia para crear cuasipartículas (típico),
-%
-%				$h\nu \to$ energía del fotón incidente,
-%
-%				$\Delta = 1.72\,k_BT_c \to$ gap de energía del absorvedor superconductor,
-%
-%				$F \approx 0.2 \to$ factor de Fano
-%
-%				$R=150$ a 5\,eV para temperatura de operación de 100\,mK.
-%
-%				$T = 15$\,mK $\to$ resolución de energía máxima teórica de \alert{$R = 400$ a
-%				5\,eV} (aunque es probable que otras fuentes de ruido, como el ruido de
-%				dos niveles del sistema (TLS), sean más importantes a medida que el
-%				desarrollo futuro aumente	la resolución de energía).
-%
-%\end{frame}
-%\begin{frame}{MKIDs}
-%				\scriptsize{\begin{itemize}
-%								\item Como detector de fotones en el rango mm/submm
-%								\item Resonancia  $1-10\,\text{GHz}$
-%								\item $Q \sim 10^5$
-%								\item $T_{op} < 300\,\text{mK}$
-%								\item Resolución de energía intrínseca $R = \frac{E}{\Delta E} \sim
-%												20-150$\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-%								\item Resonadores diseñados para operar separados por 2\,MHz en
-%												un BW de $4-5\,\text{GHz}$.
-%								\item Transmisión fuera de resonancia $\simeq 1$
-%				\end{itemize}
-%				Cada resonador tendrá un $BW \sim 200\,\text{kHz}$ (\alert{basado en el
-%				factor de calidad que necesitamos}), se requiere una separación de
-%				2\,MHz entre los resonadores (la posición del resonador se moverá en
-%				función de una carga diferente. Si los empaquetamos demasiado cerca uno
-%				del otro, su posición relativa puede cambiar durante la observación o
-%				en diferentes ciclos de refrigerado).
-%
-%				Por lo tanto, queremos que ADC tenga BW de al menos 400\,MHz y una SNR
-%				superior a 59\,dB.
-%
-%				Si solo consideramos el ruido de cuantización, teóricamente, una SNR de
-%				59\,dB requerirá que el ADC tenga al menos 10 bits.
-%				}
-%				\tiny{\textbf{arXiv:1310.5891v2 (2013)}}
-%\end{frame}
-%\begin{frame}{Tipos de MKIDs}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
-
-%------------------------------------------------------------------------------
-%\section{Aplicaciones}
-%\begin{frame}{Polarización del CMB}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
-%
-%\begin{frame}{Antenna-Coupled multicolor MKIDs}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
-%
-%\begin{frame}{Detección de fonones usando MKIDs}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
-
-%------------------------------------------------------------------------------
-\begin{frame}{Readout design and development}
-				\only<1>{\footnotesize{\begin{itemize}
-								\item To read out an MKID, a probe tone at its resonant
-												frequency is passed through it.
-								\item When a photon is absorbed by the detector, the
-												phase of the tone suddenly changes.
-								\item From this change, \alert{the energy} and
-												\alert{time of arrival} of the photon are determined.
-								\item In the readout a complex frequency comb is
-												generated by DACs and is mixed up to the range
-																of resonant frequencies.
-												\item The resulting signal is sent through the MKID
-																array, mixed back down to baseband, and
-																digitized by ADCs.
-												\item This is then processed by \alert{firmware} on
-																FPGAs, which
-																\alert{detects photon events in the phase of each
-																pixel's probe tone}.
-												\item The photon data is sent to a data acquisition and
-																control computer to be recorded.
-				\end{itemize}}}
-				\centering
-				\only<2>{\includegraphics[width=0.8\textwidth]{arcons_readout}}
-\end{frame}
-
-\begin{frame}{Firmware}
-				The firmware is written in VHDL/Verilog.
-
-				It controls the DAC output, and processes the ADC input.
-
-				It separates the digitized readout signal into frequency bins (channels)
-				corresponding to each pixel.
-
-				The signal for each pixel is filtered and converted to phase before
-				being run through \alert{pulse detection}.
-
-				The output data rate is expected to be around 100 complex $S_{21}$
-				measurements per second, per resonator\footnote{\tiny{from
-				MKIDCam Readout Electronics Specifications (2008)}} $\to$ (\alert{to be
-				confirmed})
-\end{frame}
-
-\begin{frame}{Design requirements}
-				\begin{itemize}
-								\item The readout must not introduce significant noise above the
-												system noise floor set by the \textbf{cryogenic
-												amplifier} with a noise temperature of $\sim
-												4\,\text{K}$.
-								\item The entire readout system must be capable of
-												reading out at least \alert{512 resonators} in $\sim
-												1\,\text{GHz}$ of bandwidth ({\color{red} to be
-												confirmed}).
-								\item \alert{Crosstalk} between channels greater than
-												$250\,\text{kHz}$ apart should be less than \alert{1\%}.
-								\item Intrinsic energy resolution \alert{$R \sim 20-150$}
-												\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-				\end{itemize}
-\end{frame}
-
-\begin{frame}{$N_\text{channels}$ vs. $P_\text{readout}$}
-				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
-				\begin{columns}
-								\begin{column}{0.45\textwidth}
-												\begin{itemize}
-																\item \footnotesize{Given an ADC's voltage noise
-																				specification, the number of channels
-																				{\color{blue}$n$} an ADC can read out at a given power
-																				without adding to the HEMT noise can be
-																				calculated.}
-																\item The contours of Fig. 3 are calculated by
-																				scaling the HEMT noise with a
-																				channel-dependent factor giving, $k_B
-																				T_n /(p_\text{max}^2 P)$.
-																\item $p_\text{max} \propto
-																				n^{1/2}\,\text{for}\,n >> 1$
-																\item Random phase per tone assumed
-												\end{itemize}
-								\end{column}
-								\begin{column}{0.45\textwidth}
-												\includegraphics[width=0.85\textwidth]{power_vs_Nchannels}
-								\end{column}
-				\end{columns}
-\end{frame}
-
-\section{Channelizer}
-\begin{frame}{Channelizer}
-
-				Implementaci\'on m\'as eficiente en t\'erminos de uso de hardware en FPGA
-
-				Ancho de banda similar para todos los canales
-
-				Extensible a un n\'umero grande de canales ($>=1000$)
-
-				Posibilidad de realizar el dise\~no en multi-etapas
-
-				\begin{center}
-								\includegraphics[width=0.8\textwidth]{FDM_channel_diagram}
-				\end{center}
-\end{frame}
-\begin{frame}{Channelizer Tx}
-				%\begin{columns}
-				%       \begin{column}{0.65\textwidth}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.8\textwidth]{Tx_channelizer}}
-				\end{center}
-				%       \end{column}
-				%       \begin{column}{0.65\textwidth}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.8\textwidth]{Tx_channelizer_con_IFFT}}
-								\end{center}
-								%       \end{column}
-								%\end{columns}
-\end{frame}
-
-\begin{frame}{Channelizer Rx}
-				%\begin{columns}
-				%       \begin{column}{0.65\textwidth}
-				\begin{center}
-								\only<1>{\includegraphics[width=0.8\textwidth]{Rx_channelizer}}
-				\end{center}
-				%       \end{column}
-				%       \begin{column}{0.65\textwidth}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.8\textwidth]{Rx_channelizer_con_IFFT}}
-								\end{center}
-								%       \end{column}
-								%\end{columns}
-\end{frame}
-
-\begin{frame}{PFB operación básica}
-				\begin{center}
-								\includegraphics[width=0.5\textwidth]{PFB_basic_operation}\\
-								\includegraphics[width=0.5\textwidth]{PFB_distribution_filter_branches}
-				\end{center}
-\end{frame}
-
-\begin{frame}{PFB operación básica}
-				\begin{center}
-								\includegraphics[width=0.5\textwidth]{PFB_distribution_filter_decimators}\\
-								\includegraphics[width=0.5\textwidth]{PFB_distribution_filter_interpolators}
-				\end{center}
-\end{frame}
-
-\begin{frame}{PFB operación básica}
-				\begin{center}
-								\includegraphics[width=0.5\textwidth]{PFB_distribution_modulators}\\
-								\includegraphics[width=0.5\textwidth]{PFB_final_arquitecture}
-				\end{center}
-\end{frame}
-
-\begin{frame}{PFB operación básica}
-				\begin{center}
-								\includegraphics[width=0.5\textwidth]{PFB_opening_after_modulation}\\
-								\includegraphics[width=0.5\textwidth]{PFB_OVS_final_architecture}
-				\end{center}
-\end{frame}
-
-\section{Filtro prototipo}
-\begin{frame}{Filtro prototipo}
-				\begin{columns}
-								\begin{column}{0.45\textwidth}
-												\begin{center}
-																\includegraphics[width=0.8\textwidth]{prototipo}
-												\end{center}
-								\end{column}
-								\begin{column}{0.45\textwidth}
-												\begin{center}
-																\includegraphics[width=0.8\textwidth]{prototipo_specifications_table}
-												\end{center}
-								\end{column}
-				\end{columns}
-\end{frame}
-
-\section{Vivado}
-\begin{frame}{Vivado}
-
-				Actualmente trabajando con la versi\'on 2016.4
-
-				Cores propios, ej. RxChannelizer y TxChannelizer, etc.
-
-				Mezcla de scripts TCL y Linux embebido
-				\begin{center}
-								\includegraphics[width=0.8\textwidth]{pfb_repo}
-				\end{center}
-\end{frame}
-
-\begin{frame}{Proyectos Vivado}
-
-				%\begin{columns}
-				%\begin{column}{0.45\textwidth}
-				\begin{center}
-								%\only<1>{\includegraphics[width=0.95\textwidth]{rxchan16_test2_vivado_project}}
-								\only<1>{\includegraphics[width=0.95\textwidth]{esquema_rxch16_vivado}}
-				\end{center}
-				%\end{column}
-				%\begin{column}{0.45\textwidth}
-								\begin{center}
-												\only<2>{\includegraphics[width=0.8\textwidth]{rxch16_vivado}}
-								\end{center}
-								\begin{center}
-												\only<3>{\includegraphics[width=0.8\textwidth]{gen_tonos_vivado}}
-								\end{center}
-								%\end{column}
-								%\end{columns}
-\end{frame}
-
-\section{Mediciones}
-%\subsection{Diseño FNAL}%es el diseño de Israel
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid1}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid2}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid3}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid4}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid1}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid2}
-%\end{frame}
-\subsection{Diseño UCSB}
-\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
-				%\begin{frame}{Diseño UCSB} %Estudio de la $T_c$}
-				\framesubtitle{Características}
-								\begin{columns}
-												\begin{column}{0.49\textwidth}
-																\begin{itemize}
-																								%\item[o] Diseño de la UCSB
-																				\item[o] Arreglo utilizado en
-																								{\color{blue}ARCONS} (Array
-																								Camera for Optical to Near-IR
-																								Spectrophotometry)
-																				\item[o] Arreglo de 44 x 46 resonadores (\alert{2024
-																								píxeles})
-																				\item[o] Separación entre frecuencias de
-																								resonancia $\to$ \alert{2 MHz}
-																				\item[o] Nitruro de Titanio (TiN) con una temperatura
-																								crítica de \alert{$\sim$ 0.9 K}
-																				\item[o] Banda de observación: \alert{380 nm --
-																								1150 nm}
-																\end{itemize}
-												\end{column}
-												\begin{column}{0.49\textwidth}
-																\centering
-																%\includegraphics[width=0.6\textwidth]{mkid4}
-																%\includegraphics[angle=-90,width=0.62\textwidth]{mkid2}
-												\end{column}
-								\end{columns}
-				\end{frame}
-				\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
-								%\begin{frame}{Estudio de la $T_c$}
-								\framesubtitle{Mediciones preliminares para definir los requerimientos
-												de la electrónica}
-												\centering
-												\includegraphics[width=0.61\textwidth]{mkid_ucsb2}
-												%\begin{columns}
-												%				\begin{column}{0.49\textwidth}
-																\footnotesize{\begin{itemize}
-																				\item[o] TiN sobre Si
-																				\item[o] TiN de 60 nm
-																				\item[o] Wire bonds de oro a los pads para
-																								disipación de calor
-																				\item[o] Caja de cobre enchapada en oro (solo
-																								materiales no magnéticos)
-																								%\item[o] Wire bonds de Al a las líneas
-																								%				de Tx
-
-																								%	Las pestañas sostienen el chip hacia
-																								%	abajo y ayudan a aplastar el pegamento
-																								%	para que el chip quede al ras del brazo.
-																\end{itemize}}
-																%				\end{column}
-																%				\begin{column}{0.49\textwidth}
-																%								\includegraphics[width=0.72\textwidth]{mkid_ucsb2}
-																%								%\centering
-																%								%%\only<1>{\includegraphics[width=0.5\textwidth]{mkid4}}
-																%								%\only<1>{\includegraphics[angle=-90,width=0.72\textwidth]{mkid2}}
-																%								%\only<2>{\includegraphics[width=0.82\textwidth]{mkid5}}
-																%								%\only<2>{\includegraphics[width=0.82\textwidth]{mkid6}}
-																%								%\only<3>{\includegraphics[width=0.82\textwidth]{mkid7}}
-																%								%\only<3>{\includegraphics[width=0.82\textwidth]{mkid8}}
-																%				\end{column}
-																%\end{columns}
-								\end{frame}
-								%\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
-								%				\framesubtitle{Características}
-								%				\centering
-								%				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-								%												\includegraphics[width=0.62\textwidth]{mkid_ucsb1}
-								%\end{frame}
-								%\begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
-								%				\framesubtitle{Características (Charla de Donna Kubik, FNAL)}
-								%
-								%				\centering
-								%				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-								%												\includegraphics[width=0.72\textwidth]{mkid_ucsb2}
-								%\end{frame}
-								\begin{frame}{Estudio del cambio fraccional de frecuencia de resonancia}
-												\framesubtitle{Mediciones preliminares para definir los requerimientos
-												de la electrónica}
-												Atomic Layer Deposition (ALD)
-												\begin{equation*}
-																\frac{\delta f_r}{f_r} = \frac{f_r(T) -
-																f_r(0)}{f_r(0)} = -\frac{1}{2}\alpha\frac{\delta
-																\sigma_2(T)}{\sigma_2(0)}
-												\end{equation*}
-												\begin{columns}
-																\begin{column}{0.49\textwidth}
-																				{\color{blue}\begin{equation*}
-																								\frac{\delta f(T)}{f(0)} = 
-																								-\frac{\alpha}{2}\sqrt{\frac{\pi \Delta}{2 k_B
-																								T}} e^{-\frac{\Delta}{k_B T}}
-																				\end{equation*}}
-																				\begin{equation*}
-																								\Delta = \frac{3.5}{2} k_B T_c
-																				\end{equation*}
-																				\begin{equation*}
-																								\alpha = \frac{L_k}{L_\text{tot}}
-																				\end{equation*}
-
-																				$\Delta \to$ gap de energía
-																\end{column}
-																\begin{column}{0.49\textwidth}
-																				\begin{equation*}
-																								\sigma = \sigma_1 - j \sigma_2
-																				\end{equation*}
-
-																				En películas de TiN, $\sigma$, se desvía cada vez más de la
-																				teoría convencional	de Mattis-Bardeen debido a un \alert{fuerte
-																				desorden de TiN}
-																\end{column}
-												\end{columns}
-								\end{frame}
-\begin{frame}{Estudio de la $T_c$}
-				\framesubtitle{Mediciones preliminares para definir los requerimientos
-				de la electrónica}
-				%\only<1>{\begin{equation*}
-				%				\frac{\sigma_2(T)}{\sigma_N} \simeq
-				%												\frac{\pi \Delta}{\hbar
-				%												\omega}\left[1-2\exp \left(-\frac{\Delta}{k_B
-				%												T}\right)\exp \left(-\frac{\hbar \omega}{2 
-				%												k_B T}\right)
-				%												I_0 \left(\frac{\hbar \omega}{2 k_B T}\right)\right]
-				%\end{equation*}}
-				Resultados similares a los medidos por la UCSB para otros arreglos
-				%\vspace{1cm}
-				\begin{columns}
-								\begin{column}{0.69\textwidth}
-												\centering
-												%\only<1>{\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}}
-												\includegraphics[width=0.54\textwidth]{medicion_Tc_ucsb}
-								\end{column}
-								\begin{column}{0.39\textwidth}
-												{\color{blue}\begin{equation*}
-																\frac{\delta f(T)}{f(0)} = 
-																-\frac{\alpha}{2}\sqrt{\frac{\pi \Delta}{2 k_B
-																T}} e^{-\frac{\Delta}{k_B T}}
-												\end{equation*}}
-								\end{column}
-				\end{columns}
-												\includegraphics[width=0.75\textwidth]{delta_f_vs_temp}
-\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\begin{itemize}
-%								\item[*] -25 dB hasta -50 dB + atenuador de 30 dB
-%				\end{itemize}
-%				\centering
-%												\includegraphics[width=0.48\textwidth]{resonador0_asc_sin_filtro}
-%												\includegraphics[width=0.48\textwidth]{resonador0_asc_filtro}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-%												\includegraphics[width=0.82\textwidth]{resonador0_asc_filtro}
-%\end{frame}
-%\begin{frame}{El amplificador criogénico}
-%				%\begin{itemize}
-%				%\item 
-%				El ruido de fase de doble banda lateral (DSB) del amplificador HEMT
-%												viene dado por la expresión
-%												{\color{red}
-%												\begin{equation*}
-%																N_{\phi \text{DSB}} = \frac{k_B T_n}{P}
-%												\end{equation*}} 
-%												\flushleft
-%												$T_n \to$ temperatura de ruido del amplificador, 
-%
-%												$P \to$ potencia en la entrada. 
-%
-%												La potencia de lectura de cada MKID debería ser de $-100 \pm
-%												15\,\text{dBm}$ ({\color{red} a confirmar}). 
-%
-%												Para una potencia de lectura de $-85\,\text{dBm}$, fuera
-%												de resonancia, y $T_n = 6\,\text{K}$, se espera
-%												$-106\,\text{dBc/Hz}$ para el ruido de fase del HEMT.
-%												Idealmente, la electrónica de lectura contribuirá con
-%												ruido muy por debajo de este
-%												valor.\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-%												%\end{itemize}
-%\end{frame}
-
-\begin{frame}{$N_\text{canales}$ vs. $P_\text{lectura}$}
-				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
-				\begin{columns}
-								\begin{column}{0.4\textwidth}
-												\begin{itemize}
-																\item \footnotesize{Dada la especificación de
-																				voltaje de ruido del ADC, se puede
-																				calcular el número de canales
-																				{\color{red}$n$} que el ADC puede leer
-																				a una potencia dada sin aumentar el
-																				ruido del HEMT (amplificador)}
-																\item Los contornos de la figura se calculan
-																				escalando  el ruido del HEMT con un
-																				factor dependiente del canal, $k_B
-																				T_n /(p_\text{max}^2 P)$.
-																\item $p_\text{max} \propto
-																				n^{1/2}\quad\text{para}\quad n >> 1$
-																\item {\color{blue}Se asume fase aleatoria por
-																				tono (factor de cresta)}
-												\end{itemize}
-								\end{column}
-								\begin{column}{0.6\textwidth}
-												\centering
-												\includegraphics[width=0.8\textwidth]{power_vs_Nchannels2}
-												\includegraphics[width=0.9\textwidth]{in_spectrum_time2}
-												\includegraphics[width=0.9\textwidth]{in_spectrum_time}
-								\end{column}
-				\end{columns}
-\end{frame}
-
-\begin{frame}{Factor de cresta}
-				%\framesubtitle{Características (Charla de Donna Kubik, FNAL)}
-
-				Factor de cresta sin optimizar: 22.627 (27.093 dB)
-
-				Factor de cresta optimizado   : 11.611 (21.298 dB)
-
-				Factor de cresta optimizado   : 8.770 (18.860 dB)
-
-				Diferencia (a)                : 11.016 (5.795 dB)
-
-				Diferencia (b)                : 13.857 (8.232 dB)
-
-
-				\centering
-				%				\includegraphics[width=0.42\textwidth]{resonador0_asc_sin_filtro}
-												\includegraphics[width=0.72\textwidth]{in_spectrum_time2}
-\end{frame}
-
-\begin{frame}{Barrido en potencia}
-				\framesubtitle{Mediciones preliminares para definir los requerimientos
-				de la electrónica}
-				\footnotesize{\begin{itemize}
-								\item[*] Configuración: -25 dB hasta -50 dB + atenuador de 30 dB
-												(externo)
-								\item[*] Ruido vs. Potencia
-								\item[*] Filtro moving average (200 puntos)
-				\end{itemize}}
-				%\vspace{-1cm}
-				\centering
-												\includegraphics[width=.9\textwidth]{res0_asc_full_potencias}
-\end{frame}
-\begin{frame}{Potencia óptima de trabajo}
-				\framesubtitle{Mediciones preliminares para definir los requerimientos
-				de la electrónica}
-				\footnotesize{\begin{itemize}
-								\item[*] Potencia efectiva en los resonadores $\to$ -55 dB a
-												-80 dB 
-								\item[*] Efecto saturación para $P > -65\,\text{dB}$
-								\item[*] \alert{$-77\,\text{dB} < P_\text{opt} < -65\,\text{dB}$}
-
-				\end{itemize}}
-				\centering
-												\includegraphics[width=0.89\textwidth]{res0_3_potencias}
-
-\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.82\textwidth]{res0_Q_vs_P}
-%
-%\end{frame}
-\begin{frame}{Q vs Potencia}
-				\framesubtitle{Mediciones preliminares para definir los requerimientos
-				de la electrónica}
-				\begin{columns}
-								\begin{column}{0.35\textwidth}
-												\footnotesize{\begin{itemize}
-																\item[*] No existe efecto ``histéresis'' 
-																\item[*] Saturación para $P > -65\,\text{dB}$
-																				%\item[*] \alert{$-77\,\text{dB} < P_\text{opt} <
-																				%				-65\,\text{dB}$}
-												\end{itemize}}
-								\end{column}
-								\begin{column}{0.65\textwidth}
-												\centering
-												\includegraphics[width=0.45\textwidth]{un_resonador0_des_filtro}
-												\includegraphics[width=0.45\textwidth]{un_resonador1_des_filtro}
-								\end{column}
-				\end{columns}
-
-				\begin{columns}
-								\begin{column}{0.49\textwidth}
-												\qquad \qquad-55 dB $\to$ -80 dB
-												\centering
-												\includegraphics[height=0.45\textheight,width=1.1\textwidth]{Q_vs_P_tot_des}
-								\end{column}
-								\begin{column}{0.49\textwidth}
-												-80 dB $\to$ -55 dB
-												\centering
-												\includegraphics[height=0.45\textheight,width=1.1\textwidth]{Q_vs_P_tot_asc}
-								\end{column}
-				\end{columns}
-
-\end{frame}
-
 %------------------------------------------------------------------------------
 \section{Desarrollo del sistema de lectura}
 \begin{frame}{Desarrollo del sistema de excitación/lectura}
 				\framesubtitle{Temas a considerar}
 				\begin{columns}
 								\begin{column}{0.5\textwidth}
-												\normalsize{\begin{itemize}
+												\footnotesize{\begin{itemize}
 																\item Algoritmo de procesamiento de señales
 																\item Selección de frecuencia, velocidad de datos de salida
-																\item Ruido
-																\item Potencia
-																\item Rango dinámico
+																\item Ruido, potencia, rango dinámico
 																\item $f$ espúreas, productos de intermodulación, etc.
 																\item Implementación: ubicación, empaque, fuente de
 																				energía, comunicación, interfaz con PC, etc.
 												\end{itemize}}
+												\begin{center}
+																\includegraphics[width=0.6\textwidth]{rp_como_sistema}
+												\end{center}
 								\end{column}
 								\begin{column}{0.5\textwidth}
-												ZCU111/RedPitaya
-												\includegraphics[width=0.8\textwidth]{zcu2}
-												\includegraphics[width=0.8\textwidth]{zcu1}
-												\includegraphics[width=0.8\textwidth]{600px-RedPitaya_HW_overview}
+												STEMLab RedPitaya
+												\includegraphics[width=0.8\textwidth]{rp_sistema_2}
+												%\includegraphics[width=0.8\textwidth]{zcu1}
+												%\includegraphics[width=0.8\textwidth]{600px-RedPitaya_HW_overview}
 								\end{column}
 				\end{columns}
 \end{frame}
+
 \begin{frame}{Desarrollo del sistema de excitación/lectura}
 				\framesubtitle{Temas a considerar}
 				\centering
@@ -946,149 +207,6 @@
 				%Telesc.  Instrum., doi:10.1117/12.856832}
 \end{frame}
 
-%\begin{frame}{Diseño y desarrollo del sistema de lectura}
-%				\only<1>{\footnotesize{\begin{itemize}
-%								\item Para leer un MKID, se pasa un tono de prueba a su
-%												frecuencia resonante
-%								\item Cuando el detector absorbe un fotón, la fase del tono
-%												cambia repentinamente
-%								\item A partir de este cambio, se determina la \alert{energía} y
-%												el \alert{tiempo de llegada} del fotón.
-%								\item En la lectura, los DAC generan un peine de frecuencia
-%												complejo que se mezcla con el rango de frecuencias
-%												resonantes
-%								\item La señal resultante se envía a través de la matriz MKID,
-%												se mezcla de nuevo a la banda base y se digitaliza
-%												mediante un ADC
-%								\item Esto es procesado por el firmware en la FPGA, que detecta
-%												eventos de fotones en la fase del tono de prueba de cada
-%												píxel
-%								\item Los datos de los fotones se envían a una computadora de
-%												adquisición y control de datos para su registro
-%				\end{itemize}}}
-%				\centering
-%				\only<2>{\includegraphics[width=0.8\textwidth]{arcons_readout}}
-%\end{frame}
-
-%\begin{frame}{Firmware}
-%				The firmware is written in VHDL/Verilog. 
-%
-%				It controls the DAC output, and processes the ADC input. 
-%
-%				It separates the digitized readout signal into frequency bins (channels)
-%				corresponding to each pixel. 
-%
-%				The signal for each pixel is filtered and converted to phase before
-%				being run through \alert{pulse detection}.
-%
-%				The output data rate is expected to be around 100 complex $S_{21}$
-%				measurements per second, per resonator\footnote{\tiny{from
-%				MKIDCam Readout Electronics Specifications (2008)}} $\to$ (\alert{to be
-%				confirmed})
-%\end{frame}
-%
-%\begin{frame}{Pulse detection}
-%				\begin{columns}
-%								\begin{column}{0.49\textwidth}
-%												\scriptsize{Readout capable of recording to file one continuous
-%												second of phase data for one pixel at a time, \alert{sampled at
-%												1\,MHz}. 
-%
-%												To record data from all the pixels, though, the firmware must
-%												reduce the data to only include data from detected photons,
-%												which are seen as negative peaks in the phase.}
-%								\end{column}
-%								\begin{column}{0.49\textwidth}
-%												\centering
-%												\includegraphics[width=0.98\textwidth]{pulsos_de_fase}
-%								\end{column}
-%				\end{columns}
-%				\scriptsize{A (programmable) filter is applied to the phase signal to increase the
-%				SNR of drops in phase due to photons.  
-%
-%				{\color{blue}Snapshots	of raw phase data are used to create a
-%				\alert{matched filter},	customized to each pixel.}
-%
-%				The {\color{blue}firmware} also keeps track of the phase baseline and subtracts it
-%				before checking for photon pulses, to resist false triggers from $1/f$
-%				noise.\footnote{ARCONS talks.}}
-%\end{frame}
-%\begin{frame}{Readout design and development}
-%
-%				MKIDs $\to$ 
-%
-%				The obvious advantage of MKIDs over competing cryogenic technologies
-%				like TESs is the elimination of the cryogenic electronics required for
-%				multiplexing
-%
-%				\tiny{\emph{\textbf{A readout for large arrays of microwave kinetic
-%				inductance detectors}}, Rev. Sci. Instrum., doi:10.1063/1.3700812}
-%\end{frame}
-
-%\begin{frame}{Design requirements}
-%				\begin{itemize}
-%								\item The readout must not introduce significant noise above the
-%												system noise floor set by the \textbf{cryogenic
-%												amplifier} with a noise temperature of $\sim
-%												4\,\text{K}$.
-%								\item The entire readout system must be capable of
-%												reading out at least \alert{512 resonators} in $\sim
-%												1\,\text{GHz}$ of bandwidth ({\color{red} to be
-%												confirmed}).
-%								\item \alert{Crosstalk} between channels greater than
-%												$250\,\text{kHz}$ apart should be less than \alert{1\%}.
-%								\item Intrinsic energy resolution \alert{$R \sim 20-150$}
-%												\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-%				\end{itemize}
-%\end{frame}
-
-%------------------------------------------------------------------------------
-%\section{ARCONS}
-%\begin{frame}{ARCONS}
-%
-%				\textbf{A}rray \textbf{C}amera for \textbf{O}ptical to \textbf{N}ear-IR
-%				\textbf{S}pectrophotometry
-%				\begin{itemize}
-%								\item Primer instrumento terrestre basado en MKIDs para el rango de
-%												longitud de onda óptica hasta el IR cercano
-%								\item Diseño óptico simple que permite muy alto rendimiento
-%								\item Resolución de tiempo de hasta seis órdenes de magnitud
-%												mejor que un CCD
-%								\item Ancho de banda intrínseco extremadamente amplio (0.1
-%												-5\,$\mu$m) con buena eficiencia cuántica
-%								\item Sin ruido de lectura o corriente oscura, y casi perfecto
-%												rechazo de rayos cósmicos
-%								\item No se pierde tiempo de observación al leer la matriz
-%				\end{itemize}
-%
-%				%\begin{center}
-%				%				\includegraphics[width=0.8\textwidth]{FDM_channel_diagram}
-%				%\end{center}
-%\end{frame}
-%\begin{frame}{ARCONS}
-%
-%				\textbf{A}rray \textbf{C}amera for \textbf{O}ptical to \textbf{N}ear-IR
-%				\textbf{S}pectrophotometry
-%				\begin{itemize}
-%								\item La tecnología actual óptica MKID tiene una resolución
-%												espectral $R = \lambda/\Delta \lambda \sim 10$ a
-%												\SI{4000}{\angstrom}
-%								\item 
-%								\item Resolución de tiempo de hasta seis órdenes de magnitud
-%												mejor que un CCD
-%								\item Ancho de banda intrínseco extremadamente amplio (0.1
-%												-5\,$\mu$m) con buena eficiencia cuántica
-%								\item Sin ruido de lectura o corriente oscura, y casi perfecto
-%												rechazo de rayos cósmicos
-%								\item No se pierde tiempo de observación al leer la matriz
-%				\end{itemize}
-%
-%				%\begin{center}
-%				%				\includegraphics[width=0.8\textwidth]{FDM_channel_diagram}
-%				%\end{center}
-%\end{frame}
-
-%------------------------------------------------------------------------------
 \begin{frame}{Desarrollo del sistema de excitación/lectura}
 				\framesubtitle{Frequency Division Multiplexing (FDM)}
 				\begin{columns}
@@ -1114,17 +232,15 @@
 
 \end{frame}
 
-%------------------------------------------------------------------------------
-%\section{Firmware: Channelizer}
-
 \begin{frame}{Desarrollo del sistema de excitación/lectura}
 				\framesubtitle{Canalizador DFT (Channelizer)}
 				\begin{columns}
 								\begin{column}{0.4\textwidth}
 												\begin{itemize}
 																\item[*] Implementación m\'as eficiente en t\'erminos de uso de hardware en FPGA
-																\item[*] Ancho de banda similar para todos los canales 
-																				%\item[*] Extensible a un n\'umero grande de canales ($>=1000$)
+																\item[*] Ancho de banda similar para todos los
+																				canales (DFT-PFB)
+																\item[*] Extensible a un n\'umero grande de canales ($>=1000$)
 																\item[*] Posibilidad de realizar el diseño en multi-etapas
 												\end{itemize}
 								\end{column}
@@ -1132,377 +248,100 @@
 
 												\begin{center}
 																\includegraphics[width=\textwidth]{FDM_channel_diagram}
-																\includegraphics[width=\textwidth]{pfb_basic1}
+																\includegraphics[width=0.9\textwidth]{pfb_basic1}
 												\end{center}
 								\end{column}
 				\end{columns}
 \end{frame}
-%\begin{frame}{Canalizador}
-%				\framesubtitle{Operación básica}
-%				\centering
-%								\includegraphics[width=0.7\textwidth]{pfb_basic1}
-%\end{frame}
-%\begin{frame}{Canalizador}
-%				\framesubtitle{Operación básica}
-%				\begin{columns}
-%								\begin{column}{0.5\textwidth}
-%												\begin{itemize}
-%																\item Basado en el concepto de filtro polifásico
-%																				\begin{equation*}\label{eq_transformada_z}
-%																								X(z) = \sum_{n = -\infty}^{\infty}x(n)\,z^{-n}
-%																				\end{equation*}
-%
-%
-%												\end{itemize}
-%								\end{column}
-%								\begin{column}{0.5\textwidth}
-%												\centering
-%												\includegraphics[width=0.7\textwidth]{pfb_basic1}
-%								\end{column}
-%				\end{columns}
-%																				\begin{equation*}\label{eq_transformada_z_polifasica}
-%																								X(z) = \sum_{\lambda =
-%																								0}^{M-1}z^{-\lambda}\,X_\lambda^{(p)}(z^{M})
-%																				\end{equation*}
-%																				{\color{blue}\begin{equation*}\label{eq_x_polifasica}
-%																								X_\lambda^{(p)}(z^{M}) = \sum_{m =-\infty}^{\infty}x(mM+\lambda)\,z^{-mM}
-%																				\end{equation*}}
-%
-%
-%\end{frame}
-%\begin{frame}{Canalizador}
-%				\framesubtitle{Operación básica}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_basic_operation}}
-%				\end{center}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.5\textwidth]{PFB_opening_after_modulation}}
-%								\end{center}
-%\end{frame}
-%\begin{frame}{Channelizer operación básica}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_branches}}
-%				\end{center}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_opening_after_modulation}}
-%								\end{center}
-%\end{frame}
-%
-%\begin{frame}{Channelizer operación básica}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_decimators}}
-%				\end{center}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_distribution_filter_interpolators}}
-%								\end{center}
-%\end{frame}
-%
-%\begin{frame}{Channelizer operación básica}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.6\textwidth]{PFB_distribution_modulators}}
-%				\end{center}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}}
-%								\end{center}
-%\end{frame}
 
-%\begin{frame}{Channelizer Tx}
-%				%\begin{columns}
-%				%				\begin{column}{0.65\textwidth}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.8\textwidth]{Tx_channelizer}}
-%				\end{center}
-%				%				\end{column}
-%				%				\begin{column}{0.65\textwidth}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{Tx_channelizer_con_IFFT}}
-%								\end{center}
-%								%				\end{column}
-%								%\end{columns}
-%\end{frame}
-%\begin{frame}{Channelizer Rx}
-%				%\begin{columns}
-%				%				\begin{column}{0.65\textwidth}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.8\textwidth]{Rx_channelizer}}
-%				\end{center}
-%				%				\end{column}
-%				%				\begin{column}{0.65\textwidth}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{Rx_channelizer_con_IFFT}}
-%								\end{center}
-%								%				\end{column}
-%								%\end{columns}
-%\end{frame}
-%------------------------------------------------------------------------------
-%\section{Comparación de arquitecturas de canalización de gran ancho de banda}
-
-%\begin{frame}{Digital Down-Converter (DDC)}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.9\textwidth]{c1_single_channel_DDC}}
-%								\only<2>{\includegraphics[width=0.9\textwidth]{readout3_compa}}
-%				\end{center}
-%				%\begin{center}
-%				%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
-%				%				\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
-%				%\end{center}
-%								Desventaja: los DDC son ``intensivos en silicio'', difícil de
-%								incluir muchos ($>1000$) canales en FPGA
-%\end{frame}
-%\begin{frame}{Arquitectura Pipelined Frequency Transform (PFT)}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.45\textwidth]{readout4_compa}}
-%								\only<1>{\includegraphics[width=0.35\textwidth]{readout5_compa}}
-%				\end{center}
-%
-%				División de bandas de frecuencia $\to$ cada etapa sucesiva de la PFT
-%				aumenta el número de bandas en un factor de dos
-%
-%				Desventaja: para un gran número de canales ($>1000$), el árbol se vuelve
-%				muy grande. Por ejemplo, 1024 canales requerirían 2046 módulos (CDC o
-%				CUC) complejos
-%\end{frame}
-%
-%\begin{frame}{Arquitectura DFT Polifase}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.47\textwidth]{readout6_compa}}
-%								\only<1>{\includegraphics[width=0.50\textwidth]{readout7_compa}}
-%				\end{center}
-%
-%				$M = K \to$ críticamente muestreado
-%
-%				$M < K (I = K/M) \to$ caso sobre-muestreado (oversampled)
-%
-%				Para nuestra aplicación $I=2$ es una elección \alert{adecuada y
-%				suficiente}
-%
-%				Arquitectura conveniente para cuando el número de canales es grande
-%
-%\end{frame}
-%
-%\begin{frame}{Canalizador FFT}
-%				\centering
-%								\only<1>{\includegraphics[width=0.5\textwidth]{readout2_tabla_compa}}
-%				\only<2>{\begin{overpic}[width=0.5\textwidth]{readout2_tabla_compa}
-%								\put(0,16){\color{red}\rule{180pt}{1pt}}
-%								\put(0,32){\color{red}\rule{180pt}{1pt}}
-%								\put(0,16){\color{red}\rule{1pt}{30pt}}
-%								\put(99,16){\color{red}\rule{1pt}{30pt}}
-%				\end{overpic}}
-%
-%				\tiny{\textbf{Lillington, John. ``Comparison of wideband channelisation
-%				architectures'' (2003)}}
-%
-%				\only<2>{\normalsize{Para grandes cantidades de bines, el DFT Polifase gana
-%				rápidamente, particularmente en términos de memoria y se convierte en
-%				la opción preferida para bancos de filtros fijos}}
-%\end{frame}
-
-%------------------------------------------------------------------------------
-%\section{Opciones de readout}
-
-%\begin{frame}{NIKEL}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.5\textwidth]{nikel_readout}}
-%				\end{center}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout2}}
-%												\only<2>{\includegraphics[width=0.5\textwidth]{nikel_readout3}}
-%								\end{center}
-%\end{frame}
-%
-%\begin{frame}{Channelizer operación básica}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.6\textwidth]{PFB_distribution_modulators}}
-%				\end{center}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}}
-%								\end{center}
-%\end{frame}
-
-%\section{Vivado}
-%\begin{frame}{Vivado}
-%
-%				Actualmente trabajando con la versi\'on 2016.4
-%
-%				Cores propios, ej. RxChannelizer y TxChannelizer, etc.
-%
-%				Mezcla de scripts TCL y Linux embebido
-%				\begin{center}
-%								\includegraphics[width=0.8\textwidth]{pfb_repo}
-%				\end{center}
-%\end{frame}
-%
-%\begin{frame}{Proyectos Vivado}
-%
-%				%\begin{columns}
-%				%\begin{column}{0.45\textwidth}
-%				\begin{center}
-%								\only<1>{\includegraphics[width=0.95\textwidth]{rxchan16_test2_vivado_project}}
-%				\end{center}
-%				%\end{column}
-%				%\begin{column}{0.45\textwidth}
-%								\begin{center}
-%												\only<2>{\includegraphics[width=0.8\textwidth]{channelizer16_core}}
-%								\end{center}
-%								%\end{column}
-%								%\end{columns}
-%\end{frame}
-
-%\section{Amplificador de bajo ruido}
-%\begin{frame}{Amplificador}
-%				\begin{columns}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{amp_low_temp1} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{sim900_mainframe_med_temp}
-%								\end{column}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{acople_linea_mkid} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{criostato_modelo}
-%								\end{column}
-%				\end{columns}
-%\end{frame}
-%\begin{frame}{Amplificador}
-%				\begin{columns}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{mkid1} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{mkid2}
-%								\end{column}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{mkid3_magnetic_case} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{mkid4}
-%								\end{column}
-%				\end{columns}
-%\end{frame}
-%
-%\section{Amplificador de bajo ruido}
-%\begin{frame}{Amplificador}
-%				\begin{columns}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{amp_low_temp1} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{sim900_mainframe_med_temp}
-%								\end{column}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{acople_linea_mkid} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{criostato_modelo}
-%								\end{column}
-%				\end{columns}
-%\end{frame}
-%\section{Equipamiento BT}
-%Using section and subsection commands, outside of frames, provides a table of contents and progress information to beamer.
-%\begin{frame}{Equipos BT}
-%				\begin{columns}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{IMG_20190523_105037648} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105054061}
-%								\end{column}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90, width=0.62\textwidth]{IMG_20190523_105443289} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105117465}
-%								\end{column}
-%				\end{columns}
-%
-%
-%				%				Aim for five to ten slides for a 25~minute presentation.
-%				%
-%				%				Certainly no more than 15.
-%				%
-%				%				Use a note form for the content of each slide.
-%				%
-%				%				\begin{theorem}
-%				%								Mathematics works within the Beamer class, $\exp(i\pi)+1=0$\,, including theorems.
-%				%				\end{theorem}
-%				%
-%				%				Click: \url{http://www.maths.adelaide.edu.au} 
-%\end{frame}
-
-%\begin{frame}{Equipos BT}
-%				\begin{columns}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.62\textwidth]{IMG_20190523_111114131} \\ 
-%												\includegraphics[angle=-90,width=0.6\textwidth]{IMG_20190523_105054061}
-%								\end{column}
-%								\begin{column}{0.45\textwidth}
-%												\includegraphics[angle=-90,width=0.42\textwidth]{IMG_20190523_105647049} \\ 
-%												\hspace{2mm}\includegraphics[angle=-90,width=0.42\textwidth]{IMG_20190523_112752228} \\
-%												\includegraphics[angle=-90,width=0.42\textwidth]{IMG_20190523_104038976}
-%								\end{column}
-%				\end{columns}
-%				%				Aim for five to ten slides for a 25~minute presentation.
-%				%
-%				%				Certainly no more than 15.
-%				%
-%				%				Use a note form for the content of each slide.
-%				%
-%				%				\begin{theorem}
-%				%								Mathematics works within the Beamer class, $\exp(i\pi)+1=0$\,, including theorems.
-%				%				\end{theorem}
-%				%
-%				%				Click: \url{http://www.maths.adelaide.edu.au} 
-%\end{frame}
-
-%				\begin{frame}{Amplificador criog\'enico de bajo ruido}
-%								\framesubtitle{LNF-LNC03\_14A}
-%								\begin{columns}
-%												\begin{column}{0.40\textwidth}
-%																\hspace{10mm}\includegraphics[width=0.95\textwidth]{lnf-lnc03_14sa}
-%												\end{column}
-%												\begin{column}{0.60\textwidth}
-%																\begin{itemize}
-%																				\item Ancho de Banda RF: 0.3-14 GHz
-%																				\item Ruido: 4.1 K (típico)
-%																				\item Ganancia: 42 dB
-%																				\item Potencia DC: Vc= 0.7 V @ 14 mA
-%																				\item Conectores RF: G3PO Macho
-%																				\item Conector DC: Nano Strip 5 pines hembra
-%																\end{itemize}
-%												\end{column}
-%								\end{columns}
-%				\end{frame}
-
-%------------------------------------------------------------------------------
-%\section{Hardware}
-%\subsection{ZCU111 Ev. Kit}%es el diseño de Israel
-%\begin{frame}{Kit de evaluación ZCU111}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid1}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid2}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid3}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid4}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid1}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid2}
-%\end{frame}
-%
-
-%------------------------------------------------------------------------------
-%\section{Diseño del filtro prototipo}
-\begin{frame}{Arquitectura}
-				\includegraphics[width=0.6\textwidth]{PFB_final_arquitecture}
+\section{Channelizer}
+\begin{frame}{Canalizador (Channelizer Tx/Rx)}
+				\framesubtitle{D $\to$ downsampling ratio, M $\to$ número de canales, I
+				$\to$ oversampling factor}
+				\begin{itemize}
+								\item D = M
+								\item D $\neq$ M
+								\item I = 2 
+				\end{itemize}
 				\begin{columns}
-								\begin{column}{0.4\textwidth}
-												\begin{itemize}
-																\item[o] Concepto de filtros polifásicos
-																\item[o] Extensible a un n\'umero grande de canales ($>=1000$)
-																\item[o] Uso de herramientas comunes en DSP (FIR, FFT, etc.)
-												\end{itemize}
+								\begin{column}{0.5\textwidth}
+												\only<1>{\includegraphics[width=1.09\textwidth]{Tx_channelizer}}
+												\only<2>{\includegraphics[width=1.09\textwidth]{Tx_channelizer_con_IFFT}}
 								\end{column}
-								\begin{column}{0.6\textwidth}
-												\includegraphics[width=\textwidth]{chann16_out_1_8}
+								\begin{column}{0.5\textwidth}
+												\only<1>{\includegraphics[width=1.09\textwidth]{Rx_channelizer}}
+												\only<2>{\includegraphics[width=1.09\textwidth]{Rx_channelizer_con_IFFT}}
 								\end{column}
 				\end{columns}
 \end{frame}
 
-%\begin{frame}{Arquitectura}
+%\begin{frame}{Channelizer Rx}
 %				\begin{center}
-%								\includegraphics[width=0.8\textwidth]{PFB_final_arquitecture}
+%								\includegraphics[width=0.8\textwidth]{Tx_channelizer_con_IFFT}
+%								\only<2>{\includegraphics[width=0.8\textwidth]{Rx_channelizer_con_IFFT}}
 %				\end{center}
 %\end{frame}
+
+\begin{frame}{PFB operación básica (D=M), Rx}
+				\begin{center}
+								\includegraphics[width=0.6\textwidth]{PFB_basic_operation}
+				\end{center}
+				\begin{columns}
+								\begin{column}{0.5\textwidth}{{\color{olive}Estructura polifase}}
+												\footnotesize{
+																\\Secuencia de entrada para cada canal $k$:
+																\begin{equation*}\label{eq:xk_decimated}
+																				x_k(n) = x(nM + k), \quad k = 0,1,..., M-1
+																\end{equation*}
+																Respuesta al impulso:
+												\begin{equation*}\label{eq:pk_filter}
+																p_k(n) = h_0(nM - k), \quad k = 0,1, ...,M-1
+												\end{equation*}}
+								\end{column}
+								\begin{column}{0.5\textwidth}{}
+
+												\includegraphics[width=1.1\textwidth]{uniform_PFB}
+								\end{column}
+				\end{columns}
+								\alert{\begin{equation*}\label{eq:fft_out}
+												Y_k(m) = \sum_{r=0}^{M-1}\Big[ \sum_l p_r(l) x_r(m-l)\Big] e^{-j2\pi
+												rk/M}, \quad k = 0,1,...,M-1.
+								\end{equation*}}
+
+\end{frame}
+
+				\section{Filtro prototipo}
+				\begin{frame}{Filtro prototipo (M canales)}
+								\begin{equation*}\label{eq:pf_filter}
+												H_k(w) = H_0\Big(w-\frac{2\pi k}{M}\Big),   \quad k = 1,2,...,M-1.
+								\end{equation*}
+								\begin{columns}
+												\begin{column}{0.5\textwidth}
+																\only<1>{\includegraphics[width=1.2\textwidth]{prototipo}}
+																\only<2>{\includegraphics[width=1.15\textwidth]{one_filter_spectrum}}
+												\end{column}
+												\begin{column}{0.5\textwidth}
+																\only<1>{\includegraphics[width=0.8\textwidth]{prototipo_specifications_table}}
+																\only<2>{\includegraphics[width=1.15\textwidth]{full_spectrum}}
+												\end{column}
+								\end{columns}
+				\end{frame}
+
+				\begin{frame}{Arquitectura}
+								\includegraphics[width=0.6\textwidth]{PFB_final_arquitecture}
+								\begin{columns}
+												\begin{column}{0.4\textwidth}
+																\begin{itemize}
+																				\item[o] Concepto de filtros polifásicos
+																				\item[o] Extensible a un n\'umero grande de canales ($>=1000$)
+																				\item[o] Uso de herramientas comunes en DSP (FIR, FFT, etc.)
+																\end{itemize}
+												\end{column}
+												\begin{column}{0.6\textwidth}
+																\includegraphics[width=\textwidth]{chann16_out_1_8}
+												\end{column}
+								\end{columns}
+				\end{frame}
 
 \begin{frame}{Filtro PFB - Ch5 $f_\text{centro}= 512\,\text{MHz}$}
 				\begin{columns}
@@ -1575,6 +414,265 @@
 %								\includegraphics[width=0.45\textwidth]{goertzel_non_integer_figure1}
 %\end{frame}
 %
+%------------------------------------------------------------------------------
+\begin{frame}{Firmware}
+				The firmware is written in VHDL/Verilog.
+
+				It controls the DAC output, and processes the ADC input.
+
+				It separates the digitized readout signal into frequency bins (channels)
+				corresponding to each pixel.
+
+				The signal for each pixel is filtered and converted to phase before
+				being run through \alert{pulse detection}.
+
+				The output data rate is expected to be around 100 complex $S_{21}$
+				measurements per second, per resonator\footnote{\tiny{from
+				MKIDCam Readout Electronics Specifications (2008)}} $\to$ (\alert{to be
+				confirmed})
+\end{frame}
+
+\begin{frame}{Design requirements}
+				\begin{itemize}
+								\item The readout must not introduce significant noise above the
+												system noise floor set by the \textbf{cryogenic
+												amplifier} with a noise temperature of $\sim
+												4\,\text{K}$.
+								\item The entire readout system must be capable of
+												reading out at least \alert{512 resonators} in $\sim
+												1\,\text{GHz}$ of bandwidth ({\color{red} to be
+												confirmed}).
+								\item \alert{Crosstalk} between channels greater than
+												$250\,\text{kHz}$ apart should be less than \alert{1\%}.
+								\item Intrinsic energy resolution \alert{$R \sim 20-150$}
+												\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
+				\end{itemize}
+\end{frame}
+
+\begin{frame}{$N_\text{channels}$ vs. $P_\text{readout}$}
+				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
+				\begin{columns}
+								\begin{column}{0.45\textwidth}
+												\begin{itemize}
+																\item \footnotesize{Given an ADC's voltage noise
+																				specification, the number of channels
+																				{\color{blue}$n$} an ADC can read out at a given power
+																				without adding to the HEMT noise can be
+																				calculated.}
+																\item The contours of Fig. 3 are calculated by
+																				scaling the HEMT noise with a
+																				channel-dependent factor giving, $k_B
+																				T_n /(p_\text{max}^2 P)$.
+																\item $p_\text{max} \propto
+																				n^{1/2}\,\text{for}\,n >> 1$
+																\item Random phase per tone assumed
+												\end{itemize}
+								\end{column}
+								\begin{column}{0.45\textwidth}
+												\includegraphics[width=0.85\textwidth]{power_vs_Nchannels}
+								\end{column}
+				\end{columns}
+\end{frame}
+
+\section{Vivado}
+\begin{frame}{Vivado}
+
+				Actualmente trabajando con la versi\'on 2016.4
+
+				Cores propios, ej. RxChannelizer y TxChannelizer, etc.
+
+				Mezcla de scripts TCL y Linux embebido
+				\begin{center}
+								\includegraphics[width=0.8\textwidth]{pfb_repo}
+				\end{center}
+\end{frame}
+
+\begin{frame}{Proyectos Vivado}
+				\begin{center}
+								\only<1>{\includegraphics[width=0.95\textwidth]{esquema_rxch16_vivado}}
+								\only<2>{\includegraphics[width=0.8\textwidth]{rxch16_vivado}}
+				\end{center}
+\end{frame}
+
+\begin{frame}{Generación de tonos de prueba}
+
+				Actualmente trabajando con la versi\'on 2016.4
+
+				Cores propios, ej. RxChannelizer y TxChannelizer, etc.
+
+				Mezcla de scripts TCL y Linux embebido
+				\begin{center}
+								\includegraphics[width=0.8\textwidth]{gen_tonos_vivado}
+				\end{center}
+\end{frame}
+
+\section{Mediciones}
+								\begin{frame}{Estudio del cambio fraccional de frecuencia de resonancia}
+												\framesubtitle{Mediciones preliminares para definir los requerimientos
+												de la electrónica}
+												Atomic Layer Deposition (ALD)
+												\begin{equation*}
+																\frac{\delta f_r}{f_r} = \frac{f_r(T) -
+																f_r(0)}{f_r(0)} = -\frac{1}{2}\alpha\frac{\delta
+																\sigma_2(T)}{\sigma_2(0)}
+												\end{equation*}
+												\begin{columns}
+																\begin{column}{0.49\textwidth}
+																				{\color{blue}\begin{equation*}
+																								\frac{\delta f(T)}{f(0)} = 
+																								-\frac{\alpha}{2}\sqrt{\frac{\pi \Delta}{2 k_B
+																								T}} e^{-\frac{\Delta}{k_B T}}
+																				\end{equation*}}
+																				\begin{equation*}
+																								\Delta = \frac{3.5}{2} k_B T_c
+																				\end{equation*}
+																				\begin{equation*}
+																								\alpha = \frac{L_k}{L_\text{tot}}
+																				\end{equation*}
+
+																				$\Delta \to$ gap de energía
+																\end{column}
+																\begin{column}{0.49\textwidth}
+																				\begin{equation*}
+																								\sigma = \sigma_1 - j \sigma_2
+																				\end{equation*}
+
+																				En películas de TiN, $\sigma$, se desvía cada vez más de la
+																				teoría convencional	de Mattis-Bardeen debido a un \alert{fuerte
+																				desorden de TiN}
+																\end{column}
+												\end{columns}
+								\end{frame}
+\begin{frame}{Estudio de la $T_c$}
+				\framesubtitle{Mediciones preliminares para definir los requerimientos
+				de la electrónica}
+				Resultados similares a los medidos por la UCSB para otros arreglos
+				\begin{columns}
+								\begin{column}{0.69\textwidth}
+												\centering
+												%\only<1>{\includegraphics[width=0.82\textwidth]{delta_f_vs_temp}}
+												\includegraphics[width=0.54\textwidth]{medicion_Tc_ucsb}
+								\end{column}
+								\begin{column}{0.39\textwidth}
+												{\color{blue}\begin{equation*}
+																\frac{\delta f(T)}{f(0)} = 
+																-\frac{\alpha}{2}\sqrt{\frac{\pi \Delta}{2 k_B
+																T}} e^{-\frac{\Delta}{k_B T}}
+												\end{equation*}}
+								\end{column}
+				\end{columns}
+												\includegraphics[width=0.75\textwidth]{delta_f_vs_temp}
+\end{frame}
+
+\begin{frame}{$N_\text{canales}$ vs. $P_\text{lectura}$}
+				\footnotesize{\textbf{Rev.Sci.Instr. 83, 044702 (2012)}}
+				\begin{columns}
+								\begin{column}{0.4\textwidth}
+												\begin{itemize}
+																\item \footnotesize{Dada la especificación de
+																				voltaje de ruido del ADC, se puede
+																				calcular el número de canales
+																				{\color{red}$n$} que el ADC puede leer
+																				a una potencia dada sin aumentar el
+																				ruido del HEMT (amplificador)}
+																\item Los contornos de la figura se calculan
+																				escalando  el ruido del HEMT con un
+																				factor dependiente del canal, $k_B
+																				T_n /(p_\text{max}^2 P)$.
+																\item $p_\text{max} \propto
+																				n^{1/2}\quad\text{para}\quad n >> 1$
+																\item {\color{blue}Se asume fase aleatoria por
+																				tono (factor de cresta)}
+												\end{itemize}
+								\end{column}
+								\begin{column}{0.6\textwidth}
+												\centering
+												\includegraphics[width=0.8\textwidth]{power_vs_Nchannels2}
+												\includegraphics[width=0.9\textwidth]{in_spectrum_time2}
+												\includegraphics[width=0.9\textwidth]{in_spectrum_time}
+								\end{column}
+				\end{columns}
+\end{frame}
+
+\begin{frame}{Factor de cresta}
+				%\framesubtitle{Características (Charla de Donna Kubik, FNAL)}
+
+				Factor de cresta sin optimizar: 22.627 (27.093 dB)
+
+				Factor de cresta optimizado   : 11.611 (21.298 dB)
+
+				Factor de cresta optimizado   : 8.770 (18.860 dB)
+
+				Diferencia (a)                : 11.016 (5.795 dB)
+
+				Diferencia (b)                : 13.857 (8.232 dB)
+
+
+				\centering
+												\includegraphics[width=0.72\textwidth]{in_spectrum_time2}
+\end{frame}
+
+%\begin{frame}{Barrido en potencia}
+%				\framesubtitle{Mediciones preliminares para definir los requerimientos
+%				de la electrónica}
+%				\footnotesize{\begin{itemize}
+%								\item[*] Configuración: -25 dB hasta -50 dB + atenuador de 30 dB
+%												(externo)
+%								\item[*] Ruido vs. Potencia
+%								\item[*] Filtro moving average (200 puntos)
+%				\end{itemize}}
+%				%\vspace{-1cm}
+%				\centering
+%												\includegraphics[width=.9\textwidth]{res0_asc_full_potencias}
+%\end{frame}
+%\begin{frame}{Potencia óptima de trabajo}
+%				\framesubtitle{Mediciones preliminares para definir los requerimientos
+%				de la electrónica}
+%				\footnotesize{\begin{itemize}
+%								\item[*] Potencia efectiva en los resonadores $\to$ -55 dB a
+%												-80 dB 
+%								\item[*] Efecto saturación para $P > -65\,\text{dB}$
+%								\item[*] \alert{$-77\,\text{dB} < P_\text{opt} < -65\,\text{dB}$}
+%
+%				\end{itemize}}
+%				\centering
+%												\includegraphics[width=0.89\textwidth]{res0_3_potencias}
+%
+%\end{frame}
+%\begin{frame}{Q vs Potencia}
+%				\framesubtitle{Mediciones preliminares para definir los requerimientos
+%				de la electrónica}
+%				\begin{columns}
+%								\begin{column}{0.35\textwidth}
+%												\footnotesize{\begin{itemize}
+%																\item[*] No existe efecto ``histéresis'' 
+%																\item[*] Saturación para $P > -65\,\text{dB}$
+%																				%\item[*] \alert{$-77\,\text{dB} < P_\text{opt} <
+%																				%				-65\,\text{dB}$}
+%												\end{itemize}}
+%								\end{column}
+%								\begin{column}{0.65\textwidth}
+%												\centering
+%												\includegraphics[width=0.45\textwidth]{un_resonador0_des_filtro}
+%												\includegraphics[width=0.45\textwidth]{un_resonador1_des_filtro}
+%								\end{column}
+%				\end{columns}
+%
+%				\begin{columns}
+%								\begin{column}{0.49\textwidth}
+%												\qquad \qquad-55 dB $\to$ -80 dB
+%												\centering
+%												\includegraphics[height=0.45\textheight,width=1.1\textwidth]{Q_vs_P_tot_des}
+%								\end{column}
+%								\begin{column}{0.49\textwidth}
+%												-80 dB $\to$ -55 dB
+%												\centering
+%												\includegraphics[height=0.45\textheight,width=1.1\textwidth]{Q_vs_P_tot_asc}
+%								\end{column}
+%				\end{columns}
+%
+%\end{frame}
+
 \section{Conclusiones}
 \begin{frame}{Conclusiones}
 				\begin{itemize}
