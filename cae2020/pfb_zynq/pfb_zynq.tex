@@ -328,51 +328,51 @@
 								\end{columns}
 				\end{frame}
 
-%\section{El algoritmo de Goertzel}
-%\begin{frame}{El algoritmo de Goertzel}
-%				\begin{itemize}
-%								\item Finalize performance requirements for firmware 
-%								\item Finalize performance requirements for Tx and Rx parts 
-%								\item First tests of RxChannelizer (front-end, mixers, filters,
-%												DC-block, etc.)
-%				\end{itemize}
-%								\centering
-%								\includegraphics[width=0.45\textwidth]{goertzel_algo}
-%\end{frame}
-%
-%\begin{frame}{El algoritmo de Goertzel}
-%				\begin{itemize}
-%								\item Finalize performance requirements for firmware 
-%								\item Finalize performance requirements for Tx and Rx parts 
-%								\item First tests of RxChannelizer (front-end, mixers, filters,
-%												DC-block, etc.)
-%				\end{itemize}
-%								\centering
-%								\includegraphics[width=0.45\textwidth]{goertzel_non_integer_figure1}
-%\end{frame}
-%
-%------------------------------------------------------------------------------
+				%\section{El algoritmo de Goertzel}
+				%\begin{frame}{El algoritmo de Goertzel}
+				%				\begin{itemize}
+				%								\item Finalize performance requirements for firmware 
+				%								\item Finalize performance requirements for Tx and Rx parts 
+				%								\item First tests of RxChannelizer (front-end, mixers, filters,
+				%												DC-block, etc.)
+				%				\end{itemize}
+				%								\centering
+				%								\includegraphics[width=0.45\textwidth]{goertzel_algo}
+				%\end{frame}
+				%
+				%\begin{frame}{El algoritmo de Goertzel}
+				%				\begin{itemize}
+				%								\item Finalize performance requirements for firmware 
+				%								\item Finalize performance requirements for Tx and Rx parts 
+				%								\item First tests of RxChannelizer (front-end, mixers, filters,
+				%												DC-block, etc.)
+				%				\end{itemize}
+				%								\centering
+				%								\includegraphics[width=0.45\textwidth]{goertzel_non_integer_figure1}
+				%\end{frame}
+				%
+				%------------------------------------------------------------------------------
 \section{Simulaciones y pruebas}
 \begin{frame}{Implementación en Vivado}
-        \frametitle{Canalizador de 16 canales}
-                        \begin{tikzpicture}
-                                \node<1>[anchor=north west,inner sep=0]
-                                at (0,8)
-                                {\includegraphics[width=1.05\textwidth]{esquema_rxch16_vivado}};
-                                \node<2>[anchor=north west,inner sep=0]
-                                at (0,8)
-                                {\includegraphics[width=0.8\textwidth]{esquema_rxch16_vivado}};
-                                \draw<2>[red,ultra thick,rounded corners]
-                                (2.0,5.0) rectangle (3.2,5.9);
-                                \node<2>[anchor=south west,inner sep=0] at
-                                (0,0){\fbox{\includegraphics[width=.5\textwidth]{rxch16_vivado}}};
-                                %\only<3>{\node[anchor=north west,inner sep=0] at
-                                %(5,5){\includegraphics[width=\textwidth]{diag_sys}};}
-                        \end{tikzpicture}
+				\frametitle{Canalizador de 16 canales}
+												\begin{tikzpicture}
+																\node<1>[anchor=north west,inner sep=0]
+																at (0,8)
+																{\includegraphics[width=1.05\textwidth]{esquema_rxch16_vivado}};
+																\node<2>[anchor=north west,inner sep=0]
+																at (0,8)
+																{\includegraphics[width=0.8\textwidth]{esquema_rxch16_vivado}};
+																\draw<2>[red,ultra thick,rounded corners]
+																(2.0,5.0) rectangle (3.2,5.9);
+																\node<2>[anchor=south west,inner sep=0] at
+																(0,0){\fbox{\includegraphics[width=.5\textwidth]{rxch16_vivado}}};
+																%\only<3>{\node[anchor=north west,inner sep=0] at
+																%(5,5){\includegraphics[width=\textwidth]{diag_sys}};}
+												\end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Implementación en Vivado}
-        \frametitle{Reportes de utilización. Comparación de implementaciones}
+				\frametitle{Reportes de utilización. Comparación de implementaciones}
 				Cambios en la configuración del filtro polifásico FIR (7.5\% vs. 87.5\%
 				de DSP Slices)
 
@@ -389,13 +389,13 @@
 \end{frame}
 
 \begin{frame}{Simulaciones y pruebas}
-\framesubtitle{Generación de tonos de prueba}
+				\framesubtitle{Generación de tonos de prueba}
 
 				Cada tono, $s_k$, se define como
-\begin{equation*}\label{eq:probe_signal}
-        s_k[n] = I_k[n] + jQ_k[n] = A_k e^{j\left(2\pi \frac{f_k}{f_s}n +
-        \theta_k \right)},\quad n = 0,1,\ldots,2^{16}-1,
-\end{equation*}
+				\begin{equation*}\label{eq:probe_signal}
+								s_k[n] = I_k[n] + jQ_k[n] = A_k e^{j\left(2\pi \frac{f_k}{f_s}n +
+								\theta_k \right)},\quad n = 0,1,\ldots,2^{16}-1,
+				\end{equation*}
 				\begin{columns}
 								\begin{column}{0.4\textwidth}
 												\begin{itemize}
@@ -404,35 +404,49 @@
 												\end{itemize}
 								\end{column}
 								\begin{column}{0.6\textwidth}
-								\includegraphics[width=1.2\textwidth]{gen_tonos_vivado}
+												\includegraphics[width=1.2\textwidth]{gen_tonos_vivado}
 								\end{column}
 				\end{columns}
 \end{frame}
-
 \begin{frame}{Factor de cresta \fbox{$FC = \frac{V_p}{V_{RMS}}$}}
 				\begin{columns}
 								\begin{column}{0.5\textwidth}
 												\includegraphics[width=0.7\textwidth]{power_vs_Nchannels2}
 								\end{column}
 								\begin{column}{0.5\textwidth}{{\color{blue}Ejemplo}}
-				\footnotesize{\\(a) FC sin optimizar  : 22.627 (27.093 dB)
+												\footnotesize{\\(a) FC sin optimizar  : 22.627 (27.093 dB)
 
-											(b)	FC optimizado ($A_k,\Theta_k$)  : 11.611 (21.298 dB)
+												(b)	FC optimizado ($A_k,\Theta_k$)  : 11.611 (21.298 dB)
 
-											(c)	FC optimizado ($\Theta_k$)     : 8.770 (18.860 dB)
-											
-											Diferencia (a-b)                : 11.016 (5.795 dB)
-											
-											Diferencia (a-c)                : 13.857 (8.232 dB)}\\
+												(c)	FC optimizado ($\Theta_k$)     : 8.770 (18.860 dB)
+
+												Diferencia (a-b)                : 11.016 (5.795 dB)
+
+												Diferencia (a-c)                : 13.857 (8.232 dB)}\\
 								\end{column}
-								\end{columns}
+				\end{columns}
 												\includegraphics[width=0.85\textwidth]{in_spectrum_time2}
 \end{frame}
 
+				\begin{frame}{Simulaciones: Respuesta de los canales}
+								\framesubtitle{Canales 4, 6 y 14 sin señal}
+								Respuesta de simulaciones en Vivado.
+								\begin{columns}
+												\begin{column}{0.5\textwidth}
+												\includegraphics[width=1.2\textwidth]{gd_chann16_out_1_8}
+								\end{column}
+												\begin{column}{0.5\textwidth}
+												\includegraphics[width=1.2\textwidth]{gd_chann16_out_9_16}
+								\end{column}
+								\end{columns}
+				\end{frame}
+
 \section{Mediciones}
-				\begin{frame}{Piso de ruido}
+				\begin{frame}{Mediciones: Piso de ruido (Work in progress)}
+								\framesubtitle{Canales de entrada adaptados con terminadores de
+								$50\,\Omega$}
 								\begin{center}
-																\includegraphics[width=0.65\textwidth]{noise_floor_rxch16}
+												\includegraphics[width=0.56\textwidth]{noise_floor_rxch16}
 								\end{center}
 								\begin{columns}
 												\begin{column}{0.5\textwidth}{\footnotesize{Teórico vs.
@@ -446,39 +460,18 @@
 								\end{columns}
 				\end{frame}
 
-				\begin{frame}{Tonos de prueba}
-								%\begin{center}
-												%								\includegraphics[width=0.65\textwidth]{noise_floor_rxch16}
-								%\end{center}
-								\begin{columns}
-												\begin{column}{0.5\textwidth}
-																\includegraphics[width=\textwidth]{fdm_out_ch16_2mhz}
-												\end{column}
-												\begin{column}{0.5\textwidth}
-																\includegraphics[width=\textwidth]{ma_fdm_out_ch16_2mhz}
-												\end{column}
-								\end{columns}
-				\end{frame}
-				\begin{frame}{Arquitectura}
-								\begin{columns}
-												\begin{column}{0.4\textwidth}
-																\begin{itemize}
-																				\item[o] Concepto de filtros polifásicos
-																				\item[o] Extensible a un n\'umero grande de canales ($>=1000$)
-																				\item[o] Uso de herramientas comunes en DSP (FIR, FFT, etc.)
-																\end{itemize}
-												\end{column}
-												\begin{column}{0.6\textwidth}
-																\includegraphics[width=\textwidth]{gd_chann16_out_1_8}
-												\end{column}
-								\end{columns}
+				\begin{frame}{Mediciones: Tonos de prueba (Work in progress)}
+								\begin{center}
+												\includegraphics[width=0.7\textwidth]{fdm_out_ch16_2mhz}
+												\includegraphics[width=0.7\textwidth]{ma_fdm_out_ch16_2mhz}
+								\end{center}
 				\end{frame}
 
 \section{Conclusiones}
 \begin{frame}{Conclusiones}
 				\begin{itemize}
-								\item Primeras pruebas del algoritmo de canalización en FPGA.
-												Resultados prometedores
+								\item Primeras pruebas del algoritmo de canalización en FPGA
+												$\to$	Resultados prometedores
 								\item Generación de programas para comprobar algoritmos en Python
 								\item Armado de la configuración experimental para la medición
 												de MKIDs de uso científico
@@ -500,55 +493,5 @@
 												tonos dentro de los canales
 				\end{itemize}
 \end{frame}
-%\section{Prefer titles that make a statement}
-%\begin{frame}{Prefer titles that make a statement}
-%
-%				Many opt for meaningless titles and section titles.  
-%
-%				Instead, make titles convey information.
-%
-%				\pause
-%
-%				Use \texttt{pause} commands almost anywhere to progressively step through material.
-%
-%				\pause
-%
-%				\begin{figure}
-%								\centering
-%								\caption{Figure and table environments also work.
-%								Use \texttt{includegraphics} or \texttt{pgfplots}.}
-%								\begin{tikzpicture}
-%												\begin{axis}[footnotesize,axis lines=middle
-%																,xlabel={$t$},no marks,thick,domain=0:2.2,smooth ]
-%																\addplot+[]{1-2*exp(-2*x)+exp(-4*x)};
-%																\addlegendentry{$u(t)$};
-%																\addplot+[]{1-exp(-4*x)};
-%																\addlegendentry{$v(t)$};
-%																\addplot+[]{1+2*exp(-2*x)+exp(-4*x)};
-%																\addlegendentry{$w(t)$};
-%												\end{axis}
-%								\end{tikzpicture}
-%				\end{figure}
-%
-%\end{frame}
-%
-%
-%
-%
-%\section{Conclusion}
-%\begin{frame}{Conclusion}
-%
-%				Finish with your conclusions displayed: \emph{not} a list of references, \emph{nor} a meaningless ``thank you'' slide.
-%
-%				\vfill
-%				\begin{quote}
-%								Three rules of public speaking: Be forthright.  Be brief.  Be
-%								seated. \hfill(S. Dressel \& J. Chew, 1987)
-%				\end{quote}
-%\end{frame}
-
-
-
-
 \end{document}
 
