@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{15pt}%
+\begin{comment}
+\end{comment}
+\usetikzlibrary{dsp,chains}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\begin{document}
+\begin{tikzpicture}
+
+		%		\draw[help lines] (-5,-2) grid (5,2);
+	% Place nodes using a matrix
+	\matrix (m1) [row sep=6mm, column sep=5mm]
+	{
+		%--------------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m00) {$x[n]$};    &
+		\node[coordinate]                  (m01) {};          &
+		\node[dspmixer]                    (m02) {};          &
+		\node[coordinate]                  (m03) {};          &
+		\node[dspsquare]                   (m04) {$h[n]$};    &
+		\node[coordinate]                  (m05) {};          &
+		\node[dspsquare]                   (m06) {\downsamplertext{M}}; &
+		\node[coordinate]                  (m07) {};          &
+%		\node[coordinate]                  (m08) {};          &
+		\node[dspnodeopen,dsp/label=above] (m09) {$y_k[m]$};  \\
+		%--------------------------------------------------------------------
+		\node[coordinate]                  (m10) {};          &
+		\node[coordinate]                  (m11) {};          &
+		\node[dspnodeopen,dsp/label=below] (m12) {$e^{-j\frac{2\pi}{K}kn}$};    &
+		\node[coordinate]                  (m13) {};          &
+		\node[coordinate]                  (m14) {};          &
+		\node[coordinate]                  (m15) {};          &
+		\node[coordinate]                  (m16) {};          &
+		\node[coordinate]                  (m17) {};          &
+		\node[coordinate]                  (m18) {};          &
+		\node[coordinate]                  (m19) {};          \\
+%		%--------------------------------------------------------------------
+%		\\
+%		%--------------------------------------------------------------------
+%		\node[coordinate]                  (m20) {};          &
+%		\node[coordinate]                  (m21) {};          &
+%		\node[coordinate]                  (m22) {};          &
+%		\node[coordinate]                  (m23) {};          &
+%		\node[dspadder]                    (m24) {};          &
+%		\node[coordinate]                  (m25) {};          &
+%		\node[dspadder]                    (m26) {};          &
+%		\node[coordinate]                  (m27) {};          &
+%		\node[dspadder]                    (m28) {};          &
+%		\node[coordinate]                  (m29) {};          &
+%		\node[dspnodeopen,dsp/label=above] (m2X) {$y[n]$};    \\
+		%--------------------------------------------------------------------
+	};
+
+	% Draw connections
+	
+	\begin{scope}[start chain]
+		\chainin (m00);
+		\chainin (m02) [join=by dspflow];
+		\chainin (m12);
+		\chainin (m02) [join=by dspconn];
+		\chainin (m02);
+		\chainin (m04) [join=by dspconn];
+		\chainin (m04);
+		\chainin (m06) [join=by dspconn];
+	\end{scope}
+
+	%\foreach \i [evaluate = \i as \j using int(\i+1),
+	%             evaluate = \i as \k using int(\i+2),] in {2,4,6}
+	%{
+	%	\begin{scope}[start chain]
+	%		\chainin (m0\i);
+	%		\chainin (m0\j) [join=by dspconn];
+	%		\chainin (m0\k) [join=by dspline];
+	%		\chainin (m1\k) [join=by dspconn];
+	%		\chainin (m2\k) [join=by dspconn];
+	%	\end{scope}
+	%	\draw[dspconn] (m2\i) -- (m2\k);
+	%}
+
+	\draw[dspflow] (m06) -- (m09);
+
+\end{tikzpicture}
+
+\end{document}
