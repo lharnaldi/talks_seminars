@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{10pt}%
+\begin{comment}
+\end{comment}
+\usepackage[siunitx]{circuitikz}
+
+\begin{document}
+
+\begin{tikzpicture}
+%--------start graphics code --------
+\draw[step=0.5,very thin,black!20] (-1,-0.5) grid (6,2.5);
+\path (0,0) coordinate (ref_gnd);
+\draw
+  (ref_gnd) to[sV=\(V\)] ++(0,2)
+            -- ++(2,0)   to[R=$R$] ++(0,-2) -- (ref_gnd)
+  ++(2,2)   -- ++(1.5,0) to[L=$L$] ++(0,-2) -- ++(-1.5,0)
+  ++(1.5,2) -- ++(1.5,0) to[C=$C$] ++(0,-2) -- ++(-1.5,0);
+\fill[color=black] (ref_gnd)++(2,0)   circle[radius=0.08];
+\fill[color=black] (ref_gnd)++(3.5,0) circle[radius=0.08];
+\fill[color=black] (ref_gnd)++(2,2)   circle[radius=0.08];
+\fill[color=black] (ref_gnd)++(3.5,2) circle[radius=0.08];
+%--------end graphics code ----------
+\end{tikzpicture}
+
+\end{document}

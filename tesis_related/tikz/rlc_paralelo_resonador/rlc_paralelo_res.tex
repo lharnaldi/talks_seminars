@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{10pt}%
+\begin{comment}
+\end{comment}
+\usepackage[siunitx]{circuitikz}
+
+\begin{document}
+
+\begin{tikzpicture}
+%--------start graphics code --------
+%\draw[step=0.5,very thin,black!20] (-1,-0.5) grid (6,3);
+\path (0,0) coordinate (ref_gnd);
+\path (3,2) coordinate (plc);
+\path (3,0.5) coordinate (nlc);
+\draw
+				(ref_gnd) to[sV=$V$] ++(0,2.5)
+				to[european resistor=$Z_0$] ++(2.5,0)
+				 -| (plc) -- (2.5,2) to[L, l_=$L$] ++(0,-1.5) -- (nlc)
+				(plc) -- (3.5,2) to[C=$C$] ++(0,-1.5) -- (nlc) -- (3,0)
+				%++(1.5,2) -- ++(1.5,0) to[C=$C$] ++(0,-2) |- ++(-1.5,0)
+				(3,2.5)--(5,2.5) to[european resistor=$Z_0$] ++(0,-2.5) -- (ref_gnd);
+\fill[color=black] (ref_gnd)++(3,2.5)   circle[radius=0.08];
+\fill[color=black] (ref_gnd)++(3,0)   circle[radius=0.08];
+%\fill[color=black] (ref_gnd)++(3.5,0) circle[radius=0.08];
+%\fill[color=black] (ref_gnd)++(3.5,2) circle[radius=0.08];
+%--------end graphics code ----------
+\end{tikzpicture}
+
+\end{document}
