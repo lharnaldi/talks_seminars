@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{15pt}%
+\begin{comment}
+\end{comment}
+\usetikzlibrary{dsp,chains}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\begin{document}
+\begin{tikzpicture}
+
+				%\draw[step=0.5,very thin,black!20] (-5,-0.5) grid (5,1);
+				%\draw[help lines] (-5,-2) grid (5,2);
+				% Place nodes using a matrix
+				\matrix (m1) [row sep=6mm, column sep=5mm]
+				{
+								%------------------------------------------------------------
+								\node[dspnodeopen,dsp/label=above] (m00) {$x(n)$};    &
+				\node[coordinate]                  (m01) {};          &
+				\node[coordinate]                  (m03) {};          &
+				\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m04) {$
+				h_k(n) = h(n)W_K^{-kn} $};    &
+				\node[coordinate]                  (m05) {};          &
+				\node[dspsquare] (m06) {\downsamplertext{M}}; &
+				\node[dsp/label=above,yshift=0.5cm]                  (m07) {$\tilde{X}_k(m)$};          &
+				%		\node[coordinate]                  (m08) {};          &
+				\node[dspmixer]                    (m08) {};          &
+				\node[dspnodeopen,dsp/label=above] (m09) {$X_k(m)$};  \\
+				%------------------------------------------------------------
+				\node[coordinate]                  (m10) {};          &
+				\node[coordinate]                  (m11) {};          &
+				\node[coordinate]                  (m13) {};          &
+				\node[coordinate]                  (m14) {};          &
+				\node[coordinate]                  (m15) {};          &
+				\node[coordinate]                  (m16) {};          &
+				\node[coordinate]                  (m17) {};          &
+				\node[dspnodeopen,dsp/label=below] (m18) {$W_K^{kmM}$};    &
+				%\node[coordinate]                  (m18) {};          &
+				\node[coordinate]                  (m19) {};          \\
+				%		%------------------------------------------------------------
+						\\
+						%		%------------------------------------------------------------
+								\node[dspnodeopen,dsp/label=above] (m20) {$x(n)$};    &
+				\node[coordinate]                  (m21) {};          &
+				\node[coordinate]                  (m23) {};          &
+				\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m24) {$
+				h_k(n) = h(n)W_K^{-kn} $};    &
+				\node[coordinate]                  (m25) {};          &
+				\node[dspmixer]                    (m26) {};          &
+				\node[coordinate]                  (m27) {};          &
+				%		\node[coordinate]                  (m28) {};          &
+				\node[dspsquare] (m28) {\downsamplertext{M}}; &
+				\node[dspnodeopen,dsp/label=above] (m29) {$X_k(m)$};  \\
+				%------------------------------------------------------------
+				\node[coordinate]                  (m30) {};          &
+				\node[coordinate]                  (m31) {};          &
+				\node[coordinate]                  (m33) {};          &
+				\node[coordinate]                  (m34) {};          &
+				\node[coordinate]                  (m35) {};          &
+				\node[dspnodeopen,dsp/label=below] (m38) {$W_K^{km}$};    &
+				\node[coordinate]                  (m36) {};          &
+				\node[coordinate]                  (m37) {};          &
+				%\node[coordinate]                  (m38) {};          &
+				\node[coordinate]                  (m39) {};          \\
+				%		%------------------------------------------------------------
+						\\
+						%		%------------------------------------------------------------
+				\node[dspnodeopen,dsp/label=above] (m49) {$\hat{X}_k(m)$};  &
+				\node[coordinate]                  (m41) {};          &
+				\node[coordinate]                  (m43) {};          &
+				\node[dspmixer]                    (m48) {};          &
+				\node[coordinate]                  (m45) {};          &
+				\node[dsp/label=above,yshift=0.5cm]                  (m47) {$\tilde{X}_k(m)$};          &
+				\node[dspsquare] (m46) {\upsamplertext{M}}; &
+				%		\node[coordinate]                  (m48) {};          &
+				\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m44) {$	f_k(n) = f(n)W_K^{-kn} $};    &
+								\node[dspnodeopen,dsp/label=above] (m40) {$\hat{x}(n)$};    \\
+				%------------------------------------------------------------
+				\node[coordinate]                  (m50) {};          &
+				\node[coordinate]                  (m51) {};          &
+				\node[coordinate]                  (m53) {};          &
+				\node[dspnodeopen,dsp/label=below] (m58) {$W_K^{-kmM}$};    &
+				\node[coordinate]                  (m54) {};          &
+				\node[coordinate]                  (m55) {};          &
+				\node[coordinate]                  (m56) {};          &
+				\node[coordinate]                  (m57) {};          &
+				%\node[coordinate]                  (m58) {};          &
+				\node[coordinate]                  (m59) {};          \\
+				%--------------------------------------------------------------------
+				\\
+				};
+
+				% Draw connections
+
+				\begin{scope}[start chain]
+								\chainin (m00);
+								\chainin (m04) [join=by dspflow];
+								\chainin (m18);
+								\chainin (m08) [join=by dspconn];
+								\chainin (m04);
+								\chainin (m06) [join=by dspconn];
+								\chainin (m06);
+								\chainin (m08) [join=by dspconn];
+				\end{scope}
+				\begin{scope}[start chain]
+								\chainin (m20);
+								\chainin (m24) [join=by dspflow];
+								\chainin (m38);
+								\chainin (m28) [join=by dspconn];
+								\chainin (m24);
+								\chainin (m26) [join=by dspconn];
+								\chainin (m26);
+								\chainin (m28) [join=by dspconn];
+				\end{scope}
+				\begin{scope}[start chain]
+								\chainin (m40);
+								\chainin (m44) [join=by dspflow];
+								\chainin (m58);
+								\chainin (m48) [join=by dspconn];
+								\chainin (m44);
+								\chainin (m46) [join=by dspconn];
+								\chainin (m46);
+								\chainin (m48) [join=by dspconn];
+				\end{scope}
+
+				%\foreach \i [evaluate = \i as \j using int(\i+1),
+				%             evaluate = \i as \k using int(\i+2),] in {2,4,6}
+				%{
+				%	\begin{scope}[start chain]
+				%		\chainin (m0\i);
+				%		\chainin (m0\j) [join=by dspconn];
+				%		\chainin (m0\k) [join=by dspline];
+				%		\chainin (m1\k) [join=by dspconn];
+				%		\chainin (m2\k) [join=by dspconn];
+				%	\end{scope}
+				%	\draw[dspconn] (m2\i) -- (m2\k);
+				%}
+
+	\draw[dspflow] (m08) -- (m09);
+	%\node at (-4.0,1.5) [] {a)};
+
+\end{tikzpicture}
+
+\end{document}

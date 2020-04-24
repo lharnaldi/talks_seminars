@@ -14,34 +14,50 @@
 \begin{document}
 \begin{tikzpicture}
 
-				%\draw[step=0.5,very thin,black!20] (-5,-0.5) grid (5,1);
-				%\draw[help lines] (-5,-2) grid (5,2);
+	%			\draw[help lines] (-8,-2) grid (8,2);
 	% Place nodes using a matrix
 	\matrix (m1) [row sep=6mm, column sep=5mm]
 	{
 		%------------------------------------------------------------
+					%decimador
 		\node[dspnodeopen,dsp/label=above] (m00) {$x(n)$};    &
 		%\node[coordinate]                  (m01) {};          &
-				%\node[dspmixer]                    (m02) {};          &
+		%\node[dspmixer]                    (m02) {};          &
 		\node[coordinate]                  (m03) {};          &
-				\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m04) {$
-				h_k(n) = h(n)W_K^{-kn} $};    &
-		\node[coordinate]                  (m05) {};          &
-		\node[dspsquare,minimum height=2.3em, minimum width=1.3cm] (m06) {\downsamplertext{M=K}}; &
+				\node[dspsquare]                   (m04) {$H(z^{M})$};    &
+		%\node[coordinate]                  (m05) {};          &
+				\node[above]                  (m05) {$y_1(n)$};          &
+		\node[dspsquare]                   (m06) {\downsamplertext{M}}; &
 		\node[coordinate]                  (m07) {};          &
 %		\node[coordinate]                  (m08) {};          &
-		\node[dspnodeopen,dsp/label=above] (m09) {$X_k(m)$};  \\
-		%------------------------------------------------------------
-		\node[coordinate]                  (m10) {};          &
+				\node[dspnodeopen,dsp/label=above] (m09) {$y(m)$};     &  
+		\node[coordinate]                  (m000) {};          &
+		\node[scale=1.7]                  (m001) {$\equiv$};          &
+		\node[coordinate]                  (m002) {};          &
+				%interpolador
+		\node[dspnodeopen,dsp/label=above] (m10) {$x(n)$};    &
 		%\node[coordinate]                  (m11) {};          &
-		%\node[dspnodeopen,dsp/label=below] (m12) {$e^{-j\frac{2\pi}{K}kn}$};    &
+		%\node[dspmixer]                    (m12) {};          &
 		\node[coordinate]                  (m13) {};          &
-		\node[coordinate]                  (m14) {};          &
-		\node[coordinate]                  (m15) {};          &
-		\node[coordinate]                  (m16) {};          &
+				\node[dspsquare]                   (m14) {\downsamplertext{M}};    &
+		%\node[coordinate]                  (m15) {};          &
+				\node[above]                  (m15) {$y_2(m)$};          &
+		\node[dspsquare]                   (m16) {$H(z)$}; &
 		\node[coordinate]                  (m17) {};          &
-		\node[coordinate]                  (m18) {};          &
-		\node[coordinate]                  (m19) {};          \\
+%		\node[coordinate]                  (m18) {};          &
+		\node[dspnodeopen,dsp/label=above] (m19) {$y(m)$};  \\
+		%------------------------------------------------------------
+%		\node[coordinate]                  (m10) {};          &
+%		%\node[coordinate]                  (m11) {};          &
+%		%\node[dspnodeopen,dsp/label=below] (m12) {$e^{-j\frac{2\pi}{K}kn}$};    &
+%		\node[coordinate]                  (m13) {};          &
+%		\node[coordinate]                  (m14) {};          &
+%		\node[coordinate]                  (m15) {};          &
+%		\node[coordinate]                  (m15b) {};          &
+%		\node[coordinate]                  (m16) {};          &
+%		\node[coordinate]                  (m17) {};          &
+%		\node[coordinate]                  (m18) {};          &
+%		\node[coordinate]                  (m19) {};          \\
 %		%------------------------------------------------------------
 %		\\
 %		%------------------------------------------------------------
@@ -70,6 +86,14 @@
 		\chainin (m04) [join=by dspconn];
 		\chainin (m04);
 		\chainin (m06) [join=by dspconn];
+		\chainin (m10);
+		%\chainin (m02) [join=by dspflow];
+		%\chainin (m12);
+		%\chainin (m02) [join=by dspconn];
+		%\chainin (m02);
+		\chainin (m14) [join=by dspconn];
+		\chainin (m14);
+		\chainin (m16) [join=by dspconn];
 	\end{scope}
 
 	%\foreach \i [evaluate = \i as \j using int(\i+1),
@@ -86,7 +110,9 @@
 	%}
 
 	\draw[dspflow] (m06) -- (m09);
-	%\node at (-4.0,1.5) [] {a)};
+	\draw[dspflow] (m16) -- (m19);
+	\node at (-4.5,-1) [] {\textbf{(a)}};
+	\node at (4.5,-1) [] {\textbf{(b)}};
 
 \end{tikzpicture}
 
