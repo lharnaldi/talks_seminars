@@ -21,41 +21,30 @@
 	{
 		%------------------------------------------------------------
 		\node[dspnodeopen,dsp/label=above] (m00) {$x(n)$};    &
-		%\node[coordinate]                  (m01) {};          &
-				%\node[dspmixer]                    (m02) {};          &
-		\node[coordinate]                  (m03) {};          &
-				\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m04) {$
-				h_k(n) = h(n)W_K^{-kn} $};    &
-		\node[coordinate]                  (m05) {};          &
-		\node[dspsquare,minimum height=2.3em, minimum width=1.3cm] (m06) {\downsamplertext{M=K}}; &
-		\node[coordinate]                  (m07) {};          &
-%		\node[coordinate]                  (m08) {};          &
-		\node[dspnodeopen,dsp/label=above] (m09) {$X_k(m)$};  \\
+		\node[coordinate]                  (m01) {};          &
+		\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m02) {$h_k(n) = h(n)W_K^{-kn} $};    &
+		\node[dspsquare,minimum height=2.3em, minimum width=1.3cm] (m03) {\downsamplertext{M=K}}; &
+		\node[dspnodeopen,dsp/label=above] (m04) {$X_k(m)$};  \\
 		%------------------------------------------------------------
 		\node[coordinate]                  (m10) {};          &
-		%\node[coordinate]                  (m11) {};          &
-		%\node[dspnodeopen,dsp/label=below] (m12) {$e^{-j\frac{2\pi}{K}kn}$};    &
+		\node[coordinate]                  (m11) {};          &
+		\node[coordinate]                  (m12) {};          &
 		\node[coordinate]                  (m13) {};          &
-		\node[coordinate]                  (m14) {};          &
-		\node[coordinate]                  (m15) {};          &
-		\node[coordinate]                  (m16) {};          &
-		\node[coordinate]                  (m17) {};          &
-		\node[coordinate]                  (m18) {};          &
-		\node[coordinate]                  (m19) {};          \\
+		\node[coordinate]                  (m14) {};          \\
 %		%------------------------------------------------------------
-%		\\
+		\\
 %		%------------------------------------------------------------
-%		\node[coordinate]                  (m20) {};          &
-%		\node[coordinate]                  (m21) {};          &
-%		\node[coordinate]                  (m22) {};          &
-%		\node[coordinate]                  (m23) {};          &
-%		\node[dspadder]                    (m24) {};          &
-%		\node[coordinate]                  (m25) {};          &
-%		\node[dspadder]                    (m26) {};          &
-%		\node[coordinate]                  (m27) {};          &
-%		\node[dspadder]                    (m28) {};          &
-%		\node[coordinate]                  (m29) {};          &
-%		\node[dspnodeopen,dsp/label=above] (m2X) {$y[n]$};    \\
+				\node[dspnodeopen,dsp/label=above] (m20) {$\hat{X}_k(m)$};    &
+		\node[coordinate]                  (m21) {};          &
+		\node[dspsquare,minimum height=2.3em, minimum width=1.3cm] (m22) {\upsamplertext{M=K}}; &
+		\node[dspsquare,minimum height=2.3em, minimum width=3.1cm] (m23) {$f_k(n) = f(n)W_K^{-kn} $};    &
+				\node[dspnodeopen,dsp/label=above] (m24) {$\hat{x}_k(n)$};  \\
+		%------------------------------------------------------------
+		\node[coordinate]                  (m30) {};          &
+		\node[coordinate]                  (m31) {};          &
+		\node[coordinate]                  (m32) {};          &
+		\node[coordinate]                  (m33) {};          &
+		\node[coordinate]                  (m34) {};          \\
 		%--------------------------------------------------------------------
 	};
 
@@ -63,13 +52,19 @@
 	
 	\begin{scope}[start chain]
 		\chainin (m00);
-		%\chainin (m02) [join=by dspflow];
-		%\chainin (m12);
-		%\chainin (m02) [join=by dspconn];
-		%\chainin (m02);
+		\chainin (m02) [join=by dspconn];
+		\chainin (m02);
+		\chainin (m03) [join=by dspconn];
+		\chainin (m03);
 		\chainin (m04) [join=by dspconn];
-		\chainin (m04);
-		\chainin (m06) [join=by dspconn];
+	\end{scope}
+	\begin{scope}[start chain]
+		\chainin (m20);
+		\chainin (m22) [join=by dspconn];
+		\chainin (m22);
+		\chainin (m23) [join=by dspconn];
+		\chainin (m23);
+		\chainin (m24) [join=by dspconn];
 	\end{scope}
 
 	%\foreach \i [evaluate = \i as \j using int(\i+1),
@@ -85,8 +80,9 @@
 	%	\draw[dspconn] (m2\i) -- (m2\k);
 	%}
 
-	\draw[dspflow] (m06) -- (m09);
-	%\node at (-4.0,1.5) [] {a)};
+	%\draw[dspflow] (m06) -- (m09);
+	\node at (-4.0,2.5) [] {\textbf{a)}};
+	\node at (-4.0,-0.1) [] {\textbf{b)}};
 
 \end{tikzpicture}
 
