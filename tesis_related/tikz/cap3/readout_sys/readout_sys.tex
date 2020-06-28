@@ -1,0 +1,108 @@
+\documentclass[14pt,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, align=center, minimum height = 3em, minimum width = 3em},
+  blockg/.style    = {draw, thick, rectangle, align=center, minimum height =
+3cm, minimum width = 3cm},
+  blockp/.style    = {draw, thick, dashed, rectangle, align=center, minimum height =
+3cm, minimum width = 5cm},
+  blockgg/.style    = {draw, thick, rectangle, align=center, minimum height =
+3cm, minimum width = 2cm},
+  mult/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\mult}{\Huge x}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+
+%\draw[help lines,step=0.5,dashed] (-1,-8) grid (28,4); 
+\draw 
+  % Drawing the blocks of first filter :
+  %node at (0,0)[right=-3.3mm]{\Large \textopenbullet}
+  node at (0,0)[input, name=sigin] {}
+  %node at (0,-2)[right=-3.3mm]{\Large \textopenbullet}
+  node at (0,-2)[input, name=refin] {}
+  node at (2,0)[block,minimum width=2cm, right of=sigin] (da1) {D/A \\ 16 bits
+	\\ 400\,MHz}
+  node at (0,-2)[block,minimum width=2cm, right of=refin] (da2) {D/A \\ 16 bits
+	\\ 400\,MHz}
+  node [block, right of=da1] (lpf1i) {FPB}
+  node at (5.8,0.3)[]{$I$}
+  node at (4.8,-1)[]{Mezclador $IQ$}
+  node [block, right of=da2] (lpf2i) {FPB}
+  node at (5.8,-2.3)[]{$Q$}
+  node at (6.5,-1) [mixer] (mult1) {}
+  node at (6.8,-1.4)[input, name=synthin1] {}
+  node at (13.5,-1)[mixer] (mult2) {}
+  node at (15.2,-1)[]{Mezclador $IQ$}
+  node at (13.2,-1.4)[input, name=synthin2] {}
+  %node [block, right of=ad2] (zcd) {ZCD}
+  %node [block, right of=zcd] (adpll) {ADPLL}
+  %node [block, below of=adpll] (intref) {INT. REF.}
+  node at (10,-1)[blockp] (crio) {}
+  node at (10,0.2)[]{Crióstato}
+	node at (9,-1)[block,minimum height=1.5cm,minimum width=2cm] (mkid)
+	{Detector\\criogénico}
+  node at (11.5,-1)[buffer] (gain) {}
+	node at (10,-4)[block,minimum width=5cm] (synth) {Sintetizador\\Referencia
+	(GHz)}
+	node at (16,0)[block] (lpf1o) {FPB}
+	node at (16,-2)[block] (lpf2o) {FPB}
+  node at (18,0)[block] (ad1) {A/D \\ 14 bits \\ 400\,MHz}
+  node at (18,-2)[block] (ad2) {A/D \\ 14 bits \\ 400\,MHz}
+  node at (22,-1)[blockg] (fpga) {FPGA\\ BF-DFTG-SM \\ K canales}
+  node at (22,-5)[blockg,minimum width=5cm] (pc) {PC\\Procesamiento \\ Memoria
+	\\ Conexión
+	USB/Ethernet}
+  node at (20,0)[output, name=sigout] {}
+  node at (20,-2)[output, name=refout] {};
+
+   % Joining blocks. 
+    % Commands \draw with options like [->] must be written individually
+	\draw[-](da1) -- (lpf1i.west);
+  \draw[->](lpf1i) -| (mult1.north);
+	\draw[-](da2) -- (lpf2i.west);
+  \draw[->](lpf2i) -| (mult1.south);
+  \draw[->](mult1.east) -- node {} (mkid);
+  \draw[->](mkid.east) -- (gain.west);
+  \draw[->](gain.east) -- (mult2.west);
+  \draw[->](mult2.north) |- (lpf1o.west);
+  \draw[->](mult2.south) |- (lpf2o.west);
+	\draw[-](lpf1o.east) -- (ad1);
+	\draw[-](lpf2o.east) -- (ad2);
+  \draw[->](ad1) -- node {} (20.5,0);
+  \draw[->](ad2) -- node {} (20.5,-2);
+  \draw[<->](fpga.south) -- (pc.north);
+	\draw[->](synth.west) -| (synthin1);
+	\draw[->](synth.east) -| (synthin2);
+%  %\draw[->](refin) -- node {CH2} (ad2);
+%  \draw[->](ad2) -- node {}(zcd);
+%  \draw[->](zcd) -- node {}(adpll);
+%  \draw[->](intref) -- node {} (adpll);
+%  \draw[->](soc) |- node {} (intref);
+%  %\draw[->](mult2.east) -- node {} (lpf2);
+%  \draw[->](lpf2) -- node {} (12.5,-2);
+%  \draw[*-] (4,0.1) -- node {} (4,-2);
+%  \draw[->] (4,-2) -- (7.5,-2);
+%  %\draw[->] (adpll.east) -| node {} (mult2.south);
+%  \draw (adpll.north) -- node {} (6,-1);
+%  %\draw[->] (6,-1) -| node {} (mult1.south);
+%  \draw[->] (15.5,0) -- node {} (17,0);
+%  \draw[->] (15.5,-2) -- node {} (17,-2);
+%  \draw[->] (18.2,0) -- node {Out1} (20,0);
+%  \draw[->] (18.2,-2) -- node {Out2} (20,-2);
+  
+\end{tikzpicture}
+\end{document}
