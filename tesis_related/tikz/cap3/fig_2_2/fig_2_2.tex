@@ -1,6 +1,7 @@
 \documentclass[14pt,border=10pt]{standalone}
 \usepackage{tikz}
-\usepackage[american]{circuitikz}
+%\usepackage[american]{circuitikz}
+\usepackage[]{circuitikz}
 \usepackage{textcomp}
 
 \usetikzlibrary{shapes,arrows}
@@ -30,45 +31,43 @@
 %\draw[help lines,step=0.5,dashed] (-1,-8) grid (28,4); 
 \draw 
   % Drawing the blocks of first filter :
-  %node at (0,0)[right=-3.3mm]{\Large \textopenbullet}
   node at (0,0)[input, name=Iindac] {}
-  %node at (0,-2)[right=-3.3mm]{\Large \textopenbullet}
   node at (0,-2)[input, name=Qindac] {}
+  node at (2,-4)[input, name=deriv] {}
 	node [block, right of=Iindac] (lpf1i) {FPB}
-	node at (2,0)[block,right of=lpf1i] (att1i) {Aten.}  
-  node at (5.8,0.3)[]{$I$}
+	node at (2,0)[block,label=10\,dB,right of=lpf1i] (att1i) {Aten.}  
+  node at (5.8,0.3)[label={[xshift=0.0cm, yshift=-0.4cm]0\,dBm}]{}
   %node at (4.8,-1)[]{Mezclador $IQ$}
   node [block, right of=Qindac] (lpf2i) {FPB}
-	node at (0,-2)[block,right of=lpf2i] (att2i) {Aten.}
-  node [block,below of=lpf2i] (lpf3i) {FPB}
+	node at (0,-2)[block,label=10\,dB,right of=lpf2i] (att2i) {Aten.}
+  %node [block,below of=lpf2i] (lpf3i) {FPB}
 	%node at (2,0)[block,right of=lpf2i] (da1) {D/A \\ 16 bits}
-  node [block,below of=lpf3i] (lpf5i) {FPB}
-  node at (5.8,-2.3)[]{$Q$}
+  %node [block,below of=lpf3i] (lpf5i) {FPB}
+  node at (5.8,-2.3)[label={[xshift=0.0cm, yshift=-0.4cm]0\,dBm}]{}
   node at (6.5,-1) [mixer] (mult1) {}
-	node at (6.8,-1)[block,right of=mult1] (varatt1) {Aten. Var.}
-  %node at (6.8,-1.4)[input, name=synthin1] {}
-  %node at (15.2,-1)[]{Mezclador $IQ$}
-  %node at (13.2,-1.4)[input, name=synthin2] {}
-  %node [block, right of=ad2] (zcd) {ZCD}
-  %node [block, right of=zcd] (adpll) {ADPLL}
-  %node [block, below of=adpll] (intref) {INT. REF.}
-  %node at (10,-1)[blockp] (crio) {}
-  %node at (10,0.2)[]{Crióstato}
-	%node at (9,-1)[block,minimum height=1.5cm,minimum width=2cm] (mkid)
-	%{Detector\\criogénico}
-  node at (4,-8)[buffer] (gain1) {}
-  node [block,right of=gain1] (att3i) {FPB}
-  node at (4,-8)[buffer, right of=att3i] (gain2) {}
-  node at (6,-8)[mixer,right of=gain2] (mult2) {}
-  node at (13,-6)[buffer] (gain3) {}
-  node at (13,-10)[buffer] (gain4) {}
-	node [block,right of=gain3] (att4) {Aten. var.}
-  node [block,right of=gain4] (att5) {Aten. var.}
+	node at (10,-1)[block,label=0-30\,dB,right of=mult1] (varatt1) {Aten. Var.}
+  %node at (8.4,-2.1)[]{0-30\,dB}
+	node at (13,-1)[align=left](RFout){Salida RF \\(a crióstato) \\ 2-8\,GHz, -40
+	a -10\,dBm}
+	node at (-2,0)[align=left](Iin){Entrada $I$ \\(desde D/A) \\ 0-200\,MHz,+10\,dBm}
+	node at (-2,-2)[align=left](Qin){Entrada $Q$ \\(desde D/A) \\ 0-200\,MHz,+10\,dBm}
+	node at (-2,-4)[align=left](OLin){OL (2-8\,GHz, +16\,dBm) \\$<$
+	-20\,dBc/Hz @ 1\,Hz \\ $<$ -40\,dBc/Hz @ 10\,Hz}
+  node at (2,-7)[buffer,label={[xshift=0.0cm, yshift=0.8cm]30\,dB}] (gain1) {}
+	node at (-2,-7)[align=left](RFin){Entrada RF \\(desde crióstato) \\ 2-8\,GHz,-45 a -25\,dBm}
+  node [block,label=0-30\,dB,right of=gain1] (att3i) {FPB}
+  node at (2,-7)[buffer,label={[xshift=0.0cm, yshift=0.8cm]30\,dB}, right of=att3i] (gain2) {}
+  node at (7.2,-7)[label={[xshift=0.0cm, yshift=-0.1cm]0\,dBm}]{}
+  node at (4,-7)[mixer,xshift=0.5cm,right of=gain2] (mult2) {}
+  node at (11,-5)[buffer,label={[xshift=0.0cm, yshift=0.8cm]20\,dB}] (gain3) {}
+  node at (11,-9)[buffer,label={[xshift=0.0cm, yshift=0.8cm]20\,dB}] (gain4) {}
+	node [block,label=0-20\,dB,right of=gain3] (att4) {Aten. var.}
+  node [block,label=0-20\,dB,right of=gain4] (att5) {Aten. var.}
 	node [block,right of=att4] (lpf6o) {FPB}
   node at (0,-2)[input, name=Qindac] {}
-	node at (22,-6)[](Iadcout){Salida $I$ (al A/D) 0-200\,MHz,+10\,dBm}
+	node at (18,-5)[align=left](Iadcout){Salida $I$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
   node [block,right of=att5] (lpf7o) {FPB}
-	node at (22,-10)[](Qadcout){Salida $Q$ (al A/D) 0-200\,MHz,+10\,dBm}
+	node at (18,-9)[align=left](Qadcout){Salida $Q$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
 	%node at (10,-4)[block,minimum width=5cm] (synth) {Sintetizador\\Referencia
 	%(GHz)}
 	%node at (16,0)[block] (lpf1o) {FPB}
@@ -85,6 +84,13 @@
 
    % Joining blocks. 
     % Commands \draw with options like [->] must be written individually
+  \draw[->](Iin) -- (lpf1i);
+  \draw[->](Qin) -- (lpf2i);
+  \draw[-](mult1.east) -- (varatt1);
+  \draw[->](varatt1.east) -- (RFout);
+  \draw[->](OLin) -- (deriv);
+	\draw[->](deriv) -| (5,-1) -- (mult1.west);
+	\draw[->](deriv) -| (9.5,-7) -- (mult2.east);
 	\draw[-](lpf1i) -- (att1i);
   \draw[->](att1i) -| (mult1.north);
 	%\draw[-](da2) -- (lpf2i.west);
@@ -92,13 +98,19 @@
 	\draw[->](att2i) -| (mult1.south);
 	\draw[->](lpf6o) -- (Iadcout);
 	\draw[->](lpf7o) -- (Qadcout);
+  \draw[->](RFin) -- (gain1.west);
+  \draw[-](gain1.east) -- (att3i);
+  \draw[-](att3i.east) -- (gain2.west);
+  \draw[->](gain2.east) -- (mult2.west);
   %\draw[->](mult1.east) -- node {} (mkid);
   %\draw[->](mkid.east) -- (gain.west);
   %\draw[->](gain.east) -- (mult2.west);
-  %\draw[->](mult2.north) |- (lpf1o.west);
-  %\draw[->](mult2.south) |- (lpf2o.west);
-	%\draw[-](lpf1o.east) -- (ad1);
-	%\draw[-](lpf2o.east) -- (ad2);
+  \draw[->](mult2.north) |- (gain3.west);
+  \draw[->](mult2.south) |- (gain4.west);
+	\draw[-](gain3.east) -- (att4);
+	\draw[-](gain4.east) -- (att5);
+	\draw[-](att4.east) -- (lpf6o);
+	\draw[-](att5.east) -- (lpf7o);
   %\draw[->](ad1) -- node {} (20.5,0);
   %\draw[->](ad2) -- node {} (20.5,-2);
   %\draw[<->](fpga.south) -- (pc.north);
