@@ -24,17 +24,17 @@
 
   \node[initial,state] (A)                    {cnt=0};
   \node[state]         (B) [align=left,below right of=A] {dato $\times$ 1 \\ cnt+1};
-  \node[state]         (C) [align=left,below left of=A] {dato $\times$ 1 \\ cnt+1};
+  \node[state]         (C) [align=left,below left of=A] {dato $\times$ -1 \\ cnt+1};
 
-  \path (A) edge [loop above] node {dv=0} (A)
-				(A) edge [bend left]  node {dv=1} (B)
-				(B) edge [bend left]  node {dv=0} (A)
+	\path (A) edge [loop above] node {t\_valid=0} (A)
+				(A) edge [bend left]  node {t\_valid=1} (B)
+				(B) edge [bend left]  node {t\_valid=0} (A)
 				(B)	edge [bend left]  node {cnt=K} (C)
-        (B) edge [loop right,align=left] node {dv=1 \\ cnt $\le$ K-1 } (B)
+        (B) edge [loop right,align=left] node {t\_valid=1 \\ cnt $\le$ K-1 } (B)
         %    edge              node {0,1,L} (C)
-        (C) edge [loop left,align=left] node {dv=1 \\ cnt $\le$ 2K-1 } (C)
+        (C) edge [loop left,align=left] node {t\_valid=1 \\ cnt $\le$ 2K-1 } (C)
 				(C) edge [bend left]  node {cnt=2K} (A)
-				(C) edge [bend right] node {dv=0} (A);
+				(C) edge [bend right] node {t\_valid=0} (A);
         %    edge [bend left]  node {1,0,R} (E)
        % (D) edge [loop below] node {1,1,R} (D)
         %    edge              node {0,1,R} (A)
