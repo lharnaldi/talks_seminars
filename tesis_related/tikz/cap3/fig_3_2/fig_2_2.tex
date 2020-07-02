@@ -34,11 +34,13 @@
   node at (0,0)[input, name=Iindac] {}
   node at (0,-2)[input, name=Qindac] {}
   node at (2,-4)[input, name=deriv] {}
-	node [block, right of=Iindac] (lpf1i) {FPB}
+	%node [block, right of=Iindac] (lpf1i) {FPB}
+	node at (3,0) [right of=Iindac] (lpf1i) {}
 	node at (2,0)[block,label=10\,dB,right of=lpf1i] (att1i) {Aten.}  
   node at (5.8,0.3)[label={[xshift=0.0cm, yshift=-0.4cm]0\,dBm}]{}
   %node at (4.8,-1)[]{Mezclador $IQ$}
-  node [block, right of=Qindac] (lpf2i) {FPB}
+  %node [block, right of=Qindac] (lpf2i) {FPB}
+	node at (5,-2) [right of=Qindac] (lpf2i) {}
 	node at (0,-2)[block,label=10\,dB,right of=lpf2i] (att2i) {Aten.}
   %node [block,below of=lpf2i] (lpf3i) {FPB}
 	%node at (2,0)[block,right of=lpf2i] (da1) {D/A \\ 16 bits}
@@ -55,7 +57,8 @@
 	-20\,dBc/Hz @ 1\,Hz \\ $<$ -40\,dBc/Hz @ 10\,Hz}
   node at (2,-7)[buffer,label={[xshift=0.0cm, yshift=0.8cm]30\,dB}] (gain1) {}
 	node at (-2,-7)[align=left](RFin){Entrada RF \\(desde crióstato) \\ 2-8\,GHz,-45 a -25\,dBm}
-  node [block,label=0-30\,dB,right of=gain1] (att3i) {FPB}
+  %node [block,label=0-30\,dB,right of=gain1] (att3i) {FPB}
+	node at (2,-7) [right of=gain1,label={[xshift=0.0cm, yshift=0.5cm]0-30\,dB}] (att3i) {}
   node at (2,-7)[buffer,label={[xshift=0.0cm, yshift=0.8cm]30\,dB}, right of=att3i] (gain2) {}
   node at (7.2,-7)[label={[xshift=0.0cm, yshift=-0.1cm]0\,dBm}]{}
   node at (4,-7)[mixer,xshift=0.5cm,right of=gain2] (mult2) {}
@@ -63,75 +66,50 @@
   node at (11,-9)[buffer,label={[xshift=0.0cm, yshift=0.8cm]20\,dB}] (gain4) {}
 	node [block,label=0-20\,dB,right of=gain3] (att4) {Aten. var.}
   node [block,label=0-20\,dB,right of=gain4] (att5) {Aten. var.}
-	node [block,right of=att4] (lpf6o) {FPB}
+	%node [block,right of=att4] (lpf6o) {FPB}
+	node at (5,-5) [right of=att4] (lpf6o) {}
+	%node at (5,-2) [right of=Qindac] (lpf2i) {}
   node at (0,-2)[input, name=Qindac] {}
-	node at (18,-5)[align=left](Iadcout){Salida $I$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
-  node [block,right of=att5] (lpf7o) {FPB}
-	node at (18,-9)[align=left](Qadcout){Salida $Q$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
-	%node at (10,-4)[block,minimum width=5cm] (synth) {Sintetizador\\Referencia
-	%(GHz)}
-	%node at (16,0)[block] (lpf1o) {FPB}
-	%node at (16,-2)[block] (lpf2o) {FPB}
-  %node at (18,0)[block] (ad1) {A/D \\ 14 bits \\ 400\,MHz}
-  %node at (18,-2)[block] (ad2) {A/D \\ 14 bits \\ 400\,MHz}
-  %node at (22,-1)[blockg] (fpga) {FPGA\\ BF-DFTG-SM \\ K canales}
-  %node at (22,-5)[blockg,minimum width=5cm] (pc) {PC\\Procesamiento \\ Memoria
-	%\\ Conexión
-	%USB/Ethernet}
+	node at (19,-5)[align=left](Iadcout){Salida $I$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
+  %node [block,right of=att5] (lpf7o) {FPB}
+	node at (5,-9) [right of=att5] (lpf7o) {}
+	node at (19,-9)[align=left](Qadcout){Salida $Q$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
   node at (20,-1)[output, name=dacout] {}
-  node at (20,-2)[output, name=Ioutdac] {};
+  node at (20,-2)[output, name=Ioutdac] {}
   node at (20,-4)[output, name=Qoutdac] {};
+	\path (Iindac) to [lowpass,name=lpf1ii] (att1i);
+	\path (Qindac) to [lowpass,name=lpf2ii] (att2i);
+	\path (gain1) to [lowpass,name=att3ii] (gain2);
+	\path (att4) to [lowpass,name=lpf6oo] (Iadcout);
+	\path (att5) to [lowpass,name=lpf7oo] (Qadcout);
 
    % Joining blocks. 
     % Commands \draw with options like [->] must be written individually
-  \draw[->](Iin) -- (lpf1i);
-  \draw[->](Qin) -- (lpf2i);
+  \draw[->](Iin) -- (lpf1ii);
+  \draw[->](Qin) -- (lpf2ii);
   \draw[-](mult1.east) -- (varatt1);
   \draw[->](varatt1.east) -- (RFout);
   \draw[->](OLin) -- (deriv);
 	\draw[->](deriv) -| (5,-1) -- (mult1.west);
 	\draw[->](deriv) -| (9.5,-7) -- (mult2.east);
-	\draw[-](lpf1i) -- (att1i);
+	\draw[-](lpf1ii) -- (att1i);
   \draw[->](att1i) -| (mult1.north);
-	%\draw[-](da2) -- (lpf2i.west);
-  \draw[-](lpf2i) -- (att2i);
+  \draw[-](lpf2ii) -- (att2i);
 	\draw[->](att2i) -| (mult1.south);
-	\draw[->](lpf6o) -- (Iadcout);
-	\draw[->](lpf7o) -- (Qadcout);
+	%\draw[->](lpf6o) -- (Iadcout);
+	%\draw[->](lpf7o) -- (Qadcout);
+	\draw[->](lpf7oo) -- (Qadcout);
   \draw[->](RFin) -- (gain1.west);
-  \draw[-](gain1.east) -- (att3i);
-  \draw[-](att3i.east) -- (gain2.west);
+  \draw[-](gain1.east) -- (att3ii);
+  \draw[-](att3ii.east) -- (gain2.west);
   \draw[->](gain2.east) -- (mult2.west);
-  %\draw[->](mult1.east) -- node {} (mkid);
-  %\draw[->](mkid.east) -- (gain.west);
-  %\draw[->](gain.east) -- (mult2.west);
   \draw[->](mult2.north) |- (gain3.west);
   \draw[->](mult2.south) |- (gain4.west);
 	\draw[-](gain3.east) -- (att4);
 	\draw[-](gain4.east) -- (att5);
-	\draw[-](att4.east) -- (lpf6o);
-	\draw[-](att5.east) -- (lpf7o);
-  %\draw[->](ad1) -- node {} (20.5,0);
-  %\draw[->](ad2) -- node {} (20.5,-2);
-  %\draw[<->](fpga.south) -- (pc.north);
-	%\draw[->](synth.west) -| (synthin1);
-	%\draw[->](synth.east) -| (synthin2);
-%  %\draw[->](refin) -- node {CH2} (ad2);
-%  \draw[->](ad2) -- node {}(zcd);
-%  \draw[->](zcd) -- node {}(adpll);
-%  \draw[->](intref) -- node {} (adpll);
-%  \draw[->](soc) |- node {} (intref);
-%  %\draw[->](mult2.east) -- node {} (lpf2);
-%  \draw[->](lpf2) -- node {} (12.5,-2);
-%  \draw[*-] (4,0.1) -- node {} (4,-2);
-%  \draw[->] (4,-2) -- (7.5,-2);
-%  %\draw[->] (adpll.east) -| node {} (mult2.south);
-%  \draw (adpll.north) -- node {} (6,-1);
-%  %\draw[->] (6,-1) -| node {} (mult1.south);
-%  \draw[->] (15.5,0) -- node {} (17,0);
-%  \draw[->] (15.5,-2) -- node {} (17,-2);
-%  \draw[->] (18.2,0) -- node {Out1} (20,0);
-%  \draw[->] (18.2,-2) -- node {Out2} (20,-2);
+	\draw[-](att4.east) -- (lpf6oo);
+	\draw[->](lpf6oo.east) -- (Iadcout);
+	\draw[-](att5.east) -- (lpf7oo);
   
 \end{tikzpicture}
 \end{document}
