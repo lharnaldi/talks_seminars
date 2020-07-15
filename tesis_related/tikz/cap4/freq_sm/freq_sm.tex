@@ -22,9 +22,9 @@
   %\tikzstyle{every state}=[fill=red,draw=none,text=white]
 	\tikzstyle{every state}=[fill={rgb:black,1;white,10}]
 
-  \node[initial,state] (A)                    {cnt=0};
-  \node[state]         (B) [align=left,below right of=A] {dato $\times$ 1 \\ cnt+1};
-  \node[state]         (C) [align=left,below left of=A] {dato $\times$ -1 \\ cnt+1};
+	\node[initial,state] (A) [align=center]                  {$E_1$ \\ cnt=0};
+  \node[state]         (B) [align=center,below right of=A] {$E_2$ \\ dato $\times$ 1 \\ cnt+1};
+  \node[state]         (C) [align=center,below left of=A]  {$E_3$ \\ dato $\times$ -1 \\ cnt+1};
 
 	\path (A) edge [loop above] node {t\_valid=0} (A)
 				(A) edge [bend left]  node {t\_valid=1} (B)
