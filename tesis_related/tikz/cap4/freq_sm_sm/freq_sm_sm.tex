@@ -22,19 +22,27 @@
   %\tikzstyle{every state}=[fill=red,draw=none,text=white]
 	\tikzstyle{every state}=[fill={rgb:black,1;white,10}]
 
-  \node[initial,state] (A)                    {cnt=0};
-  \node[state]         (B) [align=left,below right of=A] {dato $\times$ 1 \\ cnt+1};
-  \node[state]         (C) [align=left,below left of=A] {dato $\times$ -1 \\ cnt+1};
+	\node[initial,state] (A) [align=center]                  {$E_1$ \\ cnt=0};
+  \node[state]         (B) [align=center,below right of=A] {$E_2$ \\ dato $\times$ 1 \\ cnt+1};
+  \node[state]         (C) [align=center,below of=B]  {$E_3$ \\ dato $\times$ -j \\ cnt+1};
+  \node[state]         (E) [align=center,below left of=A]  {$E_5$ \\ dato
+	$\times$ j \\ cnt+1};
+  \node[state]         (D) [align=center,below of=E]  {$E_4$ \\ dato $\times$ -1 \\ cnt+1};
 
 	\path (A) edge [loop above] node {t\_valid=0} (A)
 				(A) edge [bend left]  node {t\_valid=1} (B)
-				(B) edge [bend left]  node {t\_valid=0} (A)
+				(B) edge [right,bend left]  node {t\_valid=0} (A)
 				(B)	edge [bend left]  node {cnt=K} (C)
         (B) edge [loop right,align=left] node {t\_valid=1 \\ cnt $\le$ K-1 } (B)
-        %    edge              node {0,1,L} (C)
-        (C) edge [loop left,align=left] node {t\_valid=1 \\ cnt $\le$ 2K-1 } (C)
-				(C) edge [bend left]  node {cnt=2K} (A)
-				(C) edge [bend right] node {t\_valid=0} (A);
+        (C) edge [loop right,align=left] node {t\_valid=1 \\ cnt $\le$ 2K-1 } (C)
+				(C) edge [right,bend left]  node {t\_valid=0} (A)
+				(C) edge [bend left] node {cnt=2K} (D)
+        (D) edge [loop left,align=left] node {t\_valid=1 \\ cnt $\le$ 3K-1 } (D)
+				(D) edge [bend left] node {cnt=3K} (E)
+				(D) edge [bend right]  node {t\_valid=0} (A)
+        (E) edge [loop left,align=left] node {t\_valid=1 \\ cnt $\le$ 4K-1 } (E)
+				(E) edge [bend right]  node {t\_valid=0} (A)
+				(E) edge [bend left] node {cnt=4K} (A);
         %    edge [bend left]  node {1,0,R} (E)
        % (D) edge [loop below] node {1,1,R} (D)
         %    edge              node {0,1,R} (A)
