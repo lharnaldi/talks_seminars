@@ -1,0 +1,124 @@
+\documentclass[14pt,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows}
+
+\begin{document}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, rounded corners, fill={rgb:black,1;white,10},align=center, minimum height = 3em, minimum width = 3em},
+  blockg/.style    = {draw, thick, rectangle, align=center, minimum height = 3cm, minimum width = 3cm},
+  blockgg/.style    = {draw, thick, rectangle, align=center, minimum height = 3cm, minimum width = 2cm},
+  mult/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\mult}{\Huge x}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+
+%\draw[help lines,step=0.5cm] (-1,-8) grid (24,20); 
+				\draw [rounded corners, name=bigfir] (4,20) rectangle (12,7.5);
+				\draw [block,name=e00] (7,19.5) rectangle (9,18.5) node at (8,19){$P_0(z)$};
+				\draw [block,name=e01] (7,18.4) rectangle (9,17.4) node at (8,17.9){$P_1(z)$};
+				\draw [block,name=e02] (7,17.3) rectangle (9,16.3) node at (8,16.8){$P_2(z)$};
+				\draw node at (7.5,16) [scale=2]{$\vdots$};
+				\draw node at (8.5,16) [scale=2]{$\vdots$};
+				\draw [block,name=e03] (7,15) rectangle (9,14) node at (8,14.5){$P_{K-1}(z)$};
+				%segundo arreglo de polifases
+				\draw [block,name=e10] (7,13.5) rectangle (9,12.5) node at (8,13){$P_0(z)$};
+				\draw [block,name=e11] (7,12.4) rectangle (9,11.4) node at (8,11.9){$P_1(z)$};
+				\draw [block,name=e12] (7,11.3) rectangle (9,10.3) node at (8,10.8){$P_2(z)$};
+				\draw node at (7.5,10) [scale=2]{$\vdots$};
+				\draw node at (8.5,10) [scale=2]{$\vdots$};
+				\draw [block,name=e13] (7,9) rectangle (9,8) node at (8,8.5){$P_{K-1}(z)$};
+				%ahora las entradas
+				\draw node at (6,19)[name=ine00]{\Large \textopenbullet};
+				\draw node at (6,17.9)[name=ine01]{\Large \textopenbullet};
+				\draw node at (6,16.8)[name=ine02]{\Large \textopenbullet};
+				\draw node at (6,14.5)[name=ine03]{\Large \textopenbullet};
+				\draw node at (6,13)[name=ine10]{\Large \textopenbullet};
+				\draw node at (6,11.9)[name=ine11]{\Large \textopenbullet};
+				\draw node at (6,10.8)[name=ine12]{\Large \textopenbullet};
+				\draw node at (6,8.5)[name=ine13]{\Large \textopenbullet};
+				%conexiones de entrada
+				\draw [->] (6.1,19) -- (7,19);
+				\draw [->] (6.1,17.9) -- (7,17.9);
+				\draw [->] (6.1,16.8) -- (7,16.8);
+				\draw [->] (6.1,14.5) -- (7,14.5);
+				\draw [->] (6.1,13)   -- (7,13.0); 
+				\draw [->] (6.1,11.9) -- (7,11.9);
+				\draw [->] (6.1,10.8) -- (7,10.8);
+				\draw [->] (6.1,8.5)  -- (7,8.5);
+				%salidas
+				\draw node at (10,19)[name=oute00]{};
+				\draw node at (10,17.9)[name=oute01]{};
+				\draw node at (10,16.8)[name=oute02]{};
+				\draw node at (10,14.5)[name=oute03]{};
+				\draw node at (10,13)[name=oute10]{};
+				\draw node at (10,11.9)[name=oute11]{};
+				\draw node at (10,10.8)[name=oute12]{};
+				\draw node at (10,8.5)[name=oute13]{};
+				%conexiones de salida
+				\draw [->] (9,19) -- (10,19);
+				\draw [->] (9,17.9) -- (10,17.9);
+				\draw [->] (9,16.8) -- (10,16.8);
+				\draw [->] (9,14.5) -- (10,14.5);
+				\draw [->] (9,13)   -- (10,13.0); 
+				\draw [->] (9,11.9) -- (10,11.9);
+				\draw [->] (9,10.8) -- (10,10.8);
+				\draw [->] (9,8.5)  -- (10,8.5);
+				%conmutador de entrada I
+				\draw [->] (5.4,19.5) -- (5.4,18.3);
+				\draw [->] (5,16.8) |- (5.9,19);
+				\draw [-] (3,16.8) -- (5,16.8);
+				\draw node at (2.9,16.8)[name=ine000]{\Large \textopenbullet};
+				%conmutador de entrada Q
+				\draw [->] (5.4,13.5) -- (5.4,12.3);
+				\draw [->] (5,10.8) |- (5.9,13);
+				\draw [-] (3,10.8) -- (5,10.8);
+				\draw node at (2.9,10.8)[name=ine100]{\Large \textopenbullet};
+				%conmutador de salida I
+				\draw [->] (10.6,19.5) -- (10.6,18.3);
+				\draw [-] (10,19) -- (11,19);
+				\draw [->] (11,19) |- (13,16.8);
+				%conmutador de salida Q
+				\draw [->] (10.6,13.5) -- (10.6,12.3);
+				\draw [-] (10,13) -- (11,13);
+				\draw [->] (11,13) |- (13,11);
+				%labels
+				\node [above,scale=1.7] at (3,16.8) {$I$};
+				\node [above,scale=1.7] at (3,10.8) {$Q$};
+				\node [above,scale=1.7] at (13,16.8) {$I$};
+				\node [above,scale=1.7] at (13,10.8) {$Q$};
+				%fir y fft
+				\draw [rounded corners, name=fircomp,align=center] (4,2) rectangle (7,6) node at
+				(5.5,4)[scale=1.5]{FIR\\Compiler};
+				\draw [rounded corners, name=fft] (9,2) rectangle (12,6) node at 
+				(10.5,4)[scale=1.5]{FFT};
+				%entrada I
+				\node [above,scale=1.7] at (3,4.7) {$I$};
+				\draw node at (2.9,4.7)[name=inifir]{\Large \textopenbullet};
+				\draw [->] (3,4.7) -- (4,4.7);
+				\draw [-] (7,4.7) -- (9,4.7);
+				\draw [->] (12,4.7) -- (13,4.7);
+				\node [above,scale=1.7] at (13,4.7) {$I$};
+				%entrada Q
+				\node [above,scale=1.7] at (3,3.3) {$Q$};
+				\draw node at (2.9,3.3)[name=inqfir]{\Large \textopenbullet};
+				\draw [->] (3,3.3) -- (4,3.3);
+				\draw [-] (7,3.3) -- (9,3.3);
+				\draw [->] (12,3.3) -- (13,3.3);
+				\node [above,scale=1.7] at (13,3.3) {$Q$};
+				%lineas punteadas para fir
+				\draw [dashed,line width=2] (4,6) -- (4,7.5);
+				\draw [dashed,line width=2] (7,6) -- (12,7.5);
+  
+\end{tikzpicture}
+\end{document}
