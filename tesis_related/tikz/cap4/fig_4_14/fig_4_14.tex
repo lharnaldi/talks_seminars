@@ -1,0 +1,83 @@
+\documentclass[14pt,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows,dsp,chains}
+
+\begin{document}
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, rounded corners, fill={rgb:black,1;white,10},align=center, minimum height = 3em, minimum width = 3em},
+  blockg/.style    = {draw, thick, rectangle, align=center, minimum height = 3cm, minimum width = 3cm},
+  blockgg/.style    = {draw, thick, rectangle, align=center, minimum height = 3cm, minimum width = 2cm},
+  mult/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% Defining string as labels of certain blocks.
+\newcommand{\suma}{\Large$+$}
+\newcommand{\mult}{\Huge x}
+\newcommand{\inte}{$\displaystyle \int$}
+\newcommand{\derv}{\huge$\frac{d}{dt}$}
+
+\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+
+%\draw[help lines,step=0.5cm] (-1,-8) grid (24,20); 
+				\draw [align=center,name=cfilt] (2.3,0) rectangle (10.3,8);
+				\draw [align=center,name=fir1,dashed] (3.5,4.2) rectangle (7.5,7.3);
+				\draw [align=center,name=fir2,dashed] (3.5,0.7) rectangle (7.5,3.8);
+				\draw [block, name=I1] (4,6) rectangle (7,7);
+				\draw [block, name=I2] (4,4.5) rectangle (7,5.5);
+				\draw [block, name=Q1] (4,2.5) rectangle (7,3.5);
+				\draw [block, name=Q2] (4,1) rectangle (7,2);
+				%nombres
+				%\draw node at (5.5,9) [scale=1]{$H(z)$ Complejo};
+				\draw node at (5.5,6.5) [scale=1]{$H_I(z)$};
+				\draw node at (5.5,5) [scale=1]{$H_I(z)$};
+				\draw node at (5.5,3) [scale=1]{$H_Q(z)$};
+				\draw node at (5.5,1.5) [scale=1]{$H_Q(z)$};
+				%sumas
+				\node at (9,6.5) [dspadder,scale=1.3] {};
+				\node at (9,1.5) [dspadder,scale=1.3] {};
+
+				%ahora las entradas
+				%\draw node at (2,9)[name=ine00]{\Large \textopenbullet};
+				\draw node at (1.5,6.5)[name=ine01]{\Large \textopenbullet};
+				\draw node at (1.5,1.5)[name=ine02]{\Large \textopenbullet};
+				%conexiones de entrada
+				%\draw [->] (2.1,9) -- (3.5,9);
+				\draw [->] (1.6,6.5) -- (4,6.5);
+				\draw [->] (2.5,6.5) |- (4,5);
+				\draw node at (2.5,6.5) [circle,scale=0.3,fill=black] {\textopenbullet}; 
+				\draw [->] (2.5,1.5) |- (4,3);
+				\draw node at (2.5,1.5) [circle,scale=0.3,fill=black] {\textopenbullet}; 
+				\draw [->] (1.6,1.5) -- (4,1.5);
+				%conexiones de salida
+				%\draw [->] (7.5,9) -- (10.5,9);
+				\draw [->] (7,6.5) -- (8.75,6.5);
+				\draw [->] (7,1.5) -- (8.75,1.5);
+				%salidas
+				\draw [-] (7,3) -- (8,3);
+				\draw [->] (8,3) -- (9,6.25);
+				\draw [-] (7,5) -- (8,5);
+				\draw [->] (8,5) -- (9,1.75);
+				\draw [->] (9.25,6.5) -- (11,6.5);
+				\draw [->] (9.25,1.5) -- (11,1.5);
+				%%labels
+				%\node [left,scale=1.7] at (2,9) {$x(n)$};
+				%\node [right,scale=1.7] at (11,9) {$y(n)$};
+				\node [left,scale=1.7] at (1.5,6.5) {$I$};
+				\node [right,scale=1.7] at (11,6.5) {$I$};
+				\node [left,scale=1.7] at (1.5,1.5) {$Q$};
+				\node [right,scale=1.7] at (11,1.5) {$Q$};
+				\node [above,scale=1.3] at (8.3,6.5) {$+$};
+				\node [below,scale=1.3] at (8.6,6.2) {$-$};
+				\node [above,scale=1.3] at (8.3,1.5) {$+$};
+				\node [below,scale=1.3] at (9.3,2.4) {$+$};
+				%nodos
+				\node at (5,7.6) [scale=1] {\textbf{FIR Compiler I}};
+				\node at (5,0.4) [scale=1] {\textbf{FIR Compiler Q}};
+  
+\end{tikzpicture}
+\end{document}
