@@ -1,0 +1,60 @@
+\documentclass[]{standalone}
+%\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{dsp,chains}
+
+\begin{document}
+
+\begin{circuitikz}[auto, thick, node distance=2cm] 
+
+	%\draw[help lines,step=0.5] (-1,-2) grid (15,2);
+	\draw node at (1,0)[name=in]{\Large \textopenbullet};
+	\draw node at (1,-2)[name=in]{\Large \textopenbullet};
+  \draw (1.05,0) to[short,-] (2,0);
+  \draw (1.05,-2) to[short,-] (2,-2);
+	\node[dspsquare,thick,scale=1.2] at(4.5,0)(m1) {\downsamplertext{4}};
+	\node[dspsquare,thick,scale=1.2] at(8.5,0)(m2) {\downsamplertext{2}};
+	\draw
+	(2,0) to[twoport, name=h1, t=$H_1(z)$,>] (3,0) 
+	(6,0) to[twoport, name=h2, t=$H_2(z)$,>] (7,0) 
+	(m1.east) to[short,-] ++(1,0)
+	(h2.east) to[short,-] ++(1,0)
+	(m2.east) to[short,-] ++(1,0)
+	(m1.west) to[short,-] ++(-1,0)
+	%(1,0.5) node {$x(n)$}
+	%(10,0.5) node {$y(m)$}
+;
+	\draw (10,0) node[inputarrow] {};
+	\draw (4,0) node[inputarrow] {};
+	\draw (8,0) node[inputarrow] {};
+	\draw (10,-2) node[inputarrow] {};
+	\draw (2.05,-2) node[inputarrow] {};
+	\draw (7.5,-2) node[inputarrow] {};
+  %\draw (14,0) to[short,-] (15,0);
+	%\draw (15,0) node[inputarrow] {};
+	\node [above,scale=1] at (1.5,-1) {\small{$125$\,MHz}};
+	\node [above,scale=1] at (5.5,-1) {\small{$31.25$\,MHz}};
+	\node [above,scale=1] at (9.5,-1) {\small{$15.625$\,MHz}};
+	%\node [above,scale=1] at (14.5,-1.5) {$F_s/M$};
+
+	\node[dspsquare,thick,scale=1.2] at(8,-2)(m12) {\downsamplertext{8}};
+	\node[dspsquare,very thick,scale=1.2]   at(4,-2)(h12) {$H(z)=H_1(z)H_2(z^4)$};
+
+	\draw
+	(m12.east) to[short,-] ++(1.5,0)
+	(h12.east) to[short,-] ++(1.6,0)
+	(1,0.5) node {$x(n)$}
+	(10,0.5) node {$y(m)$}
+	(1,-1.5) node {$x(n)$}
+	(10,-1.5) node {$y(m)$}
+	(11,0.5) node {\textbf{a)}}
+	(11,-1.5) node {\textbf{b)}}
+;
+	\node [above,scale=1] at (1.5,-3) {\small{$125$\,MHz}};
+	%\node [above,scale=1] at (5.5,-3) {\small{$15.625$\,MHz}};
+	\node [above,scale=1] at (9.5,-3) {\small{$15.625$\,MHz}};
+	%\node [above,scale=1] at (14.5,-1.5) {$F_s/M$};
+\end{circuitikz} 
+%\end{center}
+\end{document}
