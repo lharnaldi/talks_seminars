@@ -1,0 +1,46 @@
+\documentclass[]{standalone}
+%\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\begin{circuitikz}[auto, thick, node distance=2cm] 
+
+	%\draw[help lines,step=0.5] (-1,-2) grid (15,2);
+	\draw node at (1,0)[name=in]{\Large \textopenbullet};
+  \draw (1.05,0) to[short,-] (2,0);
+	\node [above,scale=1] at (3.5,1) {Etapa 1};
+	\draw [align=center,name=s1,dashed] (1.7,-0.8) rectangle (5.3,0.8);
+	\node [above,scale=1] at (7.5,1) {Etapa 2};
+	\draw [align=center,name=s2,dashed] (5.7,-0.8) rectangle (9.3,0.8);
+	\node [above,scale=1] at (12.5,1) {Etapa J};
+	\draw [align=center,name=sJ,dashed] (10.7,-0.8) rectangle (14.3,0.8);
+	\draw node at (10,0) [scale=2]{$\cdots$};
+	\draw
+	(2,0) to[twoport, name=h1, t=$h_1(k)$,>] (3,0) 
+	(4,0) to[twoport, name=m1, t=$M_1$,>] (5,0) 
+	(6,0) to[twoport, name=h2, t=$h_2(k)$,>] (7,0) 
+	(8,0) to[twoport, name=m2, t=$M_2$,>] (9,0) 
+	(11,0) to[twoport, name=hJ, t=$h_J(k)$,>] (12,0) 
+	(13,0) to[twoport, name=mJ, t=$M_J$,>] (14,0) 
+	(m1.east) to[short,-] ++(1,0)
+	(h2.east) to[short,-] ++(1,0)
+	(m2.east) to[short,-] ++(0.4,0)
+	(hJ.west) to[short,-] ++(-0.5,0)
+	(hJ.east) to[short,-] ++(1,0)
+	(m1.west) to[short,-] ++(-1,0)
+	(1,0.5) node {$x(n)$}
+	(15,0.5) node {$y(m)$}
+;
+	\draw (9.5,0) node[inputarrow] {};
+  \draw (14,0) to[short,-] (15,0);
+	\draw (15,0) node[inputarrow] {};
+	\node [above,scale=1] at (1.5,-1.5) {$F_s$};
+	\node [above,scale=1] at (5.5,-1.5) {$F_s/M_1$};
+	\node [above,scale=1] at (9.5,-1.5) {$F_s/(M_1M_2)$};
+	\node [above,scale=1] at (14.5,-1.5) {$F_s/M$};
+\end{circuitikz} 
+%\end{center}
+
+\end{document}
