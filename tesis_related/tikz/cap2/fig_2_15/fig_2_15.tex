@@ -1,0 +1,176 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{15pt}%
+\begin{comment}
+\end{comment}
+\usetikzlibrary{dsp,chains}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\begin{document}
+\begin{tikzpicture}
+
+				%\draw[help lines,step=0.5] (-5,-2) grid (5,2);
+	% Place nodes using a matrix
+	\matrix (m1) [row sep=3mm, column sep=5mm]
+	{
+		%first row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m000) {};    &
+		\node[coordinate]                  (m001) {};          &
+		\node[dspnodeopen]                  (m002) {};          &
+		\node[dspsquare]                   (m003) {$\upsamplertext{I}$}; &
+		\node[coordinate]                  (m004) {};    &
+		\node[dspsquare,minimum width=1.6cm](m005) {$\bar{p}_0(m)$}; &
+		\node[coordinate]                  (m006) {};          &
+		\node[coordinate]                  (m007) {};          &
+		\node[coordinate]                  (m008) {};          &
+		\node[coordinate]                  (m009) {};          &
+%		\node[coordinate]                  (m009) {};          &
+%		\node[coordinate]                  (m010) {};&
+%		\node[dspsquare,minimum width=1.6cm](m011) {$\bar{p}_0(m)$}; &
+%		\node[coordinate]                  (m012) {};          &
+%		\node[coordinate]                  (m013) {};          &
+		\node[coordinate]                  (m010) {};          \\
+%		\node[dspnodeopen,dsp/label=above] (m09) {$y_\rho(m)$};  \\
+		%------------------------------------------------------------
+		%second row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m100) {};    &
+		\node[coordinate]                  (m101) {};          &
+		\node[dspnodeopen]                  (m102) {};          &
+		\node[dspsquare]                   (m103) {$\upsamplertext{I}$}; &
+		\node[coordinate]                  (m104) {};    &
+		\node[dspsquare,minimum width=1.6cm](m105) {$\bar{p}_1(m)$}; &
+		\node[coordinate]                  (m106) {};          &
+		\node[coordinate]                  (m107) {};          &
+		\node[coordinate]                  (m108) {};          &
+		\node[coordinate]                  (m109) {};          &
+%		\node[coordinate]                  (m109) {};          &
+%		\node[coordinate]                  (m110) {};&
+%		\node[dspsquare,minimum width=1.6cm](m111) {$\bar{p}_1(m)$}; &
+%		\node[coordinate]                  (m112) {};          &
+%		\node[coordinate]                  (m113) {};          &
+		\node[coordinate]                  (m110) {};          \\ \\
+%		%------------------------------------------------------------
+		%third row
+		%------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m200) {$x(n)$};    &
+		\node[coordinate]                  (m201) {};          &
+		\node[dspnodeopen]                 (m202) {};          &
+		\node[dspsquare]                   (m203) {$\upsamplertext{I}$}; &
+		\node[coordinate]                  (m204) {};    &
+		\node[dspsquare,minimum width=1.6cm](m205) {$\bar{p}_\rho(m)$}; &
+		\node[coordinate]                  (m206) {};          &
+		\node[coordinate]                  (m207) {};          &
+		\node[coordinate]                  (m208) {};          &
+		\node[coordinate]                  (m209) {};          &
+%		\node[coordinate]                  (m209) {};          &
+%		\node[coordinate]                   (m210) {};&
+%		\node[dspsquare,minimum width=1.6cm](m211) {$\bar{p}_\rho(m)$}; &
+%		\node[coordinate]                  (m212) {};          &
+%		\node[coordinate]                  (m213) {};          &
+		\node[coordinate]                  (m210) {};          \\ \\
+		%------------------------------------------------------------
+		%fourth row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m300) {$x_\rho(r)$};    &
+		\node[coordinate]                  (m301) {};          &
+		\node[dspnodeopen]                  (m302) {};          &
+		\node[dspsquare]                   (m303) {$\upsamplertext{I}$}; &
+		\node[coordinate]                  (m304) {};    &
+		\node[dspsquare,minimum width=1.6cm](m305) {$\bar{p}_{K-1}(m)$}; &
+		\node[coordinate]                  (m306) {};          &
+		\node[coordinate]                  (m307) {};          &
+		\node[coordinate]                  (m308) {};          &
+		\node[coordinate]                  (m309) {};          &
+%		\node[coordinate]                  (m309) {};          &
+%		\node[coordinate]                  (m310) {};&
+%		\node[dspsquare,minimum width=1.6cm](m311) {$\bar{p}_{M-1}(m)$}; &
+%		\node[coordinate]                  (m312) {};          &
+%		\node[coordinate]                  (m313) {};          &
+		\node[coordinate]                  (m310) {};          \\
+		%--------------------------------------------------------------------
+	};
+
+	% Draw connections
+	\foreach \i [evaluate= \i as \j using int(\i+2),
+	             evaluate= \i as \k using int(\i+3)] in {0,1,2,3}
+	{
+		\begin{scope}[start chain]
+			\chainin (m\i02);
+			\chainin (m\i03) [join=by dspconn];
+			\chainin (m\i03);
+			\chainin (m\i05) [join=by dspconn];
+			\chainin (m\i05);
+			\chainin (m\i06) [join=by dspconn];
+		\end{scope}
+	}
+	
+%	\foreach \i [evaluate = \i as \j using int(\i+1),
+%	             evaluate = \i as \k using int(\i+2),] in {2,4,6}
+%	{
+%		\begin{scope}[start chain]
+%			\chainin (m00\i);
+%			\chainin (m00\j) [join=by dspconn];
+%			\chainin (m00\k) [join=by dspline];
+%			\chainin (m10\k) [join=by dspconn];
+%			\chainin (m20\k) [join=by dspconn];
+%		\end{scope}
+%		\draw[dspconn] (m20\i) -- (m20\k);
+%	}
+
+	\draw[dspconn] (-3.05,2.5) -- (-3.05,1.5);
+	\node [right of=m206,node distance=0.8cm,above=-1.85cm,dspsquare,minimum
+	height=4.8cm,minimum width=1.6cm] (fft){};
+	\draw[dspconn] (m200) -- (m201);
+	\draw[dspconn] (m201) |- (m002);
+
+	\draw[dspconn] (3.44,2) -- (4.5,2);
+	\draw[dspconn] (3.44,0.85) -- (4.5,0.85);
+	\draw[dspconn] (3.44,-0.6) -- (4.5,-0.6);
+	\draw[dspconn] (3.44,-2.0) -- (4.5,-2.0);
+
+	\node at(-1.5,0.25) []{$\vdots$};
+	\node at(0.5,0.25) []{$\vdots$};
+	\node at(4,0.25) []{$\vdots$};
+	\node at(-1.5,-1.2) []{$\vdots$};
+	\node at(0.5,-1.2) []{$\vdots$};
+	\node at(4,-1.2) []{$\vdots$};
+
+	\node at(4.0,2)[above,scale=0.64](o01){$X_0(m)$};
+	\node at(4.0,0.85)[above,scale=0.64](o02){$X_1(m)$};
+	\node at(4.0,-0.6)[above,scale=0.64](o03){$X_\rho(m)$};
+	\node at(4.0,-2.0)[above,scale=0.64](o04){$X_{K-1}(m)$};
+	\node at(2.5,-0.2)[above](o01){$FFT$};
+	\node at(1.73,2)[right,scale=0.9](n0){$0$};
+	\node at(1.73,0.85)[right,scale=0.9](n0){$1$};
+	\node at(1.73,-0.6)[right,scale=0.9](n0){$\rho$};
+	\node at(1.73,-2.0)[right,scale=0.9](n0){\small{$K$-1}};
+	\node at(3.5,2)[left,scale=0.9](n0){$0$};
+	\node at(3.5,0.85)[left,scale=0.9](n0){$1$};
+	\node at(3.5,-0.6)[left,scale=0.9](n0){$\rho$};
+	\node at(3.5,-2.0)[left,scale=0.9](n0){\small{$K$-1}};
+%	\node at(m204)[above,scale=0.64](o01){$W_M^{-k\rho}$};
+%	\node at(m304)[above,scale=0.64](o01){$W_M^{-k(M-1)}$};
+%	\draw[dspconn] (m005) -- (ad01);
+%	\draw[dspconn] (m105) -- (ad01);
+%	\draw[dspconn] (m205) -- (ad01);
+%	\draw[dspconn] (m305) -- (ad01);
+%	\node at(0.2,-3)[]{\textbf{b)}};
+	\draw [dashed] (-2.4,1.5) rectangle (1.5,2.5);
+	\draw [dashed] (-2.4,0.35) rectangle (1.5,1.4);
+	\draw [dashed] (-2.4,-0.05) rectangle (1.5,-1.05);
+	\draw [dashed] (-2.4,-1.5) rectangle (1.5,-2.5);
+	\node at(-3.8,-2.8)[scale=0.9]{$F_s$};
+	\node at(-2.5,-2.8)[scale=0.9]{$F_s/K$};
+	\node at(1.6,-2.8)[scale=0.9]{$F_s/M$};
+
+	\
+\end{tikzpicture}
+
+\end{document}
