@@ -23,7 +23,7 @@
 		\node[coordinate]                  (m000) {};    &
 		\node[coordinate]                  (m001) {};          &
 		\node[dspnodeopen]                  (m002) {};          &
-		\node[dspsquare,minimum width=2.6cm](m003) {$\bar{p}_0(m)W_M^{k_0mM}$}; &
+		\node[dspsquare,minimum width=2.6cm](m003) {$\bar{p}_0(m)W_M^{-k_0mM}$}; &
 		\node[coordinate]                  (m004) {};    &
 		\node[coordinate]                  (m005) {};          &
 		\node[coordinate]                  (m006) {};          &
@@ -42,7 +42,7 @@
 		\node[coordinate]                  (m100) {};    &
 		\node[coordinate]                  (m101) {};          &
 		\node[dspnodeopen]                  (m102) {};          &
-		\node[dspsquare,minimum width=2.6cm](m103) {$\bar{p}_1(m)W_M^{k_0mM}$}; &
+		\node[dspsquare,minimum width=2.6cm](m103) {$\bar{p}_1(m)W_M^{-k_0mM}$}; &
 		\node[coordinate]                  (m104) {};    &
 		\node[coordinate]                  (m105) {};          &
 		\node[coordinate]                  (m106) {};          &
@@ -60,7 +60,7 @@
 		\node[dspnodeopen,dsp/label=above] (m200) {$x(n)$};    &
 		\node[coordinate]                  (m201) {};          &
 		\node[dspnodeopen]                 (m202) {};          &
-		\node[dspsquare,minimum width=2.6cm](m203) {$\bar{p}_\rho(m)W_M^{k_0mM}$}; &
+		\node[dspsquare,minimum width=2.6cm](m203) {$\bar{p}_\rho(m)W_M^{-k_0mM}$}; &
 		\node[coordinate]                  (m204) {};    &
 		\node[coordinate]                  (m205) {};          &
 		\node[coordinate]                  (m206) {};          &
@@ -78,7 +78,7 @@
 		\node[coordinate]                  (m300) {$x_\rho(r)$};    &
 		\node[coordinate]                  (m301) {};          &
 		\node[dspnodeopen]                  (m302) {};          &
-		\node[dspsquare,minimum width=2.6cm](m303) {$\bar{p}_{M-1}(m)W_M^{k_0mM}$}; &
+		\node[dspsquare,minimum width=2.6cm](m303) {$\bar{p}_{M-1}(m)W_M^{-k_0mM}$}; &
 		\node[coordinate]                  (m304) {};    &
 		\node[coordinate]                  (m305) {};          &
 		\node[coordinate]                  (m306) {};          &
@@ -163,17 +163,17 @@
 %	\node at(m204)[above,scale=0.64](o01){$W_M^{-k\rho}$};
 %	\node at(m304)[above,scale=0.64](o01){$W_M^{-k(M-1)}$};
 
-	\node at(3.2,1.8)[scale=0.9](m00){$W_M^{k_0mM}$};
+	\node at(3.3,1.8)[scale=0.9](m00){$W_M^{k_0mM}$};
 	\draw[dspconn] (m00) -- (m009.south);
-	\node at(3.2,0.4)[scale=0.9](m01){$W_M^{k_0mM}$};
+	\node at(3.3,0.4)[scale=0.9](m01){$W_M^{k_0mM}$};
 	\draw[dspconn] (m01) -- (m109.south);
-	\node at(3.2,-1.35)[scale=0.9](m02){$W_M^{k_0mM}$};
+	\node at(3.3,-1.35)[scale=0.9](m02){$W_M^{k_0mM}$};
 	\draw[dspconn] (m02) -- (m209.south);
-	\node at(3.2,-3.05)[scale=0.9](m03){$W_M^{k_0mM}$};
+	\node at(3.3,-3.05)[scale=0.9](m03){$W_M^{k_0mM}$};
 	\draw[dspconn] (m03) -- (m309.south);
 %	\draw[dspconn] (m105) -- (ad01);
 %	\draw[dspconn] (m205) -- (ad01);
-	\draw[dspconn] (-3.6,3) -- (-3.6,2);
+	\draw[dspconn] (-3.7,3) -- (-3.7,2);
 	\node at(0.2,-3.4)[]{\textbf{a)}};
 	\node at(0.2,3.4)[]{\textbf{Análisis}};
 
