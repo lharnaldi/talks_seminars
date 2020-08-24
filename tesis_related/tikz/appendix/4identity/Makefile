@@ -1,4 +1,4 @@
-LTX=id_1
+LTX=id_4
 
 all: $(LTX).pdf
 

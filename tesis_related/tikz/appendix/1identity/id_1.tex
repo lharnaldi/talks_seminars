@@ -1,5 +1,9 @@
 \documentclass{article}
 \usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows}
 \usepackage{verbatim}
 \usepackage[active,tightpage]{preview}
 \PreviewEnvironment{tikzpicture}
@@ -14,106 +18,84 @@
 \begin{document}
 \begin{tikzpicture}
 
-				\draw[help lines] (-8,-2) grid (8,2);
+	%\draw[help lines,step=0.5] (-8,-2) grid (8,2);
 	% Place nodes using a matrix
-	\matrix (m1) [row sep=6mm, column sep=5mm]
+	\matrix (m1) [row sep=3mm, column sep=5mm]
 	{
 		%------------------------------------------------------------
-					%decimador
-		\node[dspnodeopen,dsp/label=above] (m00) {$x(n)$};    &
-		%\node[coordinate]                  (m01) {};          &
-		%\node[dspmixer]                    (m02) {};          &
+		%decimador
+		\node[dspnodeopen,dsp/label=above] (m00) {$x_1(n)$};    &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_1$}]            (m01) {};    &
+		\node[coordinate]                  (m02) {};          &
 		\node[coordinate]                  (m03) {};          &
-				\node[dspsquare]                   (m04) {$H(z)$};    &
-		%\node[coordinate]                  (m05) {};          &
-				\node[above]                  (m05) {$v(n)$};          &
-		\node[dspsquare]                   (m06) {\downsamplertext{M}}; &
-		\node[coordinate]                  (m07) {};          &
-%		\node[coordinate]                  (m08) {};          &
-				\node[dspnodeopen,dsp/label=above] (m09) {$y(m)$};     &  
-		\node[coordinate]                  (m000) {};          &
-		\node[coordinate]                  (m001) {};          &
-		\node[coordinate]                  (m002) {};          &
-				%interpolador
-		\node[dspnodeopen,dsp/label=above] (m10) {$x(n)$};    &
-		%\node[coordinate]                  (m11) {};          &
-		%\node[dspmixer]                    (m12) {};          &
-		\node[coordinate]                  (m13) {};          &
-				\node[dspsquare]                   (m14) {\upsamplertext{L}};    &
-		%\node[coordinate]                  (m15) {};          &
-				\node[above]                  (m15) {$x_u(m)$};          &
-		\node[dspsquare]                   (m16) {$H(z)$}; &
-		\node[coordinate]                  (m17) {};          &
-%		\node[coordinate]                  (m18) {};          &
-		\node[dspnodeopen,dsp/label=above] (m19) {$y(m)$};  \\
+		\node[coordinate]                  (m04) {};          &
+		\node[coordinate]                  (m05) {};          &
+		\node[dspnodeopen,dsp/label=above] (m06) {$x_1(n)$};    &
+		\node[dspsquare]                   (m07) {\downsamplertext{M}}; &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_1$}]            (m08) {};    &
+		\node[coordinate]                  (m09) {};          &
+		\node[coordinate]                  (m0X) {};  \\
 		%------------------------------------------------------------
-%		\node[coordinate]                  (m10) {};          &
-%		%\node[coordinate]                  (m11) {};          &
-%		%\node[dspnodeopen,dsp/label=below] (m12) {$e^{-j\frac{2\pi}{K}kn}$};    &
-%		\node[coordinate]                  (m13) {};          &
-%		\node[coordinate]                  (m14) {};          &
-%		\node[coordinate]                  (m15) {};          &
-%		\node[coordinate]                  (m15b) {};          &
-%		\node[coordinate]                  (m16) {};          &
-%		\node[coordinate]                  (m17) {};          &
-%		\node[coordinate]                  (m18) {};          &
-%		\node[coordinate]                  (m19) {};          \\
-%		%------------------------------------------------------------
-%		\\
-%		%------------------------------------------------------------
-%		\node[coordinate]                  (m20) {};          &
-%		\node[coordinate]                  (m21) {};          &
-%		\node[coordinate]                  (m22) {};          &
-%		\node[coordinate]                  (m23) {};          &
-%		\node[dspadder]                    (m24) {};          &
-%		\node[coordinate]                  (m25) {};          &
-%		\node[dspadder]                    (m26) {};          &
-%		\node[coordinate]                  (m27) {};          &
-%		\node[dspadder]                    (m28) {};          &
-%		\node[coordinate]                  (m29) {};          &
-%		\node[dspnodeopen,dsp/label=above] (m2X) {$y[n]$};    \\
+		\node[coordinate]                  (m10) {};          &
+		\node[coordinate]                  (m11) {};          &
+		\node[dspadder]                    (m12) {};          &
+		\node[dspsquare]                   (m13) {\downsamplertext{M}}; &
+		\node[dsp/label=above]             (m14) {$y(m)$};    &
+		\node[scale=1.7]                   (m15) {$\equiv$};   &
+		\node[coordinate]                  (m16) {};          &
+		\node[coordinate]                  (m17) {};          &
+		\node[coordinate]                  (m18) {};          &
+		\node[dspadder]                    (m19) {};          &
+		\node[dsp/label=above]             (m1X) {$y(m)$};  \\
+		%		%------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m20) {$x_2(n)$};    &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_2$}]            (m21) {};    &
+		\node[coordinate]                  (m22) {};          &
+		\node[coordinate]                  (m23) {};          &
+		\node[coordinate]                  (m24) {};          &
+		\node[coordinate]                  (m25) {};          &
+		\node[dspnodeopen,dsp/label=above] (m26) {$x_2(n)$};    &
+		\node[dspsquare]                   (m27) {\downsamplertext{M}}; &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_2$}]            (m28) {};    &
+		\node[coordinate]                  (m29) {};          &
+		\node[coordinate]                  (m2X) {};          \\
 		%--------------------------------------------------------------------
-	};
+		};
 
-	% Draw connections
-	
-	\begin{scope}[start chain]
-		\chainin (m00);
-		%\chainin (m02) [join=by dspflow];
-		%\chainin (m12);
-		%\chainin (m02) [join=by dspconn];
-		%\chainin (m02);
-		\chainin (m04) [join=by dspconn];
-		\chainin (m04);
-		\chainin (m06) [join=by dspconn];
-		\chainin (m10);
-		%\chainin (m02) [join=by dspflow];
-		%\chainin (m12);
-		%\chainin (m02) [join=by dspconn];
-		%\chainin (m02);
-		\chainin (m14) [join=by dspconn];
-		\chainin (m14);
-		\chainin (m16) [join=by dspconn];
-	\end{scope}
+		% Draw connections
 
-	%\foreach \i [evaluate = \i as \j using int(\i+1),
-	%             evaluate = \i as \k using int(\i+2),] in {2,4,6}
-	%{
-	%	\begin{scope}[start chain]
-	%		\chainin (m0\i);
-	%		\chainin (m0\j) [join=by dspconn];
-	%		\chainin (m0\k) [join=by dspline];
-	%		\chainin (m1\k) [join=by dspconn];
-	%		\chainin (m2\k) [join=by dspconn];
-	%	\end{scope}
-	%	\draw[dspconn] (m2\i) -- (m2\k);
-	%}
+		\begin{scope}[start chain]
+			\chainin (m06);
+			\chainin (m07) [join=by dspconn];
+			\chainin (m02);
+			\chainin (m12) [join=by dspconn];
+			\chainin (m09);
+			\chainin (m19) [join=by dspconn];
+			\chainin (m26);
+			\chainin (m27) [join=by dspconn];
+			\chainin (m22);
+			\chainin (m12) [join=by dspconn];
+			\chainin (m29);
+			\chainin (m19) [join=by dspconn];
+			\chainin (m12);
+			\chainin (m13) [join=by dspconn];
+			\chainin (m13);
+			\chainin (m14) [join=by dspconn];
+			\chainin (m19);
+			\chainin (m1X) [join=by dspconn];
+		\end{scope}
 
-	\draw[dspflow] (m06) -- (m09);
-	\draw[dspflow] (m16) -- (m19);
-	\node at (-4.0,-1) [] {\textbf{(a)}};
-	\node at (4.0,-1) [] {\textbf{(b)}};
+		\draw[dspflow] (m00) -- ([xshift=0.1cm]m01.west);
+		\draw[dspflow] ([xshift=-0.1cm]m01.east) -- (m02);
+		\draw[dspflow] (m07) -- ([xshift=0.1cm]m08.west);
+		\draw[dspflow] ([xshift=-0.1cm]m08.east) -- (m09);
+		\draw[dspflow] (m20) -- ([xshift=0.1cm]m21.west);
+		\draw[dspflow] ([xshift=-0.1cm]m21.east) -- (m22);
+		\draw[dspflow] (m27) -- ([xshift=0.1cm]m28.west);
+		\draw[dspflow] ([xshift=-0.1cm]m28.east) -- (m29);
+		\node at (-4.0,-2.5) [] {\textbf{(a)}};
+		\node at (3.0,-2.5) [] {\textbf{(b)}};
 
-\end{tikzpicture}
+	\end{tikzpicture}
 
 \end{document}

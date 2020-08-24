@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage[american]{circuitikz}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes,arrows}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{15pt}%
+\begin{comment}
+\end{comment}
+\usetikzlibrary{dsp,chains}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\begin{document}
+\begin{tikzpicture}
+
+	%\draw[help lines,step=0.5] (-8,-2) grid (8,2);
+	% Place nodes using a matrix
+	\matrix (m1) [row sep=3mm, column sep=5mm]
+	{
+		%------------------------------------------------------------
+		\node[coordinate]                  (m00) {};          &
+		\node[coordinate]                  (m01) {};          &
+		\node[coordinate]                  (m02) {};          &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_1$}]            (m03) {};    &
+		\node[dsp/label=above]             (m04) {$x_1(n)$};    &
+		\node[coordinate]                  (m05) {};          &
+		\node[coordinate]                  (m06) {};          &
+		\node[coordinate]                  (m07) {};          &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_1$}]            (m08) {};    &
+		\node[dspsquare]                   (m09) {\upsamplertext{L}}; &
+		\node[dsp/label=above]             (m0X) {$x_1(n)$};  \\
+		%------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m10) {$y(m)$};    &
+		\node[dspsquare]                   (m11) {\upsamplertext{L}}; &
+		\node[dspnodefull]                 (m12) {};          &
+		\node[coordinate]                  (m13) {};          &
+		\node[coordinate]                  (m14) {};    &
+		\node[scale=1.7]                   (m15) {$\equiv$};   &
+		\node[dsp/label=above]             (m16) {$y(m)$};    &
+		\node[dspnodefull]                 (m17) {};          &
+		\node[coordinate]                  (m18) {};          &
+		\node[coordinate]                  (m19) {};          &
+		\node[coordinate]                  (m1X) {};          \\
+		%		%------------------------------------------------------------
+		\node[coordinate]                  (m20) {};          &
+		\node[coordinate]                  (m21) {};          &
+		\node[coordinate]                  (m22) {};          &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_2$}]            (m23) {};    &
+		\node[dsp/label=above]             (m24) {$x_2(n)$};    &
+		\node[coordinate]                  (m25) {};          &
+		\node[coordinate]                  (m26) {};          &
+		\node[coordinate]                  (m27) {};          &
+		\node[buffer,scale=0.5,label={[xshift=0.0cm, yshift=0.3cm]$a_2$}]            (m28) {};    &
+		\node[dspsquare]                   (m29) {\upsamplertext{L}}; &
+		\node[dsp/label=above]             (m2X) {$x_2(n)$};  \\
+		%--------------------------------------------------------------------
+		};
+
+		% Draw connections
+
+		\begin{scope}[start chain]
+			\chainin (m10);
+			\chainin (m11) [join=by dspconn];
+			\chainin (m11);
+			\chainin (m12) [join=by dspconn];
+			\chainin (m12);
+			\chainin (m02) [join=by dspflow];
+			\chainin (m17);
+			\chainin (m07) [join=by dspflow];
+			\chainin (m09);
+			\chainin (m0X) [join=by dspconn];
+			\chainin (m16);
+			\chainin (m17) [join=by dspconn];
+			\chainin (m12);
+			\chainin (m22) [join=by dspflow];
+			\chainin (m17);
+			\chainin (m27) [join=by dspflow];
+			\chainin (m29);
+			\chainin (m2X) [join=by dspconn];
+		\end{scope}
+
+		\draw[dspflow] (m02) -- ([xshift=0.1cm]m03.west);
+		\draw[dspflow] ([xshift=-0.1cm]m03.east) -- (m04);
+		\draw[dspflow] (m07) -- ([xshift=0.1cm]m08.west);
+		\draw[dspflow] ([xshift=-0.1cm]m08.east) -- (m09);
+		\draw[dspflow] (m22) -- ([xshift=0.1cm]m23.west);
+		\draw[dspflow] ([xshift=-0.1cm]m23.east) -- (m24);
+		\draw[dspflow] (m27) -- ([xshift=0.1cm]m28.west);
+		\draw[dspflow] ([xshift=-0.1cm]m28.east) -- (m29);
+		\node at (-4.0,-2.5) [] {\textbf{(a)}};
+		\node at (3.0,-2.5) [] {\textbf{(b)}};
+
+	\end{tikzpicture}
+
+\end{document}

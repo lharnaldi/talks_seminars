@@ -3,7 +3,7 @@
 \usepackage{verbatim}
 \usepackage[active,tightpage]{preview}
 \PreviewEnvironment{tikzpicture}
-\setlength{\PreviewBorder}{10pt}%
+\setlength{\PreviewBorder}{15pt}%
 \begin{comment}
 \end{comment}
 \usetikzlibrary{dsp,chains}
@@ -13,206 +13,162 @@
 
 \begin{document}
 \begin{tikzpicture}
-				\draw[step=0.5,very thin,black!20] (-12,-6) grid (8,6);
-				%\draw[help lines] (-6,-8) grid (6,2);
+
+				%\draw[help lines,step=0.5] (-5,-2) grid (5,2);
 	% Place nodes using a matrix
-	\matrix (m1) [row sep=2.5mm, column sep=10mm]
+	\matrix (m1) [row sep=3mm, column sep=5mm]
 	{
-    %\node[dsp/label=above]      (m02) {$W_K^{-0}$};    &
+		%first row
 		%------------------------------------------------------------
-%		\node[coordinate] (m01) {}; &
-%		\node[coordinate] (m02) {}; &
-%		\node[coordinate] (m03) {}; &
-%		\node[coordinate] (m04) {}; &
-%		\node[coordinate] (m05) {}; &
-%		\node[coordinate] (m06) {}; &
-%		\node[coordinate] (m07) {}; &
-%		\node[coordinate] (m08) {}; &
-%		\node[coordinate] (m09) {}; &
-%		\node[coordinate] (m010) {}; \\
-    %\node[dsp/label=above]      		(m09) {$W_K^{-0}$};    &
-		%Fila 1------------------------------------------------------
-		\node[coordinate] (m11) {}; &
-		\node[coordinate] (m12) {}; &
-    \node[dspsquare,minimum height=2.3em, minimum width=1.5cm] (m13){$H_0(z)$}; &
-    \node[dspsquare] (m14) {\downsamplertext{M}}; &
-		\node[dspnodeopen,dsp/label=above] (m15) {$X_0(m)$}; &
-		\node[coordinate] (m133) {}; &
-		\node[coordinate] (m144) {}; &
-		\node[coordinate] (m155) {}; \\
-%		\node[dspnodeopen,dsp/label=above] (m16) {$\hat{X}_0(m)$}; &
-%    \node[dspsquare] (m17) {\upsamplertext{M}}; &
-%    \node[dspsquare,minimum height=2.3em, minimum width=1.5cm] (m18) {$F_0(z)$}; &
-%    \node[coordinate] (m19) {}; &
-%		\node[coordinate] (m110) {}; &
-%    \node[coordinate] (m111) {}; \\ 
-    %\node[dspnodeopen,dsp/label=above] (m112) {$y_k[m]$};  \\
- 	%Fila 2-------------------------------------------------------
-		\node[dspnodeopen,dsp/label=above] (m21) {$x(n)$};  &
-    %\node[coordinate] (m21) {}; &
-    \node[dspnodefull] (m22) {}; &
-    \node[dspsquare,minimum height=2.3em, minimum width=1.5cm](m23){$H_1(z)$}; &
-    \node[dspsquare] (m24) {\downsamplertext{M}}; &
-		\node[dspnodeopen,dsp/label=above] (m25) {$X_1(m)$}; &
-		\node[coordinate] (m233) {}; &
-		\node[coordinate] (m244) {}; &
-		\node[coordinate] (m255) {}; \\
-%		\node[dspnodeopen,dsp/label=above] (m26) {$\hat{X}_1(m)$}; &
-%    \node[dspsquare] (m27) {\upsamplertext{M}}; &
-%    \node[dspsquare,minimum height=2.3em, minimum width=1.5cm] (m28) {$F_1(z)$}; &
-%    \node[dspadder] (m29) {}; &
-%		\node[dspnodeopen] (m210) {$\hat{x}(n)$};          &
-%    \node[coordinate] (m211) {}; \\
-%   \node[coordinate] (m18) {}; &
-%    \node[dspnodeopen,dsp/label=above] (m19) {$y_k[m]$};  \\
-		%Fila 3------------------------------------------------------
-    \node[coordinate] (m31) {}; &
-    \node[coordinate] (m32) {}; &
-    \node[coordinate] (m33) {}; &
-    \node[coordinate] (m34) {}; &
-		\node[coordinate] (m333) {}; &
-		\node[coordinate] (m344) {}; &
-		\node[coordinate] (m355) {}; \\
-%		\node[coordinate] (m35) {}; &
-%		\node[coordinate] (m36) {}; &
-%    \node[coordinate] (m37) {}; &
-%    \node[coordinate] (m38) {}; &
-%    \node[coordinate] (m39) {}; &
-%    \node[coordinate] (m310) {}; &
-%    \node[coordinate] (m311) {}; \\ \\ \\ \\
-%    \node[dspnodeopen,dsp/label=above] (m39) {$y_k[m]$};  \\
-		%Fila 4------------------------------------------------------
-    \node[coordinate] (m41) {}; &
-    \node[coordinate] (m42) {}; &
-		\node[dspsquare,minimum height=2.3em, minimum width=1.5cm] (m43) {$H_{K-1}(z)$}; &
-    \node[dspsquare]  (m44) {\downsamplertext{M}}; &
-		\node[dspnodeopen,dsp/label=above] (m45) {$X_{K-1}(m)$}; &
-		\node[coordinate] (m433) {}; &
-		\node[coordinate] (m444) {}; &
-		\node[coordinate] (m455) {}; \\
-%		\node[dspnodeopen,dsp/label=above] (m46) {$\hat{X}_{K-1}(m)$}; &
-%    \node[dspsquare]  (m47) {\upsamplertext{M}}; &
-%		\node[dspsquare,minimum height=2.3em, minimum width=1.5cm] (m48) {$F_{K-1}(z)$}; &
-%    \node[coordinate] (m49) {}; &
-%		\node[coordinate] (m410) {}; &
-%    \node[coordinate] (m411) {}; \\
-%   \node[coordinate] (m48) {}; &
-%    \node[dspnodeopen,dsp/label=above] (m39) {$y_k[m]$};  \\
- 	%------------------------------------------------------------
-%		\node[coordinate]                  (m10) {};          &
-%		\node[coordinate]                  (m11) {};          &
-%		\node[coordinate, dsp/label=right]   (m12) {$h[0]$};    &
-%		\node[coordinate]                  (m13) {};          &
-%		\node[coordinate, dsp/label=right]   (m14) {$h[1]$};    &
-%		\node[coordinate]                  (m15) {};          &
-%		\node[coordinate, dsp/label=right]   (m16) {$h[2]$};    &
-%		\node[coordinate]                  (m17) {};          &
-%		\node[coordinate, dsp/label=right]   (m18) {$h[3]$};    &
-%		\node[coordinate]                  (m19) {};          &
-%		\node[coordinate]                  (m1X) {};          \\
- 	%------------------------------------------------------------
- 	%\\
- 	%------------------------------------------------------------
-%		\node[coordinate]                  (m20) {};          &
-%		\node[coordinate]                  (m21) {};          &
-%		\node[coordinate]                  (m22) {};          &
-%		\node[coordinate]                  (m23) {};          &
-%		\node[dspadder]                    (m24) {};          &
-%		\node[coordinate]                  (m25) {};          &
-%		\node[dspadder]                    (m26) {};          &
-%		\node[coordinate]                  (m27) {};          &
-%		\node[dspadder]                    (m28) {};          &
-%		\node[coordinate]                  (m29) {};          &
-%		\node[dspnodeopen,dsp/label=above] (m2X) {$y[n]$};    \\
-		%-----------------------------------------------------------
+		\node[coordinate]                  (m000) {};    &
+		\node[coordinate]                  (m001) {};          &
+		\node[dspnodeopen]                  (m002) {};          &
+		\node[dspsquare,minimum width=1.6cm](m003) {$\bar{p}_0(m)$}; &
+		\node[coordinate]                  (m004) {};    &
+		\node[coordinate]                  (m005) {};          &
+		\node[coordinate]                  (m006) {};          &
+		\node[coordinate]                  (m007) {};          &
+		\node[coordinate]                  (m0071) {};          &
+		\node[coordinate]                  (m0072) {};          &
+%		\node[coordinate]                  (m008) {};          &
+%		\node[coordinate]                  (m009) {};          &
+%		\node[coordinate]                  (m010) {};&
+%		\node[dspsquare,minimum width=1.6cm](m011) {$\bar{p}_0(m)$}; &
+%		\node[coordinate]                  (m012) {};          &
+%		\node[coordinate]                  (m013) {};          &
+		\node[coordinate]                  (m014) {};          \\
+%		\node[dspnodeopen,dsp/label=above] (m09) {$y_\rho(m)$};  \\
+		%------------------------------------------------------------
+		%second row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m100) {};    &
+		\node[coordinate]                  (m101) {};          &
+		\node[dspnodeopen]                  (m102) {};          &
+		\node[dspsquare,minimum width=1.6cm](m103) {$\bar{p}_1(m)$}; &
+		\node[coordinate]                  (m104) {};    &
+		\node[coordinate]                  (m105) {};          &
+		\node[coordinate]                  (m106) {};          &
+		\node[coordinate]                  (m107) {};          &
+		\node[coordinate]                  (m1071) {};          &
+		\node[coordinate]                  (m1072) {};          &
+%		\node[coordinate]                  (m108) {};          &
+%		\node[coordinate]                  (m109) {};          &
+%		\node[coordinate]                  (m110) {};&
+%		\node[dspsquare,minimum width=1.6cm](m111) {$\bar{p}_1(m)$}; &
+%		\node[coordinate]                  (m112) {};          &
+%		\node[coordinate]                  (m113) {};          &
+		\node[coordinate]                  (m114) {};          \\ \\
+%		%------------------------------------------------------------
+		%third row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m200) {};    &
+		\node[coordinate]                  (m201) {};          &
+		\node[dspnodeopen]                 (m202) {};          &
+		\node[dspsquare,minimum width=1.6cm](m203) {$\bar{p}_\rho(m)$}; &
+		\node[coordinate]                  (m204) {};    &
+		\node[coordinate]                  (m205) {};          &
+		\node[coordinate]                  (m206) {};          &
+		\node[coordinate]                  (m207) {};          &
+		\node[coordinate]                  (m2071) {};          &
+		\node[coordinate]                  (m2072) {};          &
+%		\node[coordinate]                  (m208) {};          &
+%		\node[coordinate]                  (m209) {};          &
+%		\node[coordinate]                   (m210) {};&
+%		\node[dspsquare,minimum width=1.6cm](m211) {$\bar{p}_\rho(m)$}; &
+%		\node[coordinate]                  (m212) {};          &
+%		\node[coordinate]                  (m213) {};          &
+		\node[coordinate]                  (m214) {};          \\ \\
+		%------------------------------------------------------------
+		%fourth row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m300) {$x_\rho(r)$};    &
+		\node[coordinate]                  (m301) {};          &
+		\node[dspnodeopen]                  (m302) {};          &
+		\node[dspsquare,minimum width=1.6cm](m303) {$\bar{p}_{M-1}(m)$}; &
+		\node[coordinate]                  (m304) {};    &
+		\node[coordinate]                  (m305) {};          &
+		\node[coordinate]                  (m306) {};          &
+		\node[coordinate]                  (m307) {};          &
+		\node[coordinate]                  (m3071) {};          &
+		\node[coordinate]                  (m3072) {};          &
+%		\node[coordinate]                  (m308) {};          &
+%		\node[coordinate]                  (m309) {};          &
+%		\node[coordinate]                  (m310) {};&
+%		\node[dspsquare,minimum width=1.6cm](m311) {$\bar{p}_{M-1}(m)$}; &
+%		\node[coordinate]                  (m312) {};          &
+%		\node[coordinate]                  (m313) {};          &
+		\node[coordinate]                  (m314) {};          \\
+		%--------------------------------------------------------------------
 	};
 
 	% Draw connections
-	%\begin{scope}[start chain]
-	%\chainin (m29);
-	%\chainin (m210) [join=by dspflow];
-	%\chainin (m21);
-	%\chainin (m22) [join=by dspflow];
-	%\end{scope}
-	%\draw[thick] (m12) -| (m42);
-	%\draw[thick] (m19) -| (m29);
-	%\draw[thick] (m49) -| (m29);
-	
-%	\foreach \i in {1,2,4}{ %[evaluate = \i as \j using int(\i+1),
-%	\begin{scope}[start chain]
-%		\chainin (m\i2);
-%		\chainin (m\i3) [join=by dspconn];
-%		\chainin (m\i8);
-%		\chainin (m\i9) [join=by dspflow];
-%	\end{scope}}
-
-	\foreach \i [evaluate = \i as \j using int(\i+1),
-	             evaluate = \i as \k using int(\i+2),] in {2,3,4,6,7,8}
+	\foreach \i [evaluate= \i as \j using int(\i+2),
+	             evaluate= \i as \k using int(\i+3)] in {0,1,2,3}
 	{
 		\begin{scope}[start chain]
-%			\chainin (m0\i);
-%			\chainin (m0\j) [join=by dspconn];
-%			\chainin (m0\k) [join=by dspconn];
-			\chainin (m1\i);
-			\chainin (m1\j) [join=by dspflow];
-			%\chainin (m1\k) [join=by dspconn];
-			\chainin (m2\i);
-			\chainin (m2\j) [join=by dspflow];
-			%\chainin (m2\k) [join=by dspconn];
-			\chainin (m4\i);
-			\chainin (m4\j) [join=by dspflow];
-			%\chainin (m3\k) [join=by dspconn];
-			%\chainin (m1\k) [join=by dspconn];
-			%\chainin (m2\k) [join=by dspconn];
+			\chainin (m\i02);
+			\chainin (m\i03) [join=by dspconn];
+			\chainin (m\i03);
+			\chainin (m\i06) [join=by dspline];
+%			\chainin (m\i10);
+%			\chainin (m\i11) [join=by dspline];
+%			\chainin (m\i11);
+%			\chainin (m\i12) [join=by dspconn];
+%			\chainin (m10\j);
+%			\chainin (m10\k) [join=by dspconn];
+%			\chainin (m20\j);
+%			\chainin (m20\k) [join=by dspconn];
+%			\chainin (m30\j);
+%			\chainin (m30\k) [join=by dspconn];
+%			\chainin (m00\k) [join=by dspline];
+%			\chainin (m10\k) [join=by dspconn];
+%			\chainin (m20\k) [join=by dspconn];
 		\end{scope}
-		%\draw[dspconn] (m2\i) -- (m2\k);
+%		\draw[dspconn] (m20\i) -- (m20\k);
 	}
-
-	%\node[dspnodefull,scale=0.5] at (0,0) {};
-	\node[dspnodefull,scale=0.5] at (-6.4,-0.4) {};
-	\node[dspnodefull,scale=0.5] at (-6.4,-0.6) {};
-	\node[dspnodefull,scale=0.5] at (-6.4,-0.8) {};
-	\node[dspnodefull,scale=0.5] at (5.4,-0.4) {};
-	\node[dspnodefull,scale=0.5] at (5.4,-0.6) {};
-	\node[dspnodefull,scale=0.5] at (5.4,-0.8) {};
-	\node[dspnodefull,scale=0.5] at (-4.0,-0.4) {};
-	\node[dspnodefull,scale=0.5] at (-4.0,-0.6) {};
-	\node[dspnodefull,scale=0.5] at (-4.0,-0.8) {};
-	\node[dspnodefull,scale=0.5] at (2.7,-0.4) {};
-	\node[dspnodefull,scale=0.5] at (2.7,-0.6) {};
-	\node[dspnodefull,scale=0.5] at (2.7,-0.8) {};
-%	\draw[dspflow] (m28) -- (m2X);
-%
-%	% Draw connections
-%
-%	\draw[dspflow] (m00) -- (m01);
-%	
-%	\foreach \i [evaluate = \i as \j using int(\i+1)] in {1,2,3}
-%		\draw[dspflow] (m0\i) -- node[midway,above] {$\z^{-1}$} (m0\j);
-%
-%	\foreach \i [evaluate = \i as \j using int(\i-1)] in {1,2,...,4}
-%		\draw[dspflow] (m0\i) -- node[midway,right] {$h[\j]$} (m1\i);
-%		
-%	\foreach \i [evaluate = \i as \j using int(\i+1)] in {1,2,...,4}
-%		\draw[dspflow] (m1\i) -- (m1\j);
 	
-	% Other elements
-%	\node[dspsquare, right=of m15, below=14ex]       (c0) {\upsamplertext{L}};
-%	\node[dspsquare,right= of c0]                    (c1) {\downsamplertext{M}};
-%	\node[dspfilter,right=of c1]                     (c2) {$H(\z)$};
-%	\node[dspmultiplier,right=of c2,dsp/label=below] (c3) {$\gamma$};
-	\node[dspfilter,dashed,black!80,right=of m433,left=of
-	m26,rotate=90,anchor=south,yshift=-0.1cm, xshift=-0.5cm,minimum height=2.2cm,minimum width=5cm,text height=2em]
-	                                                 (c4) {Procesamiento \\
-																									 sub-banda};
-%	\foreach \i [evaluate = \i as \j using int(\i+1)] in {0,1,...,3}
-%		\draw[dspconn] (c\i) -- (c\j);
-																									 \node[thick] at (-5.4,-2.8)
-																									 {\textbf{Banco de
-																									 filtros de an\'alisis}};
-																									 \node[thick] at (4.6,-2.8)
-																									 {{\bf Banco de
-																									 filtros de s\'intesis}};
+%	\begin{scope}[start chain]
+%		\chainin (m002);
+%		\chainin (m003) [join=by dspflow];
+%		\chainin (m102);
+%		\chainin (m103) [join=by dspflow];
+%		\chainin (m202);
+%		\chainin (m203) [join=by dspflow];
+%		\chainin (m302);
+%		\chainin (m303) [join=by dspflow];
+%	\end{scope}
+
+%	\foreach \i [evaluate = \i as \j using int(\i+1),
+%	             evaluate = \i as \k using int(\i+2),] in {2,4,6}
+%	{
+%		\begin{scope}[start chain]
+%			\chainin (m00\i);
+%			\chainin (m00\j) [join=by dspconn];
+%			\chainin (m00\k) [join=by dspline];
+%			\chainin (m10\k) [join=by dspconn];
+%			\chainin (m20\k) [join=by dspconn];
+%		\end{scope}
+%		\draw[dspconn] (m20\i) -- (m20\k);
+%	}
+
+	%\draw[dspconn] (-6,0) -- (-5,0);
+%	\node at(-6,0)[dspnodeopen,dsp/label=above](in01){$x(n)$};
+%	\node at(-5,0)[coordinate](in02){};
+%	\draw[dspconn] (in02) |- (m002);
+%	\node at(0,0)[dspadder] (ad01) {};
+%	\draw[dspconn] (ad01) -- (1,0);
+%	\node at(1,0)[above](out01){$X_k(m)$};
+%	\node at(m004)[above,scale=0.64](o01){$W_M^0$};
+%	\node at(m104)[above,scale=0.64](o01){$W_M^{-k}$};
+%	\node at(m204)[above,scale=0.64](o01){$W_M^{-k\rho}$};
+%	\node at(m304)[above,scale=0.64](o01){$W_M^{-k(M-1)}$};
+%	\draw[dspconn] (m005) -- (ad01);
+%	\draw[dspconn] (m105) -- (ad01);
+%	\draw[dspconn] (m205) -- (ad01);
+%	\draw[dspconn] (m305) -- (ad01);
+%	\node at(5.5,0)[dspsquare,minimum height=5.2cm,minimum width=1.6cm] {};
+
+	\
 \end{tikzpicture}
 
 \end{document}
