@@ -51,8 +51,8 @@
   %node at (8.4,-2.1)[]{0-30\,dB}
 	node at (13,-1)[align=left](RFout){Salida RF \\(a crióstato) \\ 2-8\,GHz, -40
 	a -10\,dBm}
-	node at (-2,0)[align=left](Iin){Entrada $I$ \\(desde D/A) \\ 0-200\,MHz,+10\,dBm}
-	node at (-2,-2)[align=left](Qin){Entrada $Q$ \\(desde D/A) \\ 0-200\,MHz,+10\,dBm}
+	node at (-2,0)[align=left](Iin){Entrada $I$ \\(desde D/A) \\ 0-250\,MHz,+10\,dBm}
+	node at (-2,-2)[align=left](Qin){Entrada $Q$ \\(desde D/A) \\ 0-250\,MHz,+10\,dBm}
 	node at (-2,-4)[align=left](OLin){OL (2-8\,GHz, +16\,dBm) \\$<$
 	-20\,dBc/Hz @ 1\,Hz \\ $<$ -40\,dBc/Hz @ 10\,Hz}
   node at (2,-7)[buffer,label={[xshift=0.0cm, yshift=0.8cm]30\,dB}] (gain1) {}
@@ -70,10 +70,10 @@
 	node at (5,-5) [right of=att4] (lpf6o) {}
 	%node at (5,-2) [right of=Qindac] (lpf2i) {}
   node at (0,-2)[input, name=Qindac] {}
-	node at (19,-5)[align=left](Iadcout){Salida $I$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
+	node at (19,-5)[align=left](Iadcout){Salida $I$ (al A/D)\\ 0-250\,MHz,+10\,dBm}
   %node [block,right of=att5] (lpf7o) {FPB}
 	node at (5,-9) [right of=att5] (lpf7o) {}
-	node at (19,-9)[align=left](Qadcout){Salida $Q$ (al A/D)\\ 0-200\,MHz,+10\,dBm}
+	node at (19,-9)[align=left](Qadcout){Salida $Q$ (al A/D)\\ 0-250\,MHz,+10\,dBm}
   node at (20,-1)[output, name=dacout] {}
   node at (20,-2)[output, name=Ioutdac] {}
   node at (20,-4)[output, name=Qoutdac] {};
