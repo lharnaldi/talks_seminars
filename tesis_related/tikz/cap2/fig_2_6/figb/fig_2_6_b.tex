@@ -27,7 +27,7 @@
 		\node[coordinate]                  (m004) {};    &
 		\node[dspsquare,minimum width=1.6cm](m005) {$\bar{p}_0(n)$}; &
 		\node[coordinate]                  (m006) {};          &
-		\node[coordinate]                  (m007) {};          &
+		\node[dspnodefull]                 (m007) {};          &
 		\node[coordinate]                  (m008) {};          &
 		\node[coordinate]                  (m009) {};          &
 %		\node[coordinate]                  (m009) {};          &
@@ -47,7 +47,7 @@
 		\node[coordinate]                  (m104) {};    &
 		\node[dspsquare,minimum width=1.6cm](m105) {$\bar{p}_1(n)$}; &
 		\node[coordinate]                  (m106) {};          &
-		\node[coordinate]                  (m107) {};          &
+		\node[dspnodefull]                 (m107) {};          &
 		\node[coordinate]                  (m108) {};          &
 		\node[coordinate]                  (m109) {};          &
 %		\node[coordinate]                  (m109) {};          &
@@ -66,7 +66,7 @@
 		\node[coordinate]                  (m204) {};&
 		\node[dspsquare,minimum width=1.6cm](m205) {$\bar{p}_{2}(n)$}; &
 		\node[coordinate]                  (m206) {};          &
-		\node[coordinate]                  (m207) {};          &
+		\node[dspnodefull]                 (m207) {};          &
 		\node[coordinate]                  (m208) {};          &
 		\node[coordinate]                  (m209) {};          &
 %		\node[coordinate]                  (m209) {};          &
@@ -85,7 +85,7 @@
 		\node[coordinate]                  (m304) {};    &
 		\node[dspsquare,minimum width=1.6cm](m305) {$\bar{p}_{M-1}(n)$}; &
 		\node[coordinate]                  (m306) {};          &
-		\node[coordinate]                  (m307) {};          &
+		\node[dspnodefull]                 (m307) {};          &
 		\node[coordinate]                  (m308) {};          &
 		\node[coordinate]                  (m309) {};          &
 %		\node[coordinate]                  (m309) {};          &
@@ -103,9 +103,9 @@
 	{
 		\begin{scope}[start chain]
 			\chainin (m\i03);
-			\chainin (m\i05) [join=by dspconn];
+			\chainin (m\i05) [join=by dspflow];
 			\chainin (m\i05);
-			\chainin (m\i07) [join=by dspconn];
+			\chainin (m\i07) [join=by dspflow];
 		\end{scope}
 	}
 	
@@ -141,7 +141,7 @@
 	\node at(1.91,-1.0) []{$\vdots$};
 
 	\node at(-3.3,-2.6)[scale=0.9]{$F_s$};
-	\node at(-1.4,-2.6)[scale=0.9]{$F_s/K$};
+	\node at(-1.4,-2.6)[scale=0.9]{$F_s/M$};
 	\node at(1.8,-2.6)[scale=0.9]{$F_s/M$};
 	\node at(0.2,-3)[]{\textbf{b)}};
 
