@@ -1,0 +1,9 @@
+#Archivos auxiliares
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+#Vim swap files
+*.swp
+
