@@ -1,4 +1,4 @@
-LTX=fig_2_6_b
+LTX=fig_2_11_b
 
 all: $(LTX).pdf
 
