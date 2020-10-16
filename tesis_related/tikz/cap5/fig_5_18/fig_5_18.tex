@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{15pt}%
+\begin{comment}
+\end{comment}
+\usetikzlibrary{dsp,chains}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\begin{document}
+\begin{tikzpicture}
+
+				%\draw[help lines,step=0.5] (-5,-2) grid (5,2);
+	% Place nodes using a matrix
+	\matrix (m1) [row sep=3mm, column sep=5mm]
+	{
+		%first row
+		%------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m000) {$x(n)$};    &
+		\node[coordinate]                  (m001) {};          &
+		\node[dspsquare]                   (m002) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m003) {$E_0(z)$}; &
+		\node[coordinate]                  (m004) {};          &
+		\node[dspsquare]                   (m005) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m006) {$E_0(z)$}; &
+		\node[coordinate]                  (m007) {};          &
+		\node[coordinate]                  (m008) {};          &
+		\node[dspsquare]                   (m009) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m010) {$E_0(z)$}; &
+		\node[coordinate]                  (m011) {};          \\
+		%------------------------------------------------------------
+		%second row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m100) {};    &
+		\node[coordinate]                  (m101) {};          &
+		\node[dspsquare]                   (m102) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m103) {$E_1(z)$}; &
+		\node[coordinate]                  (m104) {};          &
+		\node[dspsquare]                   (m105) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m106) {$E_0(z)$}; &
+		\node[coordinate]                  (m107) {};          &
+		\node[coordinate]                  (m108) {};          &
+		\node[dspsquare]                   (m109) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m110) {$E_0(z)$}; &
+		\node[coordinate]                  (m111) {};          \\
+%		%------------------------------------------------------------
+		%third row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m200) {};          &
+		\node[coordinate]                  (m201) {};          &
+		\node[coordinate]                  (m202) {};          &
+		\node[coordinate]                  (m203) {};          &
+		\node[coordinate]                  (m204) {};          &
+		\node[dspsquare]                   (m205) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m206) {$E_1(z)$}; &
+		\node[coordinate]                  (m207) {};          &
+		\node[coordinate]                  (m208) {};          &
+		\node[dspsquare]                   (m209) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m210) {$E_0(z)$}; &
+		\node[coordinate]                  (m211) {};          \\ 
+		%------------------------------------------------------------
+		%fourth row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m300) {};          &
+		\node[coordinate]                  (m301) {};          &
+		\node[coordinate]                  (m302) {};          &
+		\node[coordinate]                  (m303) {};          &
+		\node[coordinate]                  (m304) {};          &
+		\node[dspsquare]                   (m305) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m306) {$E_1(z)$}; &
+		\node[coordinate]                  (m307) {};          &
+		\node[coordinate]                  (m308) {};          &
+		\node[dspsquare]                   (m309) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m310) {$E_0(z)$}; &
+		\node[coordinate]                  (m311) {};          \\
+		%--------------------------------------------------------------------
+		%first row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m400) {};          &
+		\node[coordinate]                  (m401) {};          &
+		\node[coordinate]                  (m402) {};          &
+		\node[coordinate]                  (m403) {};          &
+		\node[coordinate]                  (m404) {};          &
+		\node[coordinate]                  (m405) {};          &
+		\node[coordinate]                  (m406) {};          &
+		\node[coordinate]                  (m407) {};          &
+		\node[coordinate]                  (m408) {};          &
+		\node[dspsquare]                   (m409) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m410) {$E_1(z)$}; &
+		\node[coordinate]                  (m411) {};          \\
+		%------------------------------------------------------------
+		%second row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m500) {};          &
+		\node[coordinate]                  (m501) {};          &
+		\node[coordinate]                  (m502) {};          &
+		\node[coordinate]                  (m503) {};          &
+		\node[coordinate]                  (m504) {};          &
+		\node[coordinate]                  (m505) {};          &
+		\node[coordinate]                  (m506) {};          &
+		\node[coordinate]                  (m507) {};          &
+		\node[coordinate]                  (m508) {};          &
+		\node[dspsquare]                   (m509) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m510) {$E_1(z)$}; &
+		\node[coordinate]                  (m511) {};          \\
+%		%------------------------------------------------------------
+		%third row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m600) {};          &
+		\node[coordinate]                  (m601) {};          &
+		\node[coordinate]                  (m602) {};          &
+		\node[coordinate]                  (m603) {};          &
+		\node[coordinate]                  (m604) {};          &
+		\node[coordinate]                  (m605) {};          &
+		\node[coordinate]                  (m606) {};          &
+		\node[coordinate]                  (m607) {};          &
+		\node[coordinate]                  (m608) {};          &
+		\node[dspsquare]                   (m609) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m610) {$E_1(z)$}; &
+		\node[coordinate]                  (m611) {};          \\ 
+		%------------------------------------------------------------
+		%fourth row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m700) {$x_\rho(r)$};    &
+		\node[coordinate]                  (m701) {};          &
+		\node[coordinate]                  (m702) {};          &
+		\node[coordinate]                  (m703) {};          &
+		\node[coordinate]                  (m704) {};          &
+		\node[coordinate]                  (m705) {};          &
+		\node[coordinate]                  (m706) {};          &
+		\node[coordinate]                  (m707) {};          &
+		\node[coordinate]                  (m708) {};          &
+		\node[dspsquare]                   (m709) {$\downsamplertext{2}$}; &
+		\node[dspsquare,minimum width=1.2cm](m710) {$E_1(z)$}; &
+		\node[coordinate]                  (m711) {};          \\
+		%--------------------------------------------------------------------
+	};
+
+	% Draw connections
+	%\foreach \i [evaluate= \i as \j using int(\i+2),
+	%             evaluate= \i as \k using int(\i+3)] in {0,1,2,3}
+	\foreach \i in {0,1}
+	{
+		\begin{scope}[start chain]
+			\chainin (m\i01);
+			\chainin (m\i02) [join=by dspconn];
+			\chainin (m\i02);
+			\chainin (m\i03) [join=by dspconn];
+			\chainin (m\i03);
+			\chainin (m\i05) [join=by dspconn];
+			\chainin (m\i05);
+			\chainin (m\i06) [join=by dspconn];
+			\chainin (m\i06);
+			\chainin (m\i09) [join=by dspconn];
+			\chainin (m\i09);
+			\chainin (m\i10) [join=by dspconn];
+			\chainin (m\i10);
+			\chainin (m\i11) [join=by dspconn];
+		\end{scope}
+	}
+	\foreach \i in {2,3}
+	{
+		\begin{scope}[start chain]
+			\chainin (m\i05);
+			\chainin (m\i06) [join=by dspconn];
+			\chainin (m\i06);
+			\chainin (m\i09) [join=by dspconn];
+			\chainin (m\i09);
+			\chainin (m\i10) [join=by dspconn];
+			\chainin (m\i10);
+			\chainin (m\i11) [join=by dspconn];
+		\end{scope}
+	}
+	
+	\foreach \i in {4,5,6,7}
+	{
+		\begin{scope}[start chain]
+			\chainin (m\i09);
+			\chainin (m\i10) [join=by dspconn];
+			\chainin (m\i10);
+			\chainin (m\i11) [join=by dspconn];
+		\end{scope}
+	}
+
+	\node [right of=m211,node distance=0.8cm,above=-6.1cm,dspsquare,minimum
+	height=8.8cm,minimum width=1.6cm] (fft){};
+	\draw[dspflow] (m000) -- (m001);
+	\draw[dspflow] (m001) -- (m101);
+	\draw[dspflow] (-1.57,3.93) |- (m205);
+	\draw[dspflow] (-2.0,2.8) |- (m305);
+	\draw[dspflow] (2.5,3.93) |- (m409);
+	\draw[dspflow] (2.3,2.8) |- (m509);
+	\draw[dspflow] (2.0,1.69) |- (m609);
+	\draw[dspflow] (1.8,0.55) |- (m709);
+
+
+	\draw[dspconn] (7.5,3.95) -- (8.8,3.95);
+  \draw[dspconn] (7.5,2.8) -- (8.8,2.8);
+  \draw[dspconn] (7.5,1.65) -- (8.8,1.65);
+  \draw[dspconn] (7.5,0.55) -- (8.8,0.55);
+  \draw[dspconn] (7.5,-0.55) -- (8.8,-0.55);
+  \draw[dspconn] (7.5,-1.7) -- (8.8,-1.7);
+  \draw[dspconn] (7.5,-2.8) -- (8.8,-2.8);
+  \draw[dspconn] (7.5,-3.95) -- (8.8,-3.95);
+
+	\node at(8.8,3.95)[right,scale=1.0](o01){$y_0(m)$};
+  \node at(8.8,2.8)[right,scale=1.0](o02){$y_1(m)$};
+  \node at(8.8,1.65)[right,scale=1.0](o03){$y_2(m)$};
+  \node at(8.8,0.55)[right,scale=1.0](o04){$y_3(m)$};
+  \node at(8.8,-0.55)[right,scale=1.0](o01){$y_4(m)$};
+  \node at(8.8,-1.7)[right,scale=1.0](o02){$y_5(m)$};
+  \node at(8.8,-2.8)[right,scale=1.0](o03){$y_6(m)$};
+  \node at(8.8,-3.95)[right,scale=1.0](o04){$y_7(m)$};
+  \node at(6.6,-0.2)[above](o01){$H_8$};
+
+	 \node at(-5.7,3.3)[scale=0.9]{$z^{-1}$};
+   \node at(-1.9,3.3)[scale=0.9]{$z^{-1}$};
+   \node at(-2.4,1.3)[scale=0.9]{$z^{-1}$};
+	 \node at(2.15,3.3)[scale=0.9]{$z^{-1}$};
+   \node at(1.95,2.3)[scale=0.9]{$z^{-1}$};
+   \node at(1.7,1.2)[scale=0.9]{$z^{-1}$};
+   \node at(1.5,-1.8)[scale=0.9]{$z^{-1}$};
+
+
+	\
+\end{tikzpicture}
+
+\end{document}
