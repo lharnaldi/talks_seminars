@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength{\PreviewBorder}{15pt}%
+\begin{comment}
+\end{comment}
+\usetikzlibrary{dsp,chains}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\newcommand{\z}{\mathpzc{z}}
+
+\begin{document}
+\begin{tikzpicture}
+
+				%\draw[help lines,step=0.5] (-5,-2) grid (5,2);
+	% Place nodes using a matrix
+	\matrix (m1) [row sep=3mm, column sep=5mm]
+	{
+		%first row
+		%------------------------------------------------------------
+		\node[dspnodeopen,dsp/label=above] (m000) {$x(n)$};    &
+		\node[coordinate]                  (m001) {};          &
+		\node[dspsquare,minimum width=1.5cm](m002) {$H_0(z)$}; &
+		\node[dspsquare]                   (m003) {$\downsamplertext{8}$}; &
+		\node[coordinate]                  (m004) {};          &
+		\node[coordinate]                  (m005) {};          \\
+		%------------------------------------------------------------
+		%second row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m100) {};          &
+		\node[coordinate]                  (m101) {};          &
+		\node[dspsquare,minimum width=1.5cm](m102) {$H_1(z)$}; &
+		\node[dspsquare]                   (m103) {$\downsamplertext{8}$}; &
+		\node[coordinate]                  (m104) {};          &
+		\node[coordinate]                  (m105) {};          \\
+%		%------------------------------------------------------------
+		%third row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m200) {};          &
+		\node[coordinate]                  (m201) {};          &
+		\node[dspsquare,minimum width=1.5cm](m202) {$H_2(z)$}; &
+		\node[dspsquare]                   (m203) {$\downsamplertext{4}$}; &
+		\node[coordinate]                  (m204) {};          &
+		\node[coordinate]                  (m205) {};          \\ 
+		%------------------------------------------------------------
+		%third row
+		%------------------------------------------------------------
+		\node[coordinate]                  (m300) {};          &
+		\node[coordinate]                  (m301) {};          &
+		\node[dspsquare,minimum width=1.5cm](m302) {$H_3(z)$}; &
+		\node[dspsquare]                   (m303) {$\downsamplertext{2}$}; &
+		\node[coordinate]                  (m304) {};          &
+		\node[coordinate]                  (m305) {};          \\ 
+		%------------------------------------------------------------
+	};
+
+	% Draw connections
+	%\foreach \i [evaluate= \i as \j using int(\i+2),
+	%             evaluate= \i as \k using int(\i+3)] in {0,1,2,3}
+	\foreach \i in {0,1,2,3}
+	{
+		\begin{scope}[start chain]
+			\chainin (m\i01);
+			\chainin (m\i02) [join=by dspconn];
+			\chainin (m\i02);
+			\chainin (m\i03) [join=by dspconn];
+			\chainin (m\i03);
+			\chainin (m\i04) [join=by dspconn];
+		\end{scope}
+	}
+	
+	\draw[dspflow] (m000) -- (m001);
+	\draw[thick] (m101) |- (m001);
+	\draw[thick] (m101) |- (m201);
+	\draw[thick] (m101) |- (m301);
+
+	\node [right of=m004,right=-1.0cm,scale=1.0](o01){$y_0(m)$};
+	\node [right of=m104,right=-1.0cm,scale=1.0](o02){$y_1(m)$};
+	\node [right of=m204,right=-1.0cm,scale=1.0](o01){$y_0(m)$};
+	\node [right of=m304,right=-1.0cm,scale=1.0](o02){$y_1(m)$};
+
+	\node at(0.2,-2.6)[]{\textbf{a)}};
+
+	\
+\end{tikzpicture}
+
+\end{document}
