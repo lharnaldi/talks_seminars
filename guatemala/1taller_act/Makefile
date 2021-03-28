@@ -1,4 +1,4 @@
-LTX=signal_generation_pmt
+LTX=taller_act1
 
 all: $(LTX).pdf
 

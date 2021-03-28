@@ -1,4 +1,4 @@
-LTX=signal_generation_pmt
+LTX=efecto_fotoelectrico
 
 all: $(LTX).pdf
 

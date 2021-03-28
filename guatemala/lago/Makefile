@@ -1,4 +1,4 @@
-LTX=signal_generation_pmt
+LTX=lago
 
 all: $(LTX).pdf
 

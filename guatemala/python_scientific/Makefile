@@ -1,4 +1,4 @@
-LTX=signal_generation_pmt
+LTX=python_scientific
 
 all: $(LTX).pdf
 
