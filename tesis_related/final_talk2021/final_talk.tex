@@ -26,7 +26,7 @@
 \usepackage{xcolor}
 \usepackage[percent]{overpic}
 
-\title{Microelectrónica y técnicas avanzadas de procesamiento digital con
+\title{Técnicas avanzadas de procesamiento digital con
 aplicaciones en micro-resonadores superconductores multipíxeles}
 \subtitle{\alert{Charla de avance}}
 \author{Ing. L. Horacio Arnaldi\\
@@ -78,27 +78,6 @@ Instituto Balseiro}
 
 \end{frame}
 
-%\begin{frame}{Motivación}
-%        \begin{itemize}
-%                \item ¿Qué me motiva a hacer esto?
-%                \item Desarrollar un grupo de estudios/mediciones en RF a bajas
-%                        temperaturas
-%                \item Desarrollo de nuevas herramientas/instrumentos potenciados
-%                        por el uso de dispositivos lógicos programables (FPGA,
-%                        GPU, CPU, etc.) de última generación
-%                \item ¿Por qué lo hago?
-%                \item En los últimos años se viene trabajando fuertemente en
-%                        detectores de baja temperatura y altas frecuencias
-%                \item ¿Qué beneficios obtengo/obtenemos?
-%                \item Creación de grupos inter-disciplinarios para el estudio de
-%                        fenómenos poco conocidos/estudiados en el CAB
-%                \item ¿Qué grupos integro/se formaron con esto?
-%                \item Grupo de BT, Nano-Microelectrónica, PyC
-%                \item
-%        \end{itemize}
-%\end{frame}
-
-
 \begin{frame}{Contexto}
 	\framesubtitle{Estudios del CMB}
 	\only<1>{\includegraphics[width=0.5\textwidth]{c1_cmb_map}}
@@ -121,25 +100,6 @@ Instituto Balseiro}
 	\end{itemize}
 
 \end{frame}
-%\begin{frame}{Motivación}
-%				\framesubtitle{Estudios del CMB}
-%				\begin{columns}
-%								\begin{column}{0.49\textwidth}
-%				\begin{itemize}
-%								\item[*] El hecho de que el CMB tenga un espectro de cuerpo
-%												negro tan preciso es evidencia de que vino de cuando era
-%												mucho más caliente y denso de lo que es ahora
-%								\item[*] Por lo tanto, el espectro del CMB es una fuerte
-%												evidencia de que el Universo experimentó una etapa de
-%												``Big Bang caliente''
-%				\end{itemize}
-%								\end{column}
-%								\begin{column}{0.49\textwidth}
-%												\only<1>{\includegraphics[width=0.9\textwidth]{motivacion5}}
-%												\only<1>{\includegraphics[width=0.9\textwidth]{c1_cmb_map}}
-%								\end{column}
-%								\end{columns}
-%\end{frame}
 \begin{frame}{Motivación}
 	\framesubtitle{Estudios del CMB}
 	Expansión del Universo $\to$ \alert{temperatura baja}
@@ -168,25 +128,9 @@ Instituto Balseiro}
 		\end{column}
 	\end{columns}
 \end{frame}
-%\begin{frame}{Motivación}
-%				\framesubtitle{QUBIC}
-%												\only<1>{\includegraphics[width=0.4\textwidth]{c1_cmb_map}}
-%												\only<1>{\includegraphics[width=0.4\textwidth]{motivacion1}}
-%												\only<2>{\includegraphics[width=0.4\textwidth]{motivacion2}}
-%												\only<2>{\includegraphics[width=0.4\textwidth]{motivacion3}}
-%												\only<3>{\includegraphics[width=0.6\textwidth]{motivacion4}}
-%				\begin{itemize}
-%								\item[*] 
-%												
-%								\item[*] 
-%								\item[*] 
-%								\only<3>{\item[*] Sus datos (y muchos otros desde entonces) se ajustan a
-%												la curva teórica para un cuerpo negro de 2.728 K}
-%				\end{itemize}
-%\end{frame}
 
 %------------------------------------------------------------------------------
-\section{MKIDs}
+\section{Detectores MKIDs}
 \begin{frame}{\textbf{M}icrowave \textbf{K}inetic \textbf{I}nductance
 	\textbf{D}etector (MKID)}
 	\centering
@@ -246,162 +190,198 @@ Instituto Balseiro}
 	\end{columns}
 \end{frame}
 
-%\begin{frame}{MKIDs}
-%				\begin{columns}
-%								\begin{column}{0.49\textwidth}
-%												\centering
-%												\includegraphics[width=0.92\textwidth]{pulso_respuesta_mkid2}
-%								\end{column}
-%								\begin{column}{0.59\textwidth}
-%												\footnotesize{Mecanismo de detección de los KIDs $\to$ un
-%												cambio temporal en la inductancia cinética superficial
-%												de un superconductor cuando se absorbe un fotón de
-%												energía $h\nu \geq 2 \Delta(T)$, donde $\Delta(T)$ es el
-%												parámetro de gap superconductor (teoría BCS).
-%												\pause
-%
-%												Los fotones de alta energía rompen los pares de Cooper.
-%												Estos se recombinan en un tiempo característico, del
-%												orden de $10-500\,\mu\text{s}$,	{\color{red}produciendo
-%												cambios similares a	pulsos en la impedancia	
-%												superficial.}
-%												\pause
-%
-%												Como la impedancia del superconductor es principalmente
-%												inductiva, especialmente para $T << T_c$,
-%												el superconductor puede diseñarse como el elemento
-%												inductivo en un circuito resonante tipo RLC.
-%												\pause
-%
-%												{\color{blue}El factor de calidad (Q) del circuito
-%												resonante determina ambos, la \alert{sensibilidad} y la
-%												\alert{velocidad} de respuesta del dispositivo}.}
-%								\end{column}
-%				\end{columns}
-%\end{frame}
-%\begin{frame}{MKIDs}
-%				\framesubtitle{Resolución de Energía}
-%				%\begin{exampleblock}{}
-%				%       Works on the principle that incident photons change the surface
-%				%       impedance of a superconductor through the \textit{kinetic
-%				%       inductance effect}
-%				%\end{exampleblock}
-%												\begin{equation*}
-%																R = \frac{1}{2.355}\sqrt{\frac{\eta h \nu}{F
-%																\Delta}}
-%												\end{equation*}
-%				$\eta = 0.57 \to$ eficiencia para crear cuasipartículas (típico),
-%
-%				$h\nu \to$ energía del fotón incidente,
-%
-%				$\Delta = 1.72\,k_BT_c \to$ gap de energía del absorvedor superconductor,
-%
-%				$F \approx 0.2 \to$ factor de Fano
-%
-%				$R=150$ a 5\,eV para temperatura de operación de 100\,mK.
-%
-%				$T = 15$\,mK $\to$ resolución de energía máxima teórica de \alert{$R = 400$ a
-%				5\,eV} (aunque es probable que otras fuentes de ruido, como el ruido de
-%				dos niveles del sistema (TLS), sean más importantes a medida que el
-%				desarrollo futuro aumente	la resolución de energía).
-%
-%\end{frame}
-%\begin{frame}{MKIDs}
-%				\scriptsize{\begin{itemize}
-%								\item Como detector de fotones en el rango mm/submm
-%								\item Resonancia  $1-10\,\text{GHz}$
-%								\item $Q \sim 10^5$
-%								\item $T_{op} < 300\,\text{mK}$
-%								\item Resolución de energía intrínseca $R = \frac{E}{\Delta E} \sim
-%												20-150$\footnote{Rev.Sci.Instr. 83, 044702 (2012)}
-%								\item Resonadores diseñados para operar separados por 2\,MHz en
-%												un BW de $4-5\,\text{GHz}$.
-%								\item Transmisión fuera de resonancia $\simeq 1$
-%				\end{itemize}
-%				Cada resonador tendrá un $BW \sim 200\,\text{kHz}$ (\alert{basado en el
-%				factor de calidad que necesitamos}), se requiere una separación de
-%				2\,MHz entre los resonadores (la posición del resonador se moverá en
-%				función de una carga diferente. Si los empaquetamos demasiado cerca uno
-%				del otro, su posición relativa puede cambiar durante la observación o
-%				en diferentes ciclos de refrigerado).
-%
-%				Por lo tanto, queremos que ADC tenga BW de al menos 400\,MHz y una SNR
-%				superior a 59\,dB.
-%
-%				Si solo consideramos el ruido de cuantización, teóricamente, una SNR de
-%				59\,dB requerirá que el ADC tenga al menos 10 bits.
-%				}
-%				\tiny{\textbf{arXiv:1310.5891v2 (2013)}}
-%\end{frame}
-%\begin{frame}{Tipos de MKIDs}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
+\section{Hardware de lectura}
+\begin{frame}{Especificación del hardware de lectura}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c3_readout_general_mio}
+	\begin{itemize}
+		\item \footnotesize{Superconductores $\to$ inductancia AC debida a la
+			inercia de los pares de Cooper}
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Sistema de frecuencia intermedia}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c3_if_bloques_mio}
+	\begin{itemize}
+		\item \footnotesize{Superconductores $\to$ inductancia AC debida a la
+			inercia de los pares de Cooper}
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Generación y optimización de los tonos}
+	\framesubtitle{Optimización de las fases para minimizar el factor de cresta}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c3_fases_tres_valores_N}
+	\begin{itemize}
+		\item \footnotesize{Superconductores $\to$ inductancia AC debida a la
+			inercia de los pares de Cooper}
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Generación y optimización de los tonos}
+	\framesubtitle{Optimización de las fases para minimizar el factor de cresta}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c3_fc_newman_amp_fases_aleatorias_tot}
+	\begin{itemize}
+		\item 
+			\begin{equation}\label{eq_fc_aleatorios}
+  ||u||_\infty = \left\{\begin{array}{rcl}
+    2.6 \sqrt{\log{N}}, && N \geq 1000\\
+    2.4 \sqrt{\log{N}}, && N < 1000.
+  \end{array}\right.
+\end{equation}
+
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Generación y optimización de los tonos}
+	\framesubtitle{Optimización de las fases para minimizar el factor de cresta}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c2_power_per_tones_compa}
+	\begin{itemize}
+		\item 
+			\begin{equation}\label{eq_fc_aleatorios}
+  ||u||_\infty = \left\{\begin{array}{rcl}
+    2.6 \sqrt{\log{N}}, && N \geq 1000\\
+    2.4 \sqrt{\log{N}}, && N < 1000.
+  \end{array}\right.
+\end{equation}
+
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
 
 %------------------------------------------------------------------------------
-%\section{Aplicaciones}
-%\begin{frame}{Polarización del CMB}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
-%
-%\begin{frame}{Antenna-Coupled multicolor MKIDs}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
-%
-%\begin{frame}{Detección de fonones usando MKIDs}
-%				\begin{itemize}
-%								\item OLE Doyle et.al 2008
-%								\item ¿Por qué lo hago?
-%								\item ¿Qué beneficios obtengo/obtenemos?
-%								\item ¿Qué grupos integro/se formaron con esto?
-%								\item 
-%								\item 
-%				\end{itemize}
-%
-%\end{frame}
+\section{Firmware}
+\begin{frame}{Generación y optimización de los tonos}
+	\framesubtitle{Optimización de las fases para minimizar el factor de cresta}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c4_proto_spec}
+	\begin{itemize}
+		\item 
+			\begin{equation}\label{eq_fc_aleatorios}
+  ||u||_\infty = \left\{\begin{array}{rcl}
+    2.6 \sqrt{\log{N}}, && N \geq 1000\\
+    2.4 \sqrt{\log{N}}, && N < 1000.
+  \end{array}\right.
+\end{equation}
+
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Generación y optimización de los tonos}
+	\framesubtitle{Optimización de las fases para minimizar el factor de cresta}
+	\centering
+	\qquad \includegraphics[width=0.8\textwidth]{c4_proto_compa}
+	\begin{itemize}
+		\item 
+			\begin{equation}\label{eq_fc_aleatorios}
+  ||u||_\infty = \left\{\begin{array}{rcl}
+    2.6 \sqrt{\log{N}}, && N \geq 1000\\
+    2.4 \sqrt{\log{N}}, && N < 1000.
+  \end{array}\right.
+\end{equation}
+
+		\item Cambia cuando los pares de Cooper se rompen debido a la
+			energía de entrada
+		\item Se mide el cambio monitoreando un circuito resonante
+		\item Punto crítico $\to$ los \alert{superconductores proveen un muy
+			alto Q} ($Q_i > 10^7$) $\to$ miles de resonadores
+			pueden ser leídos a través de una sola linea 
+			\begin{itemize}
+				\item[*] \scriptsize{{\color{blue}componentes de lectura criogénica muy
+					simples}}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Generación y optimización de los tonos}
+	\framesubtitle{Optimización de las fases para minimizar el factor de cresta}
+	\begin{table}[!t]
+  \renewcommand{\arraystretch}{1.3}
+  \caption{Comparación de características entre los filtros diseñados ($K=16$).}
+  \label{table_proto_compa}
+  \centering
+  \begin{tabular}{l p{3.2cm} p{3.1cm} p{3.1cm}}
+    \hline
+    \textbf{Parámetro} & \textbf{BF-DFT \newline($k_0=0$)} & \textbf{BF-DFTG ($k_0=\frac{1}{2}$)} &
+    \textbf{BF-DFTG-SM ($k_0=\frac{1}{2}$)}\\
+    \hline\hline
+    Coeficientes ($N$)            & 480             & 480             & 96 \\
+    Coeficientes ($N_p$)          & 30              & 30              & 6  \\
+    Frecuencia central ($\omega_0$) & 0               & $\frac{\pi}{K}$ & $\frac{\pi}{K}$\\
+    MPME\footnotemark             & 30              & 30              & 12 \\
+    MPS                           & $3.75\times10^9$& $3.75\times10^9$& $1.5\times10^9$\\
+    %SNR$_r$                       & $-35.97\,$dB    & $-35.97\,$dB    & $-34.16\,$dB\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\end{frame}
 
 %------------------------------------------------------------------------------
 \section{Mediciones}
 
-%\subsection{Diseño FNAL}%es el diseño de Israel
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid1}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid2}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid3}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid4}
-%\end{frame}
-%\begin{frame}{Barrido en potencia}
-%				\centering
-%												\includegraphics[width=0.4\textwidth]{isra_mkid1}
-%												\includegraphics[width=0.32\textwidth]{isra_mkid2}
-%\end{frame}
 \subsection{Diseño UCSB}
 \begin{frame}{Diseño de la Universidad de California, Santa Bárbara (UCSB)}
 	%\begin{frame}{Diseño UCSB} %Estudio de la $T_c$}
