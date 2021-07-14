@@ -186,7 +186,7 @@ lsblk
 \noindent Una vez descargada la última versión de la distribución, ejecutamos:
 
 \begin{verbatim}
-sudo gzip -dc lago_linux_OS_stable_v1_0.gz | sudo dd bs=4M of=/dev/sdb
+sudo gzip -dc lago_linux_OS_stable_v1_0.gz | sudo dd bs=4M of=/dev/sdb status=progress
 \end{verbatim}
 
 \noindent y tendremos nuestra tarjeta SD lista para ser usada en la RP.
@@ -750,7 +750,6 @@ sudo apt-get install nfs-kernel-server
 \item En el \textbf{cliente} necesitamos instalar el paquete
             \texttt{nfs-common}, el cual permite tener la funcionalidad de NFS
             sin necesidad de incluir los componentes del servidor.
-            directorios.
 \begin{verbatim}
 sudo apt-get update
 sudo apt-get install nfs-common
